@@ -1,1 +1,1 @@
-# eventer-front
+# eventer-frontend
