@@ -6,13 +6,21 @@ import ClickInfo from '../components/map/ClickInfo';
 import hallMarker from '../asset/marker/concertHall.svg';
 import sojuCategory from '../asset/category/sojuCateogory.svg';
 import { markerHandle } from '../asset/MarkerHandle';
+import { getAllStore } from '../apis/apis';
+import getMarker from '../components/getMarker';
 function NolzaMap() {
   const [activeCategory, setActiveCategory] = useState();
   const mapElement = useRef(1);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
+  const [data, setData] = useState();
 
   useEffect(() => {
+    console.log(data);
+  }, [data]);
+  useEffect(() => {
+    getMarker(activeCategory, setData);
+
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,

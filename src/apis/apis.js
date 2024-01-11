@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
 export const getAllStore = () => {
-  axios.get('http://3.34.24.140:9998/store?festivalId=1');
+  return axios.get('http://3.34.24.140:9998/store?festivalId=1');
 };
 
 export const assignStoreApi = () => {
