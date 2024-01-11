@@ -22,6 +22,7 @@ function NolzaMap() {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
+      minZoom: 16,
     };
     const map = new naver.maps.Map(mapElement.current, mapOption);
     const markerData = data?.map((e) => {
