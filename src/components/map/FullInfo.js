@@ -11,7 +11,7 @@ function FullInfo(props) {
       props.setFull(false);
     }, 500);
   };
-  console.log(props);
+
   return (
     <FullInfoContainer popup={props.popup} close={props.close}>
       <VectorBox onClick={handleClose}>
@@ -78,7 +78,6 @@ const FullInfoContainer = styled.div`
     return props.popup ? '' : 'none';
   }};
   animation: ${(props) => {
-    console.log(props.close);
     return props.close
       ? css`
           ${slideDown} ease-in-out 0.5s

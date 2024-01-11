@@ -16,7 +16,7 @@ function ClickInfo(props) {
   const handleFull = () => {
     setFull((prev) => !prev);
   };
-  console.log(props.mapElement.current);
+
   return full ? (
     <FullInfo
       popup={props.popup}
@@ -76,7 +76,6 @@ export const Container = styled.div`
     return props.popup ? '' : 'none';
   }};
   animation: ${(props) => {
-    console.log(props.close);
     return props.close
       ? css`
           ${slideDown} ease-in-out 0.5s

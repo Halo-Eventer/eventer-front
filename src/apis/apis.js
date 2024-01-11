@@ -7,7 +7,6 @@ export const getAllStore = () => {
 };
 
 export const assignStoreApi = () => {
-  console.log(process.env.REACT_APP_API);
   const data = {
     name: '주점2',
     summary: '육회와 사케를 팔고 있어요',
@@ -17,7 +16,7 @@ export const assignStoreApi = () => {
     longitude: 127.07476720170447,
     type: '주점',
   };
-  console.log(data);
+
   const festivalId = 1;
   return axios.post(`/store`, data, {
     params: {

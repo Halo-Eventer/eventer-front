@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import closeImg from '../asset/Close.svg';
 function InfoBox(props) {
-  console.log(props);
   const handleClose = () => {
     props.setClose(true);
 
