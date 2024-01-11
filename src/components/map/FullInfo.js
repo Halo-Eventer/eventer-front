@@ -19,6 +19,7 @@ function FullInfo(props) {
       </VectorBox>
       <FullInfoBox>
         <InfoBox
+          data={props.data}
           setFull={props.setFull}
           setPopup={props.setPopup}
           setClose={props.setClose}

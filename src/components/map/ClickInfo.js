@@ -9,7 +9,9 @@ function ClickInfo(props) {
   const navigate = useNavigate();
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);
+  const openId = props.openId;
   const setPopup = props.setPopup;
+  console.log(props.data);
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
@@ -19,6 +21,7 @@ function ClickInfo(props) {
 
   return full ? (
     <FullInfo
+      data={props.data}
       popup={props.popup}
       close={close}
       setPopup={setPopup}
@@ -26,12 +29,21 @@ function ClickInfo(props) {
       setClose={setClose}
     />
   ) : (
-    <Container popup={props.popup} close={close}>
+    <Container
+      isOpen={props.data.id == props.openId}
+      popup={props.popup}
+      close={close}
+    >
       <VectorBox onClick={handleFull}>
         <img src={Up}></img>
       </VectorBox>
       <InfoContainer style={{ width: '350px' }}>
-        <InfoBox setFull={setFull} setPopup={setPopup} setClose={setClose} />
+        <InfoBox
+          data={props.data}
+          setFull={setFull}
+          setPopup={setPopup}
+          setClose={setClose}
+        />
         <DetailImg src={Img}></DetailImg>
       </InfoContainer>
     </Container>
@@ -73,7 +85,8 @@ export const Container = styled.div`
   height: 244px;
   z-index: 10;
   display: ${(props) => {
-    return props.popup ? '' : 'none';
+    console.log(props.popup, props.isOpen);
+    return props.popup == true && props.isOpen == true ? '' : 'none';
   }};
   animation: ${(props) => {
     return props.close

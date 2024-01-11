@@ -12,12 +12,12 @@ import boothImg from '../asset/marker/boothImg.svg';
 import foodImg from '../asset/marker/foodImg.svg';
 import toiletImg from '../asset/marker/toiletImg.svg';
 function NolzaMap() {
-  const [activeCategory, setActiveCategory] = useState();
+  const [activeCategory, setActiveCategory] = useState(1);
   const mapElement = useRef(1);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
-  const [data, setData] = useState();
-
+  const [data, setData] = useState([]);
+  const [openId, setOpenId] = useState(0);
   useEffect(() => {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
@@ -82,8 +82,16 @@ function NolzaMap() {
         },
       });
     });
+    markers?.map((e, i) => {
+      console.log(e);
+      naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
+    });
 
-    naver.maps.Event.addListener(concertHallMarker, 'click', handlePopup);
+    naver.maps.Event.addListener(
+      concertHallMarker,
+      'click',
+      handleConcertHallMarker
+    );
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
@@ -93,16 +101,44 @@ function NolzaMap() {
     getMarker(activeCategory, setData);
   }, [activeCategory]);
 
-  const handlePopup = () => {
+  const handleConcertHallMarker = () => {
     setPopup((prev) => !prev);
+    setOpenId(-1);
   };
-
+  const handleMarkers = (data) => {
+    setPopup((prev) => !prev);
+    setOpenId(data.id);
+  };
+  console.log(popup);
   return (
     <div style={{ width: '100vw', marginLeft: '-8px', marginTop: '-8px' }}>
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
-
-        <ClickInfo mapElement={mapElement} popup={popup} setPopup={setPopup} />
+        <ClickInfo
+          data={{
+            name: '공연장',
+            summary: '소수빈, IVE, 10CM 공연',
+            operationHours: '1일차 16:00~22:00',
+            id: -1,
+          }}
+          openId={openId}
+          mapElement={mapElement}
+          popup={popup}
+          setPopup={setPopup}
+        />
+        {data.map((e) => {
+          console.log(data);
+          console.log(e);
+          return (
+            <ClickInfo
+              data={e}
+              openId={openId}
+              mapElement={mapElement}
+              popup={popup}
+              setPopup={setPopup}
+            />
+          );
+        })}
       </MapContainer>
     </div>
   );

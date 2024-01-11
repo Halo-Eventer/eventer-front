@@ -9,17 +9,18 @@ function InfoBox(props) {
       props.setFull(false);
     }, 500);
   };
+  const data = props.data;
   return (
     <div>
       <PlaceBox>
-        <PlaceName>메인 공연장</PlaceName>
+        <PlaceName>{data.name}</PlaceName>
         <PlaceType>공연장</PlaceType>
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
-        <Time>1일차 10:00 ~ 22:00 </Time> <Place>학교 중앙 운동장</Place>
+        <Time>{data.operationHours}</Time> <Place>학교 중앙 운동장</Place>
       </DetailBox>
-      <Show>소수빈, IVE, 10CM 공연</Show>
+      <Show>{data.summary}</Show>
     </div>
   );
 }

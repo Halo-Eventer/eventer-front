@@ -8,7 +8,7 @@ export default class SwipeToSlide extends Component {
   constructor(props) {
     super(props);
     this.setActiveCategory = props.setActiveCategory;
-    this.state = { active: 0 };
+    this.state = { active: 1 };
   }
 
   render() {
