@@ -99,6 +99,7 @@ function NolzaMap() {
 
   useEffect(() => {
     getMarker(activeCategory, setData);
+    setOpenId(-2);
   }, [activeCategory]);
 
   const handleConcertHallMarker = () => {
