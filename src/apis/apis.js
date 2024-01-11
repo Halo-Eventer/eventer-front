@@ -3,9 +3,17 @@ import axios from 'axios';
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
 export const getAllStore = () => {
-  return axios.get('http://3.34.24.140:9998/store?festivalId=1');
+  return axios.get('/store?festivalId=1');
 };
-
+export const getAllEvent = () => {
+  return axios.get('/event?festivalId=1');
+};
+export const getAllBooth = () => {
+  return axios.get('/booth?festivalId=1');
+};
+export const getAllAmenity = () => {
+  return axios.get('/amenity?festivalId=1');
+};
 export const assignStoreApi = () => {
   const data = {
     name: '주점2',
