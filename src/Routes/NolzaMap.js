@@ -103,11 +103,12 @@ function NolzaMap() {
   }, [activeCategory]);
 
   const handleConcertHallMarker = () => {
-    setPopup((prev) => !prev);
+    console.log('concertClicked');
+    setPopup(true);
     setOpenId(-1);
   };
   const handleMarkers = (data) => {
-    setPopup((prev) => !prev);
+    setPopup(true);
     setOpenId(data.id);
   };
   console.log(popup);
@@ -128,8 +129,6 @@ function NolzaMap() {
           setPopup={setPopup}
         />
         {data.map((e) => {
-          console.log(data);
-          console.log(e);
           return (
             <ClickInfo
               data={e}

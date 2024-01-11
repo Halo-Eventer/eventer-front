@@ -11,7 +11,7 @@ function ClickInfo(props) {
   const [close, setClose] = useState(false);
   const openId = props.openId;
   const setPopup = props.setPopup;
-  console.log(props.data);
+
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
