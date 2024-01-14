@@ -5,6 +5,8 @@ import Up from '../../asset/up.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import InfoBox from '../InfoBox';
+
+
 function ClickInfo(props) {
   const navigate = useNavigate();
   const [full, setFull] = useState(false);

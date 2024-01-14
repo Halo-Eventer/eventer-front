@@ -5,6 +5,8 @@ import sojuImg from '../asset/marker/sojuImg.svg';
 import ClickInfo from '../components/map/ClickInfo';
 import hallMarker from '../asset/marker/concertHall.svg';
 import sojuCategory from '../asset/category/sojuCateogory.svg';
+
+
 function NolzaMap() {
   const mapElement = useRef(1);
   const { naver } = window;
