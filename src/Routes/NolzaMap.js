@@ -34,7 +34,7 @@ function NolzaMap(props) {
         type: e.type,
       };
     });
-    console.log(markerData);
+
     let concertHallMarker = markerHandle(
       naver,
       map,
@@ -54,7 +54,7 @@ function NolzaMap(props) {
     const markers = markerData?.map((e) => {
       return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
     });
-    console.log(markers);
+
     import('../asset/MarkerClustering').then((res) => {
       const htmlMarker1 = {
         content: [
@@ -83,7 +83,6 @@ function NolzaMap(props) {
       });
     });
     markers?.map((e, i) => {
-      console.log(e);
       naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
     });
 
@@ -103,7 +102,6 @@ function NolzaMap(props) {
   }, [activeCategory]);
 
   const handleConcertHallMarker = () => {
-    console.log('concertClicked');
     setPopup(true);
     setOpenId(-1);
   };
@@ -111,7 +109,7 @@ function NolzaMap(props) {
     setPopup(true);
     setOpenId(data.id);
   };
-  console.log(popup);
+
   return (
     <div style={{ width: '100vw', marginLeft: '-8px', marginTop: '-8px' }}>
       <MapContainer ref={mapElement}>
@@ -133,6 +131,7 @@ function NolzaMap(props) {
           return (
             <ClickInfo
               data={e}
+              activeCategory={activeCategory}
               openId={openId}
               mapElement={mapElement}
               popup={popup}

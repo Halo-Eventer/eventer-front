@@ -4,7 +4,6 @@ import { Input, InputBox, SemiTitle } from './Assign';
 
 function AssignImage(props) {
   const handleImg = (e) => {
-    console.log(e.target.files[0]);
     imageUploadApi(e.target.files[0])
       .then((res) => {
         console.log(res.data);

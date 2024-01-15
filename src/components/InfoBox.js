@@ -14,11 +14,11 @@ function InfoBox(props) {
     <div>
       <PlaceBox>
         <PlaceName>{data.name}</PlaceName>
-        <PlaceType>공연장</PlaceType>
+        <PlaceType>{data.type}</PlaceType>
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
-        <Time>{data.operationHours}</Time> <Place>학교 중앙 운동장</Place>
+        <Time>{data.operationHours}</Time> <Place>{data.location}</Place>
       </DetailBox>
       <Show>{data.summary}</Show>
     </div>
