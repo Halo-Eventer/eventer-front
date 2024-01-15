@@ -14,6 +14,16 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
+export const assignApi = (props, category) => {
+  console.log(props);
+  const festivalId = 1;
+
+  return axios.post(`/${category}`, props, {
+    params: {
+      festivalId: festivalId,
+    },
+  });
+};
 export const assignStoreApi = () => {
   const data = {
     name: '주점2',
