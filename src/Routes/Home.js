@@ -40,7 +40,6 @@ function Home() {
             {infoMap
             ?<Info></Info>
             :<NolzaMap 
-            showChangeBlock = {showChangeBlock}
             setShowChangeBlock = {setShowChangeBlock}
             ></NolzaMap>
             }

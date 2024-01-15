@@ -137,6 +137,7 @@ function NolzaMap(props) {
               mapElement={mapElement}
               popup={popup}
               setPopup={setPopup}
+              setShowChangeBlock={props.setShowChangeBlock}
             />
           );
         })}
