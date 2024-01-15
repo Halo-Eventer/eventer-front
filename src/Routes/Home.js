@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 import styled from 'styled-components';
 
@@ -13,15 +13,15 @@ import NolzaMap from './NolzaMap';
 
 
 function Home() {
-    const [barPos,setBarPos] = useState("0");
-    const [colorInfo,setColorInfo]=useState("white");
-    const [colorMap,setColorMap]=useState("black");
-    const [infoMap,setInfoMap]=useState(true);
-    const [showChangeBlock, setShowChangeBlock]=useState(true);
+    const [barPos, setBarPos] = useState("0");
+    const [colorInfo, setColorInfo] = useState("white");
+    const [colorMap, setColorMap] = useState("black");
+    const [infoMap, setInfoMap] = useState(true);
+    const [showChangeBlock, setShowChangeBlock] = useState(true);
 
     const onClick_info = () => {
         setBarPos("0");
-        
+
         setColorInfo("white");
         setColorMap("black");
 
@@ -36,29 +36,30 @@ function Home() {
         setInfoMap(false);
     }
     return (
-        <Wrapper_Home>
-            {infoMap
-            ?<Info></Info>
-            :<NolzaMap 
-            setShowChangeBlock = {setShowChangeBlock}
-            ></NolzaMap>
-            }
-
+        <div>
+            <Wrapper_Home>
+                {infoMap
+                    ? <Info></Info>
+                    : <NolzaMap
+                        setShowChangeBlock={setShowChangeBlock}
+                    ></NolzaMap>
+                }
+            </Wrapper_Home>
             {
-            showChangeBlock &&
-            <ChangeBlock>
+                showChangeBlock &&
+                <ChangeBlock>
                     <ChangeBox>
                         <ChangeBar barPos={barPos}></ChangeBar>
                         <ChangeBtn onClick={onClick_info} color={colorInfo}>축제정보</ChangeBtn>
                         <ChangeBtn onClick={onClick_map} color={colorMap}>축제지도</ChangeBtn>
                     </ChangeBox>
-            </ChangeBlock>
+                </ChangeBlock>
             }
-        </Wrapper_Home>
+        </div>
     )
 }
 export default Home;
-export {FlexBox_Row, FlexBox_Column}
+export { FlexBox_Row, FlexBox_Column }
 
 
 const FlexBox_Row = styled.div`
@@ -80,7 +81,6 @@ background-image: url(${backGround});   //css에서 jsx변수 쓰고싶다면 {}
 background-repeat: repeat;
 background-size: cover;  // 이미지가 div를 완전히 채우도록 설정
 
-width:390px;
 //페이지 내부 요소가 뷰포트 높이를 안 넘어가면 이렇게,
 //넘어간다면 height설정 x 그냥 요소자체 높이로만 해결
 //(height없이 width만 적혀져 있는)
@@ -94,10 +94,10 @@ display:block;
 
 
 const ChangeBar = styled.div`
-transform: translateX(${props=>props.barPos});   //최종 목적지
+transform: translateX(${props => props.barPos});   //최종 목적지
 `;
 const ChangeBtn = styled.button`
-    color: ${props=>props.color};   
+    color: ${props => props.color};   
     //해당 태그의 props는 선언시에만 활용할 수 있음. 밑에서 재정의 할 때는 활용 불가. 
     //선언중인 상위컴포넌트의 props만 사용 가능
 `;
@@ -147,9 +147,9 @@ align-items:center;
     ${ChangeBar}{
             position:absolute;
             left:4px;
-            /* left : ${props=>props.barPos
-            ? `4px;`
-            : `28px;`}; => 이런식으로 불린값 전달하는건 스타일컴포넌트에서 불가능, 
+            /* left : ${props => props.barPos
+        ? `4px;`
+        : `28px;`}; => 이런식으로 불린값 전달하는건 스타일컴포넌트에서 불가능, 
             오로지 속성값만 전달 가능. ||나 &&를 쓰는 건 속성값을 전달 못 받은 경우 기본값을 정하는 것 뿐.*/ 
 
             //jsx모드의 css속성값은 '문자열'이므로 직접적인 속성값은 반드시 '따옴표' 필수

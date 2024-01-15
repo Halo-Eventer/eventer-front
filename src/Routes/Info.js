@@ -54,8 +54,7 @@ function Info() {
             <UpperBar>
                 <img src={happySejong}></img>
             </UpperBar>
-            <FlexBox_Row
-            style={{width:'100vw'}}>
+            <FlexBox_Row style={{width:'100%'}}>
                 <ImgBlock>
                     <StyledSlider {...settings}>
                         {notiList.map((item,key)=>
@@ -150,7 +149,11 @@ const Wrapper = styled.div`
 position:absolute;
 left:50%;
 transform:translateX(-50%);
-width:390px;
+width:100vw;
+@media screen and (min-width:450px) {
+    width:390px;
+}
+//CSS에서 @media 규칙 안의 screen은 미디어 유형을 지정하는 키워드
 
 border:1px solid #CCC;
 border-top:none;
@@ -173,6 +176,10 @@ z-index:-3;
 //for 가독성
 const TopFixedDiv = styled.div`
 position:fixed;
+width:100%;
+@media screen and (min-width:450px) {
+    width:390px;
+}
 left:50%;
 transform:translateX(-50%);
 top:0px;
@@ -181,7 +188,7 @@ padding:0;
 `;
 const UpperBar = styled.div`
 position:relative;
-width: 390px;
+width:100%;
 height: 48px;
 flex-shrink: 0;
 
@@ -260,7 +267,7 @@ width:390px;
 `;
 
 const ImgBoard = styled.img`
-width: 390px;
+width:100%;
 height: 390px;
 flex-shrink: 0;
 
@@ -272,7 +279,7 @@ cursor:${props=>props.cursor};
 const InfoBox = styled.div``;
 const NoticeBox = styled.div``;
 const SecondBlock = styled.div`
-    width:100vw;
+    width:100%;
 
     margin-top:32px;
     margin-bottom:28px;

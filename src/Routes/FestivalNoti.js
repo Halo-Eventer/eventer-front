@@ -87,7 +87,7 @@ function FestivalNoti(){
             <Wrapper>
                 <GlobalStyles/>
             
-                <MainBlock style={{marginTop:'96px'}}>
+                <MainBlock style={{marginTop:'108px'}}>
                     {
                         showNoti
                         ?<Noti notiList = {notiList}/>
