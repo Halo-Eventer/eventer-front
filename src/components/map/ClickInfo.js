@@ -13,7 +13,7 @@ function ClickInfo(props) {
   const [clickInfo, setClickInfo] = useState({});
   const openId = props.openId;
   const setPopup = props.setPopup;
-  console.log(props.data);
+
   useEffect(() => {
     getDetailStore(props.data.id)
       .then((res) => {
