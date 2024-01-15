@@ -36,11 +36,17 @@ function Info() {
     const onClick_festivalNoti = () => {
         navigate('/festivalNoti');
     }
-    const onClick_detail = (event) =>{
+    const onClick_detailNoti = (event) =>{
         event.preventDefault();
         const notiId = event.currentTarget.dataset.value;
         console.log("notiId : ",event.currentTarget.dataset.value);
         navigate(`/noti/${notiId}`);
+    }
+    const onClick_detailEvent = (event) =>{
+        event.preventDefault();
+        const eventId = event.currentTarget.dataset.value;
+        console.log("eventId : ",event.currentTarget.dataset.value);
+        navigate(`/event/${eventId}`);
     }
     return (
         <Wrapper style={{height:'100vh'}}>
@@ -56,15 +62,15 @@ function Info() {
                         <ImgBoard 
                         cursor='pointer'
                         //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-                        onClick={onClick_detail} 
+                        onClick={onClick_detailNoti} 
                         key={key}
                         data-value={key}
                         src={item.images[0]}></ImgBoard>)}
 
                         {eventList.map((item,key)=>
                         <ImgBoard 
-                        style={{cursor:'pointer'}}
-                        onClick={onClick_detail} 
+                        cursor='pointer'
+                        onClick={onClick_detailEvent} 
                         key={key}
                         data-value={key}
                         src={item.images[0]}></ImgBoard>)}
