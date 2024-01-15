@@ -99,14 +99,16 @@ function NolzaMap(props) {
 
   useEffect(() => {
     getMarker(activeCategory, setData);
+    setOpenId(-2);
   }, [activeCategory]);
 
   const handleConcertHallMarker = () => {
-    setPopup((prev) => !prev);
+    console.log('concertClicked');
+    setPopup(true);
     setOpenId(-1);
   };
   const handleMarkers = (data) => {
-    setPopup((prev) => !prev);
+    setPopup(true);
     setOpenId(data.id);
   };
   console.log(popup);
@@ -128,8 +130,6 @@ function NolzaMap(props) {
           setShowChangeBlock={props.setShowChangeBlock}
         />
         {data.map((e) => {
-          console.log(data);
-          console.log(e);
           return (
             <ClickInfo
               data={e}

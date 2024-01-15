@@ -11,7 +11,7 @@ function ClickInfo(props) {
   const [close, setClose] = useState(false);
   const openId = props.openId;
   const setPopup = props.setPopup;
-  console.log(props.data);
+
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
@@ -92,7 +92,6 @@ export const Container = styled.div`
   height: ${244 + 8}px;
   z-index: 10;
   display: ${(props) => {
-    console.log(props.popup, props.isOpen);
     return props.popup == true && props.isOpen == true ? '' : 'none';
   }};
   animation: ${(props) => {

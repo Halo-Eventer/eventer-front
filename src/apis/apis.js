@@ -14,6 +14,17 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
+export const assignApi = (props, category, img) => {
+  if (img != []) props.img = img;
+
+  const festivalId = 1;
+
+  return axios.post(`/${category}`, props, {
+    params: {
+      festivalId: festivalId,
+    },
+  });
+};
 export const assignStoreApi = () => {
   const data = {
     name: '주점2',
@@ -30,5 +41,15 @@ export const assignStoreApi = () => {
     params: {
       festivalId: festivalId,
     },
+  });
+};
+
+export const imageUploadApi = (imgInfo) => {
+  const formData = new FormData();
+  formData.append('image', imgInfo);
+  formData.append('dirName', 'festival');
+
+  return axios.post(`/image`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
