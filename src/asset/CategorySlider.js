@@ -112,7 +112,7 @@ const CategoryBox = styled.div`
   display: flex;
   height: 36px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   width: 70px;
 
   border-radius: 40px;
