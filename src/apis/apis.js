@@ -43,3 +43,14 @@ export const assignStoreApi = () => {
     },
   });
 };
+
+export const imageUploadApi = (imgUrl) => {
+  const formData = new FormData();
+  console.log(imgUrl);
+  formData.append('image', imgUrl);
+  formData.append('dirName', 'festival');
+
+  return axios.post(`/image`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
