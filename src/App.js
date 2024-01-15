@@ -7,9 +7,11 @@ import FestivalInfo from './Routes/FestivalInfo';
 import FestivalNoti from './Routes/FestivalNoti';
 import Detail_Event from './Routes/Detail_Event';
 import Detail_Noti from './Routes/Detail_Noti';
+import AssignPage from './Routes/AssignPage';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
 
 function App() {
   return (
@@ -18,8 +20,12 @@ function App() {
         <Route path="" element={<Home></Home>}/>
         <Route path="/festivalInfo" element={<FestivalInfo/>}/>
         <Route path="/festivalNoti" element={<FestivalNoti/>}/>
+
         <Route path="/event/:id" element={<Detail_Event/>}/>
         <Route path="/noti/:id" element={<Detail_Noti/>}/>
+        {/* Detail을 루트로 처리하는 법 */}
+
+        <Route path="/assign" element={<AssignPage />}/>
       </Routes>
     </BrowserRouter>
   );

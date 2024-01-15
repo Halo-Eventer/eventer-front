@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import {GlobalStyles, Wrapper, 
+import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, HomeBtn, BkBtn} from './Info';
 import {eventList,notiList} from '../components/info/DataBase';
 
@@ -63,34 +63,39 @@ function FestivalNoti(){
     //useEffect(()=>{fetchNotiList();},[]);
 
     return(
-        <Wrapper>
-            <GlobalStyles/>
-            <UpperBar>
-                <BkBtn onClick={onClick_bkBtn}></BkBtn>
-                <Link to="/" style={{textDecoration:'none'}}>
-                    <HomeBtn/>
-                </Link>
-                <Title>공지사항 / 이벤트</Title>
-            </UpperBar>
-            <SecondBar>
-                <SecondBtn 
-                onClick={onClick_noti}
-                color={color1}>
-                    공지사항</SecondBtn>
-                <UnderBar transForm={transForm}></UnderBar>
-                <SecondBtn 
-                onClick={onClick_event}
-                color={color2}>
-                    이벤트</SecondBtn>
-            </SecondBar>
-            <MainBlock>
-                {
-                    showNoti
-                    ?<Noti notiList = {notiList}/>
-                    :<Event eventList = {eventList}/>
-                }
-            </MainBlock>
-        </Wrapper>
+        <div>
+             <TopFixedDiv>
+                <UpperBar>
+                    <BkBtn onClick={onClick_bkBtn}></BkBtn>
+                    <Link to="/" style={{textDecoration:'none'}}>
+                        <HomeBtn/>
+                    </Link>
+                    <Title>공지사항 / 이벤트</Title>
+                </UpperBar>
+                <SecondBar>
+                    <SecondBtn 
+                    onClick={onClick_noti}
+                    color={color1}>
+                        공지사항</SecondBtn>
+                    <UnderBar transForm={transForm}></UnderBar>
+                    <SecondBtn 
+                    onClick={onClick_event}
+                    color={color2}>
+                        이벤트</SecondBtn>
+                </SecondBar>
+            </TopFixedDiv>
+            <Wrapper>
+                <GlobalStyles/>
+            
+                <MainBlock style={{marginTop:'96px'}}>
+                    {
+                        showNoti
+                        ?<Noti notiList = {notiList}/>
+                        :<Event eventList = {eventList}/>
+                    }
+                </MainBlock>
+            </Wrapper>
+        </div>
     )
 
 }
@@ -105,7 +110,7 @@ color: ${(props)=>props.color};
 `;
 const SecondBar = styled.div`
 position:relative;
-width: 100vw;
+width: 100%;
 height: 48px;
 flex-shrink: 0;
 

@@ -2,12 +2,15 @@ import React, { Component, useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import sojuImg from '../asset/category/sojuCateogory.svg';
+import { getAllStore } from '../apis/apis';
 
 export default class SwipeToSlide extends Component {
   constructor(props) {
     super(props);
-    this.state = { active: 0 };
+    this.setActiveCategory = props.setActiveCategory;
+    this.state = { active: 1 };
   }
+
   render() {
     const settings = {
       className: '',
@@ -19,14 +22,14 @@ export default class SwipeToSlide extends Component {
       variableWidth: true,
 
       afterChange: function (index) {
-        console.log(
-          `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-        );
+        // console.log(
+        //   `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
+        // );
       },
     };
     const handleClick = (e) => {
-      console.log(e.target.id);
       this.setState({ active: e.target.id });
+      this.setActiveCategory(e.target.id);
     };
 
     return (
@@ -114,11 +117,9 @@ const CategoryBox = styled.div`
 
   border-radius: 40px;
   background-color: ${(props) => {
-    console.log(props.id == props.active, props.id, props.active);
     return props.id == props.active ? 'red' : 'white';
   }};
   color: ${(props) => {
-    console.log(props.id == props.active, props.id, props.active);
     return props.id == props.active ? 'white' : 'black';
   }};
   .slick-list > .slick-slide {

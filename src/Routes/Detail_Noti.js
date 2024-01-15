@@ -3,7 +3,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import {GlobalStyles, Wrapper, 
+import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider,ImgBoard} from './Info';
 
@@ -60,52 +60,56 @@ function Detail_Noti(){
     }
 
     return(
-        <Wrapper>
-            <GlobalStyles/>
-            <UpperBar>
-                <BkBtn onClick={onClick_bkBtn}></BkBtn>
-                <Link to="/" style={{textDecoration:'none'}}>
-                    <HomeBtn/>
-                </Link>
-                <Title>공지사항 / 이벤트</Title>
-            </UpperBar>
-            <MainBoard>
-                <ImgBlock>
-                    <StyledSlider {...settings}>
-                        {detailedList.images.map((item,key)=>
-                        <ImgBoard key={key} src={item}></ImgBoard>)}
+        <div>
+            <TopFixedDiv>
+                <UpperBar>
+                    <BkBtn onClick={onClick_bkBtn}></BkBtn>
+                    <Link to="/" style={{textDecoration:'none'}}>
+                        <HomeBtn/>
+                    </Link>
+                    <Title>공지사항 / 이벤트</Title>
+                </UpperBar>
+            </TopFixedDiv>
+            <Wrapper>
+                <GlobalStyles/>
+                <MainBoard style={{marginTop:'48px'}}>
+                    <ImgBlock>
+                        <StyledSlider {...settings}>
+                            {detailedList.images.map((item,key)=>
+                            <ImgBoard key={key} src={item}></ImgBoard>)}
 
-                        {/* <ImgBoard src={barItem}></ImgBoard>
-                        <ImgBoard src={birthDay2}></ImgBoard>
-                        <ImgBoard src={birthDay3}></ImgBoard>
-                        <ImgBoard src={birthDay4}></ImgBoard> */}
-                    </StyledSlider>
-                </ImgBlock>
-                <TextBoard>
-                    <div>
-                        <h1>
-                            {detailedList.title}
-                        </h1>
-                        <h2>
-                            {detailedList.subtitle}
-                        </h2>
-                        {detailedList.content.split('\n').map((line,key)=>
-                            {   
-                                if(line.length===0){
-                                    /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
-                                    개행문자는 나눠진 원소에 들어가지 않는다는 뜻,
-                                    따라서 변수 line에 개행문자가 들어갈 일은 없으므로
-                                    그냥 공간만 차지하는 빈 원소일 뿐*/
-                                    return <br key = {key}/>
+                            {/* <ImgBoard src={barItem}></ImgBoard>
+                            <ImgBoard src={birthDay2}></ImgBoard>
+                            <ImgBoard src={birthDay3}></ImgBoard>
+                            <ImgBoard src={birthDay4}></ImgBoard> */}
+                        </StyledSlider>
+                    </ImgBlock>
+                    <TextBoard>
+                        <div>
+                            <h1>
+                                {detailedList.title}
+                            </h1>
+                            <h2>
+                                {detailedList.subtitle}
+                            </h2>
+                            {detailedList.content.split('\n').map((line,key)=>
+                                {   
+                                    if(line.length===0){
+                                        /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
+                                        개행문자는 나눠진 원소에 들어가지 않는다는 뜻,
+                                        따라서 변수 line에 개행문자가 들어갈 일은 없으므로
+                                        그냥 공간만 차지하는 빈 원소일 뿐*/
+                                        return <br key = {key}/>
+                                    }
+                                    else
+                                        return <h3 key = {key} >{line}</h3>
                                 }
-                                else
-                                    return <h3 key = {key} >{line}</h3>
-                            }
-                                    )}
-                    </div>
-                </TextBoard>
-            </MainBoard>
-        </Wrapper>
+                                        )}
+                        </div>
+                    </TextBoard>
+                </MainBoard>
+            </Wrapper>
+        </div>
     )
 }
 

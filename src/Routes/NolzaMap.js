@@ -5,73 +5,63 @@ import sojuImg from '../asset/marker/sojuImg.svg';
 import ClickInfo from '../components/map/ClickInfo';
 import hallMarker from '../asset/marker/concertHall.svg';
 import sojuCategory from '../asset/category/sojuCateogory.svg';
-
-
-function NolzaMap() {
+import { markerHandle } from '../asset/MarkerHandle';
+import eventImg from '../asset/marker/eventImg.svg';
+import getMarker from '../components/getMarker';
+import boothImg from '../asset/marker/boothImg.svg';
+import foodImg from '../asset/marker/foodImg.svg';
+import toiletImg from '../asset/marker/toiletImg.svg';
+function NolzaMap(props) {
+  const [activeCategory, setActiveCategory] = useState(1);
   const mapElement = useRef(1);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
+  const [data, setData] = useState([]);
+  const [openId, setOpenId] = useState(0);
   useEffect(() => {
-    console.log(popup, 'changed');
-  }, [popup]);
-  useEffect(() => {
-    console.log(mapElement.current, mapElement);
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
+      minZoom: 16,
     };
     const map = new naver.maps.Map(mapElement.current, mapOption);
-    const mapDiv = document.getElementById('map');
+    const markerData = data?.map((e) => {
+      return {
+        name: e.name,
+        lat: e.latitude,
+        lng: e.longitude,
+        summary: e.summary,
+        type: e.type,
+      };
+    });
+    console.log(markerData);
+    let concertHallMarker = markerHandle(
+      naver,
+      map,
+      37.55041,
+      127.07505,
+      hallMarker,
+      100,
+      '공연장'
+    );
+    let markerImg = '';
+    if (activeCategory == 1) markerImg = eventImg;
+    else if (activeCategory == 2) markerImg = foodImg;
+    else if (activeCategory == 3) markerImg = sojuImg;
+    else if (activeCategory == 4) markerImg = boothImg;
+    else if (activeCategory == 5) markerImg = toiletImg;
 
-    let concertHallMarker = new naver.maps.Marker({
-      position: new naver.maps.LatLng(37.55041, 127.07505),
-      map,
-      icon: {
-        url: hallMarker,
-        size: new naver.maps.Size(100, 100),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(25, 26),
-      },
+    const markers = markerData?.map((e) => {
+      return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
     });
-
-    let marker2 = new naver.maps.Marker({
-      position: new naver.maps.LatLng(37.551, 127.0744),
-      map,
-      icon: {
-        url: sojuImg,
-        size: new naver.maps.Size(50, 50),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(25, 26),
-      },
-    });
-    let marker3 = new naver.maps.Marker({
-      position: new naver.maps.LatLng(37.5512, 127.0744),
-      map,
-      icon: {
-        url: sojuImg,
-        size: new naver.maps.Size(50, 50),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(25, 26),
-      },
-    });
-    let marker4 = new naver.maps.Marker({
-      position: new naver.maps.LatLng(37.5521, 127.074),
-      map,
-      icon: {
-        url: sojuImg,
-        size: new naver.maps.Size(50, 50),
-        origin: new naver.maps.Point(0, 0),
-        anchor: new naver.maps.Point(25, 26),
-      },
-    });
-
+    console.log(markers);
     import('../asset/MarkerClustering').then((res) => {
       const htmlMarker1 = {
         content: [
           `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
-        display: flex; align-items: center; justify-content: center'>`,
+          display: flex; align-items: center; justify-content: center'>`,
           `<div>`,
-          `<img src=${sojuCategory}></img>`,
+          `<img src=${markerImg}></img>`,
           `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
           `</div>`,
           `</div>`,
@@ -82,20 +72,7 @@ function NolzaMap() {
         minClusterSize: 2,
         maxZoom: 19,
         map: map,
-        markers: [marker2, marker3],
-        disableClickZoom: false,
-        gridSize: 200,
-        icons: [htmlMarker1],
-        indexGenerator: [10, 100, 200, 500, 1000],
-        stylingFunction: function (clusterMarker, count) {
-          clusterMarker.getElement().querySelector('p').textContent = count;
-        },
-      });
-      new res.MarkerClustering({
-        minClusterSize: 2,
-        maxZoom: 19,
-        map: map,
-        markers: [marker4],
+        markers: markers,
         disableClickZoom: false,
         gridSize: 200,
         icons: [htmlMarker1],
@@ -105,31 +82,65 @@ function NolzaMap() {
         },
       });
     });
+    markers?.map((e, i) => {
+      console.log(e);
+      naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
+    });
 
-    naver.maps.Event.addListener(concertHallMarker, 'click', handlePopup);
+    naver.maps.Event.addListener(
+      concertHallMarker,
+      'click',
+      handleConcertHallMarker
+    );
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
-  }, []);
+  }, [data]);
 
-  const handlePopup = () => {
-    console.log(popup);
+  useEffect(() => {
+    getMarker(activeCategory, setData);
+  }, [activeCategory]);
+
+  const handleConcertHallMarker = () => {
     setPopup((prev) => !prev);
+    setOpenId(-1);
   };
+  const handleMarkers = (data) => {
+    setPopup((prev) => !prev);
+    setOpenId(data.id);
+  };
+  console.log(popup);
   return (
     <div style={{ width: '100vw', marginLeft: '-8px', marginTop: '-8px' }}>
-      <div
-        ref={mapElement}
-        style={{
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-        }}
-      >
-        <SwipeToSlide />
-
-        <ClickInfo mapElement={mapElement} popup={popup} setPopup={setPopup} />
-      </div>
+      <MapContainer ref={mapElement}>
+        <SwipeToSlide setActiveCategory={setActiveCategory} />
+        <ClickInfo
+          data={{
+            name: '공연장',
+            summary: '소수빈, IVE, 10CM 공연',
+            operationHours: '1일차 16:00~22:00',
+            id: -1,
+          }}
+          openId={openId}
+          mapElement={mapElement}
+          popup={popup}
+          setPopup={setPopup}
+          setShowChangeBlock={props.setShowChangeBlock}
+        />
+        {data.map((e) => {
+          console.log(data);
+          console.log(e);
+          return (
+            <ClickInfo
+              data={e}
+              openId={openId}
+              mapElement={mapElement}
+              popup={popup}
+              setPopup={setPopup}
+            />
+          );
+        })}
+      </MapContainer>
     </div>
   );
 }
@@ -139,4 +150,10 @@ const Map = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const MapContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 `;

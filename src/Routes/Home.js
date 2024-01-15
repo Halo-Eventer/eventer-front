@@ -17,6 +17,7 @@ function Home() {
     const [colorInfo,setColorInfo]=useState("white");
     const [colorMap,setColorMap]=useState("black");
     const [infoMap,setInfoMap]=useState(true);
+    const [showChangeBlock, setShowChangeBlock]=useState(true);
 
     const onClick_info = () => {
         setBarPos("0");
@@ -35,12 +36,17 @@ function Home() {
         setInfoMap(false);
     }
     return (
-        <Wrapper>
+        <Wrapper_Home>
             {infoMap
             ?<Info></Info>
-            :<NolzaMap></NolzaMap>
+            :<NolzaMap 
+            showChangeBlock = {showChangeBlock}
+            setShowChangeBlock = {setShowChangeBlock}
+            ></NolzaMap>
             }
 
+            {
+            showChangeBlock &&
             <ChangeBlock>
                     <ChangeBox>
                         <ChangeBar barPos={barPos}></ChangeBar>
@@ -48,10 +54,12 @@ function Home() {
                         <ChangeBtn onClick={onClick_map} color={colorMap}>축제지도</ChangeBtn>
                     </ChangeBox>
             </ChangeBlock>
-        </Wrapper>
+            }
+        </Wrapper_Home>
     )
 }
 export default Home;
+export {FlexBox_Row, FlexBox_Column}
 
 
 const FlexBox_Row = styled.div`
@@ -68,16 +76,12 @@ align-items:center;
 `;
 
 
-export {FlexBox_Row, FlexBox_Column}
-
-
-const Wrapper = styled.div`
+const Wrapper_Home = styled.div`
 background-image: url(${backGround});   //css에서 jsx변수 쓰고싶다면 {}뿐만 아니라 $까지 추가
 background-repeat: repeat;
 background-size: cover;  // 이미지가 div를 완전히 채우도록 설정
 
-width:100vw;
-
+width:390px;
 //페이지 내부 요소가 뷰포트 높이를 안 넘어가면 이렇게,
 //넘어간다면 height설정 x 그냥 요소자체 높이로만 해결
 //(height없이 width만 적혀져 있는)
@@ -103,7 +107,7 @@ const ChangeBlock = styled.div`
 width:100vw;
 background-color:rgb(255,255,255,0);
 position:fixed;
-bottom:12px;
+bottom:5%;
 
 display:flex;
 justify-content:space-evenly;

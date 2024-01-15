@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-    GlobalStyles, Wrapper,
+    GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar, Title, BkBtn, HomeBtn
 } from './Info';
 
@@ -74,40 +74,44 @@ function FestivalInfo() {
         }
     }
     return (
-        <Wrapper>
-            <GlobalStyles />
-            <UpperBar>
-                <BkBtn onClick={onClick_bkBtn} />
-                <Link to="/" style={{ textDecoration: 'none' }}>
-                    <HomeBtn />
-                </Link>
-                <Title>공연정보</Title>
-            </UpperBar>
-            <InfoBoard />
-            <div style={
-                {position: 'relative',
-                 width: '350px',
-                 marginTop:'48px',
-                 marginBottom:'48px'}}>
-                <img src={lineUp} />
-                <LineBtnDiv>
-                    <LineBtn onClick={onClick_lineUp}
-                        color={color1}
-                        background={background1}
-                        value='1'>1일차</LineBtn>
+        <div>
+            <TopFixedDiv>
+                <UpperBar>
+                    <BkBtn onClick={onClick_bkBtn} />
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <HomeBtn />
+                    </Link>
+                    <Title>공연정보</Title>
+                </UpperBar>
+            </TopFixedDiv>
+            <Wrapper>
+                <GlobalStyles />
+                <InfoBoard style={{marginTop:'52px'}}/>
+                <div style={
+                    {position: 'relative',
+                    width: '350px',
+                    marginTop:'48px',
+                    marginBottom:'48px'}}>
+                    <img src={lineUp} />
+                    <LineBtnDiv>
+                        <LineBtn onClick={onClick_lineUp}
+                            color={color1}
+                            background={background1}
+                            value='1'>1일차</LineBtn>
 
-                    <LineBtn onClick={onClick_lineUp}
-                        color={color2}
-                        background={background2}
-                        value='2'>2일차</LineBtn>
+                        <LineBtn onClick={onClick_lineUp}
+                            color={color2}
+                            background={background2}
+                            value='2'>2일차</LineBtn>
 
-                    <LineBtn onClick={onClick_lineUp}
-                        color={color3}
-                        background={background3}
-                        value='3'>3일차</LineBtn>
-                </LineBtnDiv>
-            </div>
-        </Wrapper>
+                        <LineBtn onClick={onClick_lineUp}
+                            color={color3}
+                            background={background3}
+                            value='3'>3일차</LineBtn>
+                    </LineBtnDiv>
+                </div>
+            </Wrapper>
+        </div>
     )
 
 }

@@ -9,7 +9,7 @@ import backGround from '../images/BackGround.svg';
 import {eventList,notiList} from '../components/info/DataBase';
 import home from '../images/Home.png';
 import happySejong from '../images/HappySejong.svg';
-import arrow from '../images/Arrow.png';
+import idol from '../images/Idol.svg';
 
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -59,21 +59,36 @@ function Info() {
                 <ImgBlock>
                     <StyledSlider {...settings}>
                         {notiList.map((item,key)=>
-                        <ImgBoard 
-                        cursor='pointer'
-                        //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-                        onClick={onClick_detailNoti} 
-                        key={key}
-                        data-value={key}
-                        src={item.images[0]}></ImgBoard>)}
+                        {
+                        if(key === 0 || 
+                            key === 4)
+                            return <ImgBoard 
+                            cursor='pointer'
+                            //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+                            onClick={onClick_detailNoti} 
+                            key={key}
+                            data-value={key}
+                            src={item.images[0]}/>
+                        else if (key === 1)
+                            return <ImgBoard 
+                            cursor='pointer'
+                            //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+                            onClick = {onClick_festivalInfo}
+                            key={key}
+                            data-value={key}
+                            src={idol}/>
+                        })}
 
                         {eventList.map((item,key)=>
-                        <ImgBoard 
-                        cursor='pointer'
-                        onClick={onClick_detailEvent} 
-                        key={key}
-                        data-value={key}
-                        src={item.images[0]}></ImgBoard>)}
+                        {
+                        if(key === 2)
+                            return <ImgBoard 
+                            cursor='pointer'
+                            onClick={onClick_detailEvent} 
+                            key={key}
+                            data-value={key}
+                            src={item.images[0]}/>
+                        })}
                         
                     </StyledSlider>
                 </ImgBlock>
@@ -96,7 +111,7 @@ export {
     Wrapper, FlexBox_Row, 
     FlexBox_Column, GlobalStyles,
     UpperBar,BkBtn,HomeBtn,Title,
-    StyledSlider, ImgBlock, ImgBoard
+    StyledSlider, ImgBlock, ImgBoard, TopFixedDiv
 };
 //settings도 export하려고 했는데 얘는 함수 내부여서 안 됨.
 //무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
@@ -132,6 +147,15 @@ body{
 //스타일컴포넌트 전역스타일 ('*'와 동일)
 
 const Wrapper = styled.div`
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+width:390px;
+
+border:1px solid #CCC;
+border-top:none;
+border-bottom:none;
+
 background-image: url(${backGround});   //css에서 jsx변수 쓰고싶다면 {}뿐만 아니라 $까지 추가
 background-repeat: repeat;
 background-size: cover;  // 이미지가 div를 완전히 채우도록 설정
@@ -147,9 +171,17 @@ z-index:-3;
 `;
 
 //for 가독성
+const TopFixedDiv = styled.div`
+position:fixed;
+left:50%;
+transform:translateX(-50%);
+top:0px;
+margin:0;
+padding:0;
+`;
 const UpperBar = styled.div`
 position:relative;
-width: 100vw;
+width: 390px;
 height: 48px;
 flex-shrink: 0;
 
@@ -261,7 +293,7 @@ margin:0;
 }
 
 ${InfoBox}{
-width: 230px;
+width: 200px;
 height: 110px;
 flex-shrink: 0;
 
