@@ -16,7 +16,7 @@ export const getAllAmenity = () => {
 };
 export const assignApi = (props, category, img) => {
   if (img != []) props.img = img;
-  console.log(props);
+
   const festivalId = 1;
 
   return axios.post(`/${category}`, props, {

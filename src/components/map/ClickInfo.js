@@ -85,7 +85,6 @@ export const Container = styled.div`
   height: 244px;
   z-index: 10;
   display: ${(props) => {
-    console.log(props.popup, props.isOpen);
     return props.popup == true && props.isOpen == true ? '' : 'none';
   }};
   animation: ${(props) => {
