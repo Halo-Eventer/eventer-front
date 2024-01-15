@@ -131,6 +131,7 @@ function NolzaMap(props) {
           return (
             <ClickInfo
               data={e}
+              activeCategory={activeCategory}
               openId={openId}
               mapElement={mapElement}
               popup={popup}

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import InfoBox from '../InfoBox';
 import { getDetailStore } from '../../apis/apis';
+import { getDetailInfo } from './getDetailInfo';
 function ClickInfo(props) {
   const navigate = useNavigate();
   const [full, setFull] = useState(false);
@@ -15,14 +16,7 @@ function ClickInfo(props) {
   const setPopup = props.setPopup;
 
   useEffect(() => {
-    getDetailStore(props.data.id)
-      .then((res) => {
-        console.log(res.data, '클릭 시');
-        setClickInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getDetailInfo(props.data.id, setClickInfo, props.activeCategory);
   }, []);
   useEffect(() => {
     setClose(false);

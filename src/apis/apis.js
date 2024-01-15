@@ -5,9 +5,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 export const getAllStore = () => {
   return axios.get('/store?festivalId=1');
 };
-export const getDetailStore = (storeId) => {
-  return axios.get(`/store/${storeId}`);
-};
+
 export const getAllEvent = () => {
   return axios.get('/event?festivalId=1');
 };
@@ -17,6 +15,20 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
+
+export const getDetailStore = (storeId) => {
+  return axios.get(`/store/${storeId}`);
+};
+export const getDetailEvent = (id) => {
+  return axios.get(`/event/${id}`);
+};
+export const getDetailBooth = (id) => {
+  return axios.get(`/booth/${id}`);
+};
+export const getDetailAmenity = (id) => {
+  return axios.get(`/amenity/${id}`);
+};
+
 export const assignApi = (props, category, thumbnail) => {
   if (thumbnail != []) props.thumbnail = thumbnail;
 
