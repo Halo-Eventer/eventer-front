@@ -5,22 +5,32 @@ import Up from '../../asset/up.svg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import InfoBox from '../InfoBox';
+import { getDetailStore } from '../../apis/apis';
 function ClickInfo(props) {
   const navigate = useNavigate();
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);
+  const [clickInfo, setClickInfo] = useState({});
   const openId = props.openId;
   const setPopup = props.setPopup;
-
+  console.log(props.data);
+  useEffect(() => {
+    getDetailStore(props.data.id)
+      .then((res) => {
+        console.log(res.data, '클릭 시');
+        setClickInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
-  useEffect(()=>{
-    if(props.popup || full)
-      props.setShowChangeBlock(false);
-    else
-    props.setShowChangeBlock(true);
-  },[props.popup, full])
+  useEffect(() => {
+    if (props.popup || full) props.setShowChangeBlock(false);
+    else props.setShowChangeBlock(true);
+  }, [props.popup, full]);
 
   const handleFull = () => {
     setFull((prev) => !prev);
@@ -28,7 +38,7 @@ function ClickInfo(props) {
 
   return full ? (
     <FullInfo
-      data={props.data}
+      data={clickInfo}
       popup={props.popup}
       close={close}
       setPopup={setPopup}
@@ -46,12 +56,12 @@ function ClickInfo(props) {
       </VectorBox>
       <InfoContainer style={{ width: '350px' }}>
         <InfoBox
-          data={props.data}
+          data={clickInfo}
           setFull={setFull}
           setPopup={setPopup}
           setClose={setClose}
         />
-        <DetailImg src={Img}></DetailImg>
+        <DetailImg src={clickInfo.thumbnail}></DetailImg>
       </InfoContainer>
     </Container>
   );
@@ -111,5 +121,5 @@ const InfoContainer = styled.div`
 
 const DetailImg = styled.img`
   width: 350px;
-  border-radius:12px;
+  border-radius: 12px;
 `;

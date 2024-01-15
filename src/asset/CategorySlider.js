@@ -2,7 +2,6 @@ import React, { Component, useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import sojuImg from '../asset/category/sojuCateogory.svg';
-import { getAllStore } from '../apis/apis';
 
 export default class SwipeToSlide extends Component {
   constructor(props) {
