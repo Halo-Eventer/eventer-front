@@ -14,7 +14,8 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
-export const assignApi = (props, category) => {
+export const assignApi = (props, category, img) => {
+  if (img != []) props.img = img;
   console.log(props);
   const festivalId = 1;
 

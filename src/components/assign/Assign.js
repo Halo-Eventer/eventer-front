@@ -6,7 +6,7 @@ import { assignApi } from '../../apis/apis';
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
   const [category, setCategory] = useState('store');
-
+  const [img, setImg] = useState([]);
   const deleteType = () => {
     const { type, ...rest } = info;
     setInfo({ ...rest });
@@ -25,7 +25,7 @@ function Assign() {
     }
   };
   const assignMarker = (e) => {
-    assignApi(info, category)
+    assignApi(info, category, img)
       .then((res) => {
         console.log(res);
       })
@@ -33,7 +33,13 @@ function Assign() {
         console.log(err);
       });
   };
-  console.log(info);
+  const handleImg = (e) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(e.target.files[0]);
+    fileReader.onload = (e) => {
+      setImg(e.target.result);
+    };
+  };
   return (
     <div>
       <InputBox>
@@ -85,6 +91,11 @@ function Assign() {
       ) : (
         ''
       )}
+      <InputBox>
+        <semiTitle>이미지 등록</semiTitle>
+        <Input id="image" onChange={handleImg} type="file"></Input>
+      </InputBox>
+
       <AssignButton onClick={assignMarker}>마커 등록하기</AssignButton>
     </div>
   );
