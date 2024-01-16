@@ -10,7 +10,7 @@ function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
   const [category, setCategory] = useState('store');
   const [img, setImg] = useState([]);
-
+  const [thumbnail, setThumbnail] = useState([]);
   return (
     <div>
       <AssignBasicInfo
@@ -19,8 +19,13 @@ function Assign() {
         info={info}
         category={category}
       />
-      <AssignImage img={img} setImg={setImg} />
-      <AssignBtn info={info} category={category} img={img} />
+      <AssignImage img={img} setImg={setImg} setThumbnail={setThumbnail} />
+      <AssignBtn
+        info={info}
+        category={category}
+        img={img}
+        thumbnail={thumbnail}
+      />
     </div>
   );
 }

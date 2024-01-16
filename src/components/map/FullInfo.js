@@ -4,6 +4,7 @@ import { VectorBox } from './ClickInfo';
 import Up from '../../asset/up.svg';
 import timeTable from '../../asset/timeTable.png';
 function FullInfo(props) {
+  const data = props.data;
   const handleClose = () => {
     props.setClose(true);
     setTimeout(() => {
@@ -26,9 +27,9 @@ function FullInfo(props) {
       </FullInfoBox>
       <WhiteLine />
       <DetailBox>
-        <DetailTitle>1일차 공연순서</DetailTitle>
-        <DetailSemi>무대 관람 구역 입장 17:30</DetailSemi>
-        <img src={timeTable} style={{ marginTop: '12px' }}></img>
+        <DetailTitle>{data.name}</DetailTitle>
+        <DetailSemi>{data.summary}</DetailSemi>
+        <img src={data.images[0]} style={{ marginTop: '12px' }}></img>
       </DetailBox>
     </FullInfoContainer>
   );

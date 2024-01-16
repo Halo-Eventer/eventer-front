@@ -3,7 +3,7 @@ import { assignApi } from '../../apis/apis';
 
 function AssignBtn(props) {
   const assignMarker = () => {
-    assignApi(props.info, props.category, props.img)
+    assignApi(props.info, props.category, props.img, props.thumbnail)
       .then((res) => {
         console.log(res);
       })
