@@ -106,7 +106,7 @@ const ChangeBlock = styled.div`
 width:100vw;
 background-color:rgb(255,255,255,0);
 position:fixed;
-bottom:5%;
+bottom:5vh;
 
 display:flex;
 justify-content:space-evenly;
