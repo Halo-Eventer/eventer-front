@@ -29,7 +29,9 @@ function FullInfo(props) {
       <DetailBox>
         <DetailTitle>{data.name}</DetailTitle>
         <DetailSemi>{data.summary}</DetailSemi>
-        <img src={data.images[0]} style={{ marginTop: '12px' }}></img>
+        {data.images.map((e) => {
+          return <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>;
+        })}
       </DetailBox>
     </FullInfoContainer>
   );
@@ -88,6 +90,9 @@ const FullInfoContainer = styled.div`
         `;
   }};
 `;
+const DetailImg = styled.img`
+  width: 350px;
+`;
 const DetailTitle = styled.div`
   color: #000;
   font-family: Pretendard;
@@ -102,6 +107,8 @@ const DetailSemi = styled.div`
   font-weight: 500;
 `;
 const DetailBox = styled.div`
+  height: 500px;
   width: 350px;
+  overflow-x: auto;
   margin: 35px auto;
 `;

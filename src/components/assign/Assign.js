@@ -11,6 +11,7 @@ function Assign() {
   const [category, setCategory] = useState('store');
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
+  console.log(img);
   return (
     <div>
       <AssignBasicInfo

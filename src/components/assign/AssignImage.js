@@ -7,7 +7,7 @@ function AssignImage(props) {
     imageUploadApi(e.target.files[0])
       .then((res) => {
         if (e.target.id == 'thumbnail') props.setThumbnail(res.data);
-        else props.setImg(res.data);
+        else props.setImg([...props.img, res.data]);
       })
       .catch((err) => {
         console.log(err);
