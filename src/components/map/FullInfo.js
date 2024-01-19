@@ -12,6 +12,7 @@ function FullInfo(props) {
       props.setFull(false);
     }, 500);
   };
+  console.log(props, data.menus);
   return (
     <FullInfoContainer popup={props.popup} close={props.close}>
       <VectorBox onClick={handleClose}>
@@ -29,9 +30,17 @@ function FullInfo(props) {
       <DetailBox>
         <DetailTitle>{data.name}</DetailTitle>
         <DetailSemi>{data.summary}</DetailSemi>
-        {data.images.map((e) => {
-          return <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>;
-        })}
+        {props.activeCateogry == '2' || props.activeCateogry == '3'
+          ? data.menus?.map((e) => {
+              return (
+                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
+              );
+            })
+          : data.images?.map((e) => {
+              return (
+                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
+              );
+            })}
       </DetailBox>
     </FullInfoContainer>
   );
