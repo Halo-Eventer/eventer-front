@@ -6,8 +6,8 @@ function AssignImage(props) {
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        console.log(res.data);
-        props.setImg(res.data);
+        if (e.target.id == 'thumbnail') props.setThumbnail(res.data);
+        else props.setImg([...props.img, res.data]);
       })
       .catch((err) => {
         console.log(err);
@@ -20,15 +20,26 @@ function AssignImage(props) {
   };
 
   return (
-    <InputBox>
-      <SemiTitle>이미지 등록</SemiTitle>
-      <Input
-        accept="image/*"
-        id="image"
-        onChange={handleImg}
-        type="file"
-      ></Input>
-    </InputBox>
+    <div>
+      <InputBox>
+        <SemiTitle>대표 이미지 등록</SemiTitle>
+        <Input
+          accept="image/*"
+          id="thumbnail"
+          onChange={handleImg}
+          type="file"
+        ></Input>
+      </InputBox>
+      <InputBox>
+        <SemiTitle>세부 이미지 등록</SemiTitle>
+        <Input
+          accept="image/*"
+          id="images"
+          onChange={handleImg}
+          type="file"
+        ></Input>
+      </InputBox>
+    </div>
   );
 }
 

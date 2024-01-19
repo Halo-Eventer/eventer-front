@@ -55,7 +55,7 @@ function NolzaMap(props) {
       return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
     });
 
-    import('../asset/MarkerClustering').then((res) => {
+    import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
       const htmlMarker1 = {
         content: [
           `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
@@ -68,7 +68,7 @@ function NolzaMap(props) {
         ].join(''),
         size: new naver.maps.Size(40, 40),
       };
-      new res.MarkerClustering({
+      new MarkerClustering({
         minClusterSize: 2,
         maxZoom: 19,
         map: map,

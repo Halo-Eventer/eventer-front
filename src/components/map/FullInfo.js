@@ -4,6 +4,7 @@ import { VectorBox } from './ClickInfo';
 import Up from '../../asset/up.svg';
 import timeTable from '../../asset/timeTable.png';
 function FullInfo(props) {
+  const data = props.data;
   const handleClose = () => {
     props.setClose(true);
     setTimeout(() => {
@@ -11,6 +12,7 @@ function FullInfo(props) {
       props.setFull(false);
     }, 500);
   };
+  console.log(props, data.menus);
   return (
     <FullInfoContainer popup={props.popup} close={props.close}>
       <VectorBox onClick={handleClose}>
@@ -26,9 +28,19 @@ function FullInfo(props) {
       </FullInfoBox>
       <WhiteLine />
       <DetailBox>
-        <DetailTitle>1일차 공연순서</DetailTitle>
-        <DetailSemi>무대 관람 구역 입장 17:30</DetailSemi>
-        <img src={timeTable} style={{ marginTop: '12px' }}></img>
+        <DetailTitle>{data.name}</DetailTitle>
+        <DetailSemi>{data.summary}</DetailSemi>
+        {props.activeCateogry == '2' || props.activeCateogry == '3'
+          ? data.menus?.map((e) => {
+              return (
+                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
+              );
+            })
+          : data.images?.map((e) => {
+              return (
+                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
+              );
+            })}
       </DetailBox>
     </FullInfoContainer>
   );
@@ -87,6 +99,9 @@ const FullInfoContainer = styled.div`
         `;
   }};
 `;
+const DetailImg = styled.img`
+  width: 350px;
+`;
 const DetailTitle = styled.div`
   color: #000;
   font-family: Pretendard;
@@ -101,6 +116,8 @@ const DetailSemi = styled.div`
   font-weight: 500;
 `;
 const DetailBox = styled.div`
+  height: 500px;
   width: 350px;
+  overflow-x: auto;
   margin: 35px auto;
 `;

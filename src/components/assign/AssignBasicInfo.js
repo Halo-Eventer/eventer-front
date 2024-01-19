@@ -72,6 +72,15 @@ function AssignBasicInfo(props) {
       ) : (
         ''
       )}
+      <InputBox>
+        <SemiTitle>세부 내용</SemiTitle>
+        <Input
+          style={{ width: '300px', height: '80px' }}
+          onChange={handleInfo}
+          id="content"
+          placeholder="세부 사항 입력"
+        ></Input>
+      </InputBox>
     </div>
   );
 }
