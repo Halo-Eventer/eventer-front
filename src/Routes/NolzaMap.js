@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
-import sojuImg from '../asset/marker/sojuImg.svg';
 import ClickInfo from '../components/map/ClickInfo';
-import hallMarker from '../asset/marker/concertHall.svg';
-import sojuCategory from '../asset/category/sojuCateogory.svg';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from '../asset/marker/eventImg.svg';
+import eventImg from 'asset/marker/eventImg.svg';
+import sojuImg from 'asset/marker/sojuImg.svg';
+import boothImg from 'asset/marker/boothImg.svg';
+import foodImg from 'asset/marker/foodImg.svg';
+import toiletImg from 'asset/marker/toiletImg.svg';
+import hallMarker from 'asset/marker/concertHall.svg';
+
 import getMarker from '../components/getMarker';
-import boothImg from '../asset/marker/boothImg.svg';
-import foodImg from '../asset/marker/foodImg.svg';
-import toiletImg from '../asset/marker/toiletImg.svg';
+
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
   let markerImg = '';
