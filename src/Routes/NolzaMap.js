@@ -13,11 +13,19 @@ import foodImg from '../asset/marker/foodImg.svg';
 import toiletImg from '../asset/marker/toiletImg.svg';
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
+  let markerImg = '';
   const mapElement = useRef(1);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
+  useEffect(() => {
+    if (activeCategory == 1) markerImg = eventImg;
+    else if (activeCategory == 2) markerImg = foodImg;
+    else if (activeCategory == 3) markerImg = sojuImg;
+    else if (activeCategory == 4) markerImg = boothImg;
+    else if (activeCategory == 5) markerImg = toiletImg;
+  }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
@@ -25,6 +33,7 @@ function NolzaMap(props) {
       minZoom: 16,
     };
     const map = new naver.maps.Map(mapElement.current, mapOption);
+
     const markerData = data?.map((e) => {
       return {
         name: e.name,
@@ -44,12 +53,6 @@ function NolzaMap(props) {
       100,
       '공연장'
     );
-    let markerImg = '';
-    if (activeCategory == 1) markerImg = eventImg;
-    else if (activeCategory == 2) markerImg = foodImg;
-    else if (activeCategory == 3) markerImg = sojuImg;
-    else if (activeCategory == 4) markerImg = boothImg;
-    else if (activeCategory == 5) markerImg = toiletImg;
 
     const markers = markerData?.map((e) => {
       return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
