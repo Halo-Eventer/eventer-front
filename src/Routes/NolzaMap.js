@@ -54,7 +54,7 @@ function NolzaMap(props) {
       100,
       '공연장'
     );
-
+    console.log(markerImg);
     const markers = markerData?.map((e) => {
       return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
     });
