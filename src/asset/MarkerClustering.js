@@ -18,6 +18,7 @@
  * 마커 클러스터링을 정의합니다.
  * @param {Object} options 마커 클러스터링 옵션
  */
+const { naver } = window;
 export const MarkerClustering = function (options) {
   // 기본 값입니다.
 

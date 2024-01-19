@@ -20,7 +20,6 @@ function Home() {
 
   const onClick_info = () => {
     setBarPos('0');
-
     setColorInfo('white');
     setColorMap('black');
 
