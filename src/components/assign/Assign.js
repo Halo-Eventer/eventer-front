@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
-import { useEffect, useRef, useState } from 'react';
-import { assignApi } from '../../apis/apis';
-import AssignBtn from './AssignBtn';
-import AssignImage from './AssignImage';
+import { useState } from 'react';
 import AssignBasicInfo from './AssignBasicInfo';
 
 function Assign() {
@@ -20,13 +17,13 @@ function Assign() {
         info={info}
         category={category}
       />
-      <AssignImage img={img} setImg={setImg} setThumbnail={setThumbnail} />
+      {/* <AssignImage img={img} setImg={setImg} setThumbnail={setThumbnail} />
       <AssignBtn
         info={info}
         category={category}
         img={img}
         thumbnail={thumbnail}
-      />
+      /> */}
     </div>
   );
 }
@@ -43,13 +40,15 @@ function Assign() {
 export default Assign;
 
 export const InputBox = styled(Flex)`
-  width: 400px;
   justify-content: space-between;
-  margin-top: 10px;
   align-items: center;
 `;
 export const Input = styled.input`
-  height: 30px;
+  height: 38px;
+  width: 336px;
+  border-radius: 4px;
+  background: #fafafa;
+  border: 0;
 `;
 export const SemiTitle = styled.div`
   display: flex;
@@ -58,4 +57,13 @@ export const SemiTitle = styled.div`
 export const Category = styled.select`
   width: 200px;
   height: 30px;
+`;
+export const InputLatLng = styled(Input)`
+  margin-left: 4px;
+  width: 116px;
+  height: 40px;
+  flex-shrink: 0;
+  background-color: ${(props) => {
+    return props.disabled ? '#DDD' : '';
+  }};
 `;
