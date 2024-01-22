@@ -7,40 +7,26 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, HomeBtn, BkBtn} from './Info';
 import {eventList,notiList} from '../components/info/DataBase';
 
+import {getEventList,getNotiList} from '../apis/apis';
+
 import Event from '../components/info/Event';
 import Noti from '../components/info/Noti';
-
-import axios from 'axios';
 
 function FestivalNoti(){
     const navigate = useNavigate();
 
-    const EVENTLISTURL = "http://3.34.24.140:9998/event/1/list";
-    const NOTILISTURL = "http://3.34.24.140:9998/notice/1/list";
+    const festivalId = 1;
+    // const EVENTLISTURL = "http://3.34.24.140:9998/event/1/list";
+    // const NOTILISTURL = "http://3.34.24.140:9998/notice/1/list";
+    // 이렇게 관리하지 말 것 
 
     const [color1, setColor1] = useState("black");
     const [color2, setColor2] = useState("gray");
     const [transForm,setTransForm]=useState("-92.5px");
     const [showNoti,setShoeNoti]=useState(true);
+
     // const [eventList, setEventList]=useState([]);
     // const [notiList,setNotiList]=useState([]);
-
-
-    // const fetchNotiList = async() => {
-    //     try{
-    //     const response = await axios.get(NOTILISTURL);
-    //     if(response.data.length>0){
-    //         setEventList(response.data);
-    //         setNotiList(response.data);
-    //         console.log("notiList fetch success : ",
-    //         response.data);
-    //     }else{
-    //         console.log("notiList fetch no data ;(");
-    //     }
-    //     }catch(error){
-    //         console.log("notiList fetch failed ;(", error);
-    //     };
-    // }
 
     const onClick_bkBtn = () => {
         navigate(-1);
@@ -60,7 +46,52 @@ function FestivalNoti(){
         setShoeNoti(false);
     }
 
-    //useEffect(()=>{fetchNotiList();},[]);
+    // useEffect(
+    //     ()=>
+    //     {
+    //         getNotiList(festivalId).then
+    //         (
+    //             (response)=>
+    //             {
+    //                 if(response.data.length>0)
+    //                 {
+    //                     setNotiList(response.data);
+    //                     console.log("notiList fetch success : ", response.data);
+    //                 }else
+    //                 {
+    //                     console.log("notiList fetch no data ;(");
+    //                 }
+    //             }
+    //         ).catch
+    //         (
+    //             (error)=>
+    //             {
+    //                     console.log("notiList fetch failed ;(", error);
+    //             }
+    //         );
+
+    //         getEventList(festivalId).then
+    //         (
+    //             (response)=>
+    //             {
+    //                 if(response.data.length>0)
+    //                 {
+    //                     setEventList(response.data);
+    //                     console.log("eventList fetch success : ", response.data);
+    //                 }else
+    //                 {
+    //                     console.log("eventList fetch no data ;(");
+    //                 }
+    //             }
+    //         ).catch
+    //         (
+    //             (error)=>
+    //             {
+    //                     console.log("eventList fetch failed ;(", error);
+    //             }
+    //         );
+    //     }
+    // ,[]);
 
     return(
         <div>

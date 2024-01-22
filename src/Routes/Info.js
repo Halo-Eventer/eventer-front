@@ -15,6 +15,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
+
 function Info() {
     const navigate = useNavigate();
     const [barPos,setBarPos] = useState("0");
@@ -110,11 +112,10 @@ export {
     Wrapper, FlexBox_Row, 
     FlexBox_Column, GlobalStyles,
     UpperBar,BkBtn,HomeBtn,Title,
-    StyledSlider, ImgBlock, ImgBoard, TopFixedDiv
+    StyledSlider, ImgBlock, ImgBoard, TopFixedDiv, StyledLink
 };
 //settings도 export하려고 했는데 얘는 함수 내부여서 안 됨.
 //무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
-
 
 const FlexBox_Row = styled.div`
 display:flex;
@@ -137,13 +138,13 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
 }
 
-body{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 `;
-//스타일컴포넌트 전역스타일 ('*'와 동일)
+//스타일컴포넌트 전역스타일 (적용)
 
 const Wrapper = styled.div`
 position:absolute;
@@ -171,6 +172,11 @@ flex-direction:column;
 justify-content:flex-start;
 align-items:center;
 z-index:-3;
+`;
+
+const StyledLink = styled(Link)`
+text-decoration:none;
+cursor:pointer;
 `;
 
 //for 가독성

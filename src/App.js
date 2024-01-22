@@ -7,7 +7,12 @@ import FestivalInfo from './Routes/FestivalInfo';
 import FestivalNoti from './Routes/FestivalNoti';
 import Detail_Event from './Routes/Detail_Event';
 import Detail_Noti from './Routes/Detail_Noti';
+
+import AssignPage_Home from './Routes/AssignPage_Home';
+import AssignPage_Select from './Routes/AssignPage_Select';
 import AssignPage from './Routes/AssignPage';
+import AssignPage_Rending from './Routes/AssignPage_Rending';
+import AssignPage_Notice from './Routes/AssignPage_Notice';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -25,7 +30,11 @@ function App() {
         <Route path="/noti/:id" element={<Detail_Noti/>}/>
         {/* Detail을 루트로 처리하는 법 */}
 
-        <Route path="/assign" element={<AssignPage />}/>
+        <Route path = "/assign_home" element={<AssignPage_Home/>}/>
+        <Route path = "/assign_select/:id" element={<AssignPage_Select/>}/>
+        <Route path = "/assign" element={<AssignPage />}/>
+        <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>
+        <Route path = "/assign_notice/:id" element={<AssignPage_Notice/>}/>
       </Routes>
     </BrowserRouter>
   );

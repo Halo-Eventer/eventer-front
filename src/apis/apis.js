@@ -5,7 +5,6 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 export const getAllStore = () => {
   return axios.get('/store?festivalId=1');
 };
-
 export const getAllEvent = () => {
   return axios.get('/event?festivalId=1');
 };
@@ -67,4 +66,28 @@ export const imageUploadApi = (imgInfo) => {
   return axios.post(`/image`, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+};
+
+
+//  NOH's
+export const assignInfoApi = (requestBody, festivalId, category) => {
+  return axios.post(`/${category}`, requestBody, 
+  {
+    params:{
+      festivalId : festivalId
+    }
+  }
+  );
+};
+export const getNotiList = (festivalId) => {
+  return axios.get(`/noticelist/${festivalId}/list`);
+};
+export const getNotiDetail = (festivalId, id) => {
+  return axios.get(`/noticelist/${festivalId}/id`);
+};
+export const getEventList = (festivalId) => {
+  return axios.get(`/eventlist/${festivalId}/list`);
+};
+export const getEventDetail = (festivalId, id) => {
+  return axios.get(`/eventlist/${festivalId}/id`);
 };
