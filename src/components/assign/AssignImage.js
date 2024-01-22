@@ -109,6 +109,7 @@ const InputThumbnail = styled.img`
   width: 352px;
   height: 352px;
   border-radius: 4px;
+  margin-top: 8px;
   border: 1px solid #eee;
   &:hover {
     cursor: pointer;

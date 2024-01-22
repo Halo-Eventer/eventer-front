@@ -1,23 +1,46 @@
 import styled from 'styled-components';
 import { assignApi } from '../../apis/apis';
+import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
   const assignMarker = () => {
     assignApi(props.info, props.category, props.img, props.thumbnail)
       .then((res) => {
-        console.log(res);
+        alert(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.data);
       });
   };
-  return <Button onClick={assignMarker}>마커 등록하기</Button>;
+  return (
+    <Flex>
+      <Button cancle={true}>취소하기</Button>
+      <Button onClick={assignMarker}>추가하기</Button>
+    </Flex>
+  );
 }
 
 export default AssignBtn;
 
 const Button = styled.button`
-  margin-top: 20px;
-  width: 400px;
-  height: 40px;
+  width: 172px;
+  height: 48px;
+  border-radius: 4px;
+  background: #4f33f6;
+
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 32px; /* 213.333% */
+  &:hover {
+    cursor: pointer;
+  }
+  border: 0;
+
+  ${(props) => {
+    return props.cancle
+      ? 'color: #111; background: #F2F2F2;'
+      : 'margin-left: 8px';
+  }}
 `;

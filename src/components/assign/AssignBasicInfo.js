@@ -88,7 +88,7 @@ function AssignBasicInfo(props) {
         placeholder="본문 내용"
       ></Input>
 
-      <Category id="category" onChange={handleInfo}>
+      {/* <Category id="category" onChange={handleInfo}>
         <option value="store">주점/푸드트럭</option>
         <option value="event">이벤트</option>
         <option value="booth">부스</option>
@@ -105,7 +105,7 @@ function AssignBasicInfo(props) {
         </div>
       ) : (
         ''
-      )}
+      )} */}
     </InputContainer>
   );
 }

@@ -13,6 +13,12 @@ function Assign() {
   console.log(img);
   return (
     <div>
+      <AssignBtn
+        info={info}
+        category={category}
+        img={img}
+        thumbnail={thumbnail}
+      />
       <AssignImage
         img={img}
         thumbnail={thumbnail}
@@ -24,13 +30,6 @@ function Assign() {
         setCategory={setCategory}
         info={info}
         category={category}
-      />
-
-      <AssignBtn
-        info={info}
-        category={category}
-        img={img}
-        thumbnail={thumbnail}
       />
     </div>
   );
