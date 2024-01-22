@@ -12,6 +12,7 @@ import AssignMenuBox from './AssignMenuBox';
 function AssignMenu(props) {
   const imagesInput = useRef(null);
   const [imagePreview, setImagePreview] = useState([]);
+  const [menus, setMenus] = useState([]);
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
@@ -22,24 +23,33 @@ function AssignMenu(props) {
         console.log(err);
       });
   };
-
-  const handleDeleteImages = (deleteImg) => {
-    const processedImages = props.img.filter((images) => {
-      return deleteImg != images;
-    });
-
-    props.setImg(processedImages);
-    setImagePreview(processedImages);
+  const handleAddMenu = () => {
+    setMenus([...menus, {}]);
   };
+  const handleDeleteMenuBox = (menuI) => {
+    console.log(menus);
+    const filteredMenus = menus?.filter((e, i) => i !== menuI);
 
+    setMenus(filteredMenus);
+  };
+  console.log(menus);
   return (
     <div>
       <AssignThumbnail setThumbnail={props.setThumbnail} />
-      <AddMenuBox>메뉴 추가하기</AddMenuBox>
-      <AssignMenuBox />
+      <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
+      {menus?.map((e, i) => {
+        return (
+          <AssignMenuBox
+            i={i}
+            onDelete={() => handleDeleteMenuBox(i)}
+            setMenus={setMenus}
+            menus={menus}
+          />
+        );
+      })}
 
       <Flex style={{ marginTop: '8px' }}>
-        <ImagesPreviewBox ImagesPreview={imagePreview}>
+        {/* <ImagesPreviewBox ImagesPreview={imagePreview}>
           {imagePreview.map((e) => {
             return (
               <div
@@ -57,7 +67,7 @@ function AssignMenu(props) {
               </div>
             );
           })}
-        </ImagesPreviewBox>
+        </ImagesPreviewBox> */}
         <Input
           style={{ display: 'none' }}
           accept="image/*"
@@ -89,6 +99,10 @@ const AddMenuBox = styled.div`
   line-height: 32px; /* 213.333% */
 
   margin-top: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const MenuBox = styled.div`
   width: 352px;
