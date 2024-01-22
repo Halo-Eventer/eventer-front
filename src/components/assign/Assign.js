@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useState } from 'react';
 import AssignBasicInfo from './AssignBasicInfo';
+import AssignImage from './AssignImage';
+import AssignBtn from './AssignBtn';
 
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
@@ -11,19 +13,25 @@ function Assign() {
   console.log(img);
   return (
     <div>
+      <AssignImage
+        img={img}
+        thumbnail={thumbnail}
+        setImg={setImg}
+        setThumbnail={setThumbnail}
+      />
       <AssignBasicInfo
         setInfo={setInfo}
         setCategory={setCategory}
         info={info}
         category={category}
       />
-      {/* <AssignImage img={img} setImg={setImg} setThumbnail={setThumbnail} />
+
       <AssignBtn
         info={info}
         category={category}
         img={img}
         thumbnail={thumbnail}
-      /> */}
+      />
     </div>
   );
 }

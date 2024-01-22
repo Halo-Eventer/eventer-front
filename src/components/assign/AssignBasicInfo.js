@@ -113,6 +113,7 @@ export default AssignBasicInfo;
 
 const InputContainer = styled.div`
   padding: 8px;
+  margin-top: 8px;
   width: 352px;
   height: 304px;
   flex-shrink: 0;
