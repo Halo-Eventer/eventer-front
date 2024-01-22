@@ -23,9 +23,6 @@ function AssignImage(props) {
   };
 
   const handleDeleteImages = (deleteImg) => {
-    console.log(props.img);
-    console.log(deleteImg);
-
     const processedImages = props.img.filter((images) => {
       return deleteImg != images;
     });

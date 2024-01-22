@@ -27,12 +27,10 @@ function AssignMenu(props) {
     setMenus([...menus, {}]);
   };
   const handleDeleteMenuBox = (menuI) => {
-    console.log(menus);
     const filteredMenus = menus?.filter((e, i) => i !== menuI);
-
     setMenus(filteredMenus);
   };
-  console.log(menus);
+
   return (
     <div>
       <AssignThumbnail setThumbnail={props.setThumbnail} />

@@ -7,9 +7,8 @@ function AssignBasicInfo(props) {
   const [active, setActive] = useState(true);
   useEffect(() => {
     if (active) deleteLatLng();
-    console.log(props);
   }, [active]);
-  console.log(active);
+
   let info = props.info;
   let category = props.category;
   const deleteType = () => {

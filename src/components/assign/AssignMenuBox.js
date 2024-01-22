@@ -12,7 +12,6 @@ function AssignMenuBox(props) {
   const handleMenu = (e) => {
     const [id, value] = [e.target.id, e.target.value];
     setInfo({ ...info, [id]: value });
-    console.log(props.menus);
   };
 
   useEffect(() => {
@@ -22,11 +21,9 @@ function AssignMenuBox(props) {
       }
       return menu;
     });
-    console.log(updatedMenus);
     props.setMenus(updatedMenus);
   }, [info]);
 
-  console.log(info);
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
