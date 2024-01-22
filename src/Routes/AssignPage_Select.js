@@ -9,8 +9,8 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 
 import { FlexBox_Column, FlexBox_Row,
 GlobalStyles, StyledLink } from './Info';
-import { Wrapper, GRID_WIDTH, UpperBar_Component, 
-  Logo, FestivalSelectBox, MiddleBar,H1,next, MiddleBar_Component2} from './AssignPage_Home';
+import { Wrapper, GRID_WIDTH, 
+  UpperBar_Component, MiddleBar_Component2} from './AssignPage_Home';
 
 
 
@@ -24,12 +24,6 @@ function AssignPage_Select() {
   const [festival, setFestival]=useState("");
   // console.log("URL : ",URL.pathname);
 
-  const onChange_select = (event) => {
-    event.preventDefault();
-    setFestival(event.currentTarget.value);
-  }
-  //select태그에서 사용하기 (포커스처리인 onBlur 활용)
-  //(뭘 선택하자마자 애니메이션 발생하게 하는건 힘듬. 그냥 select자체의 포커스 여부에만 집중해야함)
 
   return (
    <Wrapper style={{height:'800px'}}>
