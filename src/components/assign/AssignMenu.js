@@ -2,14 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 import { imageUploadApi } from '../../apis/apis';
 import { Input, InputBox, SemiTitle } from './Assign';
 import styled from 'styled-components';
-
 import images_preview from 'asset/assign/input_images.png';
 import delete_images from 'asset/assign/delete_images.svg';
+
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
-function AssignImage(props) {
-  const imagesInput = useRef(null);
+import AssignMenuBox from './AssignMenuBox';
 
+function AssignMenu(props) {
+  const imagesInput = useRef(null);
   const [imagePreview, setImagePreview] = useState([]);
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
@@ -23,29 +24,21 @@ function AssignImage(props) {
   };
 
   const handleDeleteImages = (deleteImg) => {
-    console.log(props.img);
-    console.log(deleteImg);
-
     const processedImages = props.img.filter((images) => {
       return deleteImg != images;
     });
 
     props.setImg(processedImages);
     setImagePreview(processedImages);
-    // const { type, ...rest } = props.img;
-    // props.setImg([...rest]);
   };
 
   return (
     <div>
       <AssignThumbnail setThumbnail={props.setThumbnail} />
+      <AddMenuBox>메뉴 추가하기</AddMenuBox>
+      <AssignMenuBox />
+
       <Flex style={{ marginTop: '8px' }}>
-        <InputImages
-          onClick={() => {
-            imagesInput.current.click();
-          }}
-          src={images_preview}
-        ></InputImages>
         <ImagesPreviewBox ImagesPreview={imagePreview}>
           {imagePreview.map((e) => {
             return (
@@ -78,14 +71,31 @@ function AssignImage(props) {
   );
 }
 
-export default AssignImage;
+export default AssignMenu;
 
-const InputImages = styled.img`
-  width: 96px;
-  height: 96px;
-  &:hover {
-    cursor: pointer;
-  }
+const AddMenuBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 352px;
+  height: 48px;
+  border-radius: 4px;
+  background: #f2f2f2;
+  color: #111;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 32px; /* 213.333% */
+
+  margin-top: 8px;
+`;
+const MenuBox = styled.div`
+  width: 352px;
+  height: 100px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  margin-top: 8px;
 `;
 
 const ImagesPreviewBox = styled.div`

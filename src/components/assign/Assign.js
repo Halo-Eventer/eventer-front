@@ -4,13 +4,14 @@ import { useState } from 'react';
 import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
+import AssignMenu from './AssignMenu';
 
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
   const [category, setCategory] = useState('store');
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
-  console.log(img);
+
   return (
     <div>
       <AssignBtn
@@ -19,12 +20,22 @@ function Assign() {
         img={img}
         thumbnail={thumbnail}
       />
-      <AssignImage
-        img={img}
-        thumbnail={thumbnail}
-        setImg={setImg}
-        setThumbnail={setThumbnail}
-      />
+      {category == 'store' ? (
+        <AssignMenu
+          img={img}
+          thumbnail={thumbnail}
+          setImg={setImg}
+          setThumbnail={setThumbnail}
+        />
+      ) : (
+        <AssignImage
+          img={img}
+          thumbnail={thumbnail}
+          setImg={setImg}
+          setThumbnail={setThumbnail}
+        />
+      )}
+
       <AssignBasicInfo
         setInfo={setInfo}
         setCategory={setCategory}
