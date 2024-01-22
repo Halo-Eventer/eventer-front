@@ -4,6 +4,7 @@ import { Flex } from 'asset/Style';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 function AssignBasicInfo(props) {
+  console.log(props.info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -14,6 +15,7 @@ function AssignBasicInfo(props) {
       boxRef.current.style.height = `auto`;
       boxRef.current.style.height = `${boxRef.current.scrollHeight}px`;
     }
+    handleInfo(e);
   };
 
   useEffect(() => {
@@ -31,6 +33,7 @@ function AssignBasicInfo(props) {
     props.setInfo({ ...info, ['latitude']: '', ['longitude']: '' });
   };
   const handleInfo = (e) => {
+    console.log(e);
     const [value, id] = [e.target.value, e.target.id];
     if (id == 'category') {
       props.setCategory(value);
@@ -92,17 +95,14 @@ function AssignBasicInfo(props) {
       </InputDiv>
       <TextAreaDiv style={{ width: '336px', height: '112px' }}>
         <TextArea
+          value={props.info.content}
           onChange={handleResizeHeight}
+          id="content"
           rows={1}
           ref={textRef}
+          placeholder="본문 내용"
           style={{ marginTop: '12px', height: '96px' }}
-        >
-          <Input
-            onChange={handleInfo}
-            id="content"
-            placeholder="본문 내용"
-          ></Input>
-        </TextArea>
+        ></TextArea>
       </TextAreaDiv>
       {/* <Category id="category" onChange={handleInfo}>
         <option value="store">주점/푸드트럭</option>
