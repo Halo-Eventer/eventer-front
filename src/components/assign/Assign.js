@@ -8,7 +8,7 @@ import AssignMenu from './AssignMenu';
 
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
-  const [category, setCategory] = useState('store');
+  const [category, setCategory] = useState('event');
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
 
@@ -20,28 +20,30 @@ function Assign() {
         img={img}
         thumbnail={thumbnail}
       />
-      {category == 'store' ? (
-        <AssignMenu
-          img={img}
-          thumbnail={thumbnail}
-          setImg={setImg}
-          setThumbnail={setThumbnail}
-        />
-      ) : (
-        <AssignImage
-          img={img}
-          thumbnail={thumbnail}
-          setImg={setImg}
-          setThumbnail={setThumbnail}
-        />
-      )}
+      <InfoContainer>
+        {category == 'store' ? (
+          <AssignMenu
+            img={img}
+            thumbnail={thumbnail}
+            setImg={setImg}
+            setThumbnail={setThumbnail}
+          />
+        ) : (
+          <AssignImage
+            img={img}
+            thumbnail={thumbnail}
+            setImg={setImg}
+            setThumbnail={setThumbnail}
+          />
+        )}
 
-      <AssignBasicInfo
-        setInfo={setInfo}
-        setCategory={setCategory}
-        info={info}
-        category={category}
-      />
+        <AssignBasicInfo
+          setInfo={setInfo}
+          setCategory={setCategory}
+          info={info}
+          category={category}
+        />
+      </InfoContainer>
     </div>
   );
 }
@@ -57,16 +59,44 @@ function Assign() {
 // }
 export default Assign;
 
+const InfoContainer = styled.div`
+  width: 352px;
+  height: 536px;
+  padding: 0;
+  flex-shrink: 0;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 export const InputBox = styled(Flex)`
   justify-content: space-between;
   align-items: center;
 `;
 export const Input = styled.input`
-  height: 38px;
-  width: 336px;
-  border-radius: 4px;
+  padding: 0;
+  margin-left: 8px;
+  margin-top: 8px;
   background: #fafafa;
+  height: 24px;
+  width: 300px;
+  border-radius: 4px;
   border: 0;
+
+  color: #111;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
+
+  &::placeholder {
+    display: flex;
+    align-items: center;
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 export const SemiTitle = styled.div`
   display: flex;
@@ -77,11 +107,21 @@ export const Category = styled.select`
   height: 30px;
 `;
 export const InputLatLng = styled(Input)`
+  padding: 0;
+  margin: 0;
   margin-left: 4px;
-  width: 116px;
+  padding-left: 8px;
+  width: 108px;
   height: 40px;
   flex-shrink: 0;
   background-color: ${(props) => {
     return props.disabled ? '#DDD' : '';
   }};
+
+  color: #111;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
 `;

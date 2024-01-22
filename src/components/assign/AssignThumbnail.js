@@ -38,7 +38,7 @@ function AssignThumbnail(props) {
 }
 
 const InputThumbnail = styled.img`
-  width: 352px;
+  width: 350px;
   height: 352px;
   border-radius: 4px;
   margin-top: 8px;

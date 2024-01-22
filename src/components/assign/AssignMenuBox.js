@@ -81,7 +81,7 @@ const MenuContainer = styled(Flex)`
   margin-top: 8px;
   border-radius: 4px;
   border: 1px solid #eee;
-  width: 352px;
+  width: 350px;
   height: 100px;
   border-radius: 4px;
   border: 1px solid #eee;

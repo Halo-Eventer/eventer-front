@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { imageUploadApi } from '../../apis/apis';
 import { Input, InputBox, SemiTitle } from './Assign';
 import styled from 'styled-components';
-import images_preview from 'asset/assign/input_images.png';
-import delete_images from 'asset/assign/delete_images.svg';
-
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import AssignMenuBox from './AssignMenuBox';
@@ -32,7 +29,7 @@ function AssignMenu(props) {
   };
 
   return (
-    <div>
+    <div style={{ width: '352px' }}>
       <AssignThumbnail setThumbnail={props.setThumbnail} />
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
       {menus?.map((e, i) => {
