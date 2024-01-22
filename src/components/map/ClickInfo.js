@@ -38,6 +38,7 @@ function ClickInfo(props) {
       setPopup={setPopup}
       setFull={setFull}
       setClose={setClose}
+      activeCategory={props.activeCategory}
     />
   ) : (
     <Container

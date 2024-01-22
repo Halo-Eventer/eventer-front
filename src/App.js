@@ -17,22 +17,21 @@ import AssignPage_Notice from './Routes/AssignPage_Notice';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<Home></Home>}/>
-        <Route path="/festivalInfo" element={<FestivalInfo/>}/>
-        <Route path="/festivalNoti" element={<FestivalNoti/>}/>
+        <Route path="" element={<Home></Home>} />
+        <Route path="/festivalInfo" element={<FestivalInfo />} />
+        <Route path="/festivalNoti" element={<FestivalNoti />} />
 
-        <Route path="/event/:id" element={<Detail_Event/>}/>
-        <Route path="/noti/:id" element={<Detail_Noti/>}/>
+        <Route path="/event/:id" element={<Detail_Event />} />
+        <Route path="/noti/:id" element={<Detail_Noti />} />
         {/* Detail을 루트로 처리하는 법 */}
 
         <Route path = "/assign_home" element={<AssignPage_Home/>}/>
         <Route path = "/assign_select/:id" element={<AssignPage_Select/>}/>
-        <Route path = "/assign" element={<AssignPage />}/>
+        <Route path = "/assign" element={<AssignPage />}/>   {/* 이게 assign_map 및 AssignPage_Map 파트 */}
         <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>
         <Route path = "/assign_notice/:id" element={<AssignPage_Notice/>}/>
       </Routes>

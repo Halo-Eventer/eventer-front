@@ -2,15 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import { imageUploadApi } from '../../apis/apis';
 import { Input, InputBox, SemiTitle } from './Assign';
 import styled from 'styled-components';
-
-import images_preview from 'asset/assign/input_images.png';
-import delete_images from 'asset/assign/delete_images.svg';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
-function AssignImage(props) {
-  const imagesInput = useRef(null);
+import AssignMenuBox from './AssignMenuBox';
 
+function AssignMenu(props) {
+  const imagesInput = useRef(null);
   const [imagePreview, setImagePreview] = useState([]);
+  const [menus, setMenus] = useState([]);
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
@@ -21,29 +20,31 @@ function AssignImage(props) {
         console.log(err);
       });
   };
-
-  const handleDeleteImages = (deleteImg) => {
-    const processedImages = props.img.filter((images) => {
-      return deleteImg != images;
-    });
-
-    props.setImg(processedImages);
-    setImagePreview(processedImages);
-    // const { type, ...rest } = props.img;
-    // props.setImg([...rest]);
+  const handleAddMenu = () => {
+    setMenus([...menus, {}]);
+  };
+  const handleDeleteMenuBox = (menuI) => {
+    const filteredMenus = menus?.filter((e, i) => i !== menuI);
+    setMenus(filteredMenus);
   };
 
   return (
-    <div>
+    <div style={{ width: '352px' }}>
       <AssignThumbnail setThumbnail={props.setThumbnail} />
+      <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
+      {menus?.map((e, i) => {
+        return (
+          <AssignMenuBox
+            i={i}
+            onDelete={() => handleDeleteMenuBox(i)}
+            setMenus={setMenus}
+            menus={menus}
+          />
+        );
+      })}
+
       <Flex style={{ marginTop: '8px' }}>
-        <InputImages
-          onClick={() => {
-            imagesInput.current.click();
-          }}
-          src={images_preview}
-        ></InputImages>
-        <ImagesPreviewBox ImagesPreview={imagePreview}>
+        {/* <ImagesPreviewBox ImagesPreview={imagePreview}>
           {imagePreview.map((e) => {
             return (
               <div
@@ -61,7 +62,7 @@ function AssignImage(props) {
               </div>
             );
           })}
-        </ImagesPreviewBox>
+        </ImagesPreviewBox> */}
         <Input
           style={{ display: 'none' }}
           accept="image/*"
@@ -75,14 +76,35 @@ function AssignImage(props) {
   );
 }
 
-export default AssignImage;
+export default AssignMenu;
 
-const InputImages = styled.img`
-  width: 96px;
-  height: 96px;
+const AddMenuBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 352px;
+  height: 48px;
+  border-radius: 4px;
+  background: #f2f2f2;
+  color: #111;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 32px; /* 213.333% */
+
+  margin-top: 8px;
+
   &:hover {
     cursor: pointer;
   }
+`;
+const MenuBox = styled.div`
+  width: 352px;
+  height: 100px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  margin-top: 8px;
 `;
 
 const ImagesPreviewBox = styled.div`

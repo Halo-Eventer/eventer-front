@@ -1,4 +1,5 @@
 export const markerHandle = (naver, map, lat, lng, img, size, text) => {
+  console.log(img);
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(lat, lng),
     map,
@@ -6,7 +7,7 @@ export const markerHandle = (naver, map, lat, lng, img, size, text) => {
       content: `
       <div > 
       <div style="display:flex; justify-content: center;">  
-      <img src = ${img}/>
+      <img src = ${img}></img>
       </div>
       <div style="display:flex; justify-content: center; margin-top:4px"> ${text} </div>
       </div>`,
