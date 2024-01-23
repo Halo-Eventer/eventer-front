@@ -8,8 +8,8 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 
 import { FlexBox_Column, FlexBox_Row,
   GlobalStyles, StyledLink } from './Info';
-import { GRID_WIDTH, UpperBar_Component,
-  MiddleBar_Component3} from './AssignPage_Home';
+import {UpperBar_Component,
+  MiddleBar_Component3} from '../components/assign_info/Assign_Bar';
 
 
 
@@ -29,7 +29,9 @@ function AssignPage_Notice() {
     <Wrapper>
       <GlobalStyles/>
         <UpperBar_Component/>
-        <MiddleBar_Component3 id_param={id_param}/>
+        <MiddleBar_Component3 
+        id_param={id_param}
+        text = "정보"/>
     <FlexBox_Column>
         <InputBox>
           <SemiTitle>카테고리</SemiTitle>

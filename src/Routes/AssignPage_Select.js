@@ -9,8 +9,9 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 
 import { FlexBox_Column, FlexBox_Row,
 GlobalStyles, StyledLink } from './Info';
-import { Wrapper, GRID_WIDTH, 
-  UpperBar_Component, MiddleBar_Component2} from './AssignPage_Home';
+import {Wrapper,GRID_WIDTH} from './AssignPage_Home';
+import {UpperBar_Component,
+  MiddleBar_Component2} from '../components/assign_info/Assign_Bar';
 
 
 

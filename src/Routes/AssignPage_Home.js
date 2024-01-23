@@ -9,13 +9,17 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 import { FlexBox_Column, FlexBox_Row,
 GlobalStyles, StyledLink } from './Info';
 
+import {UpperBar_Component,
+  MiddleBar_Component1} from '../components/assign_info/Assign_Bar';
+
 import dropDown from '../images/DropDown.svg';
 import dropDown2 from '../images/DropDown2.svg';
 import next from '../images/Next.svg';
 export {dropDown, dropDown2,next};
 
 
-function AssignPage_Home() {
+function AssignPage_Home() 
+{
   const navigate=useNavigate();
   
 
@@ -87,6 +91,12 @@ export default AssignPage_Home;
 
 
 
+
+
+
+
+
+
 export const Wrapper = styled.div`
 width:100vw;
 height:100vh;
@@ -96,7 +106,6 @@ flex-direction:column;
 justify-content:flex-start;
 align-items:center;
 `;
-
 
 //======================================상단바 : 시작
 
@@ -326,49 +335,10 @@ align-items:center;
 
 
 
-export function UpperBar_Component()
-{
-  return <UpperBar>
-    <StyledLink to = "/assign_home">
-      <Logo>행사자</Logo>
-    </StyledLink>
-</UpperBar>
-};
-export function MiddleBar_Component1()
-{
-  return  <MiddleBar>
-            <div>
-              <StyledLink to = "/assign_home">
-                <H1 color='#4F33F6' fontWeight='bold'>대학교선택</H1>
-              </StyledLink>
-            </div>
-        </MiddleBar>
-};
-export function MiddleBar_Component2(props)
-{
-  return  <MiddleBar>
-            <div>
-              <StyledLink to = "/assign_home">
-                <H1>대학교선택</H1>
-              </StyledLink>
-              <img src={next}/>
-              <H1 color='#4F33F6' fontWeight='bold'>페이지선택</H1>
-            </div>
-        </MiddleBar>
-};
-export function MiddleBar_Component3(props)
-{
-  return  <MiddleBar>
-            <div>
-              <StyledLink to = "/assign_home">
-                <H1>대학교선택</H1>
-              </StyledLink>
-              <img src={next}/>
-              <StyledLink to = {`/assign_select/${props.id_param}`}>
-                <H1>페이지선택</H1>
-              </StyledLink>
-              <img src={next}/>
-              <H1 color='#4F33F6' fontWeight='bold'>정보페이지</H1>
-            </div>
-        </MiddleBar>
-};
+
+
+
+
+
+
+

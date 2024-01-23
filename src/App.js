@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { NavermapsProvider } from 'react-naver-maps';
-
 import Home from './Routes/Home';
 import FestivalInfo from './Routes/FestivalInfo';
 import FestivalNoti from './Routes/FestivalNoti';
@@ -34,6 +32,7 @@ function App() {
         <Route path = "/assign" element={<AssignPage />}/>   {/* 이게 assign_map 및 AssignPage_Map 파트 */}
         <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>
         <Route path = "/assign_notice/:id" element={<AssignPage_Notice/>}/>
+        {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
       </Routes>
     </BrowserRouter>
   );
