@@ -13,7 +13,7 @@ function Assign() {
   const [thumbnail, setThumbnail] = useState([]);
 
   return (
-    <div>
+    <AssignContainer>
       <AssignBtn
         info={info}
         category={category}
@@ -44,7 +44,7 @@ function Assign() {
           category={category}
         />
       </InfoContainer>
-    </div>
+    </AssignContainer>
   );
 }
 
@@ -58,6 +58,10 @@ function Assign() {
 //     "type": "주점"
 // }
 export default Assign;
+
+const AssignContainer = styled.div`
+  margin-left: 32px;
+`;
 
 const InfoContainer = styled.div`
   width: 352px;
@@ -111,7 +115,7 @@ export const InputLatLng = styled(Input)`
   margin: 0;
   margin-left: 4px;
   padding-left: 8px;
-  width: 108px;
+  width: 116px;
   height: 40px;
   flex-shrink: 0;
   background-color: ${(props) => {
