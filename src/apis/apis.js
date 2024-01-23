@@ -28,10 +28,10 @@ export const getDetailAmenity = (id) => {
   return axios.get(`/amenity/${id}`);
 };
 
-export const assignApi = (props, category, imgs, thumbnail, menu) => {
+export const assignApi = (props, category, imgs, thumbnail, menus) => {
   if (thumbnail != []) props.thumbnail = thumbnail;
   if (imgs != []) props.images = imgs;
-  if (menu != []) props.menu = menu;
+  if (menus != []) props.menus = menus;
   const festivalId = 1;
   console.log(props);
   return axios.post(`/${category}`, props, {
