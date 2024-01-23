@@ -9,12 +9,7 @@ import boothImg from 'asset/marker/boothImg.svg';
 import foodImg from 'asset/marker/foodImg.svg';
 import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
-
 import getMarker from '../components/getMarker';
-import boothImg from '../asset/marker/boothImg.svg';
-import foodImg from '../asset/marker/foodImg.svg';
-import toiletImg from '../asset/marker/toiletImg.svg';
-
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
