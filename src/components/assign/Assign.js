@@ -8,24 +8,27 @@ import AssignMenu from './AssignMenu';
 
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
-  const [category, setCategory] = useState('event');
+  const [category, setCategory] = useState('store');
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
-
+  const [menus, setMenus] = useState([]);
+  console.log(menus);
+  console.log(category);
   return (
-    <div>
+    <AssignContainer>
       <AssignBtn
         info={info}
         category={category}
         img={img}
         thumbnail={thumbnail}
+        menus={menus}
       />
       <InfoContainer>
         {category == 'store' ? (
           <AssignMenu
-            img={img}
+            menus={menus}
             thumbnail={thumbnail}
-            setImg={setImg}
+            setMenus={setMenus}
             setThumbnail={setThumbnail}
           />
         ) : (
@@ -44,7 +47,7 @@ function Assign() {
           category={category}
         />
       </InfoContainer>
-    </div>
+    </AssignContainer>
   );
 }
 
@@ -58,6 +61,10 @@ function Assign() {
 //     "type": "주점"
 // }
 export default Assign;
+
+const AssignContainer = styled.div`
+  margin-left: 32px;
+`;
 
 const InfoContainer = styled.div`
   width: 352px;
@@ -111,7 +118,7 @@ export const InputLatLng = styled(Input)`
   margin: 0;
   margin-left: 4px;
   padding-left: 8px;
-  width: 108px;
+  width: 116px;
   height: 40px;
   flex-shrink: 0;
   background-color: ${(props) => {
