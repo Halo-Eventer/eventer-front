@@ -28,11 +28,12 @@ export const getDetailAmenity = (id) => {
   return axios.get(`/amenity/${id}`);
 };
 
-export const assignApi = (props, category, imgs, thumbnail) => {
+export const assignApi = (props, category, imgs, thumbnail, menu) => {
   if (thumbnail != []) props.thumbnail = thumbnail;
   if (imgs != []) props.images = imgs;
+  if (menu != []) props.menu = menu;
   const festivalId = 1;
-
+  console.log(props);
   return axios.post(`/${category}`, props, {
     params: {
       festivalId: festivalId,
@@ -68,16 +69,13 @@ export const imageUploadApi = (imgInfo) => {
   });
 };
 
-
 //  NOH's
 export const assignInfoApi = (requestBody, festivalId, category) => {
-  return axios.post(`/${category}`, requestBody, 
-  {
-    params:{
-      festivalId : festivalId
-    }
-  }
-  );
+  return axios.post(`/${category}`, requestBody, {
+    params: {
+      festivalId: festivalId,
+    },
+  });
 };
 export const getNotiList = (festivalId) => {
   return axios.get(`/noticelist/${festivalId}/list`);

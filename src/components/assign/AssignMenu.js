@@ -7,38 +7,25 @@ import AssignThumbnail from './AssignThumbnail';
 import AssignMenuBox from './AssignMenuBox';
 
 function AssignMenu(props) {
-  const imagesInput = useRef(null);
-  const [imagePreview, setImagePreview] = useState([]);
-  const [menus, setMenus] = useState([]);
-  const handleImg = (e) => {
-    imageUploadApi(e.target.files[0])
-      .then((res) => {
-        props.setImg([...props.img, res.data]);
-        setImagePreview([...props.img, res.data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const handleAddMenu = () => {
-    setMenus([...menus, {}]);
+    props.setMenus([...props.menus, {}]);
   };
   const handleDeleteMenuBox = (menuI) => {
-    const filteredMenus = menus?.filter((e, i) => i !== menuI);
-    setMenus(filteredMenus);
+    const filteredMenus = props.menus?.filter((e, i) => i !== menuI);
+    props.setMenus(filteredMenus);
   };
 
   return (
     <div style={{ width: '352px' }}>
       <AssignThumbnail setThumbnail={props.setThumbnail} />
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
-      {menus?.map((e, i) => {
+      {props.menus?.map((e, i) => {
         return (
           <AssignMenuBox
             i={i}
             onDelete={() => handleDeleteMenuBox(i)}
-            setMenus={setMenus}
-            menus={menus}
+            setMenus={props.setMenus}
+            menus={props.menus}
           />
         );
       })}
@@ -63,14 +50,6 @@ function AssignMenu(props) {
             );
           })}
         </ImagesPreviewBox> */}
-        <Input
-          style={{ display: 'none' }}
-          accept="image/*"
-          id="images"
-          onChange={handleImg}
-          type="file"
-          ref={imagesInput}
-        ></Input>
       </Flex>
     </div>
   );
