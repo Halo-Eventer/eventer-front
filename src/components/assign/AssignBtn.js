@@ -3,8 +3,15 @@ import { assignApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
+  console.log(props);
   const assignMarker = () => {
-    assignApi(props.info, props.category, props.img, props.thumbnail)
+    assignApi(
+      props.info,
+      props.category,
+      props.img,
+      props.thumbnail,
+      props.menus
+    )
       .then((res) => {
         alert(res.data);
       })
