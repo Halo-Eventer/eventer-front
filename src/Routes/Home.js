@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 
-
 import styled from 'styled-components';
 
 import backGround from '../images/BackGround.svg';
@@ -100,47 +99,44 @@ const ChangeBtn = styled.button`
 `;
 const ChangeBox = styled.div``;
 const ChangeBlock = styled.div`
+  width: 100vw;
+  background-color: rgb(255, 255, 255, 0);
+  position: fixed;
+  bottom: 5vh;
 
-width:100vw;
-background-color:rgb(255,255,255,0);
-position:fixed;
-bottom:5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 
-display:flex;
-justify-content:space-evenly;
-align-items:center;
+  ${ChangeBox} {
+    position: relative;
 
-${ChangeBox}
-{
-position:relative;
+    width: 358px;
+    height: 56px;
+    flex-shrink: 0;
 
-width: 358px;
-height: 56px;
-flex-shrink: 0; 
+    border-radius: 28px;
+    background: #fff;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
 
-border-radius: 28px;
-background: #FFF;
-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    ${ChangeBtn} {
+      width: 179px;
+      height: 48px;
+      flex-shrink: 0;
+      font-family: Pretendard;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px; /* 150% */
+      border: none;
+      border-radius: 10%;
+      background-color: rgba(255, 255, 255, 0);
+      cursor: pointer;
 
-display:flex;
-justify-content:space-evenly;
-align-items:center;
-    ${ChangeBtn}
-    {
-        width: 179px;
-        height: 48px;
-        flex-shrink: 0;
-        font-family: Pretendard;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 24px; /* 150% */
-        border:none;
-        border-radius:10%;
-        background-color:rgba(255,255,255,0);
-        cursor: pointer;
-
-        z-index:2;
+      z-index: 2;
     }
     ${ChangeBar} {
       position: absolute;

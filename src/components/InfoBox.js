@@ -14,7 +14,8 @@ function InfoBox(props) {
     <div>
       <PlaceBox>
         <PlaceName>{data.name}</PlaceName>
-        <PlaceType>{data.type}</PlaceType>
+        {data.type ? <PlaceType>{data.type}</PlaceType> : ''}
+
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
