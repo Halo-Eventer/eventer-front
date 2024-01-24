@@ -14,7 +14,7 @@ function AssignThumbnail(props) {
         setThumbnailPreview(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.response.data.error)
       });
   };
   return (

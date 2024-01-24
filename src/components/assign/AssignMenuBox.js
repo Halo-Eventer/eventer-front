@@ -31,8 +31,8 @@ function AssignMenuBox(props) {
         setMenuImg(res.data);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        alert(err.response.data.error)
+            });
   };
   const handleDeleteMenuBox = () => {
     props.onDelete(); // props.setmenus();
