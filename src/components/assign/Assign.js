@@ -8,7 +8,7 @@ import AssignMenu from './AssignMenu';
 
 function Assign() {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
-  const [category, setCategory] = useState('store');
+  const [category, setCategory] = useState('event');
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
   const [menus, setMenus] = useState([]);

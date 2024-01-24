@@ -2,8 +2,9 @@ import axios from 'axios';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
-export const getAllStore = () => {
-  return axios.get('/store?festivalId=1');
+export const getAllStore = (type) => {
+  console.log(type);
+  return axios.get('/store?festivalId=1', { params: { type: type } });
 };
 export const getAllEvent = () => {
   return axios.get('/event?festivalId=1');
@@ -29,6 +30,7 @@ export const getDetailAmenity = (id) => {
 };
 
 export const assignMenuApi = (storeId, menus) => {
+  menus.summary = '요약설명';
   return axios.post(`/menu`, menus, {
     params: {
       storeId: storeId,
@@ -36,8 +38,8 @@ export const assignMenuApi = (storeId, menus) => {
   });
 };
 export const assignApi = (props, category, imgs, thumbnail) => {
-  if (thumbnail != []) props.thumbnail = thumbnail;
-  if (imgs != []) props.images = imgs;
+  if (thumbnail != '') props.thumbnail = thumbnail;
+  if (imgs != '') props.images = imgs;
 
   const festivalId = 1;
   console.log(props);

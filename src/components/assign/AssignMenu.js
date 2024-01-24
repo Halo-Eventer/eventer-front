@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
-import { imageUploadApi } from '../../apis/apis';
-import { Input, InputBox, SemiTitle } from './Assign';
 import styled from 'styled-components';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';

@@ -7,15 +7,17 @@ function AssignBtn(props) {
   const assignMarker = () => {
     assignApi(props.info, props.category, props.img, props.thumbnail)
       .then((res) => {
-        alert(res.data);
-        if (res.data.id) {
-          assignMenuApi(res.data.id, props.menus)
+        if (res.data.storeId) {
+          console.log(res.data.storeId);
+          assignMenuApi(res.data.storeId, props.menus)
             .then((res) => {
-              console.log(res);
+              alert('추가되었습니다.');
             })
             .catch((err) => {
-              console.log(err);
+              alert('메뉴를 다시 추가해주십시오.');
             });
+        } else {
+          alert('추가되었습니다.');
         }
       })
       .catch((err) => {

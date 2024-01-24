@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
@@ -114,7 +114,13 @@ function NolzaMap(props) {
   };
 
   return (
-    <div style={{ width: '100vw', marginLeft: '-8px', marginTop: '-8px' }}>
+    <div
+      style={{
+        width: '100vw',
+        height: '100vh',
+      }}
+    >
+      <GlobalStyle />
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
         <ClickInfo
@@ -159,4 +165,11 @@ const MapContainer = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 0;
+`;
+const GlobalStyle = createGlobalStyle`//전역 스타일 설정
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 `;

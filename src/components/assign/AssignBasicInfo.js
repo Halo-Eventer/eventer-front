@@ -23,7 +23,7 @@ function AssignBasicInfo(props) {
   }, [active]);
 
   let info = props.info;
-  let category = props.category;
+
   const deleteType = () => {
     const { type, ...rest } = info;
     props.setInfo({ ...rest });
@@ -93,7 +93,7 @@ function AssignBasicInfo(props) {
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="location" placeholder="위치"></Input>
       </InputDiv>
-      <TextAreaDiv style={{ width: '336px', height: '112px' }}>
+      <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
           value={props.info.content}
           onChange={handleResizeHeight}
