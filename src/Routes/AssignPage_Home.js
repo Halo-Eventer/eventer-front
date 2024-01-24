@@ -9,7 +9,7 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 import { FlexBox_Column, FlexBox_Row, GlobalStyles, StyledLink } from './Info';
 
 import {UpperBar_Component,
-  MiddleBar_Component1} from '../components/assign_info/Assign_Bar';
+  MiddleBar_Component1} from '../components/assign/Assign_Bar';
 
 import dropDown from '../images/DropDown.svg';
 import dropDown2 from '../images/DropDown2.svg';

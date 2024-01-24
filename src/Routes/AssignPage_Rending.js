@@ -8,7 +8,7 @@ import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 import { FlexBox_Column, FlexBox_Row,
   GlobalStyles, StyledLink } from './Info';
   import {UpperBar_Component,
-    MiddleBar_Component3} from '../components/assign_info/Assign_Bar';
+    MiddleBar_Component3} from '../components/assign/Assign_Bar';
 
 function AssignPage_Rending() {
 

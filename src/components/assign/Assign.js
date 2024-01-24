@@ -6,9 +6,9 @@ import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
 
-function Assign() {
+function Assign(props) {
   const [info, setInfo] = useState({ isOperation: true, type: '주점' });
-  const [category, setCategory] = useState('store');
+  const [category, setCategory] = useState(props.category);
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
   const [menus, setMenus] = useState([]);
