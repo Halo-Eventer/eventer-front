@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import Assign from '../components/assign/Assign';
-import {
-  MiddleBar_Component3,
-  UpperBar_Component,
-  Wrapper,
-} from './AssignPage_Home';
+import { Wrapper } from './AssignPage_Home';
 import { GlobalStyles } from './Info';
 import { Flex } from 'asset/Style';
 import styled from 'styled-components';
+import {
+  MiddleBar_Component3,
+  UpperBar_Component,
+} from 'components/assign_info/Assign_Bar';
 
 function AssignPage_Map() {
   const id_param = useParams().id;
