@@ -1,19 +1,22 @@
 import styled from 'styled-components';
-import { assignApi } from '../../apis/apis';
+import { assignApi, assignMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
   console.log(props);
   const assignMarker = () => {
-    assignApi(
-      props.info,
-      props.category,
-      props.img,
-      props.thumbnail,
-      props.menus
-    )
+    assignApi(props.info, props.category, props.img, props.thumbnail)
       .then((res) => {
         alert(res.data);
+        if (res.data.id) {
+          assignMenuApi(res.data.id, props.menus)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
       })
       .catch((err) => {
         alert(err.data);
