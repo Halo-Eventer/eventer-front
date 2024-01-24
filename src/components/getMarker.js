@@ -17,7 +17,7 @@ export function getMarker(activeCategory, setData) {
         console.log(err);
       });
   } else if (activeCategory == 2) {
-    getAllStore()
+    getAllStore('푸드트럭')
       .then((res) => {
         console.log(res);
         setData(res.data);
@@ -26,7 +26,7 @@ export function getMarker(activeCategory, setData) {
         console.log(err);
       });
   } else if (activeCategory == 3) {
-    getAllStore()
+    getAllStore('주점')
       .then((res) => {
         console.log(res);
         setData(res.data);

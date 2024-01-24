@@ -1,19 +1,24 @@
 import styled from 'styled-components';
-import { assignApi } from '../../apis/apis';
+import { assignApi, assignMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
   console.log(props);
   const assignMarker = () => {
-    assignApi(
-      props.info,
-      props.category,
-      props.img,
-      props.thumbnail,
-      props.menus
-    )
+    assignApi(props.info, props.category, props.img, props.thumbnail)
       .then((res) => {
-        alert(res.data);
+        if (res.data.storeId) {
+          console.log(res.data.storeId);
+          assignMenuApi(res.data.storeId, props.menus)
+            .then((res) => {
+              alert('추가되었습니다.');
+            })
+            .catch((err) => {
+              alert('메뉴를 다시 추가해주십시오.');
+            });
+        } else {
+          alert('추가되었습니다.');
+        }
       })
       .catch((err) => {
         alert(err.data);

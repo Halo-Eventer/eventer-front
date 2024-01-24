@@ -8,16 +8,19 @@ import InfoBox from '../InfoBox';
 import { getDetailStore } from '../../apis/apis';
 import { getDetailInfo } from './getDetailInfo';
 function ClickInfo(props) {
+  console.log(props);
   const navigate = useNavigate();
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);
   const [clickInfo, setClickInfo] = useState({});
   const openId = props.openId;
   const setPopup = props.setPopup;
-
+  useEffect(() => {
+    setFull(false);
+  }, [props.activeCategory]);
   useEffect(() => {
     getDetailInfo(props.data.id, setClickInfo, props.activeCategory);
-  }, []);
+  }, [props.data]);
   useEffect(() => {
     setClose(false);
   }, [props.popup]);

@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Assign from '../components/assign/Assign';
-import {
-  MiddleBar_Component3,
-  UpperBar_Component,
-} from '../components/assign/Assign_Bar';
+import { Wrapper } from './AssignPage_Home';
 import { GlobalStyles } from './Info';
 import { Flex } from 'asset/Style';
 
 import Assign_List from '../components/assign/Assign_List';
 
 import styled from 'styled-components';
+import {
+  MiddleBar_Component3,
+  UpperBar_Component,
+} from 'components/assign/Assign_Bar';
 
 function AssignPage_Map() {
   const id_param = useParams().id;
@@ -57,14 +58,6 @@ function AssignPage_Map() {
 
 export default AssignPage_Map;
 
-export const Wrapper = styled.div`
-              width:100vw;
-
-              display:flex;
-              flex-direction:column;
-              justify-content:flex-start;
-              align-items:center;
-              `;
 
 const AssignBox = styled(Flex)`
   margin-top: 32px;

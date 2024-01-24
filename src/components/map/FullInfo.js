@@ -13,6 +13,7 @@ function FullInfo(props) {
     }, 500);
   };
   console.log(props, data.menus);
+  console.log(props.activeCategory);
   return (
     <FullInfoContainer popup={props.popup} close={props.close}>
       <VectorBox onClick={handleClose}>
@@ -28,19 +29,29 @@ function FullInfo(props) {
       </FullInfoBox>
       <WhiteLine />
       <DetailBox>
-        <DetailTitle>{data.name}</DetailTitle>
-        <DetailSemi>{data.summary}</DetailSemi>
-        {props.activeCateogry == '2' || props.activeCateogry == '3'
-          ? data.menus?.map((e) => {
-              return (
-                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
-              );
-            })
-          : data.images?.map((e) => {
-              return (
-                <DetailImg src={e} style={{ marginTop: '12px' }}></DetailImg>
-              );
-            })}
+        <DetailImgContainer>
+          {props.activeCategory == '2' || props.activeCategory == '3'
+            ? data.menus?.map((e, i) => {
+                return (
+                  <div>
+                    <MenuImg src={e.image} style={{ marginTop: '12px' }} />
+                    <MenuTxt>{e.name}</MenuTxt>
+                    <MenuTxt>{e.price.toLocaleString()}원</MenuTxt>
+                  </div>
+                );
+              })
+            : data.images?.map((e) => {
+                return (
+                  <div>
+                    <DetailImg
+                      src={e}
+                      style={{ marginTop: '12px' }}
+                    ></DetailImg>
+                  </div>
+                );
+              })}
+        </DetailImgContainer>
+        <Content>{data.content}</Content>
       </DetailBox>
     </FullInfoContainer>
   );
@@ -73,6 +84,14 @@ const FullInfoBox = styled.div`
   width: 350px;
   margin: 10px auto 20px;
 `;
+const DetailImgContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  ::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+`;
 const FullInfoContainer = styled.div`
   position: absolute;
   bottom: 0px;
@@ -102,6 +121,19 @@ const FullInfoContainer = styled.div`
 const DetailImg = styled.img`
   width: 350px;
 `;
+const MenuImg = styled.img`
+  width: 170px;
+  height: 170px;
+  border-radius: 12px;
+
+  flex-shrink: 0;
+`;
+const MenuTxt = styled.div`
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
+`;
 const DetailTitle = styled.div`
   color: #000;
   font-family: Pretendard;
@@ -116,8 +148,12 @@ const DetailSemi = styled.div`
   font-weight: 500;
 `;
 const DetailBox = styled.div`
-  height: 500px;
   width: 350px;
-  overflow-x: auto;
+  height: 70vh;
   margin: 35px auto;
+  overflow-y: scroll;
+  scrollbar-width: none;
+`;
+const Content = styled.div`
+  white-space: pre-wrap;
 `;
