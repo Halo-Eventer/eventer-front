@@ -72,7 +72,7 @@ function Assign_Info() {
         <p>이미지 등록</p>
         {
           cntImageInput.map((index, key) =>
-            <FlexBox_Column style={{ marginBottom: '8px' }}>
+            <FlexBox_Column key={key} style={{ marginBottom: '8px' }}>
               <AssignImage_Info
                 array={true}
 

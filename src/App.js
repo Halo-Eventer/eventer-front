@@ -25,14 +25,14 @@ function App() {
         <Route path="/event/:id" element={<Detail_Event />} />
         <Route path="/noti/:id" element={<Detail_Noti />} />
         {/* Detail을 루트로 처리하는 법 */}
+
+        
         <Route path="/assign_home" element={<AssignPage_Home />} />
         <Route path="/assign_select/:id" element={<AssignPage_Select />} />
 
-        <Route path="/assign_home" element={<AssignPage_Home />} />
-        <Route path="/assign_select/:id" element={<AssignPage_Select />} />
-        <Route path="/assign_map/:id" element={<AssignPage_Map />} />
-        <Route path="/assign_rending/:id" element={<AssignPage_Rending />} />
-        <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
+        <Route path = "/assign_map/:id" element={<AssignPage_Map />}/>   {/* 이게 assign_map 및 AssignPage_Map 파트 */}
+        <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>
+        <Route path = "/assign_notice/:id" element={<AssignPage_Notice/>}/>
         {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
       </Routes>
     </BrowserRouter>

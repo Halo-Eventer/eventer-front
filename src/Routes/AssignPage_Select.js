@@ -11,7 +11,7 @@ import { FlexBox_Column, FlexBox_Row,
 GlobalStyles, StyledLink } from './Info';
 import {Wrapper,GRID_WIDTH} from './AssignPage_Home';
 import {UpperBar_Component,
-  MiddleBar_Component2} from '../components/assign_info/Assign_Bar';
+  MiddleBar_Component2} from '../components/assign/Assign_Bar';
 
 
 
