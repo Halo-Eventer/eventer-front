@@ -92,8 +92,8 @@ function Assign_List(props){
                                 if(item2!=selectedDrop)
                                     return <button 
                                     key = {index2}
-                                    value = {index}
                                     id = {index2}
+                                    value = {index}
                                     onClick={onClick_drops}>{item2}</button>
                             });
                             //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
