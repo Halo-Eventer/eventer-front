@@ -25,14 +25,16 @@ function AssignMenuBox(props) {
   }, [info]);
 
   const handleImg = (e) => {
+    if(e.target.files[0]!=undefined){
     imageUploadApi(e.target.files[0])
       .then((res) => {
         setInfo({ ...info, ['image']: res.data });
         setMenuImg(res.data);
       })
       .catch((err) => {
-        console.log(err);
-      });
+        alert(err.response.data.error)
+            });
+          }
   };
   const handleDeleteMenuBox = () => {
     props.onDelete(); // props.setmenus();

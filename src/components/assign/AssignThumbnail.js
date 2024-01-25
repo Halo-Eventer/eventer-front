@@ -8,14 +8,16 @@ function AssignThumbnail(props) {
   const thumbnailInput = useRef(null);
   const [thumbnailPreview, setThumbnailPreview] = useState(thumbnail_preview);
   const handleImg = (e) => {
+    if(e.target.files[0]!=undefined){
     imageUploadApi(e.target.files[0])
       .then((res) => {
         props.setThumbnail(res.data);
         setThumbnailPreview(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.response.data.error)
       });
+    }
   };
   return (
     <InputBox>
