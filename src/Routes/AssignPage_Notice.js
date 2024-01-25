@@ -30,6 +30,7 @@ function AssignPage_Notice() {
       event : "이벤트",
   }
     );
+  const [type, setType]=useState("");
   const [boardList,setBoardList] = useState(["대동제 총정리1", "대동제 총정리2", "대동제 총정리3"]);
   const [currentPage,setCurrentPage]=useState(1);
   const [pageNum,setPageNum]=useState(8);
@@ -55,13 +56,12 @@ function AssignPage_Notice() {
 
         <Assign_List 
         category={category} setCategory={setCategory}
-        categoryList = {categoryList}
+        categoryList = {categoryList} setType={setType}
         boardList={boardList} setBoardList={setBoardList}
         currentPage={currentPage} setCurrentPage={setCurrentPage}
         pageNum={pageNum} totalPages={totalPages}
         itemid = {itemID} setItemID={setItemID}
-        setMode = {setMode}
-        text="게시글"/>
+        setMode = {setMode}/>
 
         <Assign category="event"/>
 

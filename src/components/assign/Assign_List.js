@@ -8,16 +8,29 @@ import plus from 'images/Plus.svg';
 function Assign_List(props){
 
     const [selectedDrop, setSelectedDrop]=useState("");
+    const [categoryEntries,setCategoryEntries]=useState([]);
     const [showList, setShowList] = useState(false);
     const [numList, setNumList]=useState([]);
 
     const onClick_dropDown = () => {
         setShowList(prev=>!prev);
     }
-    const onClick_li = (event) => {
+    const onClick_drops = (event) => {
         event.preventDefault();
-        props.setCategory(event.currentTarget.textContent);
+        const index=event.currentTarget.value;
+        props.setCategory(categoryEntries[index][0]);
+
+        if(typeof(categoryEntries[index][1])=='object'){
+            const index2 = event.currentTarget.id;
+            console.log("index, index2 :",index, index2);
+//            console.log("type : ",categoryEntries[index][1][index2]);
+            props.setType(categoryEntries[index][1][index2]);
+        }
+        else
+            props.setType("");
+
         setSelectedDrop(event.currentTarget.textContent);
+
         setShowList(false);
     }
     const onClick_add = (event) => {
@@ -48,9 +61,20 @@ function Assign_List(props){
         setNumList(tmp);
     },[])
     useEffect(()=>{
-        setSelectedDrop(Object.values(props.categoryList)[0]);
+        // let tmp1 = Object.keys(props.categoryList);
+        // let tmp2 = Object.values(props.categoryList);
+        // setDropKeys(tmp1);
+        // setDropValues(tmp2);
+        setCategoryEntries(Object.entries(props.categoryList));
       },[]);
-
+    useEffect(()=>{
+        if(categoryEntries.length>0)
+            setSelectedDrop(categoryEntries[0][1]);
+    },[categoryEntries])
+    useEffect(()=>{
+        if(props.category.length>0)
+        console.log("category, type : ", props.category, props.type);
+    },[props.category])
     return (
         <Wrapper>
             <DropDown>
@@ -60,10 +84,26 @@ function Assign_List(props){
                 </DropDownBar>
                 {showList&&
                 <DropDownlist>
-                    {Object.values(props.categoryList).map((item,index)=>
+                    {categoryEntries.map((item,index)=>
                     {
-                        if(item!=selectedDrop)
-                            return <li key = {index} onClick={onClick_li}>{item}</li>
+                        if(typeof(item[1])==='object'){
+                            return item[1].map((item2,index2)=> 
+                            {
+                                if(item2!=selectedDrop)
+                                    return <button 
+                                    key = {index2}
+                                    value = {index}
+                                    id = {index2}
+                                    onClick={onClick_drops}>{item2}</button>
+                            });
+                            //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
+                        }
+                        if(item[1]!=selectedDrop)
+                            return <button 
+                            key = {index}
+                            value = {index}
+                            onClick={onClick_drops}>{item[1]}</button>
+                     
                     })}
                 </DropDownlist>
                 }       
@@ -163,7 +203,7 @@ display:flex;
 flex-direction:column;
 justify-content:flex-start;
 align-items:center;
-li{
+button{
 width:100%;
 height: 48px;
 flex-shrink: 0;
