@@ -1,32 +1,33 @@
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
 
 function Assign(props) {
-  const [info, setInfo] = useState({ isOperation: true, type: '주점' });
-
-  const [category, setCategory] = useState(props.category);
-
+  const [info, setInfo] = useState({ isOperation: true, type: props.type });
   const [img, setImg] = useState([]);
   const [thumbnail, setThumbnail] = useState([]);
   const [menus, setMenus] = useState([]);
-  console.log(menus);
-  console.log(category);
+  useEffect(() => {
+    if (props.category == 'store') {
+      setInfo({ ...info, ['type']: props.type });
+    }
+  }, [props.category, props.type]);
+  console.log(info, props.category, thumbnail, menus);
   return (
     <AssignContainer>
       <AssignBtn
         info={info}
-        category={category}
+        category={props.category}
         img={img}
         thumbnail={thumbnail}
         menus={menus}
       />
       <InfoContainer>
-        {category == 'store' ? (
+        {props.category == 'store' ? (
           <AssignMenu
             menus={menus}
             thumbnail={thumbnail}
@@ -41,13 +42,7 @@ function Assign(props) {
             setThumbnail={setThumbnail}
           />
         )}
-
-        <AssignBasicInfo
-          setInfo={setInfo}
-          setCategory={setCategory}
-          info={info}
-          category={category}
-        />
+        <AssignBasicInfo setInfo={setInfo} info={info} />
       </InfoContainer>
     </AssignContainer>
   );
