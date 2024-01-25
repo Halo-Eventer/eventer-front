@@ -69,6 +69,7 @@ export const assignStoreApi = () => {
 };
 
 export const imageUploadApi = (imgInfo) => {
+  
   const formData = new FormData();
   formData.append('image', imgInfo);
   formData.append('dirName', 'festival');
