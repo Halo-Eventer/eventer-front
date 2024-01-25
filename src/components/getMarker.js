@@ -14,7 +14,7 @@ export function getMarker(activeCategory, setData) {
         setData(res.data);
       })
       .then((err) => {
-        alert('생성된 마커가 존재하지 않습니다.');
+        // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 2) {
     getAllStore('푸드트럭')
@@ -23,7 +23,7 @@ export function getMarker(activeCategory, setData) {
         setData(res.data);
       })
       .then((err) => {
-        alert('생성된 마커가 존재하지 않습니다.');
+        // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 3) {
     getAllStore('주점')
@@ -32,7 +32,7 @@ export function getMarker(activeCategory, setData) {
         setData(res.data);
       })
       .then((err) => {
-        alert('생성된 마커가 존재하지 않습니다.');
+        // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 4) {
     getAllBooth()
@@ -41,7 +41,7 @@ export function getMarker(activeCategory, setData) {
         setData(res.data);
       })
       .then((err) => {
-        alert('생성된 마커가 존재하지 않습니다.');
+        // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 5) {
     getAllAmenity()
@@ -50,7 +50,7 @@ export function getMarker(activeCategory, setData) {
         setData(res.data);
       })
       .then((err) => {
-        alert('생성된 마커가 존재하지 않습니다.');
+        // alert('생성된 마커가 존재하지 않습니다.');
       });
   }
 }

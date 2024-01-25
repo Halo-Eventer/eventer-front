@@ -33,7 +33,24 @@ function NolzaMap(props) {
       minZoom: 16,
     };
     const map = new naver.maps.Map(mapElement.current, mapOption);
+    let concertHallMarker = markerHandle(
+      naver,
+      map,
+      37.55041,
+      127.07505,
+      hallMarker,
+      100,
+      '공연장'
+    );
     console.log(data);
+    naver.maps.Event.addListener(
+      concertHallMarker,
+      'click',
+      handleConcertHallMarker
+    );
+    naver.maps.Event.addListener(map, 'click', () => {
+      setPopup(false);
+    });
     if (data != '') {
       const markerData = data?.map((e) => {
         return {
@@ -44,16 +61,6 @@ function NolzaMap(props) {
           type: e.type,
         };
       });
-
-      let concertHallMarker = markerHandle(
-        naver,
-        map,
-        37.55041,
-        127.07505,
-        hallMarker,
-        100,
-        '공연장'
-      );
 
       const markers = markerData?.map((e) => {
         return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
@@ -89,15 +96,6 @@ function NolzaMap(props) {
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
       });
-
-      naver.maps.Event.addListener(
-        concertHallMarker,
-        'click',
-        handleConcertHallMarker
-      );
-      naver.maps.Event.addListener(map, 'click', () => {
-        setPopup(false);
-      });
     }
   }, [data]);
 
@@ -125,6 +123,7 @@ function NolzaMap(props) {
       <GlobalStyle />
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
+
         <ClickInfo
           data={{
             name: '공연장',

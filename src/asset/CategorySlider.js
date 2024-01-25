@@ -11,6 +11,14 @@ export default class SwipeToSlide extends Component {
   }
 
   render() {
+    const today = new Date();
+    const hour = today.getHours();
+    const OperationError = () => {
+      alert('주점은 현재 운영시간이 아닙니다.');
+      this.setState({ active: 1 });
+      this.setActiveCategory(1);
+    };
+
     const settings = {
       className: '',
       infinite: false,
@@ -27,8 +35,12 @@ export default class SwipeToSlide extends Component {
       },
     };
     const handleClick = (e) => {
-      this.setState({ active: e.target.id });
-      this.setActiveCategory(e.target.id);
+      if (e.target.id == 3 && (hour > 22 || hour < 18)) {
+        OperationError();
+      } else {
+        this.setState({ active: e.target.id });
+        this.setActiveCategory(e.target.id);
+      }
     };
 
     return (
