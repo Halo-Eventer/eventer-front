@@ -25,6 +25,7 @@ function Assign(props) {
     console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
     setImg(props.info.images);
     setThumbnail(props.info.thumbnail);
+    setMenus(props.info.menus)
   },
   [props.info,props.itemID,props.mode]);
   //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
@@ -51,6 +52,8 @@ function Assign(props) {
             thumbnail={thumbnail}
             setThumbnail={setThumbnail}
             setMenus={setMenus}
+
+            itemID={props.itemID}
             mode={props.mode}
           />
         ) : (

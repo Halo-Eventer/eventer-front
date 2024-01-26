@@ -52,6 +52,7 @@ function AssignPage_Map() {
       isOperation:true,
       operationHours:"",
       type:"",
+      menus:"",
 
       thumbnail:"",
       images:[]
@@ -70,6 +71,7 @@ function AssignPage_Map() {
       isOperation:true,
       operationHours:"",
       type:"",
+      menus:"",
 
       thumbnail:sample2,
       images:[sample1,sample3]
@@ -85,11 +87,14 @@ function AssignPage_Map() {
 
   useEffect(()=>
   {
-    console.log("mode (Assign_Notice):",mode);
+    console.log("mode (AssignPage_Map):",mode);
     if(mode == 'a'){
       let tmp = info;
       Object.keys(tmp).forEach(key => {
-        tmp[key] = "";
+        if(key=='images')
+          tmp[key]=[];
+        else
+          tmp[key] = "";
       });
       setInfo({...tmp});  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
