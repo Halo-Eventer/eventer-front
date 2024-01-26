@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Category, Input, InputLatLng, SemiTitle } from './Assign';
 import { Flex } from 'asset/Style';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Assign_latlng from './Assign_latlng';
 
 function AssignBasicInfo(props) {
   const [active, setActive] = useState(true);
@@ -37,7 +38,9 @@ function AssignBasicInfo(props) {
 
     props.setInfo({ ...info, [id]: value });
   };
-
+  useEffect(() => {
+    console.log(props.info);
+  }, [props.info]);
   return (
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
@@ -57,6 +60,11 @@ function AssignBasicInfo(props) {
           placeholder="00:00 ~ 00:00"
         ></Input>
       </InputDiv>
+      {!active ? (
+        <Assign_latlng info={props.info} setInfo={props.setInfo} />
+      ) : (
+        ''
+      )}
       <MapInput>
         <div style={{ marginLeft: '4px' }}>지도 표시</div>
         <CheckBox
@@ -67,18 +75,16 @@ function AssignBasicInfo(props) {
           type="checkbox"
         ></CheckBox>
         <InputLatLng
-          disabled={active}
+          disabled={true}
           onChange={handleInfo}
           id="latitude"
           value={props.info.latitude}
-          placeholder="위도 입력"
         ></InputLatLng>
         <InputLatLng
-          disabled={active}
+          disabled={true}
           onChange={handleInfo}
           value={props.info.longitude}
           id="longitude"
-          placeholder="경도 입력"
         ></InputLatLng>
       </MapInput>
       <InputDiv style={{ marginTop: '4px' }}>

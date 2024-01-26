@@ -5,6 +5,7 @@ import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
+import Assign_latlng from './Assign_latlng';
 
 function Assign(props) {
   const [info, setInfo] = useState({ isOperation: true, type: props.type });

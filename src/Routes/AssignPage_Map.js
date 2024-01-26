@@ -15,7 +15,7 @@ import {
 
 function AssignPage_Map() {
   const id_param = useParams().id;
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('booth');
   const [categoryList, setCategoryList] = useState({
     booth: '부스',
     amenity: '편의시설',
