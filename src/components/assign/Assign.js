@@ -1,6 +1,9 @@
 import styled from 'styled-components';
+
 import { Flex } from '../../asset/Style';
 import { useState, useEffect } from 'react';
+
+import Assign_latlng from './Assign_latlng';
 import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
@@ -21,6 +24,15 @@ function Assign(props) {
   console.log(menus);
   console.log('category', props.category);
  
+
+  useEffect(() => {
+    if (props.category == 'store') {
+      setInfo({ ...info, ['type']: props.type });
+    }
+  }, [props.category, props.type]);
+  console.log(info, props.category, thumbnail, menus);
+
+
   useEffect(()=>{
     console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
     setImg(props.info.images);

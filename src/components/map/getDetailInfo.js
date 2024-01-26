@@ -6,7 +6,7 @@ import {
 } from '../../apis/apis';
 
 export function getDetailInfo(id, setClickInfo, activeCategory) {
-  console.log(id);
+  console.log(id, activeCategory);
   if (activeCategory == 1)
     getDetailEvent(id)
       .then((res) => {

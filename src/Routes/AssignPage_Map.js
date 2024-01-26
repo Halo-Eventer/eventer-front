@@ -20,17 +20,18 @@ import {
 
 function AssignPage_Map() {
   const id_param = useParams().id;
-
-  const [category, setCategory] = useState("booth");
-  const [categoryList, setCategoryList] = useState(
-    {
-      booth: "부스",
-      amenity: "편의시설",
-      store: ["주점", "푸드트럭"],
-    }
-  );
-  const [type, setType] = useState("");
-  const [boardList, setBoardList] = useState(["대동제 총정리1", "대동제 총정리2", "대동제 총정리3"]);
+  const [category, setCategory] = useState('booth');
+  const [categoryList, setCategoryList] = useState({
+    booth: '부스',
+    amenity: '편의시설',
+    store: ['주점', '푸드트럭'],
+  });
+  const [type, setType] = useState('');
+  const [boardList, setBoardList] = useState([
+    '대동제 총정리1',
+    '대동제 총정리2',
+    '대동제 총정리3',
+  ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageNum, setPageNum] = useState(8);
   const [totalPages, setTotalPages] = useState(4);
@@ -168,5 +169,4 @@ function AssignPage_Map() {
 }
 
 export default AssignPage_Map;
-
 

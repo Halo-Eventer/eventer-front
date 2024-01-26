@@ -3,10 +3,10 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from 'asset/marker/eventImg.svg';
-import sojuImg from 'asset/marker/sojuImg.svg';
-import boothImg from 'asset/marker/boothImg.svg';
-import foodImg from 'asset/marker/foodImg.svg';
+import eventImg from 'asset/category/eventCategory.svg';
+import sojuImg from 'asset/category/sojuCateogory.svg';
+import boothImg from 'asset/category/boothCategory.svg';
+import foodImg from 'asset/category/foodtruckCategory.svg';
 import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
@@ -33,17 +33,6 @@ function NolzaMap(props) {
       minZoom: 16,
     };
     const map = new naver.maps.Map(mapElement.current, mapOption);
-
-    const markerData = data?.map((e) => {
-      return {
-        name: e.name,
-        lat: e.latitude,
-        lng: e.longitude,
-        summary: e.summary,
-        type: e.type,
-      };
-    });
-
     let concertHallMarker = markerHandle(
       naver,
       map,
@@ -53,42 +42,40 @@ function NolzaMap(props) {
       100,
       '공연장'
     );
-    console.log(markerImg);
-    const markers = markerData?.map((e) => {
-      return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
-    });
-
-    import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
-      const htmlMarker1 = {
-        content: [
-          `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
-          display: flex; align-items: center; justify-content: center'>`,
-          `<div>`,
-          `<img src=${markerImg}></img>`,
-          `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
-          `</div>`,
-          `</div>`,
-        ].join(''),
-        size: new naver.maps.Size(40, 40),
-      };
-      new MarkerClustering({
-        minClusterSize: 2,
-        maxZoom: 19,
+    let options = {
+      enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
+      maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
+      timeout: 50000, //위치 정보 받는 최대 대기시간
+    };
+    let marker;
+    let flag = false;
+    if (navigator.geolocation) {
+      console.log(
+        navigator.geolocation.watchPosition(getMyMarker, error, options)
+      );
+    }
+    function error(err) {
+      console.log(err);
+    }
+    function getMyMarker(e) {
+      console.log(e);
+      if (flag) marker.setMap(null);
+      marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(e.coords.latitude, e.coords.longitude),
         map: map,
-        markers: markers,
-        disableClickZoom: false,
-        gridSize: 200,
-        icons: [htmlMarker1],
-        indexGenerator: [10, 100, 200, 500, 1000],
-        stylingFunction: function (clusterMarker, count) {
-          clusterMarker.getElement().querySelector('p').textContent = count;
+        icon: {
+          content: `
+        <div style="width:20px;height:20px;background-color:blue;display:flex;
+        justify-content:center;align-items:center;border-radius:20px">
+        
+        </div>`,
         },
       });
-    });
-    markers?.map((e, i) => {
-      naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
-    });
+      marker.setMap(map);
+      flag = true;
+    }
 
+    console.log(data);
     naver.maps.Event.addListener(
       concertHallMarker,
       'click',
@@ -97,6 +84,53 @@ function NolzaMap(props) {
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
+    if (data != '') {
+      const markerData = data?.map((e) => {
+        return {
+          name: e.name,
+          lat: e.latitude,
+          lng: e.longitude,
+          summary: e.summary,
+          type: e.type,
+        };
+      });
+
+      const markers = markerData?.map((e) => {
+        return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
+      });
+
+      import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
+        const htmlMarker1 = {
+          content: [
+            `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
+          display: flex; align-items: center; justify-content: center'>`,
+            `<div>`,
+            `<img src=${markerImg}></img>`,
+            `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
+            `</div>`,
+            `</div>`,
+          ].join(''),
+          size: new naver.maps.Size(40, 40),
+        };
+        console.log(markers);
+        new MarkerClustering({
+          minClusterSize: 1,
+          maxZoom: 19,
+          map: map,
+          markers: markers,
+          disableClickZoom: false,
+          gridSize: 200,
+          icons: [htmlMarker1],
+          indexGenerator: [10, 100, 200, 500, 1000],
+          stylingFunction: function (clusterMarker, count) {
+            clusterMarker.getElement().querySelector('p').textContent = count;
+          },
+        });
+      });
+      markers?.map((e, i) => {
+        naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
+      });
+    }
   }, [data]);
 
   useEffect(() => {
@@ -123,6 +157,7 @@ function NolzaMap(props) {
       <GlobalStyle />
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
+
         <ClickInfo
           data={{
             name: '공연장',

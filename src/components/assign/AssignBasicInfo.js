@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { Category, Input, InputLatLng, SemiTitle } from './Assign';
 import { Flex } from 'asset/Style';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import Assign_latlng from './Assign_latlng';
 
 function AssignBasicInfo(props) {
-  console.log(props.info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
   const handleResizeHeight = (e) => {
+    // textarea 자동 줄바꿈
     if (e.keyCode == 13 || 8) {
       textRef.current.style.height = `auto`;
       textRef.current.style.height = `${textRef.current.scrollHeight}px`;
@@ -33,21 +34,13 @@ function AssignBasicInfo(props) {
     props.setInfo({ ...info, ['latitude']: '', ['longitude']: '' });
   };
   const handleInfo = (e) => {
-    console.log(e);
     const [value, id] = [e.target.value, e.target.id];
-    if (id == 'category') {
-      props.setCategory(value);
-      if (value != 'store') {
-        deleteType();
-      } else {
-        props.setInfo({ ...info, ['type']: '주점' });
-      }
-    } else {
-      props.setInfo({ ...info, [id]: value });
-    }
+
+    props.setInfo({ ...info, [id]: value });
   };
-
-
+  useEffect(() => {
+    console.log(props.info);
+  }, [props.info]);
   return (
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
@@ -73,7 +66,11 @@ function AssignBasicInfo(props) {
           value = {props.info.value} placeholder="00:00 ~ 00:00"
         ></Input>
       </InputDiv>
-
+      {!active ? (
+        <Assign_latlng info={props.info} setInfo={props.setInfo} />
+      ) : (
+        ''
+      )}
       <MapInput>
         <div style={{ marginLeft: '4px' }}>지도 표시</div>
         <CheckBox
@@ -84,18 +81,16 @@ function AssignBasicInfo(props) {
           type="checkbox"
         ></CheckBox>
         <InputLatLng
-          disabled={active}
+          disabled={true}
           onChange={handleInfo}
           id="latitude"
           value={props.info.latitude}
-          placeholder="위도 입력"
         ></InputLatLng>
         <InputLatLng
-          disabled={active}
+          disabled={true}
           onChange={handleInfo}
           value={props.info.longitude}
           id="longitude"
-          placeholder="경도 입력"
         ></InputLatLng>
       </MapInput>
 
@@ -116,24 +111,6 @@ function AssignBasicInfo(props) {
         ></TextArea>
 
       </TextAreaDiv>
-      {/* <Category id="category" onChange={handleInfo}>
-        <option value="store">주점/푸드트럭</option>
-        <option value="event">이벤트</option>
-        <option value="booth">부스</option>
-        <option value="amenity">편의시설</option>
-      </Category>
-
-      {category == 'store' ? (
-        <div>
-          <SemiTitle>주점/푸드트럭</SemiTitle>
-          <Category id="type" onChange={handleInfo}>
-            <option value="주점">주점</option>
-            <option value="푸드트럭">푸드트럭</option>
-          </Category>
-        </div>
-      ) : (
-        ''
-      )} */}
     </InputContainer>
   );
 }

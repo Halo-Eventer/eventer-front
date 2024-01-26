@@ -2,7 +2,10 @@ import React, { Component, useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
 import sojuImg from '../asset/category/sojuCateogory.svg';
-
+import eventImg from 'asset/category/eventCategory.svg';
+import boothImg from 'asset/category/boothCategory.svg';
+import foodtruckImg from 'asset/category/foodtruckCategory.svg';
+import amenityImg from 'asset/category/amenityCategory.svg';
 export default class SwipeToSlide extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +14,9 @@ export default class SwipeToSlide extends Component {
   }
 
   render() {
+    const today = new Date();
+    const hour = today.getHours();
+
     const settings = {
       className: '',
       infinite: false,
@@ -27,8 +33,12 @@ export default class SwipeToSlide extends Component {
       },
     };
     const handleClick = (e) => {
+      console.log(e);
       this.setState({ active: e.target.id });
       this.setActiveCategory(e.target.id);
+      if (e.target.id == 3 && (hour > 22 || hour < 18)) {
+        alert('주점은 현재 운영시간이 아닙니다.');
+      }
     };
 
     return (
@@ -47,7 +57,8 @@ export default class SwipeToSlide extends Component {
               id="1"
               onClick={handleClick}
             >
-              이벤트
+              <img id="1" src={eventImg}></img>
+              <CategoryText id="1">이벤트</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -56,7 +67,8 @@ export default class SwipeToSlide extends Component {
               id="2"
               onClick={handleClick}
             >
-              푸드트럭
+              <img id="2" src={foodtruckImg}></img>
+              <CategoryText id="2">푸드트럭</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -66,7 +78,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="3" src={sojuImg}></img>
-              <div id="3">주점</div>
+              <CategoryText id="3">주점</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -75,7 +87,8 @@ export default class SwipeToSlide extends Component {
               id="4"
               onClick={handleClick}
             >
-              부스
+              <img id="4" src={boothImg}></img>
+              <CategoryText id="4">부스</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -84,7 +97,8 @@ export default class SwipeToSlide extends Component {
               id="5"
               onClick={handleClick}
             >
-              편의시설
+              <img id="5" src={amenityImg}></img>
+              <CategoryText id="5">편의시설</CategoryText>
             </CategoryBox>
           </div>
         </StyledSlider>
@@ -101,7 +115,7 @@ const StyledSlider = styled(Slider)`
     background-color: #fff;
 
     height: 36px;
-    width: 70px;
+
     margin-left: 6px;
     margin-top: 6px;
     background-color: transparent;
@@ -112,7 +126,7 @@ const CategoryBox = styled.div`
   height: 36px;
   align-items: center;
   justify-content: center;
-  width: 70px;
+  padding: 0 12px 0 12px;
 
   border-radius: 40px;
   background-color: ${(props) => {
@@ -124,4 +138,8 @@ const CategoryBox = styled.div`
   .slick-list > .slick-slide {
     width: 500px;
   }
+`;
+
+const CategoryText = styled.div`
+  margin-left: 4px;
 `;
