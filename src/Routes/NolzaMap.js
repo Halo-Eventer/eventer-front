@@ -42,6 +42,39 @@ function NolzaMap(props) {
       100,
       '공연장'
     );
+    let options = {
+      enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
+      maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
+      timeout: 50000, //위치 정보 받는 최대 대기시간
+    };
+    let marker;
+    let flag = false;
+    if (navigator.geolocation) {
+      console.log(
+        navigator.geolocation.watchPosition(getMyMarker, error, options)
+      );
+    }
+    function error(err) {
+      console.log(err);
+    }
+    function getMyMarker(e) {
+      console.log(e);
+      if (flag) marker.setMap(null);
+      marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(e.coords.latitude, e.coords.longitude),
+        map: map,
+        icon: {
+          content: `
+        <div style="width:20px;height:20px;background-color:blue;display:flex;
+        justify-content:center;align-items:center;border-radius:20px">
+        
+        </div>`,
+        },
+      });
+      marker.setMap(map);
+      flag = true;
+    }
+
     console.log(data);
     naver.maps.Event.addListener(
       concertHallMarker,
