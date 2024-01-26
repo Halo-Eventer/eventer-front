@@ -74,6 +74,7 @@ function Assign_List(props){
         if(props.category.length>0)
         console.log("category, type : ", props.category, props.type);
     },[props.category])
+    
 
 
     return (

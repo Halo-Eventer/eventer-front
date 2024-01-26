@@ -60,7 +60,10 @@ function AssignPage_Notice() {
   useEffect(()=>
   {
     console.log("cateogry (Assign_Notice):",category);
+    setCancle(true);
+    setMode("");
     if(category === 'notice')
+    {
       setInfo( {
         title:"",
         simpleExplanation:"",
@@ -70,8 +73,9 @@ function AssignPage_Notice() {
         thumbnail:"",
         images:[]
       });  
-
+    }
     else if(category==='event')
+    {
       setInfo( {
           tag:"",
           name:"",
@@ -88,6 +92,7 @@ function AssignPage_Notice() {
           thumbnail:"",
           images:[]
         });  
+    }
         
   },[category])
   useEffect(()=>
@@ -111,7 +116,7 @@ function AssignPage_Notice() {
     }else if(mode == 'd'){
       setCancle(false);
     }
-  },[mode,itemID])
+  },[mode,itemID,cancle])
 
 
   return (

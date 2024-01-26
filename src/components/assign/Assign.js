@@ -18,6 +18,7 @@ function Assign(props) {
    그냥 fucntion Assign({category})를 하던가
    props.category처럼 일일이 props.를 달아주던가 해야함 */
 
+
   const [img, setImg] = useState(props.info.images);
   const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
   const [menus, setMenus] = useState([]);
@@ -27,10 +28,10 @@ function Assign(props) {
 
   useEffect(() => {
     if (props.category == 'store') {
-      setInfo({ ...info, ['type']: props.type });
+      props.setInfo({ ...props.info, ['type']: props.type });
     }
   }, [props.category, props.type]);
-  console.log(info, props.category, thumbnail, menus);
+  console.log(props.info, props.category, thumbnail, menus);
 
 
   useEffect(()=>{

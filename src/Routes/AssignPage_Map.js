@@ -53,7 +53,7 @@ function AssignPage_Map() {
       isOperation:true,
       operationHours:"",
       type:"",
-      menus:"",
+      menus:[],
 
       thumbnail:"",
       images:[]
@@ -72,7 +72,7 @@ function AssignPage_Map() {
       isOperation:true,
       operationHours:"",
       type:"",
-      menus:"",
+      menus:[],
 
       thumbnail:sample2,
       images:[sample1,sample3]
@@ -92,7 +92,7 @@ function AssignPage_Map() {
     if(mode == 'a'){
       let tmp = info;
       Object.keys(tmp).forEach(key => {
-        if(key=='images')
+        if(key=='images' || key=='menus')
           tmp[key]=[];
         else
           tmp[key] = "";
