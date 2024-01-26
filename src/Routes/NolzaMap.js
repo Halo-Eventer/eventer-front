@@ -3,10 +3,10 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from 'asset/marker/eventImg.svg';
-import sojuImg from 'asset/marker/sojuImg.svg';
-import boothImg from 'asset/marker/boothImg.svg';
-import foodImg from 'asset/marker/foodImg.svg';
+import eventImg from 'asset/category/eventCategory.svg';
+import sojuImg from 'asset/category/sojuCateogory.svg';
+import boothImg from 'asset/category/boothCategory.svg';
+import foodImg from 'asset/category/foodtruckCategory.svg';
 import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
@@ -79,8 +79,9 @@ function NolzaMap(props) {
           ].join(''),
           size: new naver.maps.Size(40, 40),
         };
+        console.log(markers);
         new MarkerClustering({
-          minClusterSize: 2,
+          minClusterSize: 1,
           maxZoom: 19,
           map: map,
           markers: markers,
