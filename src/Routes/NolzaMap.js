@@ -13,6 +13,7 @@ import getMarker from '../components/getMarker';
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
+  let map = '';
   let markerImg = '';
   const mapElement = useRef(1);
   const { naver } = window;
@@ -30,9 +31,19 @@ function NolzaMap(props) {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
-      minZoom: 16,
+      minZoom: 6,
+      tileTransition: true,
+      scaleControl: true,
+      logoControl: false,
+      mapDataControl: false,
+      zoomControl: false,
+      mapTypeControl: false,
     };
-    const map = new naver.maps.Map(mapElement.current, mapOption);
+    console.log(map);
+    if (map == '') {
+      map = new naver.maps.Map(mapElement.current, mapOption);
+    }
+
     let concertHallMarker = markerHandle(
       naver,
       map,
