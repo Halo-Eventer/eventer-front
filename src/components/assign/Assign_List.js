@@ -118,7 +118,12 @@ function Assign_List(props){
                 <ListBoard pagenum={props.pageNum}>
                     {props.boardList.map((item,index)=>
                     <div key={index}>
-                        <h1 onClick={onClick_revise} id={index}>{item}</h1>
+                        <h1 onClick={onClick_revise} id={item.id}>{
+                        props.category==='notice'
+                        ?
+                        item.title
+                        :
+                        item.name}</h1>
                         <h2 onClick={onClick_delete} id={index}>삭제</h2>
                     </div>)}
                 </ListBoard>

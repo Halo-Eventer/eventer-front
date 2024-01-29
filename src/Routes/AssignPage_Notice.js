@@ -59,28 +59,68 @@ function AssignPage_Notice() {
   );
 
 
+  const fetchList = () => {
+    const festivalId = id_param;
+    getAll(festivalId,category,type)
+    .then((response)=>{
+      if(response.data.length>0){
+        console.log("fetch List success",response.data);
+        setBoardList(response.data);
+      }else{
+        console.log("fetch List no data ;(",response);
+        setBoardList([]);
+      }
+    }).catch((error)=>{
+      console.log('fetch List error',error);
+    })
+  }
+
+  const fetchDetail=()=>{
+    getDetail(category,itemID)
+    .then((response)=>{
+      if(typeof(response.data) === 'object'){
+        console.log("fetch Detail success",response.data);
+        setInfo(response.data);
+      }else{
+        console.log("fetch Detail no data ;(",response);
+      }
+    }).catch((error)=>{
+      console.log('fetch Detail error',error);
+    })
+  }
+
   useEffect(()=>
   {
     console.log("cateogry (Assign_Notice):",category);
     setCancle(true);
     setMode("");
     setInfo(firstInfo(category));
+    fetchList();
   },[category])
+
   useEffect(()=>
   {
-    console.log("mode (Assign_Notice):",mode);
-    if(mode == 'a'){
+    console.log("mode (AssignPage_Map):",mode);
+    if(mode == 'a')
+    {
       setInfo(firstInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }
-    else if(mode == 'r'){
-      setInfo({...info_id});
+    else if(mode == 'r')
+    {
+      fetchDetail();
       setCancle(false);
-    }else if(mode == 'd'){
+
+    }else if(mode == 'd')
+    {
       setCancle(false);
+    }else
+    {
+      fetchList();
+      setCancle(true);
     }
-  },[mode,itemID,cancle])
+  },[mode,itemID]);
 
 
   return (

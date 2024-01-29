@@ -21,6 +21,7 @@ import {
 
 function AssignPage_Map() {
   const id_param = useParams().id;
+
   const [category, setCategory] = useState('booth');
   const [categoryList, setCategoryList] = useState({
     booth: '부스',
@@ -62,6 +63,41 @@ function AssignPage_Map() {
     }
   );
 
+  
+  useEffect(() => 
+  {
+    console.log("type (AssignPage_Map):", type)
+  }, [type]);
+
+  const fetchList = () => {
+    const festivalId = id_param;
+    getAll(festivalId,category,type)
+    .then((response)=>{
+      if(response.data.length>0){
+        console.log("fetch List success",response.data);
+        setBoardList(response.data);
+      }else{
+        console.log("fetch List no data ;(",response);
+        setBoardList([]);
+      }
+    }).catch((error)=>{
+      console.log('fetch List error',error);
+    })
+  }
+
+  const fetchDetail=()=>{
+    getDetail(category,itemID)
+    .then((response)=>{
+      if(typeof(response.data) === 'object'){
+        console.log("fetch Detail success",response.data);
+        setInfo(response.data);
+      }else{
+        console.log("fetch Detail no data ;(",response);
+      }
+    }).catch((error)=>{
+      console.log('fetch Detail error',error);
+    })
+  }
 
   useEffect(()=>
   {
@@ -69,26 +105,30 @@ function AssignPage_Map() {
     setCancle(true);
     setMode("");
     setInfo(firstInfo(category));
+    fetchList();
   },[category])
-
-  useEffect(() => 
-  {
-    console.log("type (AssignPage_Map):", type)
-  }, [type]);
 
   useEffect(()=>
   {
     console.log("mode (AssignPage_Map):",mode);
-    if(mode == 'a'){
+    if(mode == 'a')
+    {
       setInfo(firstInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }
-    else if(mode == 'r'){
-      setInfo({...info_id});
+    else if(mode == 'r')
+    {
+      fetchDetail();
       setCancle(false);
-    }else if(mode == 'd'){
+
+    }else if(mode == 'd')
+    {
       setCancle(false);
+    }else
+    {
+      fetchList();
+      setCancle(true);
     }
   },[mode,itemID]);
 
