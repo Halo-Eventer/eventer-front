@@ -3,16 +3,17 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from 'asset/marker/eventImg.svg';
-import sojuImg from 'asset/marker/sojuImg.svg';
-import boothImg from 'asset/marker/boothImg.svg';
-import foodImg from 'asset/marker/foodImg.svg';
+import eventImg from 'asset/category/eventCategory.svg';
+import sojuImg from 'asset/category/sojuCateogory.svg';
+import boothImg from 'asset/category/boothCategory.svg';
+import foodImg from 'asset/category/foodtruckCategory.svg';
 import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
+  const [prevClustering, setPrevClustering] = useState('');
   let markerImg = '';
   const mapElement = useRef(1);
   const [prevMarkers, setPrevMarkers] = useState([]);
@@ -32,18 +33,16 @@ function NolzaMap(props) {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
-      minZoom: 16,
+      minZoom: 17,
+      tileTransition: true,
+      scaleControl: true,
+      logoControl: false,
+      mapDataControl: false,
+      zoomControl: false,
+      mapTypeControl: false,
     };
     const mapInstance = new naver.maps.Map(mapElement.current, mapOption);
     setMap(mapInstance);
-  }, []);
-  useEffect(() => {
-    if (!map) return;
-    if (prevMarkers) {
-      prevMarkers.forEach((marker) => {
-        marker.setMap(null);
-      });
-    }
     let concertHallMarker = markerHandle(
       naver,
       map,
@@ -58,6 +57,53 @@ function NolzaMap(props) {
       'click',
       handleConcertHallMarker
     );
+  }, []);
+  useEffect(() => {
+    if (!map) return;
+    if (prevMarkers) {
+      prevMarkers.forEach((marker) => {
+        console.log(marker, 'before');
+        marker.setMap(null);
+        console.log(marker, 'after');
+      });
+    }
+    if (prevClustering) {
+      console.log(prevClustering, ': prevClustering');
+    }
+
+    let options = {
+      enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
+      maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
+      timeout: 50000, //위치 정보 받는 최대 대기시간
+    };
+    let marker;
+    let flag = false;
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(getMyMarker, error, options);
+    }
+    function error(err) {
+      console.log(err);
+    }
+    function getMyMarker(e) {
+      console.log(e);
+      if (flag) marker.setMap(null);
+      marker = new naver.maps.Marker({
+        position: new naver.maps.LatLng(e.coords.latitude, e.coords.longitude),
+        map: map,
+        icon: {
+          content: `
+        <div style="width:20px;height:20px;background-color:blue;display:flex;
+        justify-content:center;align-items:center;border-radius:20px">
+        
+        </div>`,
+        },
+      });
+      marker.setMap(map);
+      flag = true;
+    }
+
+    console.log(data);
+
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
@@ -77,6 +123,8 @@ function NolzaMap(props) {
         return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
       });
 
+      setPrevMarkers(markers);
+
       import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
         const htmlMarker1 = {
           content: [
@@ -90,25 +138,25 @@ function NolzaMap(props) {
           ].join(''),
           size: new naver.maps.Size(40, 40),
         };
-        new MarkerClustering({
-          minClusterSize: 2,
-          maxZoom: 19,
-          map: map,
-          markers: markers,
-          disableClickZoom: false,
-          gridSize: 200,
-          icons: [htmlMarker1],
-          indexGenerator: [10, 100, 200, 500, 1000],
-          stylingFunction: function (clusterMarker, count) {
-            clusterMarker.getElement().querySelector('p').textContent = count;
-          },
-        });
+
+        // const markerClustering = new MarkerClustering({
+        //   minClusterSize: 1,
+        //   maxZoom: 19,
+        //   map: map,
+        //   markers: markers,
+        //   disableClickZoom: false,
+        //   gridSize: 200,
+        //   icons: [htmlMarker1],
+        //   indexGenerator: [10, 100, 200, 500, 1000],
+        //   stylingFunction: function (clusterMarker, count) {
+        //     clusterMarker.getElement().querySelector('p').textContent = count;
+        //   },
+        // });
+        // setPrevClustering(markerClustering);
       });
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
       });
-      let newMarkers = [concertHallMarker, ...markers];
-      setPrevMarkers(newMarkers);
     }
   }, [data]);
 
