@@ -15,8 +15,10 @@ import {
   MiddleBar_Component3
 } from '../components/assign/Assign_Bar';
 
-import { AssignBox, Assign_Blank } from './AssignPage_Home';
+import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
 import Assign_List from '../components/assign/Assign_List';
+
+import {getAll, getDetail} from '../apis/apis';
 
 import sample1 from '../images/BirthDay.svg';
 import sample2 from '../images/Idol.svg';
@@ -62,51 +64,13 @@ function AssignPage_Notice() {
     console.log("cateogry (Assign_Notice):",category);
     setCancle(true);
     setMode("");
-    if(category === 'notice')
-    {
-      setInfo( {
-        title:"",
-        simpleExplanation:"",
-        subtitle:"",
-        content:"",
-
-        thumbnail:"",
-        images:[]
-      });  
-    }
-    else if(category==='event')
-    {
-      setInfo( {
-          tag:"",
-          name:"",
-          summary:"",
-          subtitle:"",
-          content:"",
-          latitude:0,
-          longitude:0,
-          location:"",
-          isOperation:true,
-          operationHours:"",
-          type:"",
-    
-          thumbnail:"",
-          images:[]
-        });  
-    }
-        
+    setInfo(firstInfo(category));
   },[category])
   useEffect(()=>
   {
     console.log("mode (Assign_Notice):",mode);
     if(mode == 'a'){
-      let tmp = info;
-      Object.keys(tmp).forEach(key => {
-        if(key=='images')
-          tmp[key]=[];
-        else
-          tmp[key] = "";
-      });
-      setInfo({...tmp});  
+      setInfo(firstInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }

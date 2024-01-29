@@ -9,10 +9,68 @@ import { FlexBox_Column, FlexBox_Row, GlobalStyles, StyledLink } from './Info';
 import {UpperBar_Component,
   MiddleBar_Component1} from '../components/assign/Assign_Bar';
 
+import {getAll,getDetail} from '../apis/apis';
+
 import dropDown from '../images/DropDown.svg';
 import dropDown2 from '../images/DropDown2.svg';
 import next from '../images/Next.svg';
 export { dropDown, dropDown2, next };
+
+
+export const firstInfo = (category) => {
+  let tmp;
+
+  if(category === 'notice')
+    {
+      tmp =  {
+        title:"",
+        simpleExplanation:"",
+        subtitle:"",
+        content:"",
+
+        thumbnail:"",
+        images:[]
+      };  
+    }
+    else if(category==='store')
+    {
+      tmp = {
+          id:"",
+          name:"",
+          summary:"",
+          subtitle:"",
+          latitude:0,
+          longitude:0,
+          location:"",
+          isOperation:true,
+          operationHours:"",
+          type:"",
+    
+          thumbnail:"",
+          menus:[]
+        };  
+    }else
+    {
+      tmp = {
+        tag:"",
+        name:"",
+        summary:"",
+        subtitle:"",
+        content:"",
+        latitude:0,
+        longitude:0,
+        location:"",
+        isOperation:true,
+        operationHours:"",
+  
+        thumbnail:"",
+        images:[]
+      };  
+    }
+
+    return tmp;
+}
+
 
 function AssignPage_Home() {
   const navigate = useNavigate();

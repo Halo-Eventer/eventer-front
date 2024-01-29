@@ -6,12 +6,13 @@ import { GlobalStyles } from './Info';
 
 
 import Assign_List from '../components/assign/Assign_List';
-
-import { AssignBox, Assign_Blank } from './AssignPage_Home';
+import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
 
 import sample1 from '../images/BirthDay.svg';
 import sample2 from '../images/Idol.svg';
 import sample3 from '../images/BackGround.svg';
+
+import {getAll, getDetail} from '../apis/apis';
 
 import {
   MiddleBar_Component3,
@@ -40,25 +41,7 @@ function AssignPage_Map() {
   const [mode, setMode] = useState("");
   const [cancle, setCancle] = useState(true);
 
-  const [info, setInfo] = useState(
-    {
-      tag:"",
-      name:"",
-      summary:"",
-      subtitle:"",
-      content:"",
-      latitude:0,
-      longitude:0,
-      location:"",
-      isOperation:true,
-      operationHours:"",
-      type:"",
-      menus:[],
-
-      thumbnail:"",
-      images:[]
-    }
-  );
+  const [info, setInfo] = useState({});
   const [info_id, setInfo_id] = useState(
     {
       tag:"",
@@ -80,6 +63,13 @@ function AssignPage_Map() {
   );
 
 
+  useEffect(()=>
+  {
+    console.log("cateogry (Assign_Notice):",category);
+    setCancle(true);
+    setMode("");
+    setInfo(firstInfo(category));
+  },[category])
 
   useEffect(() => 
   {
@@ -90,14 +80,7 @@ function AssignPage_Map() {
   {
     console.log("mode (AssignPage_Map):",mode);
     if(mode == 'a'){
-      let tmp = info;
-      Object.keys(tmp).forEach(key => {
-        if(key=='images' || key=='menus')
-          tmp[key]=[];
-        else
-          tmp[key] = "";
-      });
-      setInfo({...tmp});  
+      setInfo(firstInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }

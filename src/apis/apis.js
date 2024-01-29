@@ -15,7 +15,14 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
+export const getAllNotice = (festivalId) => {
+  return axios.get(`/notice/${festivalId}/list`);
+};
 
+
+export const getDetailNotice = (id) => {
+  return axios.get(`/notice/${id}`);
+};
 export const getDetailStore = (storeId) => {
   return axios.get(`/store/${storeId}`);
 };
@@ -28,6 +35,19 @@ export const getDetailBooth = (id) => {
 export const getDetailAmenity = (id) => {
   return axios.get(`/amenity/${id}`);
 };
+
+export const getAll = (festivalId, category, type) => {
+  if (category === 'notice') {
+    return axios.get(`/notice/${festivalId}/list`);
+  } else if (category === 'store') {
+    return axios.get(`/store?festivalId=${festivalId}`, { params: { type: type } });
+  } else {
+    return axios.get(`/${category}`, { params: { festivalId: festivalId } });
+  }
+}
+export const getDetail = (category,id) => {
+  return axios.get(`/${category}/${id}`);
+}
 
 export const assignMenuApi = (storeId, menus) => {
   menus.summary = '요약설명';
@@ -80,7 +100,7 @@ export const imageUploadApi = (imgInfo) => {
 };
 
 //  NOH's
-export const reviseApi = (props, category, imgs, thumbnail,id) => {
+export const reviseApi = (props, category, imgs, thumbnail, id) => {
   if (thumbnail != '') props.thumbnail = thumbnail;
   if (imgs != '') props.images = imgs;
 
@@ -90,9 +110,3 @@ export const reviseApi = (props, category, imgs, thumbnail,id) => {
 };
 
 
-export const getAllNotice = (festivalId) => {
-  return axios.get(`/noticelist/${festivalId}/list`);
-};
-export const getDetailNotice = (festivalId, id) => {
-  return axios.get(`/noticelist/${festivalId}/id`);
-};
