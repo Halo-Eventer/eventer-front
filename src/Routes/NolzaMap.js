@@ -15,6 +15,8 @@ function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
   let markerImg = '';
   const mapElement = useRef(1);
+  const [prevMarkers, setPrevMarkers] = useState([]);
+  const [map, setMap] = useState(null);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
   const [data, setData] = useState([]);
@@ -32,7 +34,16 @@ function NolzaMap(props) {
       zoom: 17,
       minZoom: 16,
     };
-    const map = new naver.maps.Map(mapElement.current, mapOption);
+    const mapInstance = new naver.maps.Map(mapElement.current, mapOption);
+    setMap(mapInstance);
+  }, []);
+  useEffect(() => {
+    if (!map) return;
+    if (prevMarkers) {
+      prevMarkers.forEach((marker) => {
+        marker.setMap(null);
+      });
+    }
     let concertHallMarker = markerHandle(
       naver,
       map,
@@ -42,7 +53,6 @@ function NolzaMap(props) {
       100,
       '공연장'
     );
-    console.log(data);
     naver.maps.Event.addListener(
       concertHallMarker,
       'click',
@@ -51,6 +61,7 @@ function NolzaMap(props) {
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
+
     if (data != '') {
       const markerData = data?.map((e) => {
         return {
@@ -96,6 +107,8 @@ function NolzaMap(props) {
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
       });
+      let newMarkers = [concertHallMarker, ...markers];
+      setPrevMarkers(newMarkers);
     }
   }, [data]);
 

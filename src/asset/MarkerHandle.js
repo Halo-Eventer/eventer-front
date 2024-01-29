@@ -5,7 +5,7 @@ export const markerHandle = (naver, map, lat, lng, img, size, text) => {
     map,
     icon: {
       content: `
-      <div > 
+      <div >
       <div style="display:flex; justify-content: center;">  
       <img src = ${img}></img>
       </div>
