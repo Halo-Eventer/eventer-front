@@ -2,9 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './Routes/Home';
 import FestivalInfo from './Routes/FestivalInfo';
-import FestivalNoti from './Routes/FestivalNoti';
+import FestivalNotice from './Routes/FestivalNotice';
 import Detail_Event from './Routes/Detail_Event';
-import Detail_Noti from './Routes/Detail_Noti';
+import Detail_Notice from './Routes/Detail_Notice';
 
 import AssignPage_Home from './Routes/AssignPage_Home';
 import AssignPage_Select from './Routes/AssignPage_Select';
@@ -21,9 +21,9 @@ function App() {
       <Routes>
         <Route path="" element={<Home></Home>} />
         <Route path="/festivalInfo" element={<FestivalInfo />} />
-        <Route path="/festivalNoti" element={<FestivalNoti />} />
+        <Route path="/festivalNotice" element={<FestivalNotice />} />
         <Route path="/event/:id" element={<Detail_Event />} />
-        <Route path="/noti/:id" element={<Detail_Noti />} />
+        <Route path="/notice/:id" element={<Detail_Notice />} />
         {/* Detail을 루트로 처리하는 법 */}
 
         

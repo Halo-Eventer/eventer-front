@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import backSpace from '../images/BackSpace.svg';
 import backGround from '../images/BackGround.svg';
-import { eventList, notiList } from '../components/info/DataBase';
+import { eventList, noticeList } from '../components/info/DataBase';
 import home from '../images/Home.png';
 import happySejong from '../images/HappySejong.svg';
 import idol from '../images/Idol.svg';
@@ -34,13 +34,13 @@ function Info() {
     navigate('/festivalInfo');
   };
   const onClick_festivalNoti = () => {
-    navigate('/festivalNoti');
+    navigate('/festivalNotice');
   };
   const onClick_detailNoti = (event) => {
     event.preventDefault();
     const notiId = event.currentTarget.dataset.value;
     console.log('notiId : ', event.currentTarget.dataset.value);
-    navigate(`/noti/${notiId}`);
+    navigate(`/notice/${notiId}`);
   };
   const onClick_detailEvent = (event) => {
     event.preventDefault();
@@ -57,7 +57,7 @@ function Info() {
       <FlexBox_Row style={{ width: '100%' }}>
         <ImgBlock>
           <StyledSlider {...settings}>
-            {notiList.map((item, key) => {
+            {noticeList.map((item, key) => {
               if (key === 0 || key === 4)
                 return (
                   <ImgBoard

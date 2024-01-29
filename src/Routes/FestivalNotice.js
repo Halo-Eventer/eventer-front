@@ -5,14 +5,14 @@ import styled from 'styled-components';
 
 import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, HomeBtn, BkBtn} from './Info';
-import {eventList,notiList} from '../components/info/DataBase';
+import {eventList,noticeList} from '../components/info/DataBase';
 
-import {getEventList,getNotiList} from '../apis/apis';
+import {getEventList,getNoticeList} from '../apis/apis';
 
 import Event from '../components/info/Event';
-import Noti from '../components/info/Noti';
+import Notice from '../components/info/Notice';
 
-function FestivalNoti(){
+function FestivalNotice(){
     const navigate = useNavigate();
 
     const festivalId = 1;
@@ -23,7 +23,7 @@ function FestivalNoti(){
     const [color1, setColor1] = useState("black");
     const [color2, setColor2] = useState("gray");
     const [transForm,setTransForm]=useState("-92.5px");
-    const [showNoti,setShoeNoti]=useState(true);
+    const [showNotice,setShoeNotice]=useState(true);
 
     // const [eventList, setEventList]=useState([]);
     // const [notiList,setNotiList]=useState([]);
@@ -33,17 +33,17 @@ function FestivalNoti(){
         //그냥 뒤로가는 기능
     }
     
-    const onClick_noti = () => {
+    const onClick_notice = () => {
         setColor1("black");
         setColor2("gray");
         setTransForm("-193%");
-        setShoeNoti(true);
+        setShoeNotice(true);
     }
     const onClick_event = () => {
         setColor1("gray");
         setColor2("black");
         setTransForm("193%");
-        setShoeNoti(false);
+        setShoeNotice(false);
     }
 
     // useEffect(
@@ -105,7 +105,7 @@ function FestivalNoti(){
                 </UpperBar>
                 <SecondBar>
                     <SecondBtn 
-                    onClick={onClick_noti}
+                    onClick={onClick_notice}
                     color={color1}>
                         공지사항</SecondBtn>
                     <UnderBar transForm={transForm}></UnderBar>
@@ -120,8 +120,8 @@ function FestivalNoti(){
             
                 <MainBlock style={{marginTop:'108px'}}>
                     {
-                        showNoti
-                        ?<Noti notiList = {notiList}/>
+                        showNotice
+                        ?<Notice noticeList = {noticeList}/>
                         :<Event eventList = {eventList}/>
                     }
                 </MainBlock>
@@ -131,7 +131,7 @@ function FestivalNoti(){
 
 }
 
-export default FestivalNoti;
+export default FestivalNotice;
 
 const UnderBar = styled.div`
 transform:translateX(${(props)=>props.transForm});

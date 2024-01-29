@@ -90,15 +90,9 @@ export const reviseApi = (props, category, imgs, thumbnail,id) => {
 };
 
 
-export const getNotiList = (festivalId) => {
+export const getAllNotice = (festivalId) => {
   return axios.get(`/noticelist/${festivalId}/list`);
 };
-export const getNotiDetail = (festivalId, id) => {
+export const getDetailNotice = (festivalId, id) => {
   return axios.get(`/noticelist/${festivalId}/id`);
-};
-export const getEventList = (festivalId) => {
-  return axios.get(`/eventlist/${festivalId}/list`);
-};
-export const getEventDetail = (festivalId, id) => {
-  return axios.get(`/eventlist/${festivalId}/id`);
 };

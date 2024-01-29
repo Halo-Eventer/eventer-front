@@ -10,7 +10,7 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
 
 import {eventList} from '../components/info/DataBase';
 
-import {getEventDetail} from '../apis/apis';
+import {getDetailEvent} from '../apis/apis';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -45,7 +45,7 @@ function Detail_Event(){
         //그냥 뒤로가는 기능
     }
     useEffect(() => {
-        getEventDetail(festivalId,id_param)
+        getDetailEvent(festivalId,id_param)
         .then((response)=>{
             if(response.data.length>0){
                 setDetailedList(response.data.content);
