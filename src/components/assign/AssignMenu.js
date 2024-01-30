@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import styled from 'styled-components';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
@@ -13,6 +15,13 @@ function AssignMenu(props) {
     const filteredMenus = props.menus?.filter((e, i) => i !== menuI);
     props.setMenus(filteredMenus);
   };
+
+  useEffect(()=>{
+      props.setInfo({...props.info,
+        thumbnail:props.thumbnail, 
+        menus:props.menus});
+  },[props.thumbnail,props.menus])
+
 
   return (
     <div style={{ width: '352px' }}>

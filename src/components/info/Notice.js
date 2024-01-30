@@ -19,15 +19,17 @@ function Notice({noticeList}){
         navigate(`/notice/${notiId}`);
     }
 
-
+    console.log(noticeList,typeof(noticeList)==='object');
     return (
         <div>
-            {noticeList.map((item,key)=>
+            {
+            typeof(noticeList)==='object'
+            && noticeList.map((item,key)=>
             <Section 
             onClick={onClick_detail} 
             key={key}
             data-value={key}>
-                <ImageDiv url={item.images[0]}/>
+                <ImageDiv url={item.thumbnail}/>
                 <TextDiv>
                     <h1>{item.title}</h1>
                     <h2>{item.simpleExplanation}</h2>

@@ -5,9 +5,9 @@ import styled from 'styled-components';
 
 import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, HomeBtn, BkBtn} from './Info';
-import {eventList,noticeList} from '../components/info/DataBase';
+// import {eventList,noticeList} from '../components/info/DataBase';
 
-import {getEventList,getNoticeList} from '../apis/apis';
+import {getAll} from '../apis/apis';
 
 import Event from '../components/info/Event';
 import Notice from '../components/info/Notice';
@@ -25,9 +25,30 @@ function FestivalNotice(){
     const [transForm,setTransForm]=useState("-92.5px");
     const [showNotice,setShoeNotice]=useState(true);
 
-    // const [eventList, setEventList]=useState([]);
-    // const [notiList,setNotiList]=useState([]);
+    const [eventList, setEventList]=useState([]);
+    const [noticeList,setNoticeList]=useState([]);
 
+    const fetchList = (category) => {
+        let type="";
+        getAll(festivalId,category,type)
+        .then((response)=>{
+          if(response.data){
+            console.log("fetch List success",response.data);
+            if(category==='notice')
+                setNoticeList(response.data);
+            else if(category==='event')
+                setEventList(response.data);
+          }else{
+            console.log("fetch List no data ;(",response);
+            if(category==='notice')
+                setNoticeList([]);
+            else if(category==='event')
+                setEventList([]);
+          }
+        }).catch((error)=>{
+          console.log('fetch List error',error);
+        })
+      }
     const onClick_bkBtn = () => {
         navigate(-1);
         //그냥 뒤로가는 기능
@@ -46,52 +67,9 @@ function FestivalNotice(){
         setShoeNotice(false);
     }
 
-    // useEffect(
-    //     ()=>
-    //     {
-    //         getNotiList(festivalId).then
-    //         (
-    //             (response)=>
-    //             {
-    //                 if(response.data.length>0)
-    //                 {
-    //                     setNotiList(response.data);
-    //                     console.log("notiList fetch success : ", response.data);
-    //                 }else
-    //                 {
-    //                     console.log("notiList fetch no data ;(");
-    //                 }
-    //             }
-    //         ).catch
-    //         (
-    //             (error)=>
-    //             {
-    //                     console.log("notiList fetch failed ;(", error);
-    //             }
-    //         );
-
-    //         getEventList(festivalId).then
-    //         (
-    //             (response)=>
-    //             {
-    //                 if(response.data.length>0)
-    //                 {
-    //                     setEventList(response.data);
-    //                     console.log("eventList fetch success : ", response.data);
-    //                 }else
-    //                 {
-    //                     console.log("eventList fetch no data ;(");
-    //                 }
-    //             }
-    //         ).catch
-    //         (
-    //             (error)=>
-    //             {
-    //                     console.log("eventList fetch failed ;(", error);
-    //             }
-    //         );
-    //     }
-    // ,[]);
+    useEffect(()=>{
+        fetchList('notice');
+        fetchList('event');},[]);
 
     return(
         <div>

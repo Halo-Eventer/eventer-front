@@ -20,6 +20,7 @@ function AssignImage(props) {
       .then((res) => {
         props.setImg([...props.img, res.data]);
         setImagePreview([...props.img, res.data]);
+
       })
       .catch((err) => {
         alert(err.response.data.error)
@@ -45,7 +46,11 @@ function AssignImage(props) {
     }
     ,[props.img,props.mode,props.itemID]);
 
-
+  useEffect(()=>{
+      props.setInfo({...props.info,
+        thumbnail:props.thumbnail, 
+        menus:props.menus});
+  },[props.thumbnail,props.img])
 
   return (
     <div>
