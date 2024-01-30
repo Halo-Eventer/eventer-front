@@ -20,12 +20,21 @@ function AssignThumbnail(props) {
     }
   };
 
+  // useEffect(()=>{
+  //   console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
+  //   if (props.mode==='a'){
+  //     setThumbnailPreview(thumbnail_preview);
+  //     console.log("thumbnail changed!");
+  //   }
+  //   else if (props.mode==='r')
+  //     setThumbnailPreview(props.thumbnail);}
+  // ,[props.thumbnail,props.mode,props.itemID]);
+
+
   useEffect(()=>{
     console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
-    if (props.mode==='a')
-      setThumbnailPreview(thumbnail_preview)
-    else if (props.mode==='r')
-      setThumbnailPreview(props.thumbnail)}
+    setThumbnailPreview(props.thumbnail);
+    console.log("thumbnail changed!");}
   ,[props.thumbnail,props.mode,props.itemID]);
 
   return (

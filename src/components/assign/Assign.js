@@ -66,6 +66,9 @@ function Assign(props) {
             setThumbnail={setThumbnail}
             setMenus={setMenus}
 
+            info={props.info}
+            setInfo={props.setInfo}
+
             itemID={props.itemID}
             mode={props.mode}
           />
@@ -75,6 +78,9 @@ function Assign(props) {
             setImg={setImg}
             thumbnail={thumbnail}
             setThumbnail={setThumbnail}
+
+            info={props.info}
+            setInfo={props.setInfo}
 
             itemID={props.itemID}
             mode={props.mode}

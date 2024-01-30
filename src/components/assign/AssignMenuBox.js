@@ -1,6 +1,5 @@
 import { Flex } from 'asset/Style';
 import delete_menuBox from 'asset/assign/delete_menuBox.svg';
-import images_preview from 'asset/assign/input_images.png';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Input } from './Assign';
@@ -8,12 +7,15 @@ import { imageUploadApi } from 'apis/apis';
 
 function AssignMenuBox(props) {
   const [info, setInfo] = useState({});
-  const [menuImg, setMenuImg] = useState(images_preview);
+  const [menuImg, setMenuImg] = useState("");
   const handleMenu = (e) => {
     const [id, value] = [e.target.id, e.target.value];
     setInfo({ ...info, [id]: value });
   };
 
+  useEffect(()=>{
+    setMenuImg(props.fetchedImage);
+  },[]);
   useEffect(() => {
     const updatedMenus = props.menus.map((menu, i) => {
       if (i === props.i) {

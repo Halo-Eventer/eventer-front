@@ -41,10 +41,7 @@ function AssignImage(props) {
 
   useEffect(()=>{
     console.log("IMAGE RERENDERING!! NOT MOUNTING",props.mode);
-    if(props.mode==='a')
-      setImagePreview([]);
-    else if(props.mode==='r')
-      setImagePreview(props.img);
+    setImagePreview(props.img);
     }
     ,[props.img,props.mode,props.itemID]);
 
@@ -70,7 +67,7 @@ function AssignImage(props) {
         <ImagesPreviewBox ImagesPreview={imagePreview}>
           {imagePreview.map((item, index) => {
             return (
-              <div
+              <div key={index}
                 style={{
                   position:'relative',
                   width: '96px',

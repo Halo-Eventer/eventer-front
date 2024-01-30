@@ -63,7 +63,7 @@ function AssignPage_Map() {
     }
   );
 
-  
+
   useEffect(() => 
   {
     console.log("type (AssignPage_Map):", type)
@@ -85,7 +85,7 @@ function AssignPage_Map() {
     })
   }
 
-  const fetchDetail=()=>{
+  const fetchDetail = () => {
     getDetail(category,itemID)
     .then((response)=>{
       if(typeof(response.data) === 'object'){

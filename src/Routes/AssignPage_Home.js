@@ -9,17 +9,17 @@ import { FlexBox_Column, FlexBox_Row, GlobalStyles, StyledLink } from './Info';
 import {UpperBar_Component,
   MiddleBar_Component1} from '../components/assign/Assign_Bar';
 
-import {getAll,getDetail} from '../apis/apis';
 
 import dropDown from '../images/DropDown.svg';
 import dropDown2 from '../images/DropDown2.svg';
 import next from '../images/Next.svg';
+import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 export { dropDown, dropDown2, next };
 
 
 export const firstInfo = (category) => {
   let tmp;
-
+  console.log("category in firstInfo",category);
   if(category === 'notice')
     {
       tmp =  {
@@ -28,7 +28,7 @@ export const firstInfo = (category) => {
         subtitle:"",
         content:"",
 
-        thumbnail:"",
+        thumbnail:thumbnail_preview,
         images:[]
       };  
     }
@@ -46,7 +46,7 @@ export const firstInfo = (category) => {
           operationHours:"",
           type:"",
     
-          thumbnail:"",
+          thumbnail:thumbnail_preview,
           menus:[]
         };  
     }else
@@ -63,7 +63,7 @@ export const firstInfo = (category) => {
         isOperation:true,
         operationHours:"",
   
-        thumbnail:"",
+        thumbnail:thumbnail_preview,
         images:[]
       };  
     }

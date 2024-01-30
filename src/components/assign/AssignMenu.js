@@ -3,9 +3,11 @@ import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import AssignMenuBox from './AssignMenuBox';
 
+import images_preview from 'asset/assign/input_images.png';
+
 function AssignMenu(props) {
   const handleAddMenu = () => {
-    props.setMenus([...props.menus, {}]);
+    props.setMenus([...props.menus, {image:images_preview}]);
   };
   const handleDeleteMenuBox = (menuI) => {
     const filteredMenus = props.menus?.filter((e, i) => i !== menuI);
@@ -29,6 +31,7 @@ function AssignMenu(props) {
             onDelete={() => handleDeleteMenuBox(i)}
             setMenus={props.setMenus}
             menus={props.menus}
+            fetchedImage = {e.image}
           />
         );
       })}
