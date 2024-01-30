@@ -48,6 +48,9 @@ export const getAll = (festivalId, category, type) => {
 export const getDetail = (category,id) => {
   return axios.get(`/${category}/${id}`);
 }
+export const deleteDetail = (category,id) => {
+  return axios.delete(`/${category}/${id}`);
+}
 
 export const assignMenuApi = (storeId, menus) => {
   menus.summary = '요약설명';

@@ -112,9 +112,6 @@ function AssignPage_Notice() {
       fetchDetail();
       setCancle(false);
 
-    }else if(mode == 'd')
-    {
-      setCancle(false);
     }else
     {
       fetchList();

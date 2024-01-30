@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { dropDown2 } from 'Routes/AssignPage_Home';
 import plus from 'images/Plus.svg';
 
+import { deleteDetail } from 'apis/apis';
+
 function Assign_List(props){
 
     const [selectedDrop, setSelectedDrop]=useState("");
@@ -44,8 +46,33 @@ function Assign_List(props){
     }
     const onClick_delete = (event) => {
         event.preventDefault();
-        props.setMode('d');
-        props.setItemID(event.currentTarget.id);
+
+        const id = event.currentTarget.id;
+        let ref=props.boardList[event.currentTarget.dataset.value];
+        let title;
+
+        if(props.category==='notice')
+            title = ref.title;
+        else
+            title = ref.name;
+
+        console.log("id, title : ",id, title);
+        let tmp = window.confirm(`'${title}'항목을 삭제하시겠습니까?`);
+
+        if(tmp)
+            deleteDetail(props.category,id)
+            .then((response)=>{
+                if(typeof(response.data)==='string')
+                {
+                    alert(`'${title}'항뮥이 성공적으로 삭제되었습니다`);
+                    console.log(response.data);
+                    props.setMode("");
+                }
+                else
+                    console.log("fail : ",response.data)
+            }).catch((error)=>{
+                console.log("error : ",error);
+            });
     }
     const onClick_num = (event) => {
         event.preventDefault();
@@ -124,7 +151,7 @@ function Assign_List(props){
                         item.title
                         :
                         item.name}</h1>
-                        <h2 onClick={onClick_delete} id={index}>삭제</h2>
+                        <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
                     </div>)}
                 </ListBoard>
             }
