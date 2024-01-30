@@ -7,13 +7,11 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider,ImgBoard} from './Info';
 
-import {noticeList} from '../components/info/DataBase';
-
 import {getDetailNotice} from '../apis/apis';
 
 function Detail_Notice(){
     const navigate = useNavigate();
-    const festivalId = 1;
+
     const id_param = useParams().id;
 
     var settings = {
@@ -25,8 +23,7 @@ function Detail_Notice(){
         autoplay: true,  // 자동으로 슬라이드를 넘길 것인지 설정
     };
 
-    const [detailedList, setDetailedList]=
-    useState(noticeList[id_param]);
+    const [detailedList, setDetailedList]=useState([]);
 
     const onClick_bkBtn = () => {
         navigate(-1);
@@ -34,9 +31,9 @@ function Detail_Notice(){
     }
 
     useEffect(() => {
-        getDetailNotice(festivalId,id_param)
+        getDetailNotice('notice',id_param)
         .then((response)=>{
-            if(response.data.length>0){
+            if(typeof(response.data) === 'object'){
                 setDetailedList(response.data.content);
                 console.log("detail fetch success : ",
                 response.data);

@@ -10,33 +10,31 @@ function Event({ eventList }) {
 
   const onClick_detail = (event) => {
     event.preventDefault();
-    const eventId = event.currentTarget.dataset.value;
+    const eventId = event.currentTarget.id; 
     //target과 currentTarget의 차이 =>
     //target : 해당 태그의 가장 하위태그까지의 속성값 조사
     //currentTarget : 이벤트가 발생한 딱 그 태그만 조사
 
-    console.log('eventId : ', event.currentTarget.dataset.value);
+    console.log('eventId : ', eventId);
     navigate(`/event/${eventId}`);
   };
   return (
     <div>
-      {eventList.map((item, key) => (
-        <Section onClick={onClick_detail} key={key} data-value={key}>
-          <ImageDiv url={item.images[0]} />
+      {
+      typeof(eventList)==='object'
+      &&
+      eventList.map((item, key) => (
+     <Section 
+     onClick={onClick_detail} 
+     key={key}
+     id={item.id}>
+          <ImageDiv url={item.thumbnail} />
           <TextDiv>
             <h1>{item.title}</h1>
             <h2>{item.simpleExplanation}</h2>
           </TextDiv>
         </Section>
       ))}
-
-      {/* <Section onClick={onClick_detail} data-value={1}>
-                <ImageDiv url={birthDay}/>
-                <TextDiv>
-                    <h1>반입 금지 물품 안내</h1>
-                    <h2>안전하고 편안한 무대 관람을 위한 반입 금지 묵품을...</h2>
-                </TextDiv>
-            </Section> */}
     </div>
   );
 }

@@ -8,9 +8,8 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider,ImgBoard} from './Info';
 
-import {eventList} from '../components/info/DataBase';
 
-import {getDetailEvent} from '../apis/apis';
+import {getDetail} from '../apis/apis';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -23,7 +22,6 @@ import {getDetailEvent} from '../apis/apis';
 function Detail_Event(){
     const navigate = useNavigate();
 
-    const festivalId = 1;
     const id_param = useParams().id;
 
 
@@ -36,8 +34,7 @@ function Detail_Event(){
         autoplay: true,  // 자동으로 슬라이드를 넘길 것인지 설정
     };
 
-    const [detailedList, setDetailedList]=
-    useState(eventList[id_param]);
+    const [detailedList, setDetailedList]=useState([]);
 
 
     const onClick_bkBtn = () => {
@@ -45,10 +42,10 @@ function Detail_Event(){
         //그냥 뒤로가는 기능
     }
     useEffect(() => {
-        getDetailEvent(festivalId,id_param)
+        getDetail('event',id_param)
         .then((response)=>{
-            if(response.data.length>0){
-                setDetailedList(response.data.content);
+            if(typeof(response.data) === 'object'){
+                setDetailedList(response.data);
                 console.log("detail fetch success : ",
                 response.data);
             }else{
@@ -78,19 +75,23 @@ function Detail_Event(){
                 <MainBoard style={{marginTop:'48px'}}>
                     <ImgBlock>
                         <StyledSlider {...settings}>
-                            {detailedList.images.map((item,key)=>
+                            {typeof(detailedList.images) === 'object'
+                            &&
+                            detailedList.images.map((item,key)=>
                             <ImgBoard key={key} src={item}></ImgBoard>)}
                         </StyledSlider>
                     </ImgBlock>
                     <TextBoard>
                         <div>
                             <h1>
-                                {detailedList.title}
+                                {detailedList.name}
                             </h1>
                             <h2>
                                 {detailedList.subtitle}
                             </h2>
-                            {detailedList.content.split('\n').map((line,key)=>
+                            {typeof(detailedList.content) === 'string'
+                            &&
+                            detailedList.content.split('\n').map((line,key)=>
                                 {   
                                     if(line.length===0){
                                         /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 

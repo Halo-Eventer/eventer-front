@@ -6,10 +6,11 @@ import { createGlobalStyle } from 'styled-components';
 
 import backSpace from '../images/BackSpace.svg';
 import backGround from '../images/BackGround.svg';
-import { eventList, noticeList } from '../components/info/DataBase';
 import home from '../images/Home.png';
 import happySejong from '../images/HappySejong.svg';
 import idol from '../images/Idol.svg';
+
+import {getAll} from '../apis/apis';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -17,6 +18,8 @@ import 'slick-carousel/slick/slick-theme.css';
 
 function Info() {
   const navigate = useNavigate();
+
+  const festivalId=1;
   const [barPos, setBarPos] = useState('0');
   const [colorInfo, setColorInfo] = useState('white');
   const [colorMap, setColorMap] = useState('black');
@@ -38,16 +41,49 @@ function Info() {
   };
   const onClick_detailNoti = (event) => {
     event.preventDefault();
-    const notiId = event.currentTarget.dataset.value;
-    console.log('notiId : ', event.currentTarget.dataset.value);
+    const notiId = event.currentTarget.id;
+    console.log('notiId : ', event.currentTarget.id);
     navigate(`/notice/${notiId}`);
   };
   const onClick_detailEvent = (event) => {
     event.preventDefault();
-    const eventId = event.currentTarget.dataset.value;
-    console.log('eventId : ', event.currentTarget.dataset.value);
+    const eventId = event.currentTarget.id;
+    console.log('eventId : ', event.currentTarget.id);
     navigate(`/event/${eventId}`);
   };
+
+  
+
+//임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+  const [eventList, setEventList]=useState([]);
+  const [noticeList,setNoticeList]=useState([]);
+  const fetchList = (category) => {
+    let type="";
+    getAll(festivalId,category,type)
+    .then((response)=>{
+      if(response.data){
+        console.log("fetch List success",response.data);
+        if(category==='notice')
+            setNoticeList(response.data);
+        else if(category==='event')
+            setEventList(response.data);
+      }else{
+        console.log("fetch List no data ;(",response);
+        if(category==='notice')
+            setNoticeList([]);
+        else if(category==='event')
+            setEventList([]);
+      }
+    }).catch((error)=>{
+      console.log('fetch List error',error);
+    })
+  }
+  useEffect(()=>{
+    fetchList('notice');
+    fetchList('event');},[]);
+ //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+
+
   return (
     <Wrapper style={{ height: '100vh' }}>
       <GlobalStyles />
@@ -58,39 +94,38 @@ function Info() {
         <ImgBlock>
           <StyledSlider {...settings}>
             {noticeList.map((item, key) => {
-              if (key === 0 || key === 4)
+              // if (key === 0 || key === 4)
                 return (
                   <ImgBoard
                     cursor="pointer"
                     //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
                     onClick={onClick_detailNoti}
                     key={key}
-                    data-value={key}
-                    src={item.images[0]}
+                    id={item.id}
+                    src={item.thumbnail}
                   />
                 );
-              else if (key === 1)
-                return (
-                  <ImgBoard
-                    cursor="pointer"
-                    //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-                    onClick={onClick_festivalInfo}
-                    key={key}
-                    data-value={key}
-                    src={idol}
-                  />
-                );
+              // else if (key === 1)
+              //   return (
+              //     <ImgBoard
+              //       cursor="pointer"
+              //       //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+              //       onClick={onClick_festivalInfo}
+              //       key={key}
+              //       data-value={key}
+              //       src={idol}
+              //     />
+              //   );
             })}
 
             {eventList.map((item, key) => {
-              if (key === 2)
                 return (
                   <ImgBoard
                     cursor="pointer"
                     onClick={onClick_detailEvent}
                     key={key}
-                    data-value={key}
-                    src={item.images[0]}
+                    id={item.id}
+                    src={item.thumbnail}
                   />
                 );
             })}
