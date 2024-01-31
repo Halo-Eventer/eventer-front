@@ -18,8 +18,14 @@ export const getAllAmenity = () => {
 export const getAllNotice = (festivalId) => {
   return axios.get(`/notice/${festivalId}/list`);
 };
+export const getAllConcert = (festivalId)=>{
+  return axios.get(`/concert?festivalId=${festivalId}`);
 
+}
+export const getDetailConcert = (id)=>{
+    return axios.get(`/concert/${id}`);
 
+}
 export const getDetailNotice = (id) => {
   return axios.get(`/notice/${id}`);
 };

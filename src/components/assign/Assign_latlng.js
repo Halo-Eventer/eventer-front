@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 function Assign_latlng(props) {
   const [latlng, setLatlng] = useState({});
-  
+
   const { naver } = window;
   const mapElement = useRef(1);
   const getLatLng = (e) => {
     console.log(e.latlng);
-
     setLatlng({ lat: e.latlng.y, lng: e.latlng.x });
   };
   useEffect(() => {
@@ -17,7 +16,7 @@ function Assign_latlng(props) {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
       minZoom: 16,
-      disableDoubleClickZoom : true
+      disableDoubleClickZoom: true,
     };
     const map = new naver.maps.Map(mapElement.current, mapOptions);
 

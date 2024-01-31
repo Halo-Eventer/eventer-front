@@ -4,7 +4,6 @@ import Up from '../../asset/up.svg';
 import { useEffect, useRef, useState } from 'react';
 import InfoBox from '../InfoBox';
 function ClickInfo(props) {
-  
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);
   const setPopup = props.setPopup;
@@ -99,10 +98,10 @@ export const Container = styled.div`
   animation: ${(props) => {
     return props.close
       ? css`
-          ${slideDown} ease-in-out 0.5s
+          ${slideDown} ease-in-out 0.6s
         `
       : css`
-          ${slideUp} ease-in-out 0.5s
+          ${slideUp} ease-in-out 0.6s
         `;
   }};
 `;

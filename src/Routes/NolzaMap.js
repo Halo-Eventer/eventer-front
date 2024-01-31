@@ -11,12 +11,15 @@ import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
 import { getDetailInfo } from 'components/map/getDetailInfo';
+import { getAllConcert, getDetailConcert } from 'apis/apis';
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
   const [prevClustering, setPrevClustering] = useState('');
-  const [clickInfo,setClickInfo] = useState('');
-  const [concertHallMarker,setConcertHallMarker] = useState('');
+  const [clickInfo, setClickInfo] = useState('');
+  const [concertHallMarker, setConcertHallMarker] = useState([]);
+  const [concertData, setConcertData] = useState([]);
+  const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
   let markerImg = '';
   const mapElement = useRef(1);
   const [prevMarkers, setPrevMarkers] = useState([]);
@@ -25,7 +28,7 @@ function NolzaMap(props) {
   const [popup, setPopup] = useState(false);
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
-  
+
   useEffect(() => {
     if (activeCategory == 1) markerImg = eventImg;
     else if (activeCategory == 2) markerImg = foodImg;
@@ -45,9 +48,39 @@ function NolzaMap(props) {
       zoomControl: false,
       mapTypeControl: false,
     };
-    setMap(new naver.maps.Map(mapElement.current, mapOption));
+    const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
+    setMap(tmpMap);
+    getAllConcert(1)
+      .then((res) => {
+        console.log(res);
+        setConcertData(res.data);
+        let concertHallMarkerInfo = res.data.map((e) => {
+          return markerHandle(
+            naver,
+            tmpMap,
+            e.latitude,
+            e.longitude,
+            hallMarker,
+            100,
+            '공연장'
+          );
+        });
+        setConcertHallMarker(concertHallMarkerInfo);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
-  useEffect(() => { // 내 위치 찾기
+  useEffect(() => {
+    concertHallMarker.map((e, i) => {
+      e.setMap(map);
+      naver.maps.Event.addListener(e, 'click', () =>
+        handleConcertHallMarker(concertData[i].id)
+      );
+    });
+  }, [concertHallMarker]);
+  useEffect(() => {
+    // 내 위치 찾기
     let options = {
       enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
       maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
@@ -65,50 +98,37 @@ function NolzaMap(props) {
     }
     function getMyMarker(e) {
       if (flag) marker.setMap(null);
-      else{
-      marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(e.coords.latitude, e.coords.longitude),
-        map: map,
-        icon: {
-          content: `
+      else {
+        marker = new naver.maps.Marker({
+          position: new naver.maps.LatLng(
+            e.coords.latitude,
+            e.coords.longitude
+          ),
+          map: map,
+          icon: {
+            content: `
         <div style="width:20px;height:20px;background-color:blue;display:flex;
         justify-content:center;align-items:center;border-radius:20px">
         
         </div>`,
-        },
-      });
-      marker.setMap(map);
-      flag = true;
+          },
+        });
+        marker.setMap(map);
+        flag = true;
+      }
     }
-    }    
   }, []);
-  useEffect(() => { // 마커 찍기
+  useEffect(() => {
+    // 마커 찍기
     if (!map) return;
-    if(prevClustering!='') prevClustering.setMap(null);
-    
-    if(concertHallMarker!='') concertHallMarker.setMap(null);
-    let concertHallMarkerInfo = (markerHandle(
-      naver,
-      map,
-      37.55041,
-      127.07505,
-      hallMarker,
-      100,
-      '공연장'
-    ));
-    setConcertHallMarker(concertHallMarkerInfo)
-    concertHallMarkerInfo.setMap(map);
-    naver.maps.Event.addListener(
-      concertHallMarkerInfo,
-      'click',
-      handleConcertHallMarker
-    );
+    if (prevClustering != '') prevClustering.setMap(null);
+
     if (prevMarkers) {
       prevMarkers.forEach((marker) => {
         marker.setMap(null);
       });
     }
-    
+
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
@@ -128,7 +148,6 @@ function NolzaMap(props) {
         return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
       });
       setPrevMarkers(markers);
-      
 
       import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
         const htmlMarker1 = {
@@ -143,20 +162,22 @@ function NolzaMap(props) {
           ].join(''),
           size: new naver.maps.Size(40, 40),
         };
-        
-         setPrevClustering(new MarkerClustering({
-          minClusterSize: 1,
-          maxZoom: 19,
-          map: map,
-          markers: markers,
-          disableClickZoom: false,
-          gridSize: 200,
-          icons: [htmlMarker1],
-          indexGenerator: [10, 100, 200, 500, 1000],
-          stylingFunction: function (clusterMarker, count) {
-            clusterMarker.getElement().querySelector('p').textContent = count;
-          },
-        }));
+
+        setPrevClustering(
+          new MarkerClustering({
+            minClusterSize: 1,
+            maxZoom: 19,
+            map: map,
+            markers: markers,
+            disableClickZoom: false,
+            gridSize: 200,
+            icons: [htmlMarker1],
+            indexGenerator: [10, 100, 200, 500, 1000],
+            stylingFunction: function (clusterMarker, count) {
+              clusterMarker.getElement().querySelector('p').textContent = count;
+            },
+          })
+        );
       });
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
@@ -169,12 +190,21 @@ function NolzaMap(props) {
     setOpenId(-2);
   }, [activeCategory]);
 
-  const handleConcertHallMarker = () => {
+  const handleConcertHallMarker = (id) => {
     setPopup(true);
-    setOpenId(-1);
+    setConcertClick(true);
+    getDetailConcert(id)
+      .then((res) => {
+        setClickInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setOpenId(id);
   };
   const handleMarkers = (data) => {
-    getDetailInfo(data.id, setClickInfo, activeCategory)
+    getDetailInfo(data.id, setClickInfo, activeCategory);
+    setConcertClick(false);
     setPopup(true);
     setOpenId(data.id);
   };
@@ -189,35 +219,35 @@ function NolzaMap(props) {
       <GlobalStyle />
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
-
-        {/* <ClickInfo
-          data={{
-            name: '공연장',
-            summary: '소수빈, IVE, 10CM 공연',
-            operationHours: '1일차 16:00~22:00',
-            id: -1,
-          }}
-          openId={openId}
-          mapElement={mapElement}
-          popup={popup}
-          setPopup={setPopup}
-          setShowChangeBlock={props.setShowChangeBlock}
-        /> */}
-        {data.map((e) => {
-          if (e.id == openId)
-          return (
-            <ClickInfo
-              data={e}
-              activeCategory={activeCategory}
-              openId={openId}
-              mapElement={mapElement}
-              popup={popup}
-              setPopup={setPopup}
-              clickInfo = {clickInfo}
-              setShowChangeBlock={props.setShowChangeBlock}
-            />
-          );
-        })}
+        {concertClick
+          ? concertData.map((e) => {
+              return (
+                <ClickInfo
+                  data={e}
+                  openId={openId}
+                  mapElement={mapElement}
+                  popup={popup}
+                  clickInfo={clickInfo}
+                  setPopup={setPopup}
+                  setShowChangeBlock={props.setShowChangeBlock}
+                />
+              );
+            })
+          : data.map((e) => {
+              if (e.id == openId)
+                return (
+                  <ClickInfo
+                    data={e}
+                    activeCategory={activeCategory}
+                    openId={openId}
+                    mapElement={mapElement}
+                    popup={popup}
+                    setPopup={setPopup}
+                    clickInfo={clickInfo}
+                    setShowChangeBlock={props.setShowChangeBlock}
+                  />
+                );
+            })}
       </MapContainer>
     </div>
   );
