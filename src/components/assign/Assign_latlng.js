@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 function Assign_latlng(props) {
   const [latlng, setLatlng] = useState({});
+  
   const { naver } = window;
   const mapElement = useRef(1);
   const getLatLng = (e) => {
@@ -44,6 +45,8 @@ function Assign_latlng(props) {
 export default Assign_latlng;
 
 const Map = styled.div`
-  width: 400px;
+  width: 336px;
   height: 200px;
+  margin-left: 8px;
+  margin-top: 8px;
 `;
