@@ -13,10 +13,11 @@ import getMarker from '../components/getMarker';
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
-  
+  const [prevClustering, setPrevClustering] = useState('');
+  const [concertHallMarker,setConcertHallMarker] = useState('');
   let markerImg = '';
   const mapElement = useRef(1);
-  const [prevMarker, setPrevMarker] = useState(null);
+  const [prevMarkers, setPrevMarkers] = useState([]);
   const [map, setMap] = useState(null);
   const { naver } = window;
   const [popup, setPopup] = useState(false);
@@ -33,7 +34,7 @@ function NolzaMap(props) {
     let mapOption = {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
-      minZoom: 6,
+      minZoom: 17,
       tileTransition: true,
       scaleControl: true,
       logoControl: false,
@@ -44,19 +45,8 @@ function NolzaMap(props) {
     setMap(new naver.maps.Map(mapElement.current, mapOption));
   }, []);
   useEffect(() => {
-    if (map == null) return;
-    if (prevMarker) {
-      prevMarker.map((marker) => marker.setMap(null));
-    }
-    let concertHallMarker = markerHandle(
-      naver,
-      map,
-      37.55041,
-      127.07505,
-      hallMarker,
-      100,
-      '공연장'
-    );
+    
+    
     let options = {
       enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
       maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
@@ -75,6 +65,7 @@ function NolzaMap(props) {
     function getMyMarker(e) {
       console.log(e);
       if (flag) marker.setMap(null);
+      else{
       marker = new naver.maps.Marker({
         position: new naver.maps.LatLng(e.coords.latitude, e.coords.longitude),
         map: map,
@@ -89,16 +80,42 @@ function NolzaMap(props) {
       marker.setMap(map);
       flag = true;
     }
-
-    console.log(data);
+    }
+   
+    
+  }, []);
+  useEffect(() => {
+    if (!map) return;
+    if(concertHallMarker!='') concertHallMarker.setMap(null);
+    let concertHallMarkerInfo = (markerHandle(
+      naver,
+      map,
+      37.55041,
+      127.07505,
+      hallMarker,
+      100,
+      '공연장'
+    ));
+    setConcertHallMarker(concertHallMarkerInfo)
+    concertHallMarkerInfo.setMap(map);
     naver.maps.Event.addListener(
-      concertHallMarker,
+      concertHallMarkerInfo,
       'click',
       handleConcertHallMarker
     );
+    if (prevMarkers) {
+      prevMarkers.forEach((marker) => {
+        console.log("삭제되는 마커: ",  marker);
+        marker.setMap(null);
+      });
+    }
+    if (prevClustering) {
+      console.log(prevClustering, ': prevClustering');
+    }
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
+
     if (data != '') {
       const markerData = data?.map((e) => {
         return {
@@ -113,7 +130,7 @@ function NolzaMap(props) {
       const markers = markerData?.map((e) => {
         return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
       });
-      setPrevMarker(markers);
+      setPrevMarkers(markers);
 
       // import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
       //   const htmlMarker1 = {
