@@ -7,12 +7,12 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider,ImgBoard} from './Info';
 
-import {getDetailNotice} from '../apis/apis';
+import {getDetail} from '../apis/apis';
 
 function Detail_Notice(){
     const navigate = useNavigate();
 
-    const id_param = useParams().id;
+    const noticeId = useParams().id;
 
     var settings = {
         dots: true,  // 슬라이드 바닥에 점을 보이게 할 것인지 설정
@@ -31,10 +31,10 @@ function Detail_Notice(){
     }
 
     useEffect(() => {
-        getDetailNotice('notice',id_param)
+        getDetail('notice',noticeId)
         .then((response)=>{
             if(typeof(response.data) === 'object'){
-                setDetailedList(response.data.content);
+                setDetailedList(response.data);
                 console.log("detail fetch success : ",
                 response.data);
             }else{
@@ -62,7 +62,9 @@ function Detail_Notice(){
                 <MainBoard style={{marginTop:'48px'}}>
                     <ImgBlock>
                         <StyledSlider {...settings}>
-                            {detailedList.images.map((item,key)=>
+                            {typeof(detailedList.images) === 'object'
+                            &&
+                            detailedList.images.map((item,key)=>
                             <ImgBoard key={key} src={item}></ImgBoard>)}
                         </StyledSlider>
                     </ImgBlock>
@@ -74,7 +76,9 @@ function Detail_Notice(){
                             <h2>
                                 {detailedList.subtitle}
                             </h2>
-                            {detailedList.content.split('\n').map((line,key)=>
+                            {typeof(detailedList.content) === 'string'
+                            &&
+                            detailedList.content.split('\n').map((line,key)=>
                                 {   
                                     if(line.length===0){
                                         /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
@@ -118,6 +122,7 @@ background-color:white;
 
 const TextBoard = styled.div`
 width:390px;
+overflow:auto;
 display:flex;
 justify-content:center;
 align-items:flex-start;
@@ -148,15 +153,4 @@ div{
 
     }
     h3{
-        color: #46515B;
-        font-family: Pretendard;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
-
-        padding:0;
-
-    }
-}
-`
+ 

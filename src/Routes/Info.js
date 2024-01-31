@@ -189,6 +189,7 @@ const Wrapper = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
+  height:100vh;
   @media screen and (min-width: 450px) {
     width: 390px;
   }

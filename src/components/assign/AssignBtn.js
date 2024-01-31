@@ -3,13 +3,18 @@ import { assignApi, assignMenuApi, reviseApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
+  const festivalId = 1;
   console.log(props);
 
   const assignBoard = () => {
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, props.category, props.img, props.thumbnail)
+      assignApi(props.info, 
+    props.category, 
+    props.img, 
+    props.thumbnail,
+    festivalId)
         .then((response) => {
           if (typeof(response.data)==='string') {
             console.log("response.data : ", response.data);
@@ -27,7 +32,11 @@ function AssignBtn(props) {
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, props.category, props.img, props.thumbnail)
+      assignApi(props.info, 
+    props.category, 
+    props.img, 
+    props.thumbnail,
+    festivalId)
         .then((res) => {
           if (res.data.storeId) {
             console.log(res.data.storeId);

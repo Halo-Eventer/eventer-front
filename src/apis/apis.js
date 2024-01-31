@@ -60,11 +60,10 @@ export const assignMenuApi = (storeId, menus) => {
     },
   });
 };
-export const assignApi = (props, category, imgs, thumbnail) => {
+export const assignApi = (props, category, imgs, thumbnail, festivalId) => {
   if (thumbnail != '') props.thumbnail = thumbnail;
   if (imgs != '') props.images = imgs;
-
-  const festivalId = 1;
+  
   console.log(props);
   return axios.post(`/${category}`, props, {
     params: {

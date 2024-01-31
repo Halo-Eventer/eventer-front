@@ -49,8 +49,8 @@ function AssignImage(props) {
   useEffect(()=>{
       props.setInfo({...props.info,
         thumbnail:props.thumbnail,
-        images:props.img,
-        menus:props.menus});
+        images:props.img});
+      props.setNoRender(true);
   },[props.thumbnail,props.img])
 
   return (
@@ -71,7 +71,7 @@ function AssignImage(props) {
           src={images_preview}
         ></InputImages>
         <ImagesPreviewBox ImagesPreview={imagePreview}>
-          {imagePreview.map((item, index) => {
+          {imagePreview?.map((item, index) => {
             return (
               <div key={index}
                 style={{
@@ -168,5 +168,4 @@ border-radius:12px;
 text-align:center;
 font-size:12px;
 line-height:18px;
-color:#333;
-`;
+color:#33

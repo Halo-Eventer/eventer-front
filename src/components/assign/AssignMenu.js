@@ -20,6 +20,7 @@ function AssignMenu(props) {
       props.setInfo({...props.info,
         thumbnail:props.thumbnail, 
         menus:props.menus});
+      props.setNoRender(true);
   },[props.thumbnail,props.menus])
 
 
@@ -129,7 +130,4 @@ const DeleteImages = styled.img`
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  &:hover {
-    cursor: pointer;
-  }
-`;
+  &:hover

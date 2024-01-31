@@ -302,6 +302,7 @@ flex-direction:column;
 justify-content:flex-start;
 align-items:center;
 
+
 div{
 width: 544px;
 height: 48px;

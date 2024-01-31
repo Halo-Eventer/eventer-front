@@ -22,6 +22,7 @@ function Assign(props) {
   const [img, setImg] = useState(props.info.images);
   const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
   const [menus, setMenus] = useState([]);
+  const [noRender,setNoRender]=useState(false);
   console.log(menus);
   console.log('category', props.category);
  
@@ -35,10 +36,15 @@ function Assign(props) {
 
 
   useEffect(()=>{
-    console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
-    setImg(props.info.images);
-    setThumbnail(props.info.thumbnail);
-    setMenus(props.info.menus)
+    if(noRender)
+      setNoRender(false);
+    //Redering 차단(이번 백오피스 작업을 State 대성장의 발판으로 삼길)
+    else{
+      console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
+      setImg(props.info.images);
+      setThumbnail(props.info.thumbnail);
+      setMenus(props.info.menus);
+    }
   },
   [
     props.info.images,
@@ -54,6 +60,7 @@ function Assign(props) {
       <AssignBtn
         itemID={props.itemID}
         info={props.info}
+        setInfo={props.setInfo}
         category={props.category}
         img={img}
         thumbnail={thumbnail}
@@ -77,6 +84,8 @@ function Assign(props) {
 
             itemID={props.itemID}
             mode={props.mode}
+
+            setNoRender={setNoRender}
           />
         ) : (
           <AssignImage
@@ -90,6 +99,8 @@ function Assign(props) {
 
             itemID={props.itemID}
             mode={props.mode}
+
+            setNoRender={setNoRender}
           />
         )}
 

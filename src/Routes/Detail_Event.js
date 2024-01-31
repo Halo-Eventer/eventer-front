@@ -22,7 +22,7 @@ import {getDetail} from '../apis/apis';
 function Detail_Event(){
     const navigate = useNavigate();
 
-    const id_param = useParams().id;
+    const eventId = useParams().id;
 
 
     var settings = {
@@ -42,7 +42,7 @@ function Detail_Event(){
         //그냥 뒤로가는 기능
     }
     useEffect(() => {
-        getDetail('event',id_param)
+        getDetail('event',eventId)
         .then((response)=>{
             if(typeof(response.data) === 'object'){
                 setDetailedList(response.data);
@@ -133,6 +133,7 @@ background-color:white;
 
 const TextBoard = styled.div`
 width:390px;
+overflow:auto;
 display:flex;
 justify-content:center;
 align-items:flex-start;
@@ -167,7 +168,4 @@ div{
         line-height: 24px;
 
         margin:0;
-        padding:0;
-    }
-}
-`
+        paddi

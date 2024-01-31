@@ -96,7 +96,7 @@ function FestivalNotice(){
             <Wrapper>
                 <GlobalStyles/>
             
-                <MainBlock style={{marginTop:'108px'}}>
+                <MainBlock>
                     {
                         showNotice
                         ?<Notice noticeList = {noticeList}/>
@@ -153,8 +153,9 @@ transition: transform 0.2s ease-out;
 
 const MainBlock = styled.div`
 width:100vw;
+margin-top:108px;
 
-margin-top:16px;
+overflow:auto;
 
 display:flex;
 flex-direction:column;

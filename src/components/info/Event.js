@@ -10,7 +10,7 @@ function Event({ eventList }) {
 
   const onClick_detail = (event) => {
     event.preventDefault();
-    const eventId = event.currentTarget.id; 
+    const eventId = event.currentTarget.id;
     //target과 currentTarget의 차이 =>
     //target : 해당 태그의 가장 하위태그까지의 속성값 조사
     //currentTarget : 이벤트가 발생한 딱 그 태그만 조사
@@ -21,20 +21,20 @@ function Event({ eventList }) {
   return (
     <div>
       {
-      typeof(eventList)==='object'
-      &&
-      eventList.map((item, key) => (
-     <Section 
-     onClick={onClick_detail} 
-     key={key}
-     id={item.id}>
-          <ImageDiv url={item.thumbnail} />
-          <TextDiv>
-            <h1>{item.title}</h1>
-            <h2>{item.simpleExplanation}</h2>
-          </TextDiv>
-        </Section>
-      ))}
+        typeof (eventList) === 'object'
+        &&
+        eventList.map((item, key) => (
+          <Section
+            onClick={onClick_detail}
+            key={key}
+            id={item.id}>
+            <ImageDiv url={item.thumbnail} />
+            <TextDiv>
+              <h1>{item.name}</h1>
+              <h2>{item.summary}</h2>
+            </TextDiv>
+          </Section>
+        ))}
     </div>
   );
 }
@@ -83,8 +83,4 @@ const Section = styled.div`
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
-      line-height: 18px;
-      margin: 0;
-    }
-  }
-`;
+      lin
