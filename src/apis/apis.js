@@ -18,14 +18,12 @@ export const getAllAmenity = () => {
 export const getAllNotice = (festivalId) => {
   return axios.get(`/notice/${festivalId}/list`);
 };
-export const getAllConcert = (festivalId)=>{
+export const getAllConcert = (festivalId) => {
   return axios.get(`/concert?festivalId=${festivalId}`);
-
-}
-export const getDetailConcert = (id)=>{
-    return axios.get(`/concert/${id}`);
-
-}
+};
+export const getDetailConcert = (id) => {
+  return axios.get(`/concert/${id}`);
+};
 export const getDetailNotice = (id) => {
   return axios.get(`/notice/${id}`);
 };
@@ -46,17 +44,19 @@ export const getAll = (festivalId, category, type) => {
   if (category === 'notice') {
     return axios.get(`/notice/${festivalId}/list`);
   } else if (category === 'store') {
-    return axios.get(`/store?festivalId=${festivalId}`, { params: { type: type } });
+    return axios.get(`/store?festivalId=${festivalId}`, {
+      params: { type: type },
+    });
   } else {
     return axios.get(`/${category}`, { params: { festivalId: festivalId } });
   }
-}
-export const getDetail = (category,id) => {
+};
+export const getDetail = (category, id) => {
   return axios.get(`/${category}/${id}`);
-}
-export const deleteDetail = (category,id) => {
+};
+export const deleteDetail = (category, id) => {
   return axios.delete(`/${category}/${id}`);
-}
+};
 
 export const assignMenuApi = (storeId, menus) => {
   menus.summary = '요약설명';
@@ -66,14 +66,22 @@ export const assignMenuApi = (storeId, menus) => {
     },
   });
 };
-export const assignApi = (props, category, imgs, thumbnail, festivalId) => {
+export const assignApi = (
+  props,
+  category,
+  imgs,
+  thumbnail,
+  type,
+  festivalId
+) => {
   if (thumbnail != '') props.thumbnail = thumbnail;
   if (imgs != '') props.images = imgs;
-  
+  if (type == '') type = '기타';
   console.log(props);
   return axios.post(`/${category}`, props, {
     params: {
       festivalId: festivalId,
+      type: type,
     },
   });
 };
@@ -113,8 +121,6 @@ export const reviseApi = (props, category, imgs, thumbnail, id) => {
   if (imgs != '') props.images = imgs;
 
   const festivalId = 1;
-  console.log(props);
+  console.log(props, id);
   return axios.patch(`/${category}/${id}`, props);
 };
-
-
