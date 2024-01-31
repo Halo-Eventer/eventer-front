@@ -34,7 +34,6 @@ function Assign(props) {
   }, [props.category, props.type]);
   console.log(props.info, props.category, thumbnail, menus);
 
-
   useEffect(()=>{
     if(noRender)
       setNoRender(false);
@@ -145,8 +144,9 @@ const InfoContainer = styled.div`
   padding: 0;
   flex-shrink: 0;
   overflow-y: scroll;
-  /* &::-webkit-scrollbar {
-  } */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 export const InputBox = styled(Flex)`
   justify-content: space-between;

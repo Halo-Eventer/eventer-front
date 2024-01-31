@@ -168,4 +168,5 @@ border-radius:12px;
 text-align:center;
 font-size:12px;
 line-height:18px;
-color:#33
+color:#333;
+`;

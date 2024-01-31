@@ -2,7 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 import InfoBox from '../InfoBox';
 import { VectorBox } from './ClickInfo';
 import Up from '../../asset/up.svg';
-import timeTable from '../../asset/timeTable.png';
+
 function FullInfo(props) {
   const data = props.data;
   const handleClose = () => {
@@ -12,8 +12,7 @@ function FullInfo(props) {
       props.setFull(false);
     }, 500);
   };
-  console.log(props, data.menus);
-  console.log(props.activeCategory);
+
   return (
     <FullInfoContainer popup={props.popup} close={props.close}>
       <VectorBox onClick={handleClose}>
@@ -111,10 +110,10 @@ const FullInfoContainer = styled.div`
   animation: ${(props) => {
     return props.close
       ? css`
-          ${slideDown} ease-in-out 0.5s
+          ${slideDown} ease-in-out 0.6s
         `
       : css`
-          ${slideUp} ease-in-out 0.5s
+          ${slideUp} ease-in-out 0.6s
         `;
   }};
 `;

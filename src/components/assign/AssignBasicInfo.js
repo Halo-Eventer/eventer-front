@@ -131,7 +131,7 @@ const InputDiv = styled.div`
 
 const InputContainer = styled.div`
   margin-top: 8px;
-  width: 350px;
+  width: 352px;
   height: auto;
   flex-shrink: 0;
   border-radius: 4px;

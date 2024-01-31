@@ -16,9 +16,7 @@ function FestivalNotice(){
     const navigate = useNavigate();
 
     const festivalId = 1;
-    // const EVENTLISTURL = "http://3.34.24.140:9998/event/1/list";
-    // const NOTILISTURL = "http://3.34.24.140:9998/notice/1/list";
-    // 이렇게 관리하지 말 것 
+    
 
     const [color1, setColor1] = useState("black");
     const [color2, setColor2] = useState("gray");
