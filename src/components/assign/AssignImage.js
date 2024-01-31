@@ -48,7 +48,8 @@ function AssignImage(props) {
 
   useEffect(()=>{
       props.setInfo({...props.info,
-        thumbnail:props.thumbnail, 
+        thumbnail:props.thumbnail,
+        images:props.img,
         menus:props.menus});
   },[props.thumbnail,props.img])
 

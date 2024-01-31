@@ -40,11 +40,13 @@ function Assign(props) {
     setThumbnail(props.info.thumbnail);
     setMenus(props.info.menus)
   },
-  [props.info.images,
+  [
+    props.info.images,
     props.info.thumbnail,
     props.info.menus,
     props.itemID,
-    props.mode]);
+    props.mode
+  ]);
   //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
 
   return (
