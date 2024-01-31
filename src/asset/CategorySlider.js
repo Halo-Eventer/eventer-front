@@ -33,7 +33,7 @@ export default class SwipeToSlide extends Component {
       },
     };
     const handleClick = (e) => {
-      console.log(e);
+      
       this.setState({ active: e.target.id });
       this.setActiveCategory(e.target.id);
       if (e.target.id == 3 && (hour > 22 || hour < 18)) {

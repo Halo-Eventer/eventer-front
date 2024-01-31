@@ -10,10 +10,12 @@ import foodImg from 'asset/category/foodtruckCategory.svg';
 import toiletImg from 'asset/marker/toiletImg.svg';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
+import { getDetailInfo } from 'components/map/getDetailInfo';
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);
   const [prevClustering, setPrevClustering] = useState('');
+  const [clickInfo,setClickInfo] = useState('');
   const [concertHallMarker,setConcertHallMarker] = useState('');
   let markerImg = '';
   const mapElement = useRef(1);
@@ -171,6 +173,7 @@ function NolzaMap(props) {
     setOpenId(-1);
   };
   const handleMarkers = (data) => {
+    getDetailInfo(data.id, setClickInfo, activeCategory)
     setPopup(true);
     setOpenId(data.id);
   };
@@ -186,7 +189,7 @@ function NolzaMap(props) {
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
 
-        <ClickInfo
+        {/* <ClickInfo
           data={{
             name: '공연장',
             summary: '소수빈, IVE, 10CM 공연',
@@ -198,8 +201,9 @@ function NolzaMap(props) {
           popup={popup}
           setPopup={setPopup}
           setShowChangeBlock={props.setShowChangeBlock}
-        />
+        /> */}
         {data.map((e) => {
+          if (e.id == openId)
           return (
             <ClickInfo
               data={e}
@@ -208,6 +212,7 @@ function NolzaMap(props) {
               mapElement={mapElement}
               popup={popup}
               setPopup={setPopup}
+              clickInfo = {clickInfo}
               setShowChangeBlock={props.setShowChangeBlock}
             />
           );
