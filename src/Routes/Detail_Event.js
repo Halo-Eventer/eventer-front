@@ -134,6 +134,7 @@ background-color:white;
 const TextBoard = styled.div`
 width:390px;
 overflow:auto;
+
 display:flex;
 justify-content:center;
 align-items:flex-start;
