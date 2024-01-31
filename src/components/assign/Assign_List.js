@@ -56,14 +56,14 @@ function Assign_List(props){
             title = ref.name;
 
         console.log("id, title : ",id, title);
-        let tmp = window.confirm(`'${title}'항목을 삭제하시겠습니까?`);
+        let tmp = window.confirm(`'${title}' 항목을 삭제하시겠습니까?`);
 
         if(tmp)
             deleteDetail(props.category,id)
             .then((response)=>{
                 if(typeof(response.data)==='string')
                 {
-                    alert(`'${title}'항뮥이 성공적으로 삭제되었습니다`);
+                    alert(`'${title}' 항목이 성공적으로 삭제되었습니다.`);
                     console.log(response.data);
                     props.setMode("f");
                 }

@@ -11,9 +11,9 @@ function AssignBtn(props) {
     if (tmp)
       assignApi(props.info, props.category, props.img, props.thumbnail)
         .then((response) => {
-          if (response.data.length > 0) {
+          if (typeof(response.data)==='string') {
             console.log("response.data : ", response.data);
-            alert("추가되었습니다");
+            alert("해당 항목이 성공적으로 추가되었습니다");
             props.setMode("f");
           }
           else
@@ -33,14 +33,17 @@ function AssignBtn(props) {
             console.log(res.data.storeId);
             assignMenuApi(res.data.storeId, props.menus)
               .then((res) => {
-                alert('추가되었습니다.');
+                console.log("res.data(menu) : ", res.data);
+                alert('해당 항목이 성공적으로 추가되었습니다.');
                 props.setMode("f");
               })
               .catch((err) => {
                 alert('메뉴를 다시 추가해주십시오.');
               });
           } else {
-            alert('추가되었습니다.');
+            console.log("res.data(not menu) : ", res.data);
+            alert('해당 항목이 성공적으로 추가되었습니다.');
+            props.setMode("f");
           }
         })
         .catch((err) => {

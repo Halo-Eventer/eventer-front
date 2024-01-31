@@ -8,10 +8,6 @@ import { GlobalStyles } from './Info';
 import Assign_List from '../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
 
-import sample1 from '../images/BirthDay.svg';
-import sample2 from '../images/Idol.svg';
-import sample3 from '../images/BackGround.svg';
-
 import {getAll, getDetail} from '../apis/apis';
 
 import {
@@ -29,39 +25,16 @@ function AssignPage_Map() {
     store: ['주점', '푸드트럭'],
   });
   const [type, setType] = useState('');
-  const [boardList, setBoardList] = useState([
-    '대동제 총정리1',
-    '대동제 총정리2',
-    '대동제 총정리3',
-  ]);
+  const [boardList, setBoardList] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageNum, setPageNum] = useState(8);
-  const [totalPages, setTotalPages] = useState(4);
+  const [totalPages, setTotalPages] = useState(1);
   const [itemID, setItemID] = useState(1);
 
   const [mode, setMode] = useState("");
   const [cancle, setCancle] = useState(true);
 
   const [info, setInfo] = useState({});
-  const [info_id, setInfo_id] = useState(
-    {
-      tag:"",
-      name:"대 동 제",
-      summary:"대 동 제 가 자 잇",
-      subtitle:"",
-      content:"",
-      latitude:0,
-      longitude:0,
-      location:"",
-      isOperation:true,
-      operationHours:"",
-      type:"",
-      menus:[],
-
-      thumbnail:sample2,
-      images:[sample1,sample3]
-    }
-  );
 
 
   useEffect(() => 
@@ -122,10 +95,12 @@ function AssignPage_Map() {
       fetchDetail();
       setCancle(false);
 
-    }else
+    }
+    else if (mode == 'f')
     {
       fetchList();
       setCancle(true);
+      setMode("");
     }
   },[mode,itemID]);
 

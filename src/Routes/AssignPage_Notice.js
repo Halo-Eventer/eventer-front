@@ -20,9 +20,6 @@ import Assign_List from '../components/assign/Assign_List';
 
 import {getAll, getDetail} from '../apis/apis';
 
-import sample1 from '../images/BirthDay.svg';
-import sample2 from '../images/Idol.svg';
-import sample3 from '../images/BackGround.svg';
 
 
 function AssignPage_Notice() {
@@ -36,27 +33,17 @@ function AssignPage_Notice() {
   }
     );
   const [type, setType]=useState("");
-  const [boardList,setBoardList] = useState(["대동제 총정리1", "대동제 총정리2", "대동제 총정리3"]);
+  const [boardList,setBoardList] = useState([]);
   const [currentPage,setCurrentPage]=useState(1);
   const [pageNum,setPageNum]=useState(8);
-  const [totalPages,setTotalPages]=useState(4);
+  const [totalPages,setTotalPages]=useState(1);
   const [itemID, setItemID] = useState(1);
 
   const [mode,setMode]=useState("");
   const [cancle, setCancle] = useState(true);
 
   const [info, setInfo] = useState({});
-  const [info_id, setInfo_id] = useState(
-    {
-      title:"크하핫",
-      simpleExplanation:"우하핫",
-      subtitle:"우히힣",
-      content:"와 진짜 ㄹㅇㅋㅋ",
 
-      thumbnail:sample1,
-      images:[sample3,sample2]
-    }
-  );
 
 
   const fetchList = () => {
@@ -112,8 +99,8 @@ function AssignPage_Notice() {
     {
       fetchDetail();
       setCancle(false);
-
-    }else if (mode == 'f')
+    }
+    else if (mode == 'f')
     {
       fetchList();
       setCancle(true);

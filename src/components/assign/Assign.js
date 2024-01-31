@@ -63,7 +63,6 @@ function Assign(props) {
         setCancle={props.setCancle}
         mode = {props.mode}
         setMode = {props.setMode}
-        setUpdated={props.setUpdated}
       />
       <InfoContainer>
         {props.category == 'store' ? (
