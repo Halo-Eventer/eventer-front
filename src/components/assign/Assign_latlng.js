@@ -17,6 +17,7 @@ function Assign_latlng(props) {
       center: new naver.maps.LatLng(37.5506, 127.0744),
       zoom: 17,
       minZoom: 16,
+      disableDoubleClickZoom : true
     };
     const map = new naver.maps.Map(mapElement.current, mapOptions);
 
