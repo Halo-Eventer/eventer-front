@@ -7,7 +7,7 @@ import eventImg from 'asset/category/eventCategory.svg';
 import sojuImg from 'asset/category/sojuCateogory.svg';
 import boothImg from 'asset/category/boothCategory.svg';
 import foodImg from 'asset/category/foodtruckCategory.svg';
-import toiletImg from 'asset/marker/toiletImg.svg';
+import doctorImg from 'asset/marker/doctor.png';
 import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
 import { getDetailInfo } from 'components/map/getDetailInfo';
@@ -34,7 +34,7 @@ function NolzaMap(props) {
     else if (activeCategory == 2) markerImg = foodImg;
     else if (activeCategory == 3) markerImg = sojuImg;
     else if (activeCategory == 4) markerImg = boothImg;
-    else if (activeCategory == 5) markerImg = toiletImg;
+    else if (activeCategory == 5) markerImg = doctorImg;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
@@ -86,17 +86,16 @@ function NolzaMap(props) {
       maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
       timeout: 50000, //위치 정보 받는 최대 대기시간
     };
-    let marker;
+    let marker = '';
     let flag = false;
-    if (navigator.geolocation) {
-      console.log(
-        navigator.geolocation.watchPosition(getMyMarker, error, options)
-      );
-    }
+    if (navigator.geolocation)
+      navigator.geolocation.watchPosition(getMyMarker, error, options);
+
     function error(err) {
       console.log(err);
     }
     function getMyMarker(e) {
+      console.log('success', e.coords, e.coords.latitude, e.coords.longitude);
       if (flag) marker.setMap(null);
       else {
         marker = new naver.maps.Marker({
@@ -109,10 +108,10 @@ function NolzaMap(props) {
             content: `
         <div style="width:20px;height:20px;background-color:blue;display:flex;
         justify-content:center;align-items:center;border-radius:20px">
-        
         </div>`,
           },
         });
+        console.log(marker);
         marker.setMap(map);
         flag = true;
       }
@@ -124,8 +123,8 @@ function NolzaMap(props) {
     if (prevClustering != '') prevClustering.setMap(null);
 
     if (prevMarkers) {
-      prevMarkers.forEach((marker) => {
-        marker.setMap(null);
+      prevMarkers.forEach((e) => {
+        e.setMap(null);
       });
     }
 
