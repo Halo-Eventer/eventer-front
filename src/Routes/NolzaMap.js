@@ -25,6 +25,7 @@ function NolzaMap(props) {
   const [popup, setPopup] = useState(false);
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
+  
   useEffect(() => {
     if (activeCategory == 1) markerImg = eventImg;
     else if (activeCategory == 2) markerImg = foodImg;
