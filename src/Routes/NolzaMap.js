@@ -44,9 +44,7 @@ function NolzaMap(props) {
     };
     setMap(new naver.maps.Map(mapElement.current, mapOption));
   }, []);
-  useEffect(() => {
-    
-    
+  useEffect(() => { // 내 위치 찾기
     let options = {
       enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
       maximumAge: 0, // 0-> 캐싱된 position 사용하지 않고 실제 현재 위치만 사용
@@ -63,7 +61,6 @@ function NolzaMap(props) {
       console.log(err);
     }
     function getMyMarker(e) {
-      console.log(e);
       if (flag) marker.setMap(null);
       else{
       marker = new naver.maps.Marker({
@@ -80,12 +77,12 @@ function NolzaMap(props) {
       marker.setMap(map);
       flag = true;
     }
-    }
-   
-    
+    }    
   }, []);
-  useEffect(() => {
+  useEffect(() => { // 마커 찍기
     if (!map) return;
+    if(prevClustering!='') prevClustering.setMap(null);
+    
     if(concertHallMarker!='') concertHallMarker.setMap(null);
     let concertHallMarkerInfo = (markerHandle(
       naver,
@@ -105,13 +102,10 @@ function NolzaMap(props) {
     );
     if (prevMarkers) {
       prevMarkers.forEach((marker) => {
-        console.log("삭제되는 마커: ",  marker);
         marker.setMap(null);
       });
     }
-    if (prevClustering) {
-      console.log(prevClustering, ': prevClustering');
-    }
+    
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
     });
@@ -131,35 +125,36 @@ function NolzaMap(props) {
         return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
       });
       setPrevMarkers(markers);
+      
 
-      // import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
-      //   const htmlMarker1 = {
-      //     content: [
-      //       `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
-      //     display: flex; align-items: center; justify-content: center'>`,
-      //       `<div>`,
-      //       `<img src=${markerImg}></img>`,
-      //       `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
-      //       `</div>`,
-      //       `</div>`,
-      //     ].join(''),
-      //     size: new naver.maps.Size(40, 40),
-      //   };
-      //   console.log(markers);
-      //   new MarkerClustering({
-      //     minClusterSize: 1,
-      //     maxZoom: 19,
-      //     map: map,
-      //     markers: markers,
-      //     disableClickZoom: false,
-      //     gridSize: 200,
-      //     icons: [htmlMarker1],
-      //     indexGenerator: [10, 100, 200, 500, 1000],
-      //     stylingFunction: function (clusterMarker, count) {
-      //       clusterMarker.getElement().querySelector('p').textContent = count;
-      //     },
-      //   });
-      // });
+      import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
+        const htmlMarker1 = {
+          content: [
+            `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
+          display: flex; align-items: center; justify-content: center'>`,
+            `<div>`,
+            `<img src=${markerImg}></img>`,
+            `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
+            `</div>`,
+            `</div>`,
+          ].join(''),
+          size: new naver.maps.Size(40, 40),
+        };
+        
+         setPrevClustering(new MarkerClustering({
+          minClusterSize: 1,
+          maxZoom: 19,
+          map: map,
+          markers: markers,
+          disableClickZoom: false,
+          gridSize: 200,
+          icons: [htmlMarker1],
+          indexGenerator: [10, 100, 200, 500, 1000],
+          stylingFunction: function (clusterMarker, count) {
+            clusterMarker.getElement().querySelector('p').textContent = count;
+          },
+        }));
+      });
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
       });
