@@ -18,14 +18,12 @@ function Assign(props) {
    그냥 fucntion Assign({category})를 하던가
    props.category처럼 일일이 props.를 달아주던가 해야함 */
 
-
   const [img, setImg] = useState(props.info.images);
   const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
   const [menus, setMenus] = useState([]);
-  const [noRender,setNoRender]=useState(false);
+  const [noRender, setNoRender] = useState(false);
   console.log(menus);
   console.log('category', props.category);
- 
 
   useEffect(() => {
     if (props.category == 'store') {
@@ -34,23 +32,21 @@ function Assign(props) {
   }, [props.category, props.type]);
   console.log(props.info, props.category, thumbnail, menus);
 
-  useEffect(()=>{
-    if(noRender)
-      setNoRender(false);
+  useEffect(() => {
+    if (noRender) setNoRender(false);
     //Redering 차단(이번 백오피스 작업을 State 대성장의 발판으로 삼길)
-    else{
-      console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
+    else {
+      console.log('RERENDERING!! NOT MOUNTING!: ', props.info);
       setImg(props.info.images);
       setThumbnail(props.info.thumbnail);
       setMenus(props.info.menus);
     }
-  },
-  [
+  }, [
     props.info.images,
     props.info.thumbnail,
     props.info.menus,
     props.itemID,
-    props.mode
+    props.mode,
   ]);
   //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
 
@@ -64,11 +60,11 @@ function Assign(props) {
         img={img}
         thumbnail={thumbnail}
         menus={menus}
-
         cancle={props.cancle}
         setCancle={props.setCancle}
-        mode = {props.mode}
-        setMode = {props.setMode}
+        mode={props.mode}
+        setMode={props.setMode}
+        type={props.type}
       />
       <InfoContainer>
         {props.category == 'store' ? (
@@ -77,13 +73,10 @@ function Assign(props) {
             thumbnail={thumbnail}
             setThumbnail={setThumbnail}
             setMenus={setMenus}
-
             info={props.info}
             setInfo={props.setInfo}
-
             itemID={props.itemID}
             mode={props.mode}
-
             setNoRender={setNoRender}
           />
         ) : (
@@ -92,33 +85,29 @@ function Assign(props) {
             setImg={setImg}
             thumbnail={thumbnail}
             setThumbnail={setThumbnail}
-
             info={props.info}
             setInfo={props.setInfo}
-
             itemID={props.itemID}
             mode={props.mode}
-
             setNoRender={setNoRender}
           />
         )}
 
-        {props.category == 'notice'
-        ?
-        <AssignBasicInfo_BoardOnly
-          setInfo={props.setInfo}
-          setCategory={props.setCategory}
-          info={props.info}
-          category={props.category}
-        />
-        :
-        <AssignBasicInfo
-          setInfo={props.setInfo}
-          setCategory={props.setCategory}
-          info={props.info}
-          category={props.category}
-        />
-        }
+        {props.category == 'notice' ? (
+          <AssignBasicInfo_BoardOnly
+            setInfo={props.setInfo}
+            setCategory={props.setCategory}
+            info={props.info}
+            category={props.category}
+          />
+        ) : (
+          <AssignBasicInfo
+            setInfo={props.setInfo}
+            setCategory={props.setCategory}
+            info={props.info}
+            category={props.category}
+          />
+        )}
       </InfoContainer>
     </AssignContainer>
   );
@@ -135,8 +124,7 @@ function Assign(props) {
 // }
 export default Assign;
 
-const AssignContainer = styled.div`
-`;
+const AssignContainer = styled.div``;
 
 const InfoContainer = styled.div`
   width: 352px;
