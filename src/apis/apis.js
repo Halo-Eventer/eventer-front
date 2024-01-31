@@ -15,7 +15,14 @@ export const getAllBooth = () => {
 export const getAllAmenity = () => {
   return axios.get('/amenity?festivalId=1');
 };
+export const getAllNotice = (festivalId) => {
+  return axios.get(`/notice/${festivalId}/list`);
+};
 
+
+export const getDetailNotice = (id) => {
+  return axios.get(`/notice/${id}`);
+};
 export const getDetailStore = (storeId) => {
   return axios.get(`/store/${storeId}`);
 };
@@ -28,6 +35,19 @@ export const getDetailBooth = (id) => {
 export const getDetailAmenity = (id) => {
   return axios.get(`/amenity/${id}`);
 };
+
+export const getAll = (festivalId, category, type) => {
+  if (category === 'notice') {
+    return axios.get(`/notice/${festivalId}/list`);
+  } else if (category === 'store') {
+    return axios.get(`/store?festivalId=${festivalId}`, { params: { type: type } });
+  } else {
+    return axios.get(`/${category}`, { params: { festivalId: festivalId } });
+  }
+}
+export const getDetail = (category,id) => {
+  return axios.get(`/${category}/${id}`);
+}
 
 export const assignMenuApi = (storeId, menus) => {
   menus.summary = '요약설명';
@@ -49,24 +69,25 @@ export const assignApi = (props, category, imgs, thumbnail) => {
     },
   });
 };
-export const assignStoreApi = () => {
-  const data = {
-    name: '주점2',
-    summary: '육회와 사케를 팔고 있어요',
-    isOperation: true,
-    operationHours: '16:00~22:00',
-    latitude: 37.550591791122294,
-    longitude: 127.07476720170447,
-    type: '주점',
-  };
 
-  const festivalId = 1;
-  return axios.post(`/store`, data, {
-    params: {
-      festivalId: festivalId,
-    },
-  });
-};
+// export const assignStoreApi = () => {
+//   const data = {
+//     name: '주점2',
+//     summary: '육회와 사케를 팔고 있어요',
+//     isOperation: true,
+//     operationHours: '16:00~22:00',
+//     latitude: 37.550591791122294,
+//     longitude: 127.07476720170447,
+//     type: '주점',
+//   };
+
+//   const festivalId = 1;
+//   return axios.post(`/store`, data, {
+//     params: {
+//       festivalId: festivalId,
+//     },
+//   });
+// };
 
 export const imageUploadApi = (imgInfo) => {
   const formData = new FormData();
@@ -79,22 +100,13 @@ export const imageUploadApi = (imgInfo) => {
 };
 
 //  NOH's
-export const assignInfoApi = (requestBody, festivalId, category) => {
-  return axios.post(`/${category}`, requestBody, {
-    params: {
-      festivalId: festivalId,
-    },
-  });
+export const reviseApi = (props, category, imgs, thumbnail, id) => {
+  if (thumbnail != '') props.thumbnail = thumbnail;
+  if (imgs != '') props.images = imgs;
+
+  const festivalId = 1;
+  console.log(props);
+  return axios.patch(`/${category}/${id}`, props);
 };
-export const getNotiList = (festivalId) => {
-  return axios.get(`/noticelist/${festivalId}/list`);
-};
-export const getNotiDetail = (festivalId, id) => {
-  return axios.get(`/noticelist/${festivalId}/id`);
-};
-export const getEventList = (festivalId) => {
-  return axios.get(`/eventlist/${festivalId}/list`);
-};
-export const getEventDetail = (festivalId, id) => {
-  return axios.get(`/eventlist/${festivalId}/id`);
-};
+
+

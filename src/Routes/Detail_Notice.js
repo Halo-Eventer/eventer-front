@@ -7,11 +7,11 @@ import {GlobalStyles, Wrapper, TopFixedDiv,
     UpperBar,Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider,ImgBoard} from './Info';
 
-import {notiList} from '../components/info/DataBase';
+import {noticeList} from '../components/info/DataBase';
 
-import {getNotiDetail} from '../apis/apis';
+import {getDetailNotice} from '../apis/apis';
 
-function Detail_Noti(){
+function Detail_Notice(){
     const navigate = useNavigate();
     const festivalId = 1;
     const id_param = useParams().id;
@@ -26,7 +26,7 @@ function Detail_Noti(){
     };
 
     const [detailedList, setDetailedList]=
-    useState(notiList[id_param]);
+    useState(noticeList[id_param]);
 
     const onClick_bkBtn = () => {
         navigate(-1);
@@ -34,7 +34,7 @@ function Detail_Noti(){
     }
 
     useEffect(() => {
-        getNotiDetail(festivalId,id_param)
+        getDetailNotice(festivalId,id_param)
         .then((response)=>{
             if(response.data.length>0){
                 setDetailedList(response.data.content);
@@ -98,7 +98,7 @@ function Detail_Noti(){
     )
 }
 
-export default Detail_Noti;
+export default Detail_Notice;
 const FlexBox_Row = styled.div`
 width:100vw;
 display:flex;
@@ -108,6 +108,9 @@ align-items:center;
 
 const MainBoard = styled.div`
 width:390px;
+
+border:1px solid #ccc;
+
 display:flex;
 flex-direction:column;
 justify-content:center;

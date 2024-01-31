@@ -14,7 +14,13 @@ function AssignMenu(props) {
 
   return (
     <div style={{ width: '352px' }}>
-      <AssignThumbnail setThumbnail={props.setThumbnail} />
+      <AssignThumbnail
+        thumbnail={props.thumbnail}
+        setThumbnail={props.setThumbnail}
+
+        mode={props.mode}
+        itemID={props.itemID}/>
+        
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
       {props.menus?.map((e, i) => {
         return (

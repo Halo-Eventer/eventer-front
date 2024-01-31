@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 import barItem from '../../images/BarItem.svg';
 
-function Noti({notiList}){
+function Notice({noticeList}){
     const navigate=useNavigate();
 
     const onClick_detail = (event) =>{
@@ -15,14 +15,14 @@ function Noti({notiList}){
         //target : 해당 태그의 가장 하위태그까지의 속성값 조사
         //currentTarget : 이벤트가 발생한 딱 그 태그만 조사
 
-        console.log("notiId : ",event.currentTarget.dataset.value);
-        navigate(`/noti/${notiId}`);
+        console.log("noticeId : ",event.currentTarget.dataset.value);
+        navigate(`/notice/${notiId}`);
     }
 
 
     return (
         <div>
-            {notiList.map((item,key)=>
+            {noticeList.map((item,key)=>
             <Section 
             onClick={onClick_detail} 
             key={key}
@@ -44,7 +44,7 @@ function Noti({notiList}){
     )
 }
 
-export default Noti;
+export default Notice;
 
 
 const ImageDiv = styled.div`

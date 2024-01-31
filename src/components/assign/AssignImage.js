@@ -7,10 +7,14 @@ import images_preview from 'asset/assign/input_images.png';
 import delete_images from 'asset/assign/delete_images.svg';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
-function AssignImage(props) {
-  const imagesInput = useRef(null);
 
+
+
+function AssignImage(props) {
+
+  const imagesInput = useRef(null);
   const [imagePreview, setImagePreview] = useState([]);
+
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
@@ -33,10 +37,30 @@ function AssignImage(props) {
     // props.setImg([...rest]);
   };
 
+
+
+  useEffect(()=>{
+    console.log("IMAGE RERENDERING!! NOT MOUNTING",props.mode);
+    if(props.mode==='a')
+      setImagePreview([]);
+    else if(props.mode==='r')
+      setImagePreview(props.img);
+    }
+    ,[props.img,props.mode,props.itemID]);
+
+
+
   return (
     <div>
-      <AssignThumbnail setThumbnail={props.setThumbnail} />
-      <Flex style={{ marginTop: '8px' }}>
+      <AssignThumbnail 
+      thumbnail = {props.thumbnail}
+      setThumbnail={props.setThumbnail}
+
+      mode={props.mode}
+      itemID={props.itemID}
+      />
+
+      <Flex style={{ marginTop: '8px'}}>
         <InputImages
           onClick={() => {
             imagesInput.current.click();
@@ -44,20 +68,22 @@ function AssignImage(props) {
           src={images_preview}
         ></InputImages>
         <ImagesPreviewBox ImagesPreview={imagePreview}>
-          {imagePreview.map((e) => {
+          {imagePreview.map((item, index) => {
             return (
               <div
                 style={{
+                  position:'relative',
                   width: '96px',
                   height: '96px',
                   marginLeft: '4px',
                 }}
               >
                 <DeleteImages
-                  onClick={() => handleDeleteImages(e)}
+                  onClick={() => handleDeleteImages(item)}
                   src={delete_images}
                 ></DeleteImages>
-                <ImagesPreview src={e} />
+                <ImagesPreview src={item} />
+                <IndexImage>{index+1}</IndexImage>
               </div>
             );
           })}
@@ -107,13 +133,37 @@ const ImagesPreview = styled.img`
   width: 96px;
   height: 96px;
   flex-shrink: 0;
+
+  border:1px solid #EEE;
 `;
 
 const DeleteImages = styled.img`
-  width: 24px;
-  height: 24px;
+  position:absolute;
+  left:4px;
+  top:4px;
+
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
+
   &:hover {
     cursor: pointer;
   }
+`;
+
+const IndexImage = styled.p`
+position:absolute;
+bottom:4px;
+right:4px;
+
+width:16px;
+height:16px;
+background-color:rgba(255,255,255,0.7);
+border-radius:12px;
+
+
+text-align:center;
+font-size:12px;
+line-height:18px;
+color:#333;
 `;

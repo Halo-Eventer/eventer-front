@@ -1,49 +1,102 @@
 import styled from 'styled-components';
+
 import { Flex } from '../../asset/Style';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+
+import Assign_latlng from './Assign_latlng';
 import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
-import Assign_latlng from './Assign_latlng';
+import AssignBasicInfo_BoardOnly from './AssignBasicInfo_Board';
 
 function Assign(props) {
-  const [info, setInfo] = useState({ isOperation: true, type: props.type });
-  const [img, setImg] = useState([]);
-  const [thumbnail, setThumbnail] = useState([]);
+  //const [info, setInfo] = useState(props.itemInfo);
+
+  /*const [category,setCategory] = useState(props.category);
+   => 이렇게 하면 하위 컴포넌트에서 렌더링이 한박자 늦게됨. 
+   그냥 fucntion Assign({category})를 하던가
+   props.category처럼 일일이 props.를 달아주던가 해야함 */
+
+
+  const [img, setImg] = useState(props.info.images);
+  const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
   const [menus, setMenus] = useState([]);
+  console.log(menus);
+  console.log('category', props.category);
+ 
+
   useEffect(() => {
     if (props.category == 'store') {
-      setInfo({ ...info, ['type']: props.type });
+      props.setInfo({ ...props.info, ['type']: props.type });
     }
   }, [props.category, props.type]);
-  console.log(info, props.category, thumbnail, menus);
+  console.log(props.info, props.category, thumbnail, menus);
+
+
+  useEffect(()=>{
+    console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
+    setImg(props.info.images);
+    setThumbnail(props.info.thumbnail);
+    setMenus(props.info.menus)
+  },
+  [props.info,props.itemID,props.mode]);
+  //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
+
   return (
     <AssignContainer>
       <AssignBtn
-        info={info}
+        itemID={props.itemID}
+        info={props.info}
         category={props.category}
         img={img}
         thumbnail={thumbnail}
         menus={menus}
+
+        cancle={props.cancle}
+        setCancle={props.setCancle}
+        mode = {props.mode}
+        setMode = {props.setMode}
       />
       <InfoContainer>
         {props.category == 'store' ? (
           <AssignMenu
             menus={menus}
             thumbnail={thumbnail}
-            setMenus={setMenus}
             setThumbnail={setThumbnail}
+            setMenus={setMenus}
+
+            itemID={props.itemID}
+            mode={props.mode}
           />
         ) : (
           <AssignImage
             img={img}
-            thumbnail={thumbnail}
             setImg={setImg}
+            thumbnail={thumbnail}
             setThumbnail={setThumbnail}
+
+            itemID={props.itemID}
+            mode={props.mode}
           />
         )}
-        <AssignBasicInfo setInfo={setInfo} info={info} />
+
+        {props.category == 'notice'
+        ?
+        <AssignBasicInfo_BoardOnly
+          setInfo={props.setInfo}
+          setCategory={props.setCategory}
+          info={props.info}
+          category={props.category}
+        />
+        :
+        <AssignBasicInfo
+          setInfo={props.setInfo}
+          setCategory={props.setCategory}
+          info={props.info}
+          category={props.category}
+        />
+        }
       </InfoContainer>
     </AssignContainer>
   );
@@ -61,7 +114,6 @@ function Assign(props) {
 export default Assign;
 
 const AssignContainer = styled.div`
-  margin-left: 32px;
 `;
 
 const InfoContainer = styled.div`
@@ -70,9 +122,8 @@ const InfoContainer = styled.div`
   padding: 0;
   flex-shrink: 0;
   overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  /* &::-webkit-scrollbar {
+  } */
 `;
 export const InputBox = styled(Flex)`
   justify-content: space-between;

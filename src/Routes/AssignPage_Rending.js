@@ -2,8 +2,6 @@ import {useState,useEffect} from 'react'
 
 import styled from 'styled-components';
 
-import Assign_Info_Add from '../components/assign_info/Assign_Info_Add';
-import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 
 import { FlexBox_Column, FlexBox_Row,
   GlobalStyles, StyledLink } from './Info';
@@ -29,8 +27,6 @@ function AssignPage_Rending() {
             <option value="event">이벤트</option>
           </Category> 
         </InputBox>
-        <Assign_Info_Add category={category}/>
-        {/* <Assign_Info_Revise category={category}/> */}
     </FlexBox_Column>
   );
 }

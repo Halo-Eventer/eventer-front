@@ -51,7 +51,7 @@ import performance4 from '../../images/Noti_Performance/4.svg';
 
 
 
-const eventList = [
+export const eventList = [
     {
         title: "고독한 생일파티",
         simpleExplanation: "세종대학교 대동제 “해피세종데이”와 함께 고독한 생일파티를 즐겨보세요!",
@@ -183,7 +183,7 @@ const eventList = [
 ];
 
 
-const notiList = [
+export const noticeList = [
     {
         title: "해피세종데이 총정리",
         simpleExplanation: "5월 17일부터 3일간 진행되는 대동제를 알차게 즐기기 위해 풍월[風;月]이 준비한 ‘해피세종데이’ 총정리 카드뉴스!",
@@ -410,6 +410,3 @@ const notiList = [
         festivalId: 1
       }
 ];
-
-
-export {eventList,notiList}

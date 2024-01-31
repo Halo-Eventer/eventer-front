@@ -44,20 +44,26 @@ function AssignBasicInfo(props) {
   return (
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="name" placeholder="제목 작성"></Input>
+        <Input onChange={handleInfo} id="name" 
+        value = {props.info.name} placeholder="제목"></Input>
       </InputDiv>
+
+      <InputDiv style={{ marginTop: '4px' }}>
+        <Input onChange={handleInfo} id="subtitle" 
+        value = {props.info.subtitle} placeholder="부제목"></Input>
+      </InputDiv>
+
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
-          onChange={handleInfo}
-          id="summary"
-          placeholder="요약 설명"
+          onChange={handleInfo} id="summary"
+          value = {props.info.summary} placeholder="요약 설명"
         ></Input>
       </InputDiv>
+
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
-          onChange={handleInfo}
-          id="operationHours"
-          placeholder="00:00 ~ 00:00"
+          onChange={handleInfo} id="operationHours"
+          value = {props.info.value} placeholder="00:00 ~ 00:00"
         ></Input>
       </InputDiv>
       {!active ? (
@@ -87,9 +93,12 @@ function AssignBasicInfo(props) {
           id="longitude"
         ></InputLatLng>
       </MapInput>
+
       <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="location" placeholder="위치"></Input>
+        <Input onChange={handleInfo} id="location" 
+        value = {props.info.location}placeholder="위치"></Input>
       </InputDiv>
+
       <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
           value={props.info.content}
@@ -100,6 +109,7 @@ function AssignBasicInfo(props) {
           placeholder="본문 내용"
           style={{ marginTop: '12px', height: '96px' }}
         ></TextArea>
+
       </TextAreaDiv>
     </InputContainer>
   );

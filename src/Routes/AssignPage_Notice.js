@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { Flex } from 'asset/Style';
 
 import styled from 'styled-components';
 
 import Assign from 'components/assign/Assign';
-import Assign_Info_Add from '../components/assign_info/Assign_Info_Add';
-import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
 
 import {
   FlexBox_Column, FlexBox_Row,
@@ -15,15 +14,21 @@ import {
   UpperBar_Component,
   MiddleBar_Component3
 } from '../components/assign/Assign_Bar';
+
+import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
 import Assign_List from '../components/assign/Assign_List';
 
+import {getAll, getDetail} from '../apis/apis';
 
+import sample1 from '../images/BirthDay.svg';
+import sample2 from '../images/Idol.svg';
+import sample3 from '../images/BackGround.svg';
 
 
 function AssignPage_Notice() {
   const id_param = useParams().id;
 
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("notice");
   const [categoryList, setCategoryList]= useState(
   {
       notice : "공지사항",
@@ -36,12 +41,46 @@ function AssignPage_Notice() {
   const [pageNum,setPageNum]=useState(8);
   const [totalPages,setTotalPages]=useState(4);
   const [itemID, setItemID] = useState(1);
-  const [mode,setMode]=useState("");
 
-  const handleInfo = (event) => {
-    event.preventDefault();
-    setCategory(event.target.value);
-  };
+  const [mode,setMode]=useState("");
+  const [cancle, setCancle] = useState(true);
+
+  const [info, setInfo] = useState({});
+  const [info_id, setInfo_id] = useState(
+    {
+      title:"크하핫",
+      simpleExplanation:"우하핫",
+      subtitle:"우히힣",
+      content:"와 진짜 ㄹㅇㅋㅋ",
+
+      thumbnail:sample1,
+      images:[sample3,sample2]
+    }
+  );
+
+
+  useEffect(()=>
+  {
+    console.log("cateogry (Assign_Notice):",category);
+    setCancle(true);
+    setMode("");
+    setInfo(firstInfo(category));
+  },[category])
+  useEffect(()=>
+  {
+    console.log("mode (Assign_Notice):",mode);
+    if(mode == 'a'){
+      setInfo(firstInfo(category));  
+        //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
+      setCancle(false);
+    }
+    else if(mode == 'r'){
+      setInfo({...info_id});
+      setCancle(false);
+    }else if(mode == 'd'){
+      setCancle(false);
+    }
+  },[mode,itemID,cancle])
 
 
   return (
@@ -49,10 +88,8 @@ function AssignPage_Notice() {
 
       <GlobalStyles />
       <UpperBar_Component />
-      <MiddleBar_Component3
-        id_param={id_param}
-        text="정보" />
-      <FlexBox_Row>
+      <MiddleBar_Component3 id_param={id_param} text="정보" />
+      <AssignBox>
 
         <Assign_List 
         category={category} setCategory={setCategory}
@@ -61,30 +98,34 @@ function AssignPage_Notice() {
         currentPage={currentPage} setCurrentPage={setCurrentPage}
         pageNum={pageNum} totalPages={totalPages}
         itemid = {itemID} setItemID={setItemID}
-        setMode = {setMode}/>
+        setMode = {setMode} setCancle={setCancle}/>
 
-        <Assign category="event"/>
+        {cancle 
+        ?
+        <Assign_Blank/>
+        :
+        <Assign 
+        category={category}
+        cancle = {cancle}
 
-        {/* <FlexBox_Column>
+        mode = {mode}
+        setMode = {setMode}
+        
+        itemID = {itemID}
 
-          <InputBox>
-            <SemiTitle>카테고리</SemiTitle>
-            <Category name="category" onChange={handleInfo}>
-              <option value="notice">공지사항</option>
-              <option value="event">이벤트</option>
-            </Category>
-          </InputBox>
-          <Assign_Info_Add category={category} />
-          // <Assign_Info_Revise category={category}/> 
+        info={info}
+        setInfo={setInfo}
 
-        </FlexBox_Column> */}
+        setCancle = {setCancle}/>
+        }
 
-      </FlexBox_Row>
+      </AssignBox>
 
     </Wrapper>
   );
 }
 export default AssignPage_Notice;
+
 export const Wrapper = styled.div`
 width:100vw;
 

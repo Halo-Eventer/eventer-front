@@ -40,14 +40,13 @@ function Assign_List(props){
     const onClick_revise = (event) => {
         event.preventDefault();
         props.setMode('r');
-        props.setItemId(event.currentTarget.value);
+        props.setItemID(event.currentTarget.id);
     }
     const onClick_delete = (event) => {
         event.preventDefault();
         props.setMode('d');
-        props.setItemId(event.currentTarget.value);
+        props.setItemID(event.currentTarget.id);
     }
-
     const onClick_num = (event) => {
         event.preventDefault();
         props.setCurrentPage(event.currentTarget.value);
@@ -75,6 +74,9 @@ function Assign_List(props){
         if(props.category.length>0)
         console.log("category, type : ", props.category, props.type);
     },[props.category])
+    
+
+
     return (
         <Wrapper>
             <DropDown>
@@ -116,9 +118,9 @@ function Assign_List(props){
                 <ListBoard pagenum={props.pageNum}>
                     {props.boardList.map((item,index)=>
                     <div key={index}>
-                        <h1 onClick={onClick_revise}>{item}</h1>
-                        <h2 onClick={onClick_delete}>삭제</h2>
-                        </div>)}
+                        <h1 onClick={onClick_revise} id={index}>{item}</h1>
+                        <h2 onClick={onClick_delete} id={index}>삭제</h2>
+                    </div>)}
                 </ListBoard>
             }
             <NumList>
@@ -218,6 +220,7 @@ font-size: 15px;
 font-style: normal;
 font-weight: 600;
 
+cursor: pointer;
 z-index:2;
 
 display:flex;
@@ -272,6 +275,9 @@ div{
 width: 544px;
 height: 48px;
 flex-shrink: 0;
+
+background-color:white;
+border:none;
 
 display:flex;
 justify-content:space-between;

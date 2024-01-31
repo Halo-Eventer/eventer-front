@@ -3,18 +3,74 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import Assign_Info_Add from '../components/assign_info/Assign_Info_Add';
-import Assign_Info_Revise from '../components/assign_info/Assign_Info_Revise';
-
+import { Flex } from 'asset/Style';
 import { FlexBox_Column, FlexBox_Row, GlobalStyles, StyledLink } from './Info';
 
 import {UpperBar_Component,
   MiddleBar_Component1} from '../components/assign/Assign_Bar';
 
+import {getAll,getDetail} from '../apis/apis';
+
 import dropDown from '../images/DropDown.svg';
 import dropDown2 from '../images/DropDown2.svg';
 import next from '../images/Next.svg';
 export { dropDown, dropDown2, next };
+
+
+export const firstInfo = (category) => {
+  let tmp;
+
+  if(category === 'notice')
+    {
+      tmp =  {
+        title:"",
+        simpleExplanation:"",
+        subtitle:"",
+        content:"",
+
+        thumbnail:"",
+        images:[]
+      };  
+    }
+    else if(category==='store')
+    {
+      tmp = {
+          id:"",
+          name:"",
+          summary:"",
+          subtitle:"",
+          latitude:0,
+          longitude:0,
+          location:"",
+          isOperation:true,
+          operationHours:"",
+          type:"",
+    
+          thumbnail:"",
+          menus:[]
+        };  
+    }else
+    {
+      tmp = {
+        tag:"",
+        name:"",
+        summary:"",
+        subtitle:"",
+        content:"",
+        latitude:0,
+        longitude:0,
+        location:"",
+        isOperation:true,
+        operationHours:"",
+  
+        thumbnail:"",
+        images:[]
+      };  
+    }
+
+    return tmp;
+}
+
 
 function AssignPage_Home() {
   const navigate = useNavigate();
@@ -321,7 +377,26 @@ export const FestivalSelect_MainBox = styled.div`
 `;
 //=================메인박스 (대학교 선택, 대학선택 select, 버튼 등) : 끝
 
+export const Assign_Blank = styled.div`
+width: 352px;
+height: 724px;
+flex-shrink: 0;
 
+border-radius: 4px;
+border: 1px solid #EEE;
+background: linear-gradient(159deg, #F6F6F6 0%, rgba(244, 244, 244, 0.00) 48%, #F6F6F6 100%);
+
+display:flex;
+justify-content:center;
+align-items:center;
+`;
+
+export const AssignBox = styled(Flex)`
+  align-items:flex-start;
+  gap:32px;
+
+  margin-top: 32px;
+`;
 
 
 
