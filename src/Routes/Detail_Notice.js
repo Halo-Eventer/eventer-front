@@ -153,4 +153,15 @@ div{
 
     }
     h3{
- 
+        color: #46515B;
+        font-family: Pretendard;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+
+        padding:0;
+
+    }
+}
+`

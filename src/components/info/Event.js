@@ -83,4 +83,8 @@ const Section = styled.div`
       font-size: 14px;
       font-style: normal;
       font-weight: 400;
-      lin
+      line-height: 18px;
+      margin: 0;
+    }
+  }
+`;

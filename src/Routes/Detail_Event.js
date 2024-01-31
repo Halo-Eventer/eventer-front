@@ -168,4 +168,7 @@ div{
         line-height: 24px;
 
         margin:0;
-        paddi
+        padding:0;
+    }
+}
+`
