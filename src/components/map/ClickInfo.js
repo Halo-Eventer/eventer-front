@@ -1,26 +1,20 @@
 import styled, { css, keyframes } from 'styled-components';
-import Img from '../../asset/showImg.png';
 import FullInfo from './FullInfo';
 import Up from '../../asset/up.svg';
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
 import InfoBox from '../InfoBox';
-import { getDetailStore } from '../../apis/apis';
-import { getDetailInfo } from './getDetailInfo';
 function ClickInfo(props) {
-  console.log(props);
-  const navigate = useNavigate();
+  
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);
-  const [clickInfo, setClickInfo] = useState({});
-  const openId = props.openId;
   const setPopup = props.setPopup;
   useEffect(() => {
     setFull(false);
   }, [props.activeCategory]);
-  useEffect(() => {
-    getDetailInfo(props.data.id, setClickInfo, props.activeCategory);
-  }, [props.data]);
+  // useEffect(() => {
+  //   getDetailInfo(props.data.id, setClickInfo, props.activeCategory);
+  // }, [props.data]);
+  //clickInfo를 상위 컴포넌트에서 가져오면 됨.
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
@@ -35,7 +29,7 @@ function ClickInfo(props) {
 
   return full ? (
     <FullInfo
-      data={clickInfo}
+      data={props.clickInfo}
       popup={props.popup}
       close={close}
       setPopup={setPopup}
@@ -54,12 +48,12 @@ function ClickInfo(props) {
       </VectorBox>
       <InfoContainer style={{ width: '350px' }}>
         <InfoBox
-          data={clickInfo}
+          data={props.clickInfo}
           setFull={setFull}
           setPopup={setPopup}
           setClose={setClose}
         />
-        <DetailImg src={clickInfo.thumbnail}></DetailImg>
+        <DetailImg src={props.clickInfo.thumbnail}></DetailImg>
       </InfoContainer>
     </Container>
   );

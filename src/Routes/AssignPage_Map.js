@@ -23,6 +23,7 @@ function AssignPage_Map() {
   const id_param = useParams().id;
   const [category, setCategory] = useState('booth');
   const [categoryList, setCategoryList] = useState({
+    concert: '콘서트',
     booth: '부스',
     amenity: '편의시설',
     store: ['주점', '푸드트럭'],

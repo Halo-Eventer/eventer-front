@@ -1,5 +1,5 @@
 export const markerHandle = (naver, map, lat, lng, img, size, text) => {
-  console.log(img, text == '');
+  
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(lat, lng),
     map,
