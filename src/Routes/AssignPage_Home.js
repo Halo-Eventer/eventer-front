@@ -128,9 +128,8 @@ function AssignPage_Home() {
             value={festival}
           >
             <option value="세종대학교">세종대학교</option>
-            <option value="성균관대학교">성균관대학교</option>
-            <option value="기리보이">기리보이</option>
-            <option value="비와이">비와이</option>
+            <option value="Test1">Test1</option>
+            <option value="Test2">Test2</option>
           </select>
           <img src={dropDown} />
         </FestivalSelectBox>

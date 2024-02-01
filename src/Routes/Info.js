@@ -10,7 +10,7 @@ import home from '../images/Home.png';
 import happySejong from '../images/HappySejong.svg';
 import idol from '../images/Idol.svg';
 
-import {getAll} from '../apis/apis';
+import { getAll } from '../apis/apis';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -19,7 +19,7 @@ import 'slick-carousel/slick/slick-theme.css';
 function Info() {
   const navigate = useNavigate();
 
-  const festivalId=1;
+  const festivalId = 1;
   const [barPos, setBarPos] = useState('0');
   const [colorInfo, setColorInfo] = useState('white');
   const [colorMap, setColorMap] = useState('black');
@@ -52,49 +52,51 @@ function Info() {
     navigate(`/event/${eventId}`);
   };
 
-  
 
-//임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
-  const [eventList, setEventList]=useState([]);
-  const [noticeList,setNoticeList]=useState([]);
+
+  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+  const [eventList, setEventList] = useState([]);
+  const [noticeList, setNoticeList] = useState([]);
   const fetchList = (category) => {
-    let type="";
-    getAll(festivalId,category,type)
-    .then((response)=>{
-      if(response.data){
-        console.log("fetch List success",response.data);
-        if(category==='notice')
+    let type = "";
+    getAll(festivalId, category, type)
+      .then((response) => {
+        if (response.data) {
+          console.log("fetch List success", response.data);
+          if (category === 'notice')
             setNoticeList(response.data);
-        else if(category==='event')
+          else if (category === 'event')
             setEventList(response.data);
-      }else{
-        console.log("fetch List no data ;(",response);
-        if(category==='notice')
+        } else {
+          console.log("fetch List no data ;(", response);
+          if (category === 'notice')
             setNoticeList([]);
-        else if(category==='event')
+          else if (category === 'event')
             setEventList([]);
-      }
-    }).catch((error)=>{
-      console.log('fetch List error',error);
-    })
+        }
+      }).catch((error) => {
+        console.log('fetch List error', error);
+      })
   }
-  useEffect(()=>{
+  useEffect(() => {
     fetchList('notice');
-    fetchList('event');},[]);
- //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+    fetchList('event');
+  }, []);
+  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
 
 
   return (
-    <Wrapper style={{ height: '100vh' }}>
+    <Wrapper>
+      <LineDiv>
       <GlobalStyles />
-      <UpperBar>
-        <img src={happySejong}></img>
-      </UpperBar>
-      <FlexBox_Row style={{ width: '100%' }}>
-        <ImgBlock>
-          <StyledSlider {...settings}>
-            {noticeList.map((item, key) => {
-              // if (key === 0 || key === 4)
+        <UpperBar>
+          <img src={happySejong}></img>
+        </UpperBar>
+        <FlexBox_Row style={{ width: '100%' }}>
+          <ImgBlock>
+            <StyledSlider {...settings}>
+              {noticeList.map((item, key) => {
+                // if (key === 0 || key === 4)
                 return (
                   <ImgBoard
                     cursor="pointer"
@@ -105,20 +107,20 @@ function Info() {
                     src={item.thumbnail}
                   />
                 );
-              // else if (key === 1)
-              //   return (
-              //     <ImgBoard
-              //       cursor="pointer"
-              //       //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-              //       onClick={onClick_festivalInfo}
-              //       key={key}
-              //       data-value={key}
-              //       src={idol}
-              //     />
-              //   );
-            })}
+                // else if (key === 1)
+                //   return (
+                //     <ImgBoard
+                //       cursor="pointer"
+                //       //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+                //       onClick={onClick_festivalInfo}
+                //       key={key}
+                //       data-value={key}
+                //       src={idol}
+                //     />
+                //   );
+              })}
 
-            {eventList.map((item, key) => {
+              {eventList.map((item, key) => {
                 return (
                   <ImgBoard
                     cursor="pointer"
@@ -128,47 +130,42 @@ function Info() {
                     src={item.thumbnail}
                   />
                 );
-            })}
-          </StyledSlider>
-        </ImgBlock>
-      </FlexBox_Row>
-      <SecondBlock>
-        <InfoBox onClick={onClick_festivalInfo}>
-          <h1>공연정보</h1>
-          <h2>입장안내 / 티켓정보 / 공연일정</h2>
-        </InfoBox>
-        <NoticeBox onClick={onClick_festivalNoti}>
-          <h1>공지사항</h1>
-          <h2>이벤트/ 공지사항</h2>
-        </NoticeBox>
-      </SecondBlock>
+              })}
+            </StyledSlider>
+          </ImgBlock>
+        </FlexBox_Row>
+        <SecondBlock>
+          <InfoBox onClick={onClick_festivalInfo}>
+            <h1>공연정보</h1>
+            <h2>입장안내 / 티켓정보 / 공연일정</h2>
+          </InfoBox>
+          <NoticeBox onClick={onClick_festivalNoti}>
+            <h1>공지사항</h1>
+            <h2>이벤트/ 공지사항</h2>
+          </NoticeBox>
+        </SecondBlock>
+        </LineDiv>
     </Wrapper>
   );
 }
 export default Info;
-export {
-    Wrapper, FlexBox_Row, 
-    FlexBox_Column, GlobalStyles,
-    UpperBar,BkBtn,HomeBtn,Title,
-    StyledSlider, ImgBlock, ImgBoard, TopFixedDiv, StyledLink
-};
 //settings도 export하려고 했는데 얘는 함수 내부여서 안 됨.
 //무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
 
-const FlexBox_Row = styled.div`
+export const FlexBox_Row = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const FlexBox_Column = styled.div`
+export const FlexBox_Column = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
 @font-face {
     font-family: 'CWDangamAsac-Bold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
@@ -184,20 +181,34 @@ const GlobalStyles = createGlobalStyle`
 `;
 //스타일컴포넌트 전역스타일 (적용)
 
-const Wrapper = styled.div`
+
+export const LineDiv = styled.div`
+  @media screen and (min-width: 450px) {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:-3;
+
+    width: 392px;
+    border-width:0 1px 0 1px;
+    border-color:#ccc;
+    border-style:solid;
+
+    height:100vh;
+  }
+`;
+
+export const Wrapper = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
-  height:100vh;
+  height : 100vh;
   @media screen and (min-width: 450px) {
     width: 390px;
   }
   //CSS에서 @media 규칙 안의 screen은 미디어 유형을 지정하는 키워드
 
-  border: 1px solid #ccc;
-  border-top: none;
-  border-bottom: none;
 
   background-image: url(${backGround}); //css에서 jsx변수 쓰고싶다면 {}뿐만 아니라 $까지 추가
   background-repeat: repeat;
@@ -211,15 +222,18 @@ flex-direction:column;
 justify-content:flex-start;
 align-items:center;
 z-index:-3;
+
 `;
 
-const StyledLink = styled(Link)`
+export const StyledLink = styled(Link)`
 text-decoration:none;
 cursor:pointer;
 `;
 
+
+
 //for 가독성
-const TopFixedDiv = styled.div`
+export const TopFixedDiv = styled.div`
   position: fixed;
   width: 100%;
   @media screen and (min-width: 450px) {
@@ -231,7 +245,7 @@ const TopFixedDiv = styled.div`
   margin: 0;
   padding: 0;
 `;
-const UpperBar = styled.div`
+export const UpperBar = styled.div`
   position: relative;
   width: 100%;
   height: 48px;
@@ -244,7 +258,7 @@ const UpperBar = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const BkBtn = styled.div`
+export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
   left: 20px;
@@ -254,7 +268,7 @@ const BkBtn = styled.div`
   flex-shrink: 0;
   cursor: pointer;
 `;
-const HomeBtn = styled.div`
+export const HomeBtn = styled.div`
   position: absolute;
   right: 20px;
   bottom: 12px;
@@ -267,7 +281,7 @@ const HomeBtn = styled.div`
   margin: 0;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   color: #fff;
   text-align: center;
   font-family: Pretendard;
@@ -277,7 +291,7 @@ const Title = styled.h1`
 `;
 
 //스타일 슬라이더 활용 (다음엔 다른거 써보자)
-const StyledSlider = styled(Slider)`
+export const StyledSlider = styled(Slider)`
   .slick-dots {
     /* 여기에 원하는 스타일을 적용하세요. */
     z-index: 10;
@@ -305,22 +319,24 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const ImgBlock = styled.div`
+export const ImgBlock = styled.div`
   width: 390px;
 `;
 
-const ImgBoard = styled.img`
+export const ImgBoard = styled.img`
+  object-fit:cover;
+  object-position:center;
+    //이미지 태그용 (<> background-position)
   width: 100%;
-  height: 390px;
   flex-shrink: 0;
 
   z-index: 2;
   cursor: ${(props) => props.cursor};
 `;
 
-const InfoBox = styled.div``;
-const NoticeBox = styled.div``;
-const SecondBlock = styled.div`
+export const InfoBox = styled.div``;
+export const NoticeBox = styled.div``;
+export const SecondBlock = styled.div`
   width: 100%;
 
   margin-top: 32px;
@@ -371,3 +387,70 @@ const SecondBlock = styled.div`
     padding: 12px;
   }
 `;
+
+
+
+
+//For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
+
+export const MainBoard = styled.div`
+width:390px;
+
+margin-top:48px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
+
+background-color:white;
+`;
+
+
+export const TextBoard = styled.div`
+width:390px;
+
+margin-top:32px;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+div{
+    width: 390px;
+    flex-shrink: 0;
+
+    padding:16px 12px 16px 12px;
+    box-sizing:border-box;
+    z-index:2;
+    h1{
+        color: #000;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        margin-bottom:12px;
+    }
+    h2{
+        color: #000;
+        font-family: Pretendard;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height:24px;
+        margin-bottom:12px;
+    }
+    h3{
+        color: #46515B;
+        font-family: Pretendard;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+
+        margin:0;
+        padding:0;
+    }
+}
+`;
+//For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js

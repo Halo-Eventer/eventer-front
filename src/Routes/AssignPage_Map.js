@@ -145,20 +145,6 @@ function AssignPage_Map() {
         
       </AssignBox>
 
-      {/* <FlexBox_Column>
-
-          <InputBox>
-            <SemiTitle>카테고리</SemiTitle>
-            <Category name="category" onChange={handleInfo}>
-              <option value="notice">공지사항</option>
-              <option value="event">이벤트</option>
-            </Category>
-          </InputBox>
-          <Assign_Info_Add category={category} />
-          // <Assign_Info_Revise category={category}/> 
-
-        </FlexBox_Column> */}
-
 
     </Wrapper>
   );
