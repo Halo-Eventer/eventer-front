@@ -41,8 +41,13 @@ function Assign_List(props){
     }
     const onClick_revise = (event) => {
         event.preventDefault();
+
         props.setMode('r');
         props.setItemID(event.currentTarget.id);
+
+        console.log("event.currentTarget.datset.index",event.currentTarget.dataset.index)
+        props.setSE(
+            props.boardList[event.currentTarget.dataset.index].simpleExplanation);
     }
     const onClick_delete = (event) => {
         event.preventDefault();
@@ -144,7 +149,7 @@ function Assign_List(props){
                 <ListBoard pagenum={props.pageNum}>
                     {props.boardList.map((item,index)=>
                     <div key={index}>
-                        <h1 onClick={onClick_revise} id={item.id}>{
+                        <h1 onClick={onClick_revise} id={item.id} data-index={index}>{
                         props.category==='notice'
                         ?
                         item.title

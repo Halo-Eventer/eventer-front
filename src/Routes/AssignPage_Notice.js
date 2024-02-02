@@ -34,6 +34,8 @@ function AssignPage_Notice() {
     );
   const [type, setType]=useState("");
   const [boardList,setBoardList] = useState([]);
+  const [SE,setSE]=useState("");
+
   const [currentPage,setCurrentPage]=useState(1);
   const [pageNum,setPageNum]=useState(8);
   const [totalPages,setTotalPages]=useState(1);
@@ -68,6 +70,8 @@ function AssignPage_Notice() {
       if(typeof(response.data) === 'object'){
         console.log("fetch Detail success",response.data);
         setInfo(response.data);
+        if(category==='notice')
+          setInfo({...response.data, simpleExplanation:SE})
       }else{
         console.log("fetch Detail no data ;(",response);
       }
@@ -121,9 +125,13 @@ function AssignPage_Notice() {
         <Assign_List 
         category={category} setCategory={setCategory}
         categoryList = {categoryList} setType={setType}
+
         boardList={boardList} setBoardList={setBoardList}
+        setSE={setSE}
+
         currentPage={currentPage} setCurrentPage={setCurrentPage}
         pageNum={pageNum} totalPages={totalPages}
+
         itemid = {itemID} setItemID={setItemID}
         setMode = {setMode} setCancle={setCancle}/>
 
@@ -188,16 +196,4 @@ line-height:12.5px; //글자 위 기준으로 height가 설정됨
 margin:0;
 padding:0;
 `;
-export const ImageBox = styled.div`
-width:400px;
-p{
-align-self:flex-start;
-}
-`;
-export const Image = styled.img`
-width:200px;
-height:200px;
-border:1px solid gray;
-`;
-
-
+export const Imag

@@ -66,18 +66,29 @@ export const assignMenuApi = (storeId, menus) => {
     },
   });
 };
-export const assignApi = (props, category, imgs, thumbnail, festivalId) => {
-  if (thumbnail != '') props.thumbnail = thumbnail;
-  if (imgs != '') props.images = imgs;
+export const assignApi = (info, category, imgs, thumbnail, festivalId) => {
+  if (thumbnail != '') info.thumbnail = thumbnail;
+  if (imgs != '') info.images = imgs;
   
-  console.log(props);
-  return axios.post(`/${category}`, props, {
+  console.log("info in assignApi : ",info);
+  return axios.post(`/${category}`, info, {
     params: {
       festivalId: festivalId,
     },
   });
 };
-
+export const reviseApi = (info, category, img, thumbnail, id) => {
+  if (thumbnail != '') info.thumbnail = thumbnail;
+  if (img != []) info.images = img;
+  
+  console.log("info in reviseApi : ",info);
+  return axios.patch(`/${category}/${id}`, info);
+};
+export const reviseMenuApi = (menus) => {
+  menus.summary = '요약설명';
+  return axios.patch(`/menu/${menus.id}`, menus, {
+  });
+};
 // export const assignStoreApi = () => {
 //   const data = {
 //     name: '주점2',
@@ -100,21 +111,4 @@ export const assignApi = (props, category, imgs, thumbnail, festivalId) => {
 export const imageUploadApi = (imgInfo) => {
   const formData = new FormData();
   formData.append('image', imgInfo);
-  formData.append('dirName', 'festival');
-
-  return axios.post(`/image`, formData, {
-    headers: { 'Content-Type': 'multipart/form-data' },
-  });
-};
-
-//  NOH's
-export const reviseApi = (props, category, imgs, thumbnail, id) => {
-  if (thumbnail != '') props.thumbnail = thumbnail;
-  if (imgs != '') props.images = imgs;
-
-  const festivalId = 1;
-  console.log(props);
-  return axios.patch(`/${category}/${id}`, props);
-};
-
-
+  formData.append

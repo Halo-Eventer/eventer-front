@@ -206,4 +206,9 @@ padding:12px;
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
-    font-weight
+    font-weight: 400;
+    line-height:18px;
+    margin:0;
+}
+}
+`;
