@@ -69,9 +69,11 @@ function AssignPage_Notice() {
     .then((response)=>{
       if(typeof(response.data) === 'object'){
         console.log("fetch Detail success",response.data);
-        setInfo(response.data);
+
         if(category==='notice')
           setInfo({...response.data, simpleExplanation:SE})
+        else
+          setInfo(response.data);
       }else{
         console.log("fetch Detail no data ;(",response);
       }
@@ -196,4 +198,4 @@ line-height:12.5px; //글자 위 기준으로 height가 설정됨
 margin:0;
 padding:0;
 `;
-export const Imag
+e
