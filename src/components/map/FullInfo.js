@@ -28,6 +28,7 @@ function FullInfo(props) {
       </FullInfoBox>
       <WhiteLine />
       <DetailBox>
+        <Content>{data.content}</Content>
         <DetailImgContainer>
           {props.activeCategory == '2' || props.activeCategory == '3'
             ? data.menus?.map((e, i) => {
@@ -50,7 +51,6 @@ function FullInfo(props) {
                 );
               })}
         </DetailImgContainer>
-        <Content>{data.content}</Content>
       </DetailBox>
     </FullInfoContainer>
   );
