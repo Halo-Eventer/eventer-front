@@ -71,6 +71,7 @@ export const assignApi = (info, category, festivalId) => {
   return axios.post(`/${category}`, info, {
     params: {
       festivalId: festivalId,
+      type:info.type
     },
   });
 };
