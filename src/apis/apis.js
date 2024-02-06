@@ -66,10 +66,7 @@ export const assignMenuApi = (storeId, menus) => {
     },
   });
 };
-export const assignApi = (info, category, imgs, thumbnail, festivalId) => {
-  if (thumbnail != '') info.thumbnail = thumbnail;
-  if (imgs != '') info.images = imgs;
-  
+export const assignApi = (info, category, festivalId) => {
   console.log("info in assignApi : ",info);
   return axios.post(`/${category}`, info, {
     params: {
@@ -77,10 +74,7 @@ export const assignApi = (info, category, imgs, thumbnail, festivalId) => {
     },
   });
 };
-export const reviseApi = (info, category, img, thumbnail, id) => {
-  if (thumbnail != '') info.thumbnail = thumbnail;
-  if (img != []) info.images = img;
-  
+export const reviseApi = (info, category, id) => {
   console.log("info in reviseApi : ",info);
   return axios.patch(`/${category}/${id}`, info);
 };
@@ -111,4 +105,12 @@ export const reviseMenuApi = (menus) => {
 export const imageUploadApi = (imgInfo) => {
   const formData = new FormData();
   formData.append('image', imgInfo);
-  formData.append
+  formData.append('dirName', 'festival');
+
+  return axios.post(`/image`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
+
+
+

@@ -10,11 +10,7 @@ function AssignBtn(props) {
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, 
-    props.category, 
-    props.img, 
-    props.thumbnail,
-    festivalId)
+      assignApi(props.info, props.category, festivalId)
         .then((response) => {
           if (typeof(response.data)==='string') {
             console.log("response.data : ", response.data);
@@ -32,15 +28,11 @@ function AssignBtn(props) {
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, 
-    props.category, 
-    props.img, 
-    props.thumbnail,
-    festivalId)
+      assignApi(props.info, props.category, festivalId)
         .then((res) => {
           if (res.data.storeId) {
             console.log(res.data.storeId);
-            assignMenuApi(res.data.storeId, props.menus)
+            assignMenuApi(res.data.storeId, props.info.menus)
               .then((res) => {
                 console.log("res.data(menu) : ", res.data);
                 alert('해당 항목이 성공적으로 추가되었습니다.');
@@ -61,10 +53,11 @@ function AssignBtn(props) {
   };
 
   const reviseBoard = (id) => {
+    console.log("itemID in reviseBoard : ",id);
     let tmp = window.confirm("수정하시겠습니까?");
 
     if (tmp)
-      reviseApi(props.info, props.category, props.img, props.thumbnail,id)
+      reviseApi(props.info, props.category, id)
         .then((response) => {
           if (typeof(response.data) === 'object') {
             console.log("response.data : ", response.data);
@@ -80,13 +73,15 @@ function AssignBtn(props) {
   }
   const reviseMarker = (id) => {
     let tmp = window.confirm("수정하시겠습니까?");
-
+    id = Number(id) 
+      //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
+      //일단 태그에서 target해서 받아오는 값들은 웬만하면 string
     if (tmp)
-      reviseApi(props.info, props.category, props.img, props.thumbnail,id)
+      reviseApi(props.info, props.category, id)
         .then((res) => {
           if (res.data.storeId) {
             console.log(res.data.storeId);
-            reviseMenuApi(props.menus)
+            reviseMenuApi(props.info.menus)
               .then((res) => {
                 alert('해당 항목이 성공적으로 수정되었습니다.');
                 props.setMode("f");

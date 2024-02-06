@@ -48,10 +48,14 @@ function AssignBasicInfo(props) {
         value = {props.info.name} placeholder="제목"></Input>
       </InputDiv>
 
+      {
+      props.category==='event'
+      &&
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="subtitle" 
         value = {props.info.subtitle} placeholder="부제목"></Input>
       </InputDiv>
+      }
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input

@@ -198,4 +198,16 @@ line-height:12.5px; //글자 위 기준으로 height가 설정됨
 margin:0;
 padding:0;
 `;
-e
+export const ImageBox = styled.div`
+width:400px;
+p{
+align-self:flex-start;
+}
+`;
+export const Image = styled.img`
+width:200px;
+height:200px;
+border:1px solid gray;
+`;
+
+

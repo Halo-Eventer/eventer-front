@@ -11,7 +11,7 @@ function AssignThumbnail(props) {
     if(e.target.files[0]!=undefined){
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        props.setThumbnail(res.data);
+        props.setInfo({...props.info, thumbnail:res.data});
         setThumbnailPreview(res.data);
       })
       .catch((err) => {
@@ -19,6 +19,7 @@ function AssignThumbnail(props) {
       });
     }
   };
+
 
   // useEffect(()=>{
   //   console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
@@ -33,9 +34,11 @@ function AssignThumbnail(props) {
 
   useEffect(()=>{
     console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
-    setThumbnailPreview(props.thumbnail);
+    setThumbnailPreview(props.info.thumbnail);
     console.log("thumbnail changed!");}
-  ,[props.thumbnail,props.mode,props.itemID]);
+  ,[props.info.thumbnail,
+    props.mode,
+    props.itemID]);
 
   return (
     <InputBox>

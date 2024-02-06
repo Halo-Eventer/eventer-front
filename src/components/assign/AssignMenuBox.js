@@ -6,31 +6,31 @@ import { Input } from './Assign';
 import { imageUploadApi } from 'apis/apis';
 
 function AssignMenuBox(props) {
-  const [info, setInfo] = useState({});
+  const [menuInfo, setMenuInfo] = useState({});
   const [menuImg, setMenuImg] = useState("");
   const handleMenu = (e) => {
     const [id, value] = [e.target.id, e.target.value];
-    setInfo({ ...info, [id]: value });
+    setMenuInfo({ ...menuInfo, [id]: value });
   };
 
   useEffect(()=>{
     setMenuImg(props.fetchedImage);
   },[]);
   useEffect(() => {
-    const updatedMenus = props.menus.map((menu, i) => {
+    const updatedMenus = props.info.menus.map((menu, i) => {
       if (i === props.i) {
-        return { ...menu, ...info };
+        return { ...menu, ...menuInfo };
       }
       return menu;
     });
-    props.setMenus(updatedMenus);
-  }, [info]);
+    props.setInfo({...props.info,menus:updatedMenus});
+  }, [menuInfo]);
 
   const handleImg = (e) => {
     if(e.target.files[0]!=undefined){
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        setInfo({ ...info, ['image']: res.data });
+        setMenuInfo({ ...menuInfo, ['image']: res.data });
         setMenuImg(res.data);
       })
       .catch((err) => {

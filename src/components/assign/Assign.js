@@ -19,11 +19,13 @@ function Assign(props) {
    props.category처럼 일일이 props.를 달아주던가 해야함 */
 
 
-  const [img, setImg] = useState(props.info.images);
-  const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
-  const [menus, setMenus] = useState([]);
+
+  // const [img, setImg] = useState(props.info.images);
+  // const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
+  // const [menus, setMenus] = useState([]);
+
   const [noRender,setNoRender]=useState(false);
-  console.log(menus);
+  console.log(props.info.menus);
   console.log('category', props.category);
  
 
@@ -32,26 +34,27 @@ function Assign(props) {
       props.setInfo({ ...props.info, ['type']: props.type });
     }
   }, [props.category, props.type]);
-  console.log(props.info, props.category, thumbnail, menus);
+  console.log(props.info, props.category);
 
-  useEffect(()=>{
-    if(noRender)
-      setNoRender(false);
-    //Redering 차단(이번 백오피스 작업을 State 대성장의 발판으로 삼길)
-    else{
-      console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
-      setImg(props.info.images);
-      setThumbnail(props.info.thumbnail);
-      setMenus(props.info.menus);
-    }
-  },
-  [
-    props.info.images,
-    props.info.thumbnail,
-    props.info.menus,
-    props.itemID,
-    props.mode
-  ]);
+  // useEffect(()=>{
+  //   if(noRender)
+  //     setNoRender(false);
+  //   //Redering 차단(이번 백오피스 작업을 State 대성장의 발판으로 삼길)
+  //   else{
+  //     console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
+  //     setImg(props.info.images);
+  //     setThumbnail(props.info.thumbnail);
+  //     setMenus(props.info.menus);
+  //   }
+  // },
+  // [
+  //   props.info.images,
+  //   props.info.thumbnail,
+  //   props.info.menus,
+  //   props.itemID,
+  //   props.mode
+  // ]);
+
   //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
 
   return (
@@ -61,9 +64,9 @@ function Assign(props) {
         info={props.info}
         setInfo={props.setInfo}
         category={props.category}
-        img={img}
-        thumbnail={thumbnail}
-        menus={menus}
+        // img={img}
+        // thumbnail={thumbnail}
+        // menus={menus}
 
         cancle={props.cancle}
         setCancle={props.setCancle}
@@ -71,12 +74,16 @@ function Assign(props) {
         setMode = {props.setMode}
       />
       <InfoContainer>
-        {props.category == 'store' ? (
+        {
+        props.category != 'amenity'
+        &&
+        (props.category == 'store' 
+        ? (
           <AssignMenu
-            menus={menus}
-            thumbnail={thumbnail}
-            setThumbnail={setThumbnail}
-            setMenus={setMenus}
+            // menus={menus}
+            // thumbnail={thumbnail}
+            // setThumbnail={setThumbnail}
+            // setMenus={setMenus}
 
             info={props.info}
             setInfo={props.setInfo}
@@ -88,10 +95,10 @@ function Assign(props) {
           />
         ) : (
           <AssignImage
-            img={img}
-            setImg={setImg}
-            thumbnail={thumbnail}
-            setThumbnail={setThumbnail}
+            // img={img}
+            // setImg={setImg}
+            // thumbnail={thumbnail}
+            // setThumbnail={setThumbnail}
 
             info={props.info}
             setInfo={props.setInfo}
@@ -101,7 +108,7 @@ function Assign(props) {
 
             setNoRender={setNoRender}
           />
-        )}
+        ))}
 
         {props.category == 'notice'
         ?

@@ -31,6 +31,7 @@ function AssignPage_Map() {
   const [pageNum, setPageNum] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
   const [itemID, setItemID] = useState(1);
+  const [SE,setSE]=useState("");
 
   const [mode, setMode] = useState("");
   const [cancle, setCancle] = useState(true);
@@ -75,19 +76,19 @@ function AssignPage_Map() {
 
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry (Assign_Map):",category);
     setCancle(true);
     setMode("");
-    setInfo(firstInfo(category));
+    setInfo(firstInfo(category,type));
     fetchList();
-  },[category])
+  },[category,type])
 
   useEffect(()=>
   {
     console.log("mode (AssignPage_Map):",mode);
     if(mode == 'a')
     {
-      setInfo(firstInfo(category));  
+      setInfo(firstInfo(category,type));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }
@@ -118,9 +119,13 @@ function AssignPage_Map() {
         <Assign_List 
         category={category} setCategory={setCategory}
         categoryList = {categoryList} setType={setType}
+
         boardList={boardList} setBoardList={setBoardList}
+        setSE={setSE}
+
         currentPage={currentPage} setCurrentPage={setCurrentPage}
         pageNum={pageNum} totalPages={totalPages}
+
         itemid = {itemID} setItemID={setItemID}
         setMode = {setMode} setCancle={setCancle}/>
 

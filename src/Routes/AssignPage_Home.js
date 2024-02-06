@@ -17,7 +17,7 @@ import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 export { dropDown, dropDown2, next };
 
 
-export const firstInfo = (category) => {
+export const firstInfo = (category,type) => {
   let tmp;
   console.log("category in firstInfo",category);
   if(category === 'notice')
@@ -38,13 +38,13 @@ export const firstInfo = (category) => {
           id:"",
           name:"",
           summary:"",
-          subtitle:"",
+          content:"",
           latitude:0,
           longitude:0,
           location:"",
           isOperation:true,
           operationHours:"",
-          type:"",
+          type:type,
     
           thumbnail:thumbnail_preview,
           menus:[]
