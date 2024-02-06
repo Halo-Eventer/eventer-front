@@ -84,24 +84,6 @@ export const reviseMenuApi = (menus) => {
   return axios.patch(`/menu/${menus.id}`, menus, {
   });
 };
-// export const assignStoreApi = () => {
-//   const data = {
-//     name: '주점2',
-//     summary: '육회와 사케를 팔고 있어요',
-//     isOperation: true,
-//     operationHours: '16:00~22:00',
-//     latitude: 37.550591791122294,
-//     longitude: 127.07476720170447,
-//     type: '주점',
-//   };
-
-//   const festivalId = 1;
-//   return axios.post(`/store`, data, {
-//     params: {
-//       festivalId: festivalId,
-//     },
-//   });
-// };
 
 export const imageUploadApi = (imgInfo) => {
   const formData = new FormData();
