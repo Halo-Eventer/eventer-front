@@ -38,9 +38,11 @@ function AssignBasicInfo(props) {
 
     props.setInfo({ ...info, [id]: value });
   };
+  
   useEffect(() => {
     console.log(props.info);
   }, [props.info]);
+
   return (
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
@@ -48,10 +50,14 @@ function AssignBasicInfo(props) {
         value = {props.info.name} placeholder="제목"></Input>
       </InputDiv>
 
+      {
+      props.category==='event'
+      &&
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="subtitle" 
         value = {props.info.subtitle} placeholder="부제목"></Input>
       </InputDiv>
+      }
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
@@ -99,6 +105,8 @@ function AssignBasicInfo(props) {
         value = {props.info.location}placeholder="위치"></Input>
       </InputDiv>
 
+      {props.category!=='amenity'
+      &&
       <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
           value={props.info.content}
@@ -109,8 +117,9 @@ function AssignBasicInfo(props) {
           placeholder="본문 내용"
           style={{ marginTop: '12px', height: '96px' }}
         ></TextArea>
-
       </TextAreaDiv>
+      }
+      
     </InputContainer>
   );
 }

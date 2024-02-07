@@ -1,22 +1,16 @@
 import styled from 'styled-components';
-import { assignApi, assignMenuApi, reviseApi } from '../../apis/apis';
+import { assignApi, assignMenuApi, reviseApi, reviseMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
   const festivalId = 1;
-  console.log(props);
 
   const assignBoard = () => {
-    let tmp = window.confirm('추가하시겠습니까?');
+    console.log(props.info);
+    let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(
-        props.info,
-        props.category,
-        props.img,
-        props.thumbnail,
-        festivalId
-      )
+      assignApi(props.info, props.category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
             console.log('response.data : ', response.data);
@@ -29,21 +23,15 @@ function AssignBtn(props) {
         });
   };
   const assignMarker = () => {
-    let tmp = window.confirm('추가하시겠습니까?');
+    console.log(props.info);
+    let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(
-        props.info,
-        props.category,
-        props.img,
-        props.thumbnail,
-        props.type,
-        festivalId
-      )
+      assignApi(props.info, props.category, festivalId)
         .then((res) => {
           if (res.data.storeId) {
-            console.log(res.data.storeId);
-            assignMenuApi(res.data.storeId, props.menus)
+            console.log("일단 가게등록은 성공",res.data.storeId, props.info.menus);
+            assignMenuApi(res.data.storeId, props.info.menus)
               .then((res) => {
                 console.log('res.data(menu) : ', res.data);
                 alert('해당 항목이 성공적으로 추가되었습니다.');
@@ -59,53 +47,58 @@ function AssignBtn(props) {
           }
         })
         .catch((err) => {
+          console.log("등록 실패");
           alert(err.data);
         });
   };
 
   const reviseBoard = (id) => {
-    reviseApi(
-      props.info,
-      props.category,
-      props.img,
-      props.thumbnail,
-      props.itemID
-    )
-      .then((response) => {
-        if (response.data.length > 0) {
-          console.log('response.data : ', response.data);
-          alert('수정되었습니다');
-        } else console.log('no response.data ;(');
-      })
-      .catch((error) => {
-        console.log('postData error : ', error);
-      });
-  };
+    console.log(props.info);
+    let tmp = window.confirm("수정하시겠습니까?");
+
+    if (tmp)
+      reviseApi(props.info, props.category, id)
+        .then((response) => {
+          if (typeof(response.data) === 'object') {
+            console.log("response.data : ", response.data);
+            alert("해당 항목이 성공적으로 수정되었습니다.");
+            props.setMode("f");
+          }
+          else
+            console.log("no response.data ;(");
+        })
+        .catch((error) => {
+          console.log('patchData error : ', error);
+        })
+  }
   const reviseMarker = (id) => {
-    reviseApi(
-      props.info,
-      props.category,
-      props.img,
-      props.thumbnail,
-      props.itemID
-    )
-      .then((res) => {
-        if (res.data.storeId) {
-          console.log(res.data.storeId);
-          assignMenuApi(res.data.storeId, props.menus)
-            .then((res) => {
-              alert('수정되었습니다.');
-            })
-            .catch((err) => {
-              alert('메뉴를 다시 수정해주십시오.');
-            });
-        } else {
-          alert('수정되었습니다.');
-        }
-      })
-      .catch((err) => {
-        alert(err.data);
-      });
+    console.log(props.info);
+    let tmp = window.confirm("수정하시겠습니까?");
+    id = Number(id) 
+      //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
+      //일단 태그에서 target해서 받아오는 값들은 웬만하면 string
+    if (tmp)
+      reviseApi(props.info, props.category, id)
+        .then((res) => {
+          if (res.data.storeId) {
+            console.log(res.data.storeId);
+            reviseMenuApi(props.info.menus)
+              .then((res) => {
+                alert('해당 항목이 성공적으로 수정되었습니다.');
+                props.setMode("f");
+              })
+              .catch((err) => {
+                alert('메뉴를 다시 수정해주십시오.');
+              });
+          } else {
+            alert('수정되었습니다.');
+            console.log('revise succenss', res.data);
+            props.setMode("f");
+          }
+        })
+        .catch((err) => {
+          alert(err.data);
+        });
   };
 
   const onClick_cancle = () => {
@@ -119,18 +112,21 @@ function AssignBtn(props) {
         취소하기
       </Button>
 
-      {props.mode == 'a' ? (
-        props.category == 'notice' ? (
+      {props.mode == 'a' 
+      ? 
+        props.category == 'notice' 
+        ? 
           <Button onClick={assignBoard}>추가하기</Button>
-        ) : (
+        : 
           <Button onClick={assignMarker}>추가하기</Button>
-        )
-      ) : props.category == 'notice' ? (
-        <Button onClick={() => reviseBoard(props.id)}>수정하기</Button>
-      ) : (
-        //onClick함수에 인자넣는 함수를 넣을 때 화살표함수로 넣을 것
-        <Button onClick={() => reviseMarker(props.id)}>수정하기</Button>
-      )}
+      :
+        props.category == 'notice'
+        ?
+          <Button onClick={() => reviseBoard(props.itemID)}>수정하기</Button>
+          //onClick함수에 인자넣는 함수를 넣을 때 화살표함수로 넣을 것
+        :
+          <Button onClick={() => reviseMarker(props.itemID)}>수정하기</Button>
+      }
     </Flex>
   );
 }

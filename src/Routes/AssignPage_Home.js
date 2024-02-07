@@ -17,9 +17,9 @@ import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 export { dropDown, dropDown2, next };
 
 
-export const firstInfo = (category) => {
+export const firstInfo = (category,type) => {
   let tmp;
-  console.log("category in firstInfo",category);
+  console.log("category, type in firstInfo : ",category, type);
   if(category === 'notice')
     {
       tmp =  {
@@ -38,13 +38,13 @@ export const firstInfo = (category) => {
           id:"",
           name:"",
           summary:"",
-          subtitle:"",
+          content:"",
           latitude:0,
           longitude:0,
           location:"",
           isOperation:true,
           operationHours:"",
-          type:"",
+          type:type,
     
           thumbnail:thumbnail_preview,
           menus:[]
@@ -128,9 +128,8 @@ function AssignPage_Home() {
             value={festival}
           >
             <option value="세종대학교">세종대학교</option>
-            <option value="성균관대학교">성균관대학교</option>
-            <option value="기리보이">기리보이</option>
-            <option value="비와이">비와이</option>
+            <option value="Test1">Test1</option>
+            <option value="Test2">Test2</option>
           </select>
           <img src={dropDown} />
         </FestivalSelectBox>

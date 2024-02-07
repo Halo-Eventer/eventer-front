@@ -34,6 +34,8 @@ function AssignPage_Notice() {
     );
   const [type, setType]=useState("");
   const [boardList,setBoardList] = useState([]);
+  const [SE,setSE]=useState("");
+
   const [currentPage,setCurrentPage]=useState(1);
   const [pageNum,setPageNum]=useState(8);
   const [totalPages,setTotalPages]=useState(1);
@@ -67,7 +69,11 @@ function AssignPage_Notice() {
     .then((response)=>{
       if(typeof(response.data) === 'object'){
         console.log("fetch Detail success",response.data);
-        setInfo(response.data);
+
+        if(category==='notice')
+          setInfo({...response.data, simpleExplanation:SE})
+        else
+          setInfo(response.data);
       }else{
         console.log("fetch Detail no data ;(",response);
       }
@@ -121,9 +127,13 @@ function AssignPage_Notice() {
         <Assign_List 
         category={category} setCategory={setCategory}
         categoryList = {categoryList} setType={setType}
+
         boardList={boardList} setBoardList={setBoardList}
+        setSE={setSE}
+
         currentPage={currentPage} setCurrentPage={setCurrentPage}
         pageNum={pageNum} totalPages={totalPages}
+
         itemid = {itemID} setItemID={setItemID}
         setMode = {setMode} setCancle={setCancle}/>
 

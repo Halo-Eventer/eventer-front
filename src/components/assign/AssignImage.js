@@ -18,8 +18,9 @@ function AssignImage(props) {
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        props.setImg([...props.img, res.data]);
-        setImagePreview([...props.img, res.data]);
+        let tmp = [...props.info.images, res.data]
+        props.setInfo({...props.info,images:tmp});
+        setImagePreview([...props.info.images, res.data]);
 
       })
       .catch((err) => {
@@ -28,11 +29,11 @@ function AssignImage(props) {
   };
 
   const handleDeleteImages = (deleteImg) => {
-    const processedImages = props.img.filter((images) => {
+    const processedImages = props.info.images.filter((images) => {
       return deleteImg != images;
     });
 
-    props.setImg(processedImages);
+    props.setInfo({...props.info,images:processedImages});
     setImagePreview(processedImages);
     // const { type, ...rest } = props.img;
     // props.setImg([...rest]);
@@ -42,23 +43,27 @@ function AssignImage(props) {
 
   useEffect(()=>{
     console.log("IMAGE RERENDERING!! NOT MOUNTING",props.mode);
-    setImagePreview(props.img);
+    setImagePreview(props.info.images);
     }
-    ,[props.img,props.mode,props.itemID]);
+    ,[props.info.images,
+      props.mode,
+      props.itemID]);
 
-  useEffect(()=>{
-      props.setInfo({...props.info,
-        thumbnail:props.thumbnail,
-        images:props.img});
-      props.setNoRender(true);
-  },[props.thumbnail,props.img])
+  // useEffect(()=>{
+  //     props.setInfo({...props.info,
+  //       thumbnail:props.thumbnail,
+  //       images:props.img});
+  //     props.setNoRender(true);
+  // },[props.thumbnail,props.img])
 
   return (
     <div>
       <AssignThumbnail 
-      thumbnail = {props.thumbnail}
-      setThumbnail={props.setThumbnail}
-
+      // thumbnail = {props.thumbnail}
+      // setThumbnail={props.setThumbnail}
+      info={props.info}
+      setInfo={props.setInfo}
+      
       mode={props.mode}
       itemID={props.itemID}
       />

@@ -9,38 +9,45 @@ import images_preview from 'asset/assign/input_images.png';
 
 function AssignMenu(props) {
   const handleAddMenu = () => {
-    props.setMenus([...props.menus, {image:images_preview}]);
+    let tmp = [...(props.info.menus||[]),{image:images_preview}]
+    props.setInfo({...props.info, menus:tmp});
   };
   const handleDeleteMenuBox = (menuI) => {
-    const filteredMenus = props.menus?.filter((e, i) => i !== menuI);
-    props.setMenus(filteredMenus);
+    const filteredMenus = props.info.menus?.filter((e, i) => i !== menuI);
+    props.setInfo({...props.info, menus : filteredMenus});
   };
 
-  useEffect(()=>{
-      props.setInfo({...props.info,
-        thumbnail:props.thumbnail, 
-        menus:props.menus});
-        props.setNoRender(true);
-  },[props.thumbnail,props.menus])
+  // useEffect(()=>{
+  //     props.setInfo({...props.info,
+  //       thumbnail:props.thumbnail, 
+  //       menus:props.menus});
+  //       props.setNoRender(true);
+  // },[props.thumbnail,props.menus])
 
 
   return (
     <div style={{ width: '352px' }}>
       <AssignThumbnail
-        thumbnail={props.thumbnail}
-        setThumbnail={props.setThumbnail}
+        // thumbnail={props.thumbnail}
+        // setThumbnail={props.setThumbnail}
+        info={props.info}
+        setInfo={props.setInfo}
 
         mode={props.mode}
         itemID={props.itemID}/>
         
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
-      {props.menus?.map((e, i) => {
+      {props.info.menus?.map((e, i) => {
         return (
           <AssignMenuBox
-            i={i}
             onDelete={() => handleDeleteMenuBox(i)}
-            setMenus={props.setMenus}
-            menus={props.menus}
+
+            e={e}
+            i={i}
+
+            info={props.info}
+            setInfo={props.setInfo}
+
             fetchedImage = {e.image}
           />
         );

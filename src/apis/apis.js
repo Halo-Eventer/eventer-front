@@ -20,10 +20,10 @@ export const getAllNotice = (festivalId) => {
 };
 export const getAllConcert = (festivalId) => {
   return axios.get(`/concert?festivalId=${festivalId}`);
-};
-export const getDetailConcert = (id) => {
-  return axios.get(`/concert/${id}`);
-};
+}
+export const getDetailConcert = (id)=>{
+    return axios.get(`/concert/${id}`);
+}
 export const getDetailNotice = (id) => {
   return axios.get(`/notice/${id}`);
 };
@@ -59,51 +59,30 @@ export const deleteDetail = (category, id) => {
 };
 
 export const assignMenuApi = (storeId, menus) => {
-  menus.summary = '요약설명';
   return axios.post(`/menu`, menus, {
     params: {
       storeId: storeId,
     },
   });
 };
-export const assignApi = (
-  props,
-  category,
-  imgs,
-  thumbnail,
-  type,
-  festivalId
-) => {
-  if (thumbnail != '') props.thumbnail = thumbnail;
-  if (imgs != '') props.images = imgs;
-  if (type == '') type = '기타';
-  console.log(props);
-  return axios.post(`/${category}`, props, {
+export const assignApi = (info, category, festivalId) => {
+  console.log("info in assignApi : ",info);
+
+  return axios.post(`/${category}`, info, {
     params: {
       festivalId: festivalId,
-      type: type,
+      type:info.type
     },
   });
 };
-
-// export const assignStoreApi = () => {
-//   const data = {
-//     name: '주점2',
-//     summary: '육회와 사케를 팔고 있어요',
-//     isOperation: true,
-//     operationHours: '16:00~22:00',
-//     latitude: 37.550591791122294,
-//     longitude: 127.07476720170447,
-//     type: '주점',
-//   };
-
-//   const festivalId = 1;
-//   return axios.post(`/store`, data, {
-//     params: {
-//       festivalId: festivalId,
-//     },
-//   });
-// };
+export const reviseApi = (info, category, id) => {
+  console.log("info in reviseApi : ", info);
+  return axios.patch(`/${category}/${id}`, info);
+};
+export const reviseMenuApi = (menus) => {
+  return axios.patch(`/menu/${menus.id}`, menus, {
+  });
+};
 
 export const imageUploadApi = (imgInfo) => {
   const formData = new FormData();
@@ -115,12 +94,5 @@ export const imageUploadApi = (imgInfo) => {
   });
 };
 
-//  NOH's
-export const reviseApi = (props, category, imgs, thumbnail, id) => {
-  if (thumbnail != '') props.thumbnail = thumbnail;
-  if (imgs != '') props.images = imgs;
 
-  const festivalId = 1;
-  console.log(props, id);
-  return axios.patch(`/${category}/${id}`, props);
-};
+

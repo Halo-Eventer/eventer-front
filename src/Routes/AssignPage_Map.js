@@ -30,6 +30,7 @@ function AssignPage_Map() {
   const [pageNum, setPageNum] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
   const [itemID, setItemID] = useState(1);
+  const [SE,setSE]=useState("");
 
   const [mode, setMode] = useState('');
   const [cancle, setCancle] = useState(true);
@@ -72,21 +73,27 @@ function AssignPage_Map() {
       });
   };
 
-  useEffect(() => {
-    console.log('cateogry (Assign_Notice):', category);
+  useEffect(()=>
+  {
+    console.log("cateogry, type (Assign_Map):",category, type);
     setCancle(true);
-    setMode('');
-    setInfo(firstInfo(category));
+    setMode("");
+    setInfo(firstInfo(category,type));
     fetchList();
-  }, [category]);
+  },[category,type])
 
-  useEffect(() => {
-    console.log('mode (AssignPage_Map):', mode);
-    if (mode == 'a') {
-      setInfo(firstInfo(category));
-      //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
+  useEffect(()=>
+  {
+    console.log("mode (AssignPage_Map):",mode);
+    if(mode == 'a')
+    {
+      setInfo(firstInfo(category,type));  
+        //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
-    } else if (mode == 'r') {
+    }
+    else if(mode == 'r')
+    {
+      setInfo(firstInfo(category,type));
       fetchDetail();
       setCancle(false);
     } else if (mode == 'f') {
@@ -120,36 +127,41 @@ function AssignPage_Map() {
           setCancle={setCancle}
         />
 
-        {cancle ? (
-          <Assign_Blank />
-        ) : (
-          <Assign
-            category={category}
-            cancle={cancle}
-            mode={mode}
-            setMode={setMode}
-            type={type}
-            itemID={itemID}
-            info={info}
-            setInfo={setInfo}
-            setCancle={setCancle}
-          />
-        )}
+        <Assign_List 
+        category={category} setCategory={setCategory}
+        categoryList = {categoryList} setType={setType}
+
+        boardList={boardList} setBoardList={setBoardList}
+        setSE={setSE}
+
+        currentPage={currentPage} setCurrentPage={setCurrentPage}
+        pageNum={pageNum} totalPages={totalPages}
+
+        itemid = {itemID} setItemID={setItemID}
+        setMode = {setMode} setCancle={setCancle}/>
+
+        {cancle 
+        ?
+        <Assign_Blank/>
+        :
+        <Assign 
+        category={category}
+        cancle = {cancle}
+
+        mode = {mode}
+        setMode = {setMode}
+        
+        itemID = {itemID}
+
+        info={info}
+        setInfo={setInfo}
+
+        setCancle = {setCancle}/>
+        }
+        
       </AssignBox>
 
-      {/* <FlexBox_Column>
 
-          <InputBox>
-            <SemiTitle>카테고리</SemiTitle>
-            <Category name="category" onChange={handleInfo}>
-              <option value="notice">공지사항</option>
-              <option value="event">이벤트</option>
-            </Category>
-          </InputBox>
-          <Assign_Info_Add category={category} />
-          // <Assign_Info_Revise category={category}/> 
-
-        </FlexBox_Column> */}
     </Wrapper>
   );
 }
