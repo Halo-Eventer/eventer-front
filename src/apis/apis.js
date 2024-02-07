@@ -59,7 +59,6 @@ export const deleteDetail = (category,id) => {
 }
 
 export const assignMenuApi = (storeId, menus) => {
-  menus.summary = '요약설명';
   return axios.post(`/menu`, menus, {
     params: {
       storeId: storeId,
@@ -68,6 +67,7 @@ export const assignMenuApi = (storeId, menus) => {
 };
 export const assignApi = (info, category, festivalId) => {
   console.log("info in assignApi : ",info);
+
   return axios.post(`/${category}`, info, {
     params: {
       festivalId: festivalId,
@@ -76,11 +76,10 @@ export const assignApi = (info, category, festivalId) => {
   });
 };
 export const reviseApi = (info, category, id) => {
-  console.log("info in reviseApi : ",info);
+  console.log("info in reviseApi : ", info);
   return axios.patch(`/${category}/${id}`, info);
 };
 export const reviseMenuApi = (menus) => {
-  menus.summary = '요약설명';
   return axios.patch(`/menu/${menus.id}`, menus, {
   });
 };

@@ -66,6 +66,7 @@ function AssignMenuBox(props) {
               onChange={handleMenu}
               id="name"
               placeholder="메뉴 이름 작성"
+              value={props.e.name}
             />
           </InputBox>
           <InputBox style={{ marginTop: '4px' }}>
@@ -73,6 +74,7 @@ function AssignMenuBox(props) {
               onChange={handleMenu}
               id="price"
               placeholder="가격"
+              value={props.e.price}
             />
           </InputBox>
         </div>

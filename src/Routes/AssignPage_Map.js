@@ -76,7 +76,7 @@ function AssignPage_Map() {
 
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Map):",category);
+    console.log("cateogry, type (Assign_Map):",category, type);
     setCancle(true);
     setMode("");
     setInfo(firstInfo(category,type));
@@ -94,6 +94,7 @@ function AssignPage_Map() {
     }
     else if(mode == 'r')
     {
+      setInfo(firstInfo(category,type));
       fetchDetail();
       setCancle(false);
 

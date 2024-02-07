@@ -19,7 +19,7 @@ export { dropDown, dropDown2, next };
 
 export const firstInfo = (category,type) => {
   let tmp;
-  console.log("category in firstInfo",category);
+  console.log("category, type in firstInfo : ",category, type);
   if(category === 'notice')
     {
       tmp =  {

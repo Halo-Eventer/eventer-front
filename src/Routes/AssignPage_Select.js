@@ -23,7 +23,7 @@ function AssignPage_Select() {
 
 
   return (
-   <Wrapper style={{height:'800px'}}>
+   <Wrapper>
       <GlobalStyles/>
        <UpperBar_Component/>
         {/* <FestivalSelectBox>
@@ -38,21 +38,23 @@ function AssignPage_Select() {
         </FestivalSelectBox> */}
         <MiddleBar_Component2 id_param={id_param}/>
         <MainBox>
-          <StyledLink to={`/assign_rending/${id_param}`}>
-            <PageBtn><h1>랜딩관리 페이지</h1></PageBtn>
+          <StyledLink to={`/assign_notice/${id_param}`}>
+            <PageBtn><h1>공지관리 페이지</h1></PageBtn>
           </StyledLink>
+
+          {/* <StyledLink to={`/assign_rending/${id_param}`}>
+            <PageBtn><h1>랜딩관리 페이지</h1></PageBtn>
+          </StyledLink> */}
           
           <StyledLink to={`/assign_map/${id_param}`}>
             <PageBtn><h1>지도관리 페이지</h1></PageBtn>
           </StyledLink>
 
-          <StyledLink to={`/assign_performance/${id_param}`}>
+          {/* <StyledLink to={`/assign_performance/${id_param}`}>
             <PageBtn><h1>공연관리 페이지</h1></PageBtn>
-          </StyledLink>
+          </StyledLink> */}
 
-          <StyledLink to={`/assign_notice/${id_param}`}>
-            <PageBtn><h1>공지관리 페이지</h1></PageBtn>
-          </StyledLink>
+          
         </MainBox>
    </Wrapper>
   );
@@ -64,11 +66,10 @@ export default AssignPage_Select;
 export const MainBox = styled.div`
 position:absolute;
 left:50%;
-top:${GRID_WIDTH*0.15}px;
-transform:translate(-50%,0);
+top:50%;
+transform:translate(-50%,-50%);
 
 display:grid;
-grid-template-rows: repeat(2,1fr);
 grid-template-columns:repeat(2,1fr);
 gap:32px;
 //grid에서 gap정하면 전체크기가 커져버림
@@ -76,8 +77,8 @@ gap:32px;
 export const PageBtn = styled.div`
 position:relative;
 
-width: 448px;
-height: 256px;
+width: 400px;
+height: 300px;
 flex-shrink: 0;
 
 border-radius: 8px;

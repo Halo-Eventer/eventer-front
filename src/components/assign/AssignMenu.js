@@ -40,13 +40,14 @@ function AssignMenu(props) {
       {props.info.menus?.map((e, i) => {
         return (
           <AssignMenuBox
-            i={i}
             onDelete={() => handleDeleteMenuBox(i)}
+
+            e={e}
+            i={i}
+
             info={props.info}
             setInfo={props.setInfo}
 
-            // setMenus={props.setMenus}
-            // menus={props.menus}
             fetchedImage = {e.image}
           />
         );

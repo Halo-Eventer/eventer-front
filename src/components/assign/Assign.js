@@ -11,51 +11,16 @@ import AssignMenu from './AssignMenu';
 import AssignBasicInfo_BoardOnly from './AssignBasicInfo_Board';
 
 function Assign(props) {
-  //const [info, setInfo] = useState(props.itemInfo);
-
   /*const [category,setCategory] = useState(props.category);
    => 이렇게 하면 하위 컴포넌트에서 렌더링이 한박자 늦게됨. 
    그냥 fucntion Assign({category})를 하던가
    props.category처럼 일일이 props.를 달아주던가 해야함 */
-
-
-
-  // const [img, setImg] = useState(props.info.images);
-  // const [thumbnail, setThumbnail] = useState(props.info.thumbnail);
-  // const [menus, setMenus] = useState([]);
 
   const [noRender,setNoRender]=useState(false);
   console.log(props.info.menus);
   console.log('category', props.category);
  
 
-  useEffect(() => {
-    if (props.category == 'store') {
-      props.setInfo({ ...props.info, ['type']: props.type });
-    }
-  }, [props.category, props.type]);
-  console.log(props.info, props.category);
-
-  // useEffect(()=>{
-  //   if(noRender)
-  //     setNoRender(false);
-  //   //Redering 차단(이번 백오피스 작업을 State 대성장의 발판으로 삼길)
-  //   else{
-  //     console.log("RERENDERING!! NOT MOUNTING!: ",props.info);
-  //     setImg(props.info.images);
-  //     setThumbnail(props.info.thumbnail);
-  //     setMenus(props.info.menus);
-  //   }
-  // },
-  // [
-  //   props.info.images,
-  //   props.info.thumbnail,
-  //   props.info.menus,
-  //   props.itemID,
-  //   props.mode
-  // ]);
-
-  //for rerendering("상위 컴포넌트의 setState 비동기 변화"에 같이 리렌더링 되도록)
 
   return (
     <AssignContainer>

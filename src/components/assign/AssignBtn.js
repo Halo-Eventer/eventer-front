@@ -4,9 +4,9 @@ import { Flex } from 'asset/Style';
 
 function AssignBtn(props) {
   const festivalId = 1;
-  console.log(props);
 
   const assignBoard = () => {
+    console.log(props.info);
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
@@ -25,13 +25,14 @@ function AssignBtn(props) {
         })
   }
   const assignMarker = () => {
+    console.log(props.info);
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
       assignApi(props.info, props.category, festivalId)
         .then((res) => {
           if (res.data.storeId) {
-            console.log(res.data.storeId);
+            console.log("일단 가게등록은 성공",res.data.storeId, props.info.menus);
             assignMenuApi(res.data.storeId, props.info.menus)
               .then((res) => {
                 console.log("res.data(menu) : ", res.data);
@@ -48,12 +49,13 @@ function AssignBtn(props) {
           }
         })
         .catch((err) => {
+          console.log("등록 실패");
           alert(err.data);
         });
   };
 
   const reviseBoard = (id) => {
-    console.log("itemID in reviseBoard : ",id);
+    console.log(props.info);
     let tmp = window.confirm("수정하시겠습니까?");
 
     if (tmp)
@@ -72,6 +74,7 @@ function AssignBtn(props) {
         })
   }
   const reviseMarker = (id) => {
+    console.log(props.info);
     let tmp = window.confirm("수정하시겠습니까?");
     id = Number(id) 
       //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
@@ -91,6 +94,7 @@ function AssignBtn(props) {
               });
           } else {
             alert('수정되었습니다.');
+            console.log('revise succenss', res.data);
             props.setMode("f");
           }
         })
