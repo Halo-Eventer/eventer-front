@@ -110,22 +110,6 @@ function AssignPage_Map() {
       <MiddleBar_Component3 text="지도" id_param={id_param} />
 
       <AssignBox>
-        <Assign_List
-          category={category}
-          setCategory={setCategory}
-          categoryList={categoryList}
-          setType={setType}
-          boardList={boardList}
-          setBoardList={setBoardList}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          pageNum={pageNum}
-          totalPages={totalPages}
-          itemid={itemID}
-          setItemID={setItemID}
-          setMode={setMode}
-          setCancle={setCancle}
-        />
 
         <Assign_List 
         category={category} setCategory={setCategory}
