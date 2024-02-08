@@ -45,26 +45,56 @@ function ClickInfo(props) {
       <VectorBox onClick={handleFull}>
         <img src={Up}></img>
       </VectorBox>
-      <InfoContainer style={{ width: '350px' }}>
+      <InfoContainer>
         <InfoBox
           data={props.clickInfo}
           setFull={setFull}
           setPopup={setPopup}
           setClose={setClose}
         />
-        <DetailImg src={props.clickInfo.thumbnail}></DetailImg>
       </InfoContainer>
+      <ImgContainer>
+        <DetailImg src={props.clickInfo.thumbnail}></DetailImg>
+      </ImgContainer>
     </Container>
   );
 }
 
 export default ClickInfo;
 
+export const Container = styled.div`
+  position: absolute;
+  bottom: 0px;
+  z-index: 110;
+  border-radius: 12px 12px 0px 0px;
+  background: #fcf2eb;
+  box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.08);
+  width: 100vw;
+  height: ${244 + 8}px;
+  z-index: 10;
+  display: ${(props) => {
+    return props.popup == true && props.isOpen == true ? 'flex' : 'none';
+  }};
+  animation: ${(props) => {
+    return props.close
+      ? css`
+          ${slideDown} ease-in-out 0.6s
+        `
+      : css`
+          ${slideUp} ease-in-out 0.6s
+        `;
+  }};
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+`;
 export const VectorBox = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 10px;
   height: 10px;
+
+  cursor:pointer;
 `;
 const slideDown = keyframes`
   from {
@@ -82,34 +112,15 @@ from {
       transform: translate(0);
     }
 `;
-export const Container = styled.div`
-  position: absolute;
-  bottom: 0px;
-  z-index: 110;
-  border-radius: 12px 12px 0px 0px;
-  background: #fcf2eb;
-  box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.08);
-  width: 100vw;
-  height: ${244 + 8}px;
-  z-index: 10;
-  display: ${(props) => {
-    return props.popup == true && props.isOpen == true ? '' : 'none';
-  }};
-  animation: ${(props) => {
-    return props.close
-      ? css`
-          ${slideDown} ease-in-out 0.6s
-        `
-      : css`
-          ${slideUp} ease-in-out 0.6s
-        `;
-  }};
-`;
+
 const InfoContainer = styled.div`
   width: 350px;
   margin: 0 auto;
 `;
 
+const ImgContainer=styled.div`
+  overflow:auto;
+`;
 const DetailImg = styled.img`
   width: 350px;
   border-radius: 12px;

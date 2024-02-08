@@ -91,15 +91,7 @@ function Assign(props) {
   );
 }
 
-// {
-//     "name" :"주점1",
-//     "summary": "전과 막걸리를 팔고 있어요",
-//     "isOperation": true,
-//     "operationHours" : "16:00~22:00",
-//     "latitude":37.550991791122394,
-//     "longitude":127.07476720170447,
-//     "type": "주점"
-// }
+
 export default Assign;
 
 const AssignContainer = styled.div``;

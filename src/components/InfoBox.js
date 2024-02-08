@@ -58,6 +58,7 @@ const PlaceType = styled.div`
 
 const Close = styled.img`
   margin-left: auto;
+  cursor:pointer;
 `;
 const Time = styled.div`
   color: #333;
