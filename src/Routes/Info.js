@@ -184,7 +184,7 @@ export const GlobalStyles = createGlobalStyle`
 
 export const LineDiv = styled.div`
   @media screen and (min-width: 450px) {
-    position:absolute;
+    position:fixed;
     left:50%;
     transform:translateX(-50%);
     z-index:-3;
@@ -212,7 +212,9 @@ export const Wrapper = styled.div`
 
   background-image: url(${backGround}); //css에서 jsx변수 쓰고싶다면 {}뿐만 아니라 $까지 추가
   background-repeat: repeat;
-  background-size: cover; // 이미지가 div를 완전히 채우도록 설정
+  background-size: auto;  //배경이미지 원본 비율로 반복되게 하기
+  //cover : 잘려도 다 채움
+  //contain : 빈공간 생기더라도 안 잘리게 함
 
   margin: 0;
   padding: 0;

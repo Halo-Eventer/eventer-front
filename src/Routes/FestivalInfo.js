@@ -12,6 +12,7 @@ import {
   Title,
   BkBtn,
   HomeBtn,
+  LineDiv
 } from './Info';
 
 import info from '../images/Info.svg';
@@ -80,6 +81,7 @@ function FestivalInfo() {
   };
   return (
     <div>
+      <LineDiv/>
       <TopFixedDiv>
         <UpperBar>
           <BkBtn onClick={onClick_bkBtn} />
@@ -89,7 +91,7 @@ function FestivalInfo() {
           <Title>공연정보</Title>
         </UpperBar>
       </TopFixedDiv>
-      <Wrapper>
+      <Wrapper style={{height:'auto'}}>
         <GlobalStyles />
         <InfoBoard style={{ marginTop: '52px' }} />
         <div
