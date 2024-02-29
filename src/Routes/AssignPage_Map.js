@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
 import Assign from '../components/assign/Assign';
 import { Wrapper } from './AssignPage_Home';
 import { GlobalStyles } from './Info';
-
 import Assign_List from '../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
-
 import { getAll, getDetail } from '../apis/apis';
-
-import {
-  MiddleBar_Component3,
-  UpperBar_Component,
-} from 'components/assign/Assign_Bar';
+import { MiddleBar_Component3, UpperBar_Component,} from 'components/assign/Assign_Bar';
 
 function AssignPage_Map() {
   const id_param = useParams().id;
