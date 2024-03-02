@@ -7,9 +7,10 @@ import styled from 'styled-components';
 import Assign from 'components/assign/Assign';
 
 import {
-  FlexBox_Column, FlexBox_Row,
-  GlobalStyles, StyledLink
-} from './Info';
+  FlexBox_Column, 
+  FlexBox_Row,
+  StyledLink
+} from './Home';
 import {
   UpperBar_Component,
   MiddleBar_Component3
@@ -118,8 +119,6 @@ function AssignPage_Notice() {
 
   return (
     <Wrapper>
-
-      <GlobalStyles />
       <UpperBar_Component />
       <MiddleBar_Component3 id_param={id_param} text="정보" />
       <AssignBox>

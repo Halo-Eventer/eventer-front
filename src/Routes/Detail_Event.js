@@ -5,13 +5,14 @@ import {
 } from 'react-router-dom';
 
 import {
-    GlobalStyles, Wrapper, TopFixedDiv,
-    UpperBar, Title, BkBtn, HomeBtn,
+    Wrapper, TopFixedDiv,
+    Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider, ImgBoard,
     MainBoard, TextBoard, LineDiv
-} from './Info';
+} from './Home';
 
 import { getDetail } from '../apis/apis';
+import { UpperBar } from './Home';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -63,7 +64,6 @@ function Detail_Event() {
 
     return (
         <div>
-            <LineDiv />
             <TopFixedDiv>
                 <UpperBar>
                     <BkBtn onClick={onClick_bkBtn}></BkBtn>
@@ -74,7 +74,6 @@ function Detail_Event() {
                 </UpperBar>
             </TopFixedDiv>
             <Wrapper>
-                <GlobalStyles />
                 <MainBoard>
                     <ImgBlock>
                         <StyledSlider {...settings}>

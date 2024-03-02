@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+
 import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
@@ -12,6 +13,9 @@ import hallMarker from 'asset/marker/concertHall.svg';
 import getMarker from '../components/getMarker';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
+
+
+
 
 function NolzaMap(props) {
   const [activeCategory, setActiveCategory] = useState(1);

@@ -1,161 +1,543 @@
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import backGround from '../images/BackGround.svg';
+import backSpace from '../images/BackSpace.svg';
+import home from '../images/Home.png';
+import logo from '../images/Logo.svg';
+import instagram from '../images/instagram.svg';
+import facebook from '../images/facebook.svg';
+
+import { getAll } from '../apis/apis';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import Info from './Info';
-import NolzaMap from './NolzaMap';
-
 function Home() {
+  const navigate = useNavigate();
+
+  const festivalId = 1;
   const [barPos, setBarPos] = useState('0');
   const [colorInfo, setColorInfo] = useState('white');
   const [colorMap, setColorMap] = useState('black');
   const [infoMap, setInfoMap] = useState(true);
-  const [showChangeBlock, setShowChangeBlock] = useState(true);
 
-  const onClick_info = () => {
-    setBarPos('0');
-    setColorInfo('white');
-    setColorMap('black');
-
-    setInfoMap(true);
+  var settings = {
+    dots: true, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
+    infinite: true, // 무한 반복되게 할 것인지 설정
+    speed: 300, // 슬라이드하는데 걸리는 시간 설정
+    slidesToShow: 1, // 한 번에 보여줄 슬라이드 개수
+    slidesToScroll: 1, // 슬라이드 넘어갈 때마다 몇 개의 슬라이드를 넘길 것인지 설정
+    autoplay: true, // 자동으로 슬라이드를 넘길 것인지 설정
   };
-  const onClick_map = () => {
-    setBarPos('179px');
-
-    setColorInfo('black');
-    setColorMap('white');
-
-    setInfoMap(false);
+  const onClick_festivalInfo = () => {
+    navigate('/festivalInfo');
   };
+  const onClick_festivalNoti = () => {
+    navigate('/festivalNotice');
+  };
+  const onClick_detailNoti = (event) => {
+    event.preventDefault();
+    const notiId = event.currentTarget.id;
+    console.log('notiId : ', event.currentTarget.id);
+    navigate(`/notice/${notiId}`);
+  };
+  const onClick_detailEvent = (event) => {
+    event.preventDefault();
+    const eventId = event.currentTarget.id;
+    console.log('eventId : ', event.currentTarget.id);
+    navigate(`/event/${eventId}`);
+  };
+
+
+
+  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+  const [eventList, setEventList] = useState([]);
+  const [noticeList, setNoticeList] = useState([]);
+  const fetchList = (category) => {
+    let type = "";
+    getAll(festivalId, category, type)
+      .then((response) => {
+        if (response.data) {
+          console.log("fetch List success", response.data);
+          if (category === 'notice')
+            setNoticeList(response.data);
+          else if (category === 'event')
+            setEventList(response.data);
+        } else {
+          console.log("fetch List no data ;(", response);
+          if (category === 'notice')
+            setNoticeList([]);
+          else if (category === 'event')
+            setEventList([]);
+        }
+      }).catch((error) => {
+        console.log('fetch List error', error);
+      })
+  }
+  useEffect(() => {
+    fetchList('notice');
+    fetchList('event');
+  }, []);
+  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+
+
   return (
-    <div>
-      <Wrapper_Home>
-        {infoMap ? (
-          <Info></Info>
-        ) : (
-          <NolzaMap setShowChangeBlock={setShowChangeBlock}></NolzaMap>
-        )}
-      </Wrapper_Home>
-      {showChangeBlock && (
-        <ChangeBlock>
-          <ChangeBox>
-            <ChangeBar barPos={barPos}></ChangeBar>
-            <ChangeBtn onClick={onClick_info} color={colorInfo}>
-              축제정보
-            </ChangeBtn>
-            <ChangeBtn onClick={onClick_map} color={colorMap}>
-              축제지도
-            </ChangeBtn>
-          </ChangeBox>
-        </ChangeBlock>
-      )}
-    </div>
+    <Wrapper>
+      <Board>
+        <UpperBar>
+          <img src={logo}></img>
+          <FlexBox_Row style={{ gap: '12px' }}>
+            <a href="https://www.instagram.com/mokpowshow/" target="_blank">
+              <img src={instagram}></img>
+            </a>
+
+            <a href="https://www.facebook.com/wshowmokpo/?locale=ko_KR" target="_blank">
+              <img src={facebook}></img>
+            </a>
+
+          </FlexBox_Row>
+
+        </UpperBar>
+        <FlexBox_Row style={{ width: '100%' }}>
+          <ImgBlock>
+            <StyledSlider {...settings}>
+              {noticeList.map((item, key) => {
+                // if (key === 0 || key === 4)
+                return (
+                  <ImgBoard
+                    cursor="pointer"
+                    //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+                    onClick={onClick_detailNoti}
+                    key={key}
+                    id={item.id}
+                    src={item.thumbnail}
+                  />
+                );
+              })}
+
+              {eventList.map((item, key) => {
+                return (
+                  <ImgBoard
+                    cursor="pointer"
+                    onClick={onClick_detailEvent}
+                    key={key}
+                    id={item.id}
+                    src={item.thumbnail}
+                  />
+                );
+              })}
+            </StyledSlider>
+          </ImgBlock>
+        </FlexBox_Row>
+        <SecondBlock>
+          <BigBox>
+            <Link to="/map">
+              <h1>
+                <FlexBox_Row>
+                  <GrayBox />
+                  <p>
+                    공연장 지도
+                  </p>
+                </FlexBox_Row>
+
+                <button>
+                  주변시설 확인
+                </button>
+              </h1>
+            </Link>
+            <hr />
+            <Link to="/festivalInfo">
+              <h1>
+                <FlexBox_Row>
+                  <GrayBox />
+                  <p>
+                    오늘의 공연
+                  </p>
+                </FlexBox_Row>
+
+                <button>
+                  공연일정 보기
+                </button>
+              </h1>
+            </Link>
+          </BigBox>
+          <Link to="/map">
+            <SmallBox>
+              <h1>
+                주변관광지
+                <button>
+                  확인하러 가기 &gt;
+                </button>
+              </h1>
+            </SmallBox>
+          </Link>
+
+          <Link to="/festivalNotice">
+            <SmallBox>
+              <h1>공지사항</h1>
+            </SmallBox>
+          </Link>
+        </SecondBlock>
+      </Board>
+    </Wrapper>
   );
 }
 export default Home;
-export { FlexBox_Row, FlexBox_Column };
+//settings도 export하려고 했는데 얘는 함수 내부여서 안 됨.
+//무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
 
-const FlexBox_Row = styled.div`
+export const FlexBox_Row = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-const FlexBox_Column = styled.div`
+export const FlexBox_Column = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const Wrapper_Home = styled.div`
-  background-image: url(${backGround}); //css에서 jsx변수 쓰고싶다면 {}뿐만 아니라 $까지 추가
-  background-repeat: repeat;
-  background-size: cover; // 이미지가 div를 완전히 채우도록 설정
 
-  //페이지 내부 요소가 뷰포트 높이를 안 넘어가면 이렇게,
-  //넘어간다면 height설정 x 그냥 요소자체 높이로만 해결
-  //(height없이 width만 적혀져 있는)
+export const LineDiv = styled.div`
+  @media screen and (min-width: 450px) {
+    position:fixed;
+    left:50%;
+    transform:translateX(-50%);
+
+    width: 392px;
+    border-width:0 1px 0 1px;
+    border-color:#ccc;
+    border-style:solid;
+
+    background-color:transparent;
+
+    height:100vh;
+
+    /* z-index:-1;
+    //stacking(absolute, relative, fixed)일때만 z-index속성값이 해당되는거임.  */
+  }
+`;
+
+//Wrapper는 무조건 100vw, 나머지 가운데정렬할 요소들은 크게크게 그냥 Wrapper안에다 div하나 더 깔 것
+//Linediv같이 fixed요소를 추가할 게 있으면 애매해지기 때문. Wrapper자체가 absolute를 하면 안 되기 때문
+export const Wrapper = styled.div`
+  width: 100vw;
 
   margin: 0;
   padding: 0;
 
-  display: block;
+  background-color:black;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items:center;
+  
 `;
 
-const ChangeBar = styled.div`
-  transform: translateX(${(props) => props.barPos}); //최종 목적지
-`;
-const ChangeBtn = styled.button`
-  color: ${(props) => props.color};
-  //해당 태그의 props는 선언시에만 활용할 수 있음. 밑에서 재정의 할 때는 활용 불가.
-  //선언중인 상위컴포넌트의 props만 사용 가능
-`;
-const ChangeBox = styled.div``;
-const ChangeBlock = styled.div`
-  width: 100vw;
-  background-color: rgb(255, 255, 255, 0);
-  position: fixed;
-  bottom: 5vh;
+export const UpperBar = styled.div`
+  position: relative;
+  height: 48px;
+  flex-shrink: 0;
+
+  background-color: black;
+  background-size: cover;
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
 
-  ${ChangeBox} {
-    position: relative;
+  padding:4px 16px;
+`;
 
+export const Board = styled.div`
+  @media screen and (min-width: 450px) {
+    width:390px;
+    background-color:transparent;
+  }
+`;
+
+//for 가독성
+export const TopFixedDiv = styled.div`
+  position: fixed;
+  width: 100%;
+  @media screen and (min-width: 450px) {
+    width: 390px;
+  }
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0px;
+  margin: 0;
+  padding: 0;
+
+  z-index:3;
+`;
+export const BkBtn = styled.div`
+  background-image: url(${backSpace});
+  position: absolute;
+  left: 20px;
+
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  cursor: pointer;
+`;
+export const HomeBtn = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+  background-image: url(${home});
+  background-size: cover;
+
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin: 0;
+`;
+
+export const Title = styled.h1`
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+`;
+
+//스타일 슬라이더 활용 (다음엔 다른거 써보자)
+export const StyledSlider = styled(Slider)`
+  border-radius:12px;
+  .slick-dots {
+    /* 여기에 원하는 스타일을 적용하세요. */
+    z-index: 10;
+    bottom: -18px;
+    li {
+      //버튼이 차지하는 공간 스타일
+      width: 30px;
+      height: 0px;
+      margin: 0;
+      button {
+        //이외의 버튼
+        color: white;
+      }
+      button:before {
+        //눌렀던 버튼 스타일 (hover)
+        color: white;
+        font-size: 10px;
+        opacity:0.5;
+      }
+    }
+    li.slick-active button:before {
+      //현재 보여지고 있는 슬라이드
+      color: rgba(255,255,255);
+      opacity:1;
+    }
+  }
+  .slick-prev:before,
+  .slick-next:before{
+    display:none;
+  }
+`;
+
+export const ImgBlock = styled.div`
+  width: 358px;
+  border-radius:12px;
+`;
+
+export const ImgBoard = styled.img`
+  object-fit:cover;
+  object-position:center;
+    //이미지 태그용 (<> background-position)
+  width: 100%;
+  flex-shrink: 0;
+
+  border-radius:12px;
+
+  z-index: 2;
+  cursor: ${(props) => props.cursor};
+`;
+
+export const BigBox = styled.div``;
+export const SmallBox = styled.div``;
+export const GrayBox = styled.div``;
+export const SecondBlock = styled.div`
+  width: 100%;
+
+  margin-top: 32px;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap:12px;
+
+  color:white;
+
+  ${BigBox} {
     width: 358px;
-    height: 56px;
+    height: 152px;
     flex-shrink: 0;
 
-    border-radius: 28px;
-    background: #fff;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.24);
+    border-radius: 12px;
+    background: #222;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
 
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    ${ChangeBtn} {
-      width: 179px;
-      height: 48px;
+    padding: 20px 16px;
+
+    hr{
+      margin:20px;
+    }
+
+    h1 {
+      color: #FFF;
+      /* headline1 */
+      font-family: "NanumSquare Neo OTF";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 26px; /* 144.444% */
+
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+
+      ${GrayBox}{
+      width: 36px;
+      height: 36px;
       flex-shrink: 0;
-      font-family: Pretendard;
+
+      border-radius: 4px;
+      background: #D9D9D9;
+
+      margin-right:12px;
+      }
+
+      button{
+        color: #FFF;
+        font-family: Pretendard;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px; /* 142.857% */
+
+        border-radius: 8px;
+        border: 1px solid #CCC;
+
+        display: inline-flex;
+        padding: 8px 12px;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+
+        z-index:5;
+      }
+    }
+  }
+
+  ${SmallBox} {
+    width: 358px;
+    height: 48px;
+    flex-shrink: 0;
+
+    border-radius: 12px;
+    background: #222;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.08);
+
+    padding: 12px;
+
+    h1 {
+      color: #FFF;
+
+      /* headline2 */
+      font-family: "NanumSquare Neo OTF";
       font-size: 16px;
       font-style: normal;
-      font-weight: 600;
+      font-weight: 900;
       line-height: 24px; /* 150% */
-      border: none;
-      border-radius: 10%;
-      background-color: rgba(255, 255, 255, 0);
-      cursor: pointer;
 
-      z-index: 2;
-    }
-    ${ChangeBar} {
-      position: absolute;
-      left: 4px;
-      /* left : ${(props) =>
-        props.barPos
-          ? `4px;`
-          : `28px;`}; => 이런식으로 불린값 전달하는건 스타일컴포넌트에서 불가능, 
-            오로지 속성값만 전달 가능. ||나 &&를 쓰는 건 속성값을 전달 못 받은 경우 기본값을 정하는 것 뿐.*/
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
 
-      //jsx모드의 css속성값은 '문자열'이므로 직접적인 속성값은 반드시 '따옴표' 필수
-      transition: transform 0.2s ease-out;
 
-      width: 171px;
-      height: 48px;
-      flex-shrink: 0;
-      border-radius: 24px;
-      background: #e63136;
+      button{
+        color: #DDD;
+        font-family: Pretendard;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+      }
     }
   }
 `;
 
+
+//For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
+
+export const MainBoard = styled.div`
+width:390px;
+
+margin-top:48px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
+
+background-color:white;
+`;
+
+
+export const TextBoard = styled.div`
+width:390px;
+
+margin-top:32px;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+div{
+    width: 390px;
+    flex-shrink: 0;
+
+    padding:16px 12px 16px 12px;
+    box-sizing:border-box;
+    z-index:2;
+    h1{
+        color: #000;
+        font-family: Pretendard;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        margin-bottom:12px;
+    }
+    h2{
+        color: #000;
+        font-family: Pretendard;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 600;
+        line-height:24px;
+        margin-bottom:12px;
+    }
+    h3{
+        color: #46515B;
+        font-family: Pretendard;
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 24px;
+
+        margin:0;
+        padding:0;
+    }
+}
+`;
+//For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js

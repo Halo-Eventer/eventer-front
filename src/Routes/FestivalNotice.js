@@ -4,15 +4,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-    GlobalStyles, Wrapper, TopFixedDiv,LineDiv,
-    UpperBar, Title, HomeBtn, BkBtn
-} from './Info';
+    Wrapper, TopFixedDiv,LineDiv,
+    Title, HomeBtn, BkBtn
+} from './Home';
 // import {eventList,noticeList} from '../components/info/DataBase';
 
 import { getAll } from '../apis/apis';
 
 import Event from '../components/info/Event';
 import Notice from '../components/info/Notice';
+import { UpperBar } from './Home';
 
 function FestivalNotice() {
     const navigate = useNavigate();
@@ -74,7 +75,6 @@ function FestivalNotice() {
 
     return (
         <div>
-            <LineDiv/>
             <TopFixedDiv>
                     <UpperBar>
                         <BkBtn onClick={onClick_bkBtn}></BkBtn>
@@ -96,7 +96,6 @@ function FestivalNotice() {
                     </SecondBar>
             </TopFixedDiv>
             <Wrapper style={{marginTop:"100px"}}>
-                <GlobalStyles />
                 <MainBlock>
                     {
                         showNotice

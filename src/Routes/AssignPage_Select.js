@@ -4,9 +4,6 @@ import {Link, useNavigate,
 
 import styled from 'styled-components';
 
-
-import { FlexBox_Column, FlexBox_Row,
-GlobalStyles, StyledLink } from './Info';
 import {Wrapper,GRID_WIDTH} from './AssignPage_Home';
 import {UpperBar_Component,
   MiddleBar_Component2} from '../components/assign/Assign_Bar';
@@ -24,7 +21,6 @@ function AssignPage_Select() {
 
   return (
    <Wrapper>
-      <GlobalStyles/>
        <UpperBar_Component/>
         {/* <FestivalSelectBox>
           <select 
@@ -38,21 +34,21 @@ function AssignPage_Select() {
         </FestivalSelectBox> */}
         <MiddleBar_Component2 id_param={id_param}/>
         <MainBox>
-          <StyledLink to={`/assign_notice/${id_param}`}>
+          <Link to={`/assign_notice/${id_param}`}>
             <PageBtn><h1>공지관리 페이지</h1></PageBtn>
-          </StyledLink>
+          </Link>
 
-          {/* <StyledLink to={`/assign_rending/${id_param}`}>
+          {/* <Link to={`/assign_rending/${id_param}`}>
             <PageBtn><h1>랜딩관리 페이지</h1></PageBtn>
-          </StyledLink> */}
+          </Link> */}
           
-          <StyledLink to={`/assign_map/${id_param}`}>
+          <Link to={`/assign_map/${id_param}`}>
             <PageBtn><h1>지도관리 페이지</h1></PageBtn>
-          </StyledLink>
+          </Link>
 
-          {/* <StyledLink to={`/assign_performance/${id_param}`}>
+          {/* <Link to={`/assign_performance/${id_param}`}>
             <PageBtn><h1>공연관리 페이지</h1></PageBtn>
-          </StyledLink> */}
+          </Link> */}
 
           
         </MainBox>

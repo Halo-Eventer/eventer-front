@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GlobalStyles } from 'asset/GlobalStyles';
 
 import Home from './Routes/Home';
+import NolzaMap from 'Routes/NolzaMap';
 import FestivalInfo from './Routes/FestivalInfo';
 import FestivalNotice from './Routes/FestivalNotice';
 import Detail_Event from './Routes/Detail_Event';
@@ -18,15 +20,16 @@ import 'slick-carousel/slick/slick-theme.css';
 function App() {
   return (
     <BrowserRouter>
+      <GlobalStyles />
       <Routes>
-        <Route path="" element={<Home></Home>} />
+        <Route path="" element={<Home/>} />
+        <Route path="/map" element={<NolzaMap/>}/>
         <Route path="/festivalInfo" element={<FestivalInfo />} />
         <Route path="/festivalNotice" element={<FestivalNotice />} />
         <Route path="/event/:id" element={<Detail_Event />} />
         <Route path="/notice/:id" element={<Detail_Notice />} />
         {/* Detail을 루트로 처리하는 법 */}
 
-        
         <Route path="/assign_home" element={<AssignPage_Home />} />
         <Route path="/assign_select/:id" element={<AssignPage_Select />} />
 

@@ -5,21 +5,20 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-  GlobalStyles,
   Wrapper,
   TopFixedDiv,
-  UpperBar,
   Title,
   BkBtn,
   HomeBtn,
   LineDiv
-} from './Info';
+} from './Home';
 
 import info from '../images/Info.svg';
 import lineUp1 from '../images/LineUp1.svg';
 import lineUp2 from '../images/LineUp2.svg';
 import lineUp3 from '../images/LineUp3.svg';
 import * as axios from 'axios';
+import { UpperBar } from './Home';
 
 function FestivalInfo() {
   const navigate = useNavigate();
@@ -81,7 +80,6 @@ function FestivalInfo() {
   };
   return (
     <div>
-      <LineDiv/>
       <TopFixedDiv>
         <UpperBar>
           <BkBtn onClick={onClick_bkBtn} />
@@ -92,7 +90,6 @@ function FestivalInfo() {
         </UpperBar>
       </TopFixedDiv>
       <Wrapper style={{height:'auto'}}>
-        <GlobalStyles />
         <InfoBoard style={{ marginTop: '52px' }} />
         <div
           style={{

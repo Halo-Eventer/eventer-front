@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 
 import Assign from '../components/assign/Assign';
 import { Wrapper } from './AssignPage_Home';
-import { GlobalStyles } from './Info';
 import Assign_List from '../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
 import { getAll, getDetail } from '../apis/apis';
@@ -100,7 +99,6 @@ function AssignPage_Map() {
 
   return (
     <Wrapper style={{ height: 'auto' }}>
-      <GlobalStyles />
       <UpperBar_Component />
       <MiddleBar_Component3 text="지도" id_param={id_param} />
 

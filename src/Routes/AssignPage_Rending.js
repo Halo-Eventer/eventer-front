@@ -3,9 +3,13 @@ import {useState,useEffect} from 'react'
 import styled from 'styled-components';
 
 
-import { FlexBox_Column, FlexBox_Row,
-  GlobalStyles, StyledLink } from './Info';
-  import {UpperBar_Component,
+import { 
+  FlexBox_Column, 
+  FlexBox_Row,
+  StyledLink } from './Home';
+
+import {
+    UpperBar_Component,
     MiddleBar_Component3} from '../components/assign/Assign_Bar';
 
 function AssignPage_Rending() {

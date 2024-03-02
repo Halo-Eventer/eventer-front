@@ -2,13 +2,14 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import {
-    GlobalStyles, Wrapper, TopFixedDiv,
-    UpperBar, Title, BkBtn, HomeBtn,
+    Wrapper, TopFixedDiv,
+    Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider, ImgBoard,
     MainBoard, TextBoard, LineDiv
-} from './Info';
+} from './Home';
 
 import { getDetail } from '../apis/apis';
+import { UpperBar } from './Home';
 
 function Detail_Notice() {
     const navigate = useNavigate();
@@ -49,7 +50,6 @@ function Detail_Notice() {
 
     return (
         <div>
-            <LineDiv />
             <TopFixedDiv>
                 <UpperBar>
                     <BkBtn onClick={onClick_bkBtn}></BkBtn>
@@ -60,7 +60,6 @@ function Detail_Notice() {
                 </UpperBar>
             </TopFixedDiv>
             <Wrapper>
-                <GlobalStyles />
                 <MainBoard>
                     <ImgBlock>
                         <StyledSlider {...settings}>
