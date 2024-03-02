@@ -38,7 +38,7 @@ function NolzaMap(props) {
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
-      center: new naver.maps.LatLng(37.5506, 127.0744),
+      center: new naver.maps.LatLng(34.7969637033503, 126.43264179058626),
       zoom: 17,
       minZoom: 17,
       tileTransition: true,

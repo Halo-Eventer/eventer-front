@@ -33,7 +33,6 @@ export default class SwipeToSlide extends Component {
       },
     };
     const handleClick = (e) => {
-      
       this.setState({ active: e.target.id });
       this.setActiveCategory(e.target.id);
       if (e.target.id == 3 && (hour > 22 || hour < 18)) {
@@ -115,6 +114,7 @@ const StyledSlider = styled(Slider)`
     background-color: #fff;
 
     height: 36px;
+    font-size: 13px;
 
     margin-left: 6px;
     margin-top: 6px;
@@ -123,17 +123,19 @@ const StyledSlider = styled(Slider)`
 `;
 const CategoryBox = styled.div`
   display: flex;
-  height: 36px;
+  height: 34px;
   align-items: center;
   justify-content: center;
   padding: 0 12px 0 12px;
 
-  border-radius: 40px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+
   background-color: ${(props) => {
-    return props.id == props.active ? 'red' : 'white';
+    return props.id == props.active ? '#42EAAB' : 'white';
   }};
   color: ${(props) => {
-    return props.id == props.active ? 'white' : 'black';
+    return props.id == props.active ? '#111' : 'black';
   }};
   .slick-list > .slick-slide {
     width: 500px;
