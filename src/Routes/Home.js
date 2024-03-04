@@ -262,6 +262,7 @@ export const UpperBar = styled.div`
   padding:4px 16px;
 `;
 
+
 export const Board = styled.div`
   @media screen and (min-width: 450px) {
     width:390px;

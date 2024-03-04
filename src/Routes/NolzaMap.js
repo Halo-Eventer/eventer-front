@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
@@ -15,6 +16,8 @@ import toiletMarker from 'asset/marker/toiletImg.svg';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
+
+import { TopFixedDiv, UpperBar, BkBtn, Title } from './Home';
 
 
 
@@ -38,6 +41,7 @@ function NolzaMap(props) {
   const [openId, setOpenId] = useState(0);
 
   const selectedMarker = useRef(null); // 선택된 마커를 구분하기 위해 useRef 추가
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (activeCategory == 1) markerImg = eventMarker;
@@ -238,6 +242,13 @@ function NolzaMap(props) {
     setOpenId(data.id);
   };
 
+
+
+  const onClick_bkBtn = () => {
+    navigate(-1);
+    //그냥 뒤로가는 기능
+  }
+
   return (
     <div
       style={{
@@ -246,37 +257,41 @@ function NolzaMap(props) {
       }}
     >
       <GlobalStyle />
+          <UpperBar style={{width:'100%'}}>
+            <BkBtn style={{left:'20px'}} onClick={onClick_bkBtn}/>
+            <Title>공연장 지도</Title>
+          </UpperBar>
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
         {concertClick
           ? concertData.map((e) => {
+            return (
+              <ClickInfo
+                data={e}
+                openId={openId}
+                mapElement={mapElement}
+                popup={popup}
+                clickInfo={clickInfo}
+                setPopup={setPopup}
+                setShowChangeBlock={props.setShowChangeBlock}
+              />
+            );
+          })
+          : data.map((e) => {
+            if (e.id == openId)
               return (
                 <ClickInfo
                   data={e}
+                  activeCategory={activeCategory}
                   openId={openId}
                   mapElement={mapElement}
                   popup={popup}
-                  clickInfo={clickInfo}
                   setPopup={setPopup}
+                  clickInfo={clickInfo}
                   setShowChangeBlock={props.setShowChangeBlock}
                 />
               );
-            })
-          : data.map((e) => {
-              if (e.id == openId)
-                return (
-                  <ClickInfo
-                    data={e}
-                    activeCategory={activeCategory}
-                    openId={openId}
-                    mapElement={mapElement}
-                    popup={popup}
-                    setPopup={setPopup}
-                    clickInfo={clickInfo}
-                    setShowChangeBlock={props.setShowChangeBlock}
-                  />
-                );
-            })}
+          })}
       </MapContainer>
     </div>
   );
