@@ -1,4 +1,6 @@
-export const markerHandle = (naver, map, lat, lng, img, size, text) => {
+import { useState } from 'react';
+
+export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(lat, lng),
     map,
