@@ -91,6 +91,7 @@ function Home() {
           <img src={logo}></img>
           <FlexBox_Row style={{ gap: '12px' }}>
             <a href="https://www.instagram.com/mokpowshow/" target="_blank">
+              {/* 새 탭 여는 법 */}
               <img src={instagram}></img>
             </a>
 
@@ -237,12 +238,18 @@ export const Wrapper = styled.div`
   flex-direction:column;
   justify-content:flex-start;
   align-items:center;
-  
+
+  min-height:100vh;
+  //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
 `;
 
 export const UpperBar = styled.div`
   position: relative;
   height: 48px;
+  width: 100%;
+  @media screen and (min-width: 450px) {
+    width: 390px;
+  }
   flex-shrink: 0;
 
   background-color: black;
@@ -266,21 +273,23 @@ export const Board = styled.div`
 export const TopFixedDiv = styled.div`
   position: fixed;
   width: 100%;
-  @media screen and (min-width: 450px) {
-    width: 390px;
-  }
   left: 50%;
   transform: translateX(-50%);
   top: 0px;
   margin: 0;
   padding: 0;
 
+  background-color:black;
+
+  display:flex;
+  justify-content:center;
+
   z-index:3;
 `;
 export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
-  left: 20px;
+  left:4px;
 
   width: 24px;
   height: 24px;
@@ -301,16 +310,24 @@ export const HomeBtn = styled.div`
 `;
 
 export const Title = styled.h1`
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+
   color: #fff;
   text-align: center;
   font-family: Pretendard;
-  font-size: 24px;
+  font-size: 17px;
   font-style: normal;
   font-weight: 700;
+
+  line-height:32px;
 `;
 
 //스타일 슬라이더 활용 (다음엔 다른거 써보자)
 export const StyledSlider = styled(Slider)`
+  background-color:#111;
   border-radius:12px;
   .slick-dots {
     /* 여기에 원하는 스타일을 적용하세요. */
@@ -346,7 +363,7 @@ export const StyledSlider = styled(Slider)`
 
 export const ImgBlock = styled.div`
   width: 358px;
-  border-radius:12px;
+  background-color:#000;
 `;
 
 export const ImgBoard = styled.img`
@@ -355,6 +372,7 @@ export const ImgBoard = styled.img`
     //이미지 태그용 (<> background-position)
   width: 100%;
   flex-shrink: 0;
+  background-color:#000;
 
   border-radius:12px;
 
@@ -488,9 +506,9 @@ margin-top:48px;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:flex-start;
+align-items:center;
 
-background-color:white;
+background-color:#111;
 `;
 
 
@@ -507,11 +525,12 @@ div{
     width: 390px;
     flex-shrink: 0;
 
+    background-color:#000;
     padding:16px 12px 16px 12px;
     box-sizing:border-box;
     z-index:2;
     h1{
-        color: #000;
+        color: #FFF;
         font-family: Pretendard;
         font-size: 20px;
         font-style: normal;
@@ -519,7 +538,7 @@ div{
         margin-bottom:12px;
     }
     h2{
-        color: #000;
+        color: #FFF;
         font-family: Pretendard;
         font-size: 15px;
         font-style: normal;
@@ -528,7 +547,7 @@ div{
         margin-bottom:12px;
     }
     h3{
-        color: #46515B;
+        color: #FFF;
         font-family: Pretendard;
         font-size: 15px;
         font-style: normal;
@@ -537,6 +556,10 @@ div{
 
         margin:0;
         padding:0;
+    }
+    hr{
+      margin-top:12px;
+      margin-bottom:16px;
     }
 }
 `;

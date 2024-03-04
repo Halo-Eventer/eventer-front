@@ -83,10 +83,7 @@ function FestivalInfo() {
       <TopFixedDiv>
         <UpperBar>
           <BkBtn onClick={onClick_bkBtn} />
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <HomeBtn />
-          </Link>
-          <Title>공연정보</Title>
+          <Title>오늘의 공연</Title>
         </UpperBar>
       </TopFixedDiv>
       <Wrapper style={{height:'auto'}}>

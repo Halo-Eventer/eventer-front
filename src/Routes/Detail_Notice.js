@@ -53,10 +53,7 @@ function Detail_Notice() {
             <TopFixedDiv>
                 <UpperBar>
                     <BkBtn onClick={onClick_bkBtn}></BkBtn>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <HomeBtn />
-                    </Link>
-                    <Title>공지사항 / 이벤트</Title>
+                    <Title>공지사항</Title>
                 </UpperBar>
             </TopFixedDiv>
             <Wrapper>
@@ -75,6 +72,7 @@ function Detail_Notice() {
                             <h2>
                                 {detailedList.subtitle}
                             </h2>
+                            <hr/>
                             {detailedList.content?.split('\n').map((line, key) => {
                                 if (line.length === 0) {
                                     /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 

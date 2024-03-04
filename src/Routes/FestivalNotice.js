@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import {
-    Wrapper, TopFixedDiv,LineDiv,
+    Wrapper, TopFixedDiv, LineDiv,
     Title, HomeBtn, BkBtn
 } from './Home';
 // import {eventList,noticeList} from '../components/info/DataBase';
@@ -74,37 +74,18 @@ function FestivalNotice() {
     }, []);
 
     return (
-        <div>
+        <Wrapper>
             <TopFixedDiv>
-                    <UpperBar>
-                        <BkBtn onClick={onClick_bkBtn}></BkBtn>
-                        <Link to="/" style={{ textDecoration: 'none' }}>
-                            <HomeBtn />
-                        </Link>
-                        <Title>공지사항 / 이벤트</Title>
-                    </UpperBar>
-                    <SecondBar>
-                        <SecondBtn
-                            onClick={onClick_notice}
-                            color={color1}>
-                            공지사항</SecondBtn>
-                        <UnderBar transForm={transForm}></UnderBar>
-                        <SecondBtn
-                            onClick={onClick_event}
-                            color={color2}>
-                            이벤트</SecondBtn>
-                    </SecondBar>
+                <UpperBar>
+                    <BkBtn onClick={onClick_bkBtn}></BkBtn>
+                    <Title>공지사항</Title>
+                </UpperBar>
             </TopFixedDiv>
-            <Wrapper style={{marginTop:"100px"}}>
-                <MainBlock>
-                    {
-                        showNotice
-                            ? <Notice noticeList={noticeList} />
-                            : <Event eventList={eventList} />
-                    }
-                </MainBlock>
-            </Wrapper>
-        </div>
+
+            <MainBlock style={{ marginTop: "50px" }}>
+                <Notice noticeList={noticeList} />
+            </MainBlock>
+        </Wrapper>
     )
 
 }
@@ -187,12 +168,12 @@ ${TextDiv}{
 box-sizing:border-box;
 width: 350px;
 flex-shrink: 0;
-background-color: white;
+background-color: #222;
 border-radius: 0px 0px 12px 12px;
 
 padding:12px;
     h1{
-    color: #000;
+    color: #FFF;
     font-family: Pretendard;
     font-size: 18px;
     font-style: normal;
@@ -201,7 +182,7 @@ padding:12px;
     margin-bottom:4px;
     }
     h2{
-    color: #46515B;
+    color: #DDD;
     font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
