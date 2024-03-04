@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import backSpace from '../images/BackSpace.svg';
-import home from '../images/Home.png';
+//import home from '../images/Home.png';
 import logo from '../images/Logo.svg';
 import instagram from '../images/instagram.svg';
 import facebook from '../images/facebook.svg';
@@ -300,7 +300,6 @@ export const HomeBtn = styled.div`
   position: absolute;
   right: 20px;
   bottom: 12px;
-  background-image: url(${home});
   background-size: cover;
 
   width: 24px;
@@ -308,6 +307,7 @@ export const HomeBtn = styled.div`
   cursor: pointer;
   margin: 0;
 `;
+  // background-image: url(${home}); */
 
 export const Title = styled.h1`
   position:absolute;
@@ -327,7 +327,7 @@ export const Title = styled.h1`
 
 //스타일 슬라이더 활용 (다음엔 다른거 써보자)
 export const StyledSlider = styled(Slider)`
-  background-color:#111;
+  background-color:#000;
   border-radius:12px;
   .slick-dots {
     /* 여기에 원하는 스타일을 적용하세요. */
@@ -367,10 +367,11 @@ export const ImgBlock = styled.div`
 `;
 
 export const ImgBoard = styled.img`
-  object-fit:cover;
+  object-fit:fill;
   object-position:center;
     //이미지 태그용 (<> background-position)
   width: 100%;
+  height: 100%;
   flex-shrink: 0;
   background-color:#000;
 
@@ -508,7 +509,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 
-background-color:#111;
+background-color:#000;
 `;
 
 

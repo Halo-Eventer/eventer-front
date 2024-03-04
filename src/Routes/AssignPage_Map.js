@@ -6,7 +6,7 @@ import { Wrapper } from './AssignPage_Home';
 import Assign_List from '../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
 import { getAll, getDetail } from '../apis/apis';
-import { MiddleBar_Component3, UpperBar_Component,} from 'components/assign/Assign_Bar';
+import { MiddleBar_Component2, UpperBar_Component,} from 'components/assign/Assign_Bar';
 
 function AssignPage_Map() {
   const id_param = useParams().id;
@@ -100,7 +100,7 @@ function AssignPage_Map() {
   return (
     <Wrapper style={{ height: 'auto' }}>
       <UpperBar_Component />
-      <MiddleBar_Component3 text="지도" id_param={id_param} />
+      <MiddleBar_Component2 text="지도" id_param={id_param} />
 
       <AssignBox>
 

@@ -6,13 +6,14 @@ import styled from 'styled-components';
 
 import {Wrapper,GRID_WIDTH} from './AssignPage_Home';
 import {UpperBar_Component,
-  MiddleBar_Component2} from '../components/assign/Assign_Bar';
+  MiddleBar_Component1} from '../components/assign/Assign_Bar';
 
 
 
 function AssignPage_Select() {
   const navigate=useNavigate();
-  const id_param = useParams().id;
+  const id_param = 1;
+  //const id_param = useParams().id;
   // const URL = useLocation();
 
   const [festival, setFestival]=useState("");
@@ -22,17 +23,7 @@ function AssignPage_Select() {
   return (
    <Wrapper>
        <UpperBar_Component/>
-        {/* <FestivalSelectBox>
-          <select 
-          onChange={onChange_select}>
-            <option value="세종대학교">세종대학교</option>
-            <option value="성균관대학교">성균관대학교</option>
-            <option value="기리보이">기리보이</option>
-            <option value="비와이">비와이</option>
-          </select>
-          <img src={dropDown2}/>
-        </FestivalSelectBox> */}
-        <MiddleBar_Component2 id_param={id_param}/>
+        <MiddleBar_Component1 id_param={id_param}/>
         <MainBox>
           <Link to={`/assign_notice/${id_param}`}>
             <PageBtn><h1>공지관리 페이지</h1></PageBtn>

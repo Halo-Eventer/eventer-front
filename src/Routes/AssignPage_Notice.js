@@ -13,7 +13,7 @@ import {
 } from './Home';
 import {
   UpperBar_Component,
-  MiddleBar_Component3
+  MiddleBar_Component2
 } from '../components/assign/Assign_Bar';
 
 import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
@@ -30,7 +30,7 @@ function AssignPage_Notice() {
   const [categoryList, setCategoryList]= useState(
   {
       notice : "공지사항",
-      event : "이벤트",
+      //event : "이벤트",
   }
     );
   const [type, setType]=useState("");
@@ -120,7 +120,7 @@ function AssignPage_Notice() {
   return (
     <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component3 id_param={id_param} text="정보" />
+      <MiddleBar_Component2 id_param={id_param} text="정보" />
       <AssignBox>
 
         <Assign_List 

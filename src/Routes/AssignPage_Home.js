@@ -176,8 +176,6 @@ export const Logo = styled.div`
   transform: translate(-${GRID_WIDTH / 2}px, -50%);
   //grid에 맞게 추가하는 법 (백틱 + 포매팅 활용)
 
-  width: 66px;
-
   cursor: pointer;
 
   color: #111;

@@ -30,8 +30,7 @@ function App() {
         <Route path="/notice/:id" element={<Detail_Notice />} />
         {/* Detail을 루트로 처리하는 법 */}
 
-        <Route path="/assign_home" element={<AssignPage_Home />} />
-        <Route path="/assign_select/:id" element={<AssignPage_Select />} />
+        <Route path="/assign" element={<AssignPage_Select />} />
 
         <Route path = "/assign_map/:id" element={<AssignPage_Map />}/>   {/* 이게 assign_map 및 AssignPage_Map 파트 */}
         <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>

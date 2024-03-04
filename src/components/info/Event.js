@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import {ImageDiv,TextDiv, Section} from '../../Routes/FestivalNotice';
 
-import birthDay from '../../images/BirthDay.svg';
 
 function Event({ eventList }) {
   const navigate = useNavigate();

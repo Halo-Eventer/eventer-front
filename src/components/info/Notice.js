@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import {ImageDiv,TextDiv, Section} from '../../Routes/FestivalNotice';
 
-import barItem from '../../images/BarItem.svg';
 
 function Notice({ noticeList }) {
     const navigate = useNavigate();
