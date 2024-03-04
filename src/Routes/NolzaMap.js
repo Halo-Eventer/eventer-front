@@ -4,26 +4,30 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from 'asset/category/eventCategory.svg';
 import sojuImg from 'asset/category/sojuCateogory.svg';
 import boothImg from 'asset/category/boothCategory.svg';
 import foodImg from 'asset/category/foodtruckCategory.svg';
 import doctorImg from 'asset/marker/doctor.png';
-import hallMarker from 'asset/marker/concertHall.svg';
+import hallMarker from 'asset/marker/concertHall.png';
 import getMarker from '../components/getMarker';
+import eventMarker from 'asset/marker/eventImg.svg';
+import toiletMarker from 'asset/marker/toiletImg.svg';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
+import { changeMarker } from 'asset/changeMarker';
 
 
 
 
 function NolzaMap(props) {
+  const [activeId, setActiveId] = useState('');
   const [activeCategory, setActiveCategory] = useState(1);
   const [prevClustering, setPrevClustering] = useState('');
   const [clickInfo, setClickInfo] = useState('');
   const [concertHallMarker, setConcertHallMarker] = useState([]);
   const [concertData, setConcertData] = useState([]);
   const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
+  const [prevActiveMarker, setPrevActiveMarker] = useState(null);
   let markerImg = '';
   const mapElement = useRef(1);
   const [prevMarkers, setPrevMarkers] = useState([]);
@@ -33,16 +37,18 @@ function NolzaMap(props) {
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
 
+  const selectedMarker = useRef(null); // 선택된 마커를 구분하기 위해 useRef 추가
+
   useEffect(() => {
-    if (activeCategory == 1) markerImg = eventImg;
+    if (activeCategory == 1) markerImg = eventMarker;
     else if (activeCategory == 2) markerImg = foodImg;
     else if (activeCategory == 3) markerImg = sojuImg;
-    else if (activeCategory == 4) markerImg = boothImg;
+    else if (activeCategory == 4) markerImg = toiletMarker;
     else if (activeCategory == 5) markerImg = doctorImg;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
-      center: new naver.maps.LatLng(37.5506, 127.0744),
+      center: new naver.maps.LatLng(34.7969637033503, 126.43264179058626),
       zoom: 17,
       minZoom: 17,
       tileTransition: true,
@@ -139,6 +145,7 @@ function NolzaMap(props) {
     if (data != '') {
       const markerData = data?.map((e) => {
         return {
+          id: e.id,
           name: e.name,
           lat: e.latitude,
           lng: e.longitude,
@@ -148,42 +155,52 @@ function NolzaMap(props) {
       });
 
       const markers = markerData?.map((e) => {
-        return markerHandle(naver, map, e.lat, e.lng, markerImg, 50, e.name);
+        return markerHandle(
+          e.id,
+          naver,
+          map,
+          e.lat,
+          e.lng,
+          markerImg,
+          50,
+          e.name
+        );
       });
       setPrevMarkers(markers);
 
-      import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
-        const htmlMarker1 = {
-          content: [
-            `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
-          display: flex; align-items: center; justify-content: center'>`,
-            `<div>`,
-            `<img src=${markerImg}></img>`,
-            `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
-            `</div>`,
-            `</div>`,
-          ].join(''),
-          size: new naver.maps.Size(40, 40),
-        };
-
-        setPrevClustering(
-          new MarkerClustering({
-            minClusterSize: 1,
-            maxZoom: 19,
-            map: map,
-            markers: markers,
-            disableClickZoom: false,
-            gridSize: 200,
-            icons: [htmlMarker1],
-            indexGenerator: [10, 100, 200, 500, 1000],
-            stylingFunction: function (clusterMarker, count) {
-              clusterMarker.getElement().querySelector('p').textContent = count;
-            },
-          })
-        );
-      });
+      // import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
+      // const htmlMarker1 = {
+      //   content: [
+      //     `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
+      //   display: flex; align-items: center; justify-content: center'>`,
+      //     `<div>`,
+      //     `<img src=${markerImg}></img>`,
+      //     `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
+      //     `</div>`,
+      //     `</div>`,
+      //   ].join(''),
+      //   size: new naver.maps.Size(40, 40),
+      // };
+      // setPrevClustering(
+      //   new MarkerClustering({
+      //     minClusterSize: 1,
+      //     maxZoom: 19,
+      //     map: map,
+      //     markers: markers,
+      //     disableClickZoom: false,
+      //     gridSize: 200,
+      //     icons: [htmlMarker1],
+      //     indexGenerator: [10, 100, 200, 500, 1000],
+      //     stylingFunction: function (clusterMarker, count) {
+      //       clusterMarker.getElement().querySelector('p').textContent = count;
+      //     },
+      //   })
+      // );
+      // });
       markers?.map((e, i) => {
-        naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
+        naver.maps.Event.addListener(e, 'click', () =>
+          handleMarkers(data[i], e)
+        );
       });
     }
   }, [data]);
@@ -205,7 +222,16 @@ function NolzaMap(props) {
       });
     setOpenId(id);
   };
-  const handleMarkers = (data) => {
+  const handleMarkers = (data, marker) => {
+    console.log(data);
+
+    setActiveId(data.id);
+    console.log('전꺼 : ', prevActiveMarker, '지금꺼 : ', marker);
+
+    marker.setIcon(changeMarker(activeCategory, 0));
+    prevActiveMarker.setIcon(changeMarker(activeCategory, 1));
+    setPrevActiveMarker(marker);
+
     getDetailInfo(data.id, setClickInfo, activeCategory);
     setConcertClick(false);
     setPopup(true);
