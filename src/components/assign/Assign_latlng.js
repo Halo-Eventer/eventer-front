@@ -15,12 +15,13 @@ function Assign_latlng(props) {
     const mapOptions = {
       center: new naver.maps.LatLng(34.7969637033503, 126.43264179058626),
       zoom: 17,
-      minZoom: 16,
+      minZoom: 15,
       disableDoubleClickZoom: true,
     };
     const map = new naver.maps.Map(mapElement.current, mapOptions);
 
     naver.maps.Event.addListener(map, 'click', (e) => {
+      console.log('hi');
       getLatLng(e);
       props.setInfo({
         ...props.info,

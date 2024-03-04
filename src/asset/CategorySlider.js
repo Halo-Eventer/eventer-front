@@ -57,7 +57,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="1" src={eventImg}></img>
-              <CategoryText id="1">이벤트</CategoryText>
+              <CategoryText id="1">관리자</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -67,7 +67,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="2" src={foodtruckImg}></img>
-              <CategoryText id="2">푸드트럭</CategoryText>
+              <CategoryText id="2">관광안내소</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -77,7 +77,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="3" src={sojuImg}></img>
-              <CategoryText id="3">주점</CategoryText>
+              <CategoryText id="3">편의점</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -87,7 +87,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="4" src={boothImg}></img>
-              <CategoryText id="4">부스</CategoryText>
+              <CategoryText id="4">화장실</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -128,14 +128,15 @@ const CategoryBox = styled.div`
   justify-content: center;
   padding: 0 12px 0 12px;
 
-  border-radius: 12px;
-  border: 1px solid #ccc;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
 
   background-color: ${(props) => {
-    return props.id == props.active ? '#42EAAB' : 'white';
+    return props.id == props.active ? '#53CDDD' : 'white';
   }};
   color: ${(props) => {
-    return props.id == props.active ? '#111' : 'black';
+    return props.id == props.active ? '#fff' : '#000';
   }};
   .slick-list > .slick-slide {
     width: 500px;

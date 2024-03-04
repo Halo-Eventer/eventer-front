@@ -1,5 +1,4 @@
 export const markerHandle = (naver, map, lat, lng, img, size, text) => {
-  
   return new naver.maps.Marker({
     position: new naver.maps.LatLng(lat, lng),
     map,
@@ -9,12 +8,12 @@ export const markerHandle = (naver, map, lat, lng, img, size, text) => {
           ? `
       <div > 
       <div style="display:flex; justify-content: center;">
-      <div style = "width: 28px; height: 28px; background-color:#FF8383;
+      <div style = "
        border-radius:28px;display:flex;justify-content:center;align-items: center;">
-      <img style="width:20px;height:20px;" src = ${img}></img>
+      <img style="width:32px;height:36px;" src = ${img}></img>
       </div>
       </div>
-      <div style="display:flex; justify-content: center; margin-top:4px"> ${text} </div>
+      <div style="display:flex; font-size: 12px; font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
       </div>`
           : `<div > 
       <div style="display:flex; justify-content: center; align-items: center;">

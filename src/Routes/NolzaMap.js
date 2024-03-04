@@ -3,13 +3,14 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import eventImg from 'asset/category/eventCategory.svg';
+
 import sojuImg from 'asset/category/sojuCateogory.svg';
 import boothImg from 'asset/category/boothCategory.svg';
 import foodImg from 'asset/category/foodtruckCategory.svg';
 import doctorImg from 'asset/marker/doctor.png';
-import hallMarker from 'asset/marker/concertHall.svg';
+import hallMarker from 'asset/marker/concertHall.png';
 import getMarker from '../components/getMarker';
+import eventMarker from 'asset/marker/eventImg.svg';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 
@@ -30,7 +31,7 @@ function NolzaMap(props) {
   const [openId, setOpenId] = useState(0);
 
   useEffect(() => {
-    if (activeCategory == 1) markerImg = eventImg;
+    if (activeCategory == 1) markerImg = eventMarker;
     else if (activeCategory == 2) markerImg = foodImg;
     else if (activeCategory == 3) markerImg = sojuImg;
     else if (activeCategory == 4) markerImg = boothImg;
@@ -149,34 +150,33 @@ function NolzaMap(props) {
       setPrevMarkers(markers);
 
       import('../asset/MarkerClustering').then(({ MarkerClustering }) => {
-        const htmlMarker1 = {
-          content: [
-            `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
-          display: flex; align-items: center; justify-content: center'>`,
-            `<div>`,
-            `<img src=${markerImg}></img>`,
-            `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
-            `</div>`,
-            `</div>`,
-          ].join(''),
-          size: new naver.maps.Size(40, 40),
-        };
-
-        setPrevClustering(
-          new MarkerClustering({
-            minClusterSize: 1,
-            maxZoom: 19,
-            map: map,
-            markers: markers,
-            disableClickZoom: false,
-            gridSize: 200,
-            icons: [htmlMarker1],
-            indexGenerator: [10, 100, 200, 500, 1000],
-            stylingFunction: function (clusterMarker, count) {
-              clusterMarker.getElement().querySelector('p').textContent = count;
-            },
-          })
-        );
+        // const htmlMarker1 = {
+        //   content: [
+        //     `<div style='width: 50px; height: 50px; border-radius: 50%;  background: #FFF4F4;
+        //   display: flex; align-items: center; justify-content: center'>`,
+        //     `<div>`,
+        //     `<img src=${markerImg}></img>`,
+        //     `<p style='color: #000; margin:0; display:flex; justify-content:center; font-size: 0.875rem '>1</p>`,
+        //     `</div>`,
+        //     `</div>`,
+        //   ].join(''),
+        //   size: new naver.maps.Size(40, 40),
+        // };
+        // setPrevClustering(
+        //   new MarkerClustering({
+        //     minClusterSize: 1,
+        //     maxZoom: 19,
+        //     map: map,
+        //     markers: markers,
+        //     disableClickZoom: false,
+        //     gridSize: 200,
+        //     icons: [htmlMarker1],
+        //     indexGenerator: [10, 100, 200, 500, 1000],
+        //     stylingFunction: function (clusterMarker, count) {
+        //       clusterMarker.getElement().querySelector('p').textContent = count;
+        //     },
+        //   })
+        // );
       });
       markers?.map((e, i) => {
         naver.maps.Event.addListener(e, 'click', () => handleMarkers(data[i]));
