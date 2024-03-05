@@ -32,11 +32,31 @@ function FestivalInfo() {
           <Title>오늘의 공연</Title>
         </UpperBar>
       </TopFixedDiv>
-      <Wrapper style={{height:'auto'}}>
-          <img src={line_up} />
-      </Wrapper>
+      <WrapperSvg style={{marginTop:'48px'}}>
+        <ImgForSvg src={line_up}>
+            해당 브라우저에서 지원하지 않는 이미지입니다.
+        </ImgForSvg>
+      </WrapperSvg>
     </div>
   );
 }
 
 export default FestivalInfo;
+
+export const WrapperSvg=styled.div`
+position:relative;
+background-color:black;
+
+display:flex;
+justify-content:center;
+align-items:center;
+`;
+
+export const ImgForSvg=styled.iframe`
+border:none;
+
+width:390px; 
+height:100vh;
+top:0; 
+left:0;
+`;
