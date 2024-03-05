@@ -7,7 +7,19 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
     icon: {
       content:
         text != '공연장'
-          ? `
+          ? id == -1
+            ? `
+          <div > 
+          <div style="display:flex; justify-content: center;">
+          <div style = "
+           border-radius:28px;display:flex;justify-content:center;align-items: center;">
+          <img style="width:72px;height:72px;" src = ${img}></img>
+          </div>
+          </div>
+          <div style="display:flex; font-size: 12px;-webkit-text-stroke-width: 0.2px;-webkit-text-stroke-color: #FFF;
+           font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+          </div>`
+            : `
           <div > 
           <div style="display:flex; justify-content: center;">
           <div style = "
