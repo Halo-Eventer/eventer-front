@@ -21,7 +21,7 @@ function InfoBox(props) {
       </PlaceBox>
       <DetailBox>
         <Time>{data.operationHours}</Time>
-        <Dot src={dot}></Dot>
+        {data.operationHours ? <Dot src={dot}></Dot> : ''}
         <Place>{data.location}</Place>
       </DetailBox>
       <Show>{data.summary}</Show>
