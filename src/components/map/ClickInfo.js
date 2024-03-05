@@ -17,10 +17,6 @@ function ClickInfo(props) {
   useEffect(() => {
     setClose(false);
   }, [props.popup]);
-  useEffect(() => {
-    if (props.popup || full) props.setShowChangeBlock(false);
-    else props.setShowChangeBlock(true);
-  }, [props.popup, full]);
 
   const handleFull = () => {
     setFull((prev) => !prev);
@@ -47,6 +43,7 @@ function ClickInfo(props) {
       </VectorBox>
       <InfoContainer>
         <InfoBox
+          marker={props.marker}
           data={props.clickInfo}
           setFull={setFull}
           setPopup={setPopup}
@@ -84,9 +81,9 @@ export const Container = styled.div`
           ${slideUp} ease-in-out 0.6s
         `;
   }};
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 export const VectorBox = styled.div`
   display: flex;
@@ -94,7 +91,7 @@ export const VectorBox = styled.div`
   margin-top: 10px;
   height: 10px;
 
-  cursor:pointer;
+  cursor: pointer;
 `;
 const slideDown = keyframes`
   from {
@@ -118,8 +115,8 @@ const InfoContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ImgContainer=styled.div`
-  overflow:auto;
+const ImgContainer = styled.div`
+  overflow: auto;
 `;
 const DetailImg = styled.img`
   width: 350px;
