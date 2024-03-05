@@ -16,25 +16,32 @@ import AssignPage_Notice from './Routes/AssignPage_Notice';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { useEffect } from 'react';
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
+  }
+
+  window.addEventListener('resize', () => setScreenSize());
+
   return (
     <BrowserRouter>
       <GlobalStyles />
       <Routes>
-        <Route path="" element={<Home/>} />
-        <Route path="/map" element={<NolzaMap/>}/>
+        <Route path="" element={<Home />} />
+        <Route path="/map" element={<NolzaMap />} />
         <Route path="/festivalInfo" element={<FestivalInfo />} />
         <Route path="/festivalNotice" element={<FestivalNotice />} />
         <Route path="/event/:id" element={<Detail_Event />} />
         <Route path="/notice/:id" element={<Detail_Notice />} />
         {/* Detail을 루트로 처리하는 법 */}
-
         <Route path="/assign" element={<AssignPage_Select />} />
-
-        <Route path = "/assign_map/:id" element={<AssignPage_Map />}/>   {/* 이게 assign_map 및 AssignPage_Map 파트 */}
-        <Route path = "/assign_rending/:id" element={<AssignPage_Rending/>}/>
-        <Route path = "/assign_notice/:id" element={<AssignPage_Notice/>}/>
+        <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
+        {/* 이게 assign_map 및 AssignPage_Map 파트 */}
+        <Route path="/assign_rending/:id" element={<AssignPage_Rending />} />
+        <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
         {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
       </Routes>
     </BrowserRouter>

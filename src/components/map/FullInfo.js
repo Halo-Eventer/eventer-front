@@ -99,7 +99,7 @@ const FullInfoContainer = styled.div`
   background: #fcf2eb;
   margin-top: 20px;
   width: 100vw;
-  height: 90vh;
+  height: 70vh;
   z-index: 110;
   animation: slideDown 1s;
   animation: slideUp 0.5s;

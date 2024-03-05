@@ -311,7 +311,8 @@ const Map = styled.div`
 
 const MapContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+
   z-index: 0;
 `;
 const GlobalStyle = createGlobalStyle`//전역 스타일 설정
@@ -319,5 +320,7 @@ const GlobalStyle = createGlobalStyle`//전역 스타일 설정
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: fixed;
+  overflow: hidden;
   }
 `;
