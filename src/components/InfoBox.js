@@ -15,8 +15,8 @@ function InfoBox(props) {
     <div>
       <PlaceBox>
         <PlaceName>{data.name}</PlaceName>
-        {data.type ? <PlaceType>{data.type}</PlaceType> : ''}
-
+        {/* {data.type ? <PlaceType>{data.type}</PlaceType> : ''} */}
+        {/* 태그 표현 */}
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
