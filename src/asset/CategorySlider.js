@@ -36,9 +36,9 @@ export default class SwipeToSlide extends Component {
     const handleClick = (e) => {
       this.setState({ active: e.target.id });
       this.setActiveCategory(e.target.id);
-      if (e.target.id == 3 && (hour > 22 || hour < 18)) {
-        alert('주점은 현재 운영시간이 아닙니다.');
-      }
+      // if (e.target.id == 3 && (hour > 22 || hour < 18)) {
+      //   alert('주점은 현재 운영시간이 아닙니다.');
+      // }
     };
 
     return (

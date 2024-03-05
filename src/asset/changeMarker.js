@@ -21,7 +21,7 @@ export const changeMarker = (activeCategory, isPrev) => {
     text = '관리자';
   } else if (activeCategory == 2) {
     isPrev ? (img = info) : (img = activeInfo);
-    text = '관광안내소';
+    text = '안내소';
   } else if (activeCategory == 3) {
     isPrev ? (img = store) : (img = activeStore);
     text = '편의점';
@@ -45,7 +45,8 @@ export const changeMarker = (activeCategory, isPrev) => {
   <div style="display:flex; font-size: 12px;-webkit-text-stroke-width: 0.2px;-webkit-text-stroke-color: #FFF;
    font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
   </div>`,
-    anchor: new naver.maps.Point(25, 26),
     size: new naver.maps.Size(50, 50),
+    origin: new naver.maps.Point(0, 0),
+    anchor: new naver.maps.Point(25, 26),
   };
 };

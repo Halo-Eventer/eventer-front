@@ -3,6 +3,8 @@ import { GlobalStyles } from 'asset/GlobalStyles';
 
 import Home from './Routes/Home';
 import NolzaMap from 'Routes/NolzaMap';
+import TourMap from 'Routes/TourMap';
+
 import FestivalInfo from './Routes/FestivalInfo';
 import FestivalNotice from './Routes/FestivalNotice';
 import Detail_Event from './Routes/Detail_Event';
@@ -34,6 +36,7 @@ function App() {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="/map" element={<NolzaMap />} />
+        <Route path="/tourmap" element={<TourMap />} />
         <Route path="/festivalInfo" element={<FestivalInfo />} />
         <Route path="/festivalNotice" element={<FestivalNotice />} />
         <Route path="/event/:id" element={<Detail_Event />} />

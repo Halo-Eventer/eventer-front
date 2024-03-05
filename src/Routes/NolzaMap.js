@@ -62,13 +62,15 @@ function NolzaMap(props) {
       mapTypeControl: false,
     };
     const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
-    setMap(tmpMap);
+
     getAllConcert(1)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setConcertData(res.data);
-        let concertHallMarkerInfo = res.data.map((e) => {
+        const info = res.data?.map((e) => {
+          console.log(e);
           return markerHandle(
+            e.id,
             naver,
             tmpMap,
             e.latitude,
@@ -78,14 +80,17 @@ function NolzaMap(props) {
             '공연장'
           );
         });
-        setConcertHallMarker(concertHallMarkerInfo);
+        console.log(info);
+        setConcertHallMarker(info);
       })
       .catch((err) => {
         console.log(err);
       });
+    setMap(tmpMap);
   }, []);
   useEffect(() => {
     concertHallMarker.map((e, i) => {
+      console.log(e);
       e.setMap(map);
       naver.maps.Event.addListener(e, 'click', () =>
         handleConcertHallMarker(concertData[i].id)
@@ -132,7 +137,7 @@ function NolzaMap(props) {
         </div>`,
           },
         });
-        console.log(marker);
+
         marker.setMap(map);
         flag = true;
       }
@@ -304,7 +309,7 @@ const Map = styled.div`
   }
 `;
 
-const MapContainer = styled.div`
+export const MapContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
   z-index: 0;
