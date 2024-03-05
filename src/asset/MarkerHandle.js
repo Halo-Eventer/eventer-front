@@ -15,7 +15,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
       <img style="width:32px;height:36px;" src = ${img}></img>
       </div>
       </div>
-      <div style="display:flex; font-size: 12px; font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+      <div style="display:flex; font-size: 20px; font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
       </div>`
           : `<div > 
       <div style="display:flex; justify-content: center; align-items: center;">

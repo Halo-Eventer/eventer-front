@@ -151,10 +151,6 @@ function NolzaMap(props) {
 
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
-      if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
-        selectedMarker.current = null;
-      }
     });
 
     if (data != '') {
