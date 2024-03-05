@@ -256,12 +256,7 @@ function NolzaMap(props) {
   };
 
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
+    <div>
       <GlobalStyle />
       <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
         <BkBtn style={{ left: '20px' }} onClick={onClick_bkBtn} />
@@ -312,7 +307,6 @@ const Map = styled.div`
 const MapContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
-
   z-index: 0;
 `;
 const GlobalStyle = createGlobalStyle`//전역 스타일 설정
@@ -320,7 +314,8 @@ const GlobalStyle = createGlobalStyle`//전역 스타일 설정
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    display: fixed;
-  overflow: hidden;
+    
+/* display: fixed;
+  overflow: hidden; */
   }
 `;

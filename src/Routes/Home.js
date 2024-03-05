@@ -224,6 +224,7 @@ export const Wrapper = styled.div`
   align-items: center;
 
   min-height: 100vh;
+  overflow-x: hidden;
   //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
 `;
 

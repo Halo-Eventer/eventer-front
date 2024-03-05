@@ -24,7 +24,9 @@ function App() {
     document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
   }
 
-  window.addEventListener('resize', () => setScreenSize());
+  useEffect(() => {
+    setScreenSize();
+  });
 
   return (
     <BrowserRouter>
