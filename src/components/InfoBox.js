@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import closeImg from '../asset/Close.svg';
+import dot from '../asset/dot.svg';
 function InfoBox(props) {
   const handleClose = () => {
     props.setClose(true);
@@ -19,7 +20,9 @@ function InfoBox(props) {
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
-        <Time>{data.operationHours}</Time> <Place>{data.location}</Place>
+        <Time>{data.operationHours}</Time>
+        <Dot src={dot}></Dot>
+        <Place>{data.location}</Place>
       </DetailBox>
       <Show>{data.summary}</Show>
     </div>
@@ -58,13 +61,15 @@ const PlaceType = styled.div`
 
 const Close = styled.img`
   margin-left: auto;
-  cursor:pointer;
+  cursor: pointer;
 `;
 const Time = styled.div`
-  color: #333;
+  color: #07b0c7;
+
   font-family: Pretendard;
   font-size: 15px;
   font-weight: 500;
+  line-height: 24px; /* 160% */
 `;
 
 const Place = styled(Time)`
@@ -73,11 +78,15 @@ const Place = styled(Time)`
 
 const DetailBox = styled.div`
   display: flex;
-  margin-top: 4px;
 `;
 const Show = styled.div`
-  color: #e63136;
+  color: #111;
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
+  line-height: 24px; /* 150% */
+`;
+
+const Dot = styled.img`
+  padding: 0 4px 0 4px;
 `;

@@ -50,9 +50,10 @@ function ClickInfo(props) {
           setClose={setClose}
         />
       </InfoContainer>
-      <ImgContainer>
+      {/* <ImgContainer>
         <DetailImg src={props.clickInfo.thumbnail}></DetailImg>
-      </ImgContainer>
+      </ImgContainer> */}
+      <More onClick={handleFull}>자세히 보기</More>
     </Container>
   );
 }
@@ -64,10 +65,10 @@ export const Container = styled.div`
   bottom: 0px;
   z-index: 110;
   border-radius: 12px 12px 0px 0px;
-  background: #fcf2eb;
-  box-shadow: 0px -4px 16px 0px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  box-shadow: 0px -2px 8px 0px rgba(0, 0, 0, 0.12);
   width: 100vw;
-  height: ${244 + 8}px;
+  height: 172px;
   z-index: 10;
   display: ${(props) => {
     return props.popup == true && props.isOpen == true ? 'flex' : 'none';
@@ -121,4 +122,22 @@ const ImgContainer = styled.div`
 const DetailImg = styled.img`
   width: 350px;
   border-radius: 12px;
+`;
+const More = styled.button`
+  margin-top: 16px;
+  margin-bottom: 12px;
+
+  border-radius: 8px;
+  background: #e5f5f7;
+  width: 358px;
+  height: 40px;
+  flex-shrink: 0;
+
+  color: #07b0c7;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px; /* 150% */
 `;

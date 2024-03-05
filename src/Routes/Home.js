@@ -152,7 +152,7 @@ function Home() {
               </h1>
             </Link>
           </BigBox>
-          <Link to="/map">
+          <Link to="/tourmap">
             <SmallBox>
               <h1>
                 주변관광지
