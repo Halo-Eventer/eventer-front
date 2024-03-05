@@ -14,6 +14,7 @@ export const changeMarker = (activeCategory, isPrev) => {
   } else if (activeCategory == 2) {
   } else if (activeCategory == 3) {
   } else if (activeCategory == 4) {
+    isPrev ? console.log('is Prev 이전꺼') : console.log('지금꺼');
     isPrev ? (img = toilet) : (img = activeToilet);
     text = '화장실';
     console.log(img, text);

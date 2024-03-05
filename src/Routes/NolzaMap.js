@@ -19,9 +19,6 @@ import { changeMarker } from 'asset/changeMarker';
 
 import { TopFixedDiv, UpperBar, BkBtn, Title } from './Home';
 
-
-
-
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');
   const [activeCategory, setActiveCategory] = useState(1);
@@ -30,8 +27,9 @@ function NolzaMap(props) {
   const [concertHallMarker, setConcertHallMarker] = useState([]);
   const [concertData, setConcertData] = useState([]);
   const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
-  const [prevActiveMarker, setPrevActiveMarker] = useState(null);
+
   let markerImg = '';
+
   const mapElement = useRef(1);
   const [prevMarkers, setPrevMarkers] = useState([]);
   const [map, setMap] = useState(null);
@@ -40,7 +38,8 @@ function NolzaMap(props) {
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
 
-  const selectedMarker = useRef(null); // 선택된 마커를 구분하기 위해 useRef 추가
+  const selectedMarker = useRef(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -94,6 +93,14 @@ function NolzaMap(props) {
     });
   }, [concertHallMarker]);
   useEffect(() => {
+    if (popup == false) {
+      if (!!selectedMarker.current) {
+        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+        selectedMarker.current = null;
+      }
+    }
+  }, [popup]);
+  useEffect(() => {
     // 내 위치 찾기
     let options = {
       enablehighAccuracy: false, // 높은 정확도 위해 true 배터리 많이 닳음.
@@ -144,6 +151,10 @@ function NolzaMap(props) {
 
     naver.maps.Event.addListener(map, 'click', () => {
       setPopup(false);
+      if (!!selectedMarker.current) {
+        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+        selectedMarker.current = null;
+      }
     });
 
     if (data != '') {
@@ -227,14 +238,15 @@ function NolzaMap(props) {
     setOpenId(id);
   };
   const handleMarkers = (data, marker) => {
-    console.log(data);
-
     setActiveId(data.id);
-    console.log('전꺼 : ', prevActiveMarker, '지금꺼 : ', marker);
-
-    marker.setIcon(changeMarker(activeCategory, 0));
-    prevActiveMarker.setIcon(changeMarker(activeCategory, 1));
-    setPrevActiveMarker(marker);
+    console.log(marker);
+    if (!selectedMarker.current || selectedMarker.current !== marker) {
+      if (!!selectedMarker.current) {
+        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+      }
+      marker.setIcon(changeMarker(activeCategory, 0));
+    }
+    selectedMarker.current = marker;
 
     getDetailInfo(data.id, setClickInfo, activeCategory);
     setConcertClick(false);
@@ -242,12 +254,10 @@ function NolzaMap(props) {
     setOpenId(data.id);
   };
 
-
-
   const onClick_bkBtn = () => {
     navigate(-1);
     //그냥 뒤로가는 기능
-  }
+  };
 
   return (
     <div
@@ -257,41 +267,40 @@ function NolzaMap(props) {
       }}
     >
       <GlobalStyle />
-          <UpperBar style={{width:'100%'}}>
-            <BkBtn style={{left:'20px'}} onClick={onClick_bkBtn}/>
-            <Title>공연장 지도</Title>
-          </UpperBar>
+      <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
+        <BkBtn style={{ left: '20px' }} onClick={onClick_bkBtn} />
+        <Title>공연장 지도</Title>
+      </UpperBar>
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
         {concertClick
           ? concertData.map((e) => {
-            return (
-              <ClickInfo
-                data={e}
-                openId={openId}
-                mapElement={mapElement}
-                popup={popup}
-                clickInfo={clickInfo}
-                setPopup={setPopup}
-                setShowChangeBlock={props.setShowChangeBlock}
-              />
-            );
-          })
-          : data.map((e) => {
-            if (e.id == openId)
               return (
                 <ClickInfo
                   data={e}
-                  activeCategory={activeCategory}
                   openId={openId}
                   mapElement={mapElement}
                   popup={popup}
-                  setPopup={setPopup}
                   clickInfo={clickInfo}
-                  setShowChangeBlock={props.setShowChangeBlock}
+                  setPopup={setPopup}
                 />
               );
-          })}
+            })
+          : data.map((e) => {
+              if (e.id == openId)
+                return (
+                  <ClickInfo
+                    data={e}
+                    activeCategory={activeCategory}
+                    openId={openId}
+                    mapElement={mapElement}
+                    popup={popup}
+                    setPopup={setPopup}
+                    clickInfo={clickInfo}
+                    // marker={marker}
+                  />
+                );
+            })}
       </MapContainer>
     </div>
   );

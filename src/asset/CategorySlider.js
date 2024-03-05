@@ -117,7 +117,7 @@ const StyledSlider = styled(Slider)`
     font-size: 13px;
 
     margin-left: 6px;
-    margin-top: 6px;
+    margin-top: 45px;
     background-color: transparent;
   }
 `;

@@ -51,38 +51,32 @@ function Home() {
     navigate(`/event/${eventId}`);
   };
 
-
-
   //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
   const [eventList, setEventList] = useState([]);
   const [noticeList, setNoticeList] = useState([]);
   const fetchList = (category) => {
-    let type = "";
+    let type = '';
     getAll(festivalId, category, type)
       .then((response) => {
         if (response.data) {
-          console.log("fetch List success", response.data);
-          if (category === 'notice')
-            setNoticeList(response.data);
-          else if (category === 'event')
-            setEventList(response.data);
+          console.log('fetch List success', response.data);
+          if (category === 'notice') setNoticeList(response.data);
+          else if (category === 'event') setEventList(response.data);
         } else {
-          console.log("fetch List no data ;(", response);
-          if (category === 'notice')
-            setNoticeList([]);
-          else if (category === 'event')
-            setEventList([]);
+          console.log('fetch List no data ;(', response);
+          if (category === 'notice') setNoticeList([]);
+          else if (category === 'event') setEventList([]);
         }
-      }).catch((error) => {
-        console.log('fetch List error', error);
       })
-  }
+      .catch((error) => {
+        console.log('fetch List error', error);
+      });
+  };
   useEffect(() => {
     fetchList('notice');
     fetchList('event');
   }, []);
   //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
-
 
   return (
     <Wrapper>
@@ -95,12 +89,13 @@ function Home() {
               <img src={instagram}></img>
             </a>
 
-            <a href="https://www.facebook.com/wshowmokpo/?locale=ko_KR" target="_blank">
+            <a
+              href="https://www.facebook.com/wshowmokpo/?locale=ko_KR"
+              target="_blank"
+            >
               <img src={facebook}></img>
             </a>
-
           </FlexBox_Row>
-
         </UpperBar>
         <FlexBox_Row style={{ width: '100%' }}>
           <ImgBlock>
@@ -139,14 +134,10 @@ function Home() {
               <h1>
                 <FlexBox_Row>
                   <GrayBox />
-                  <p>
-                    공연장 지도
-                  </p>
+                  <p>공연장 지도</p>
                 </FlexBox_Row>
 
-                <button>
-                  주변시설 확인
-                </button>
+                <button>주변시설 확인</button>
               </h1>
             </Link>
             <hr />
@@ -154,14 +145,10 @@ function Home() {
               <h1>
                 <FlexBox_Row>
                   <GrayBox />
-                  <p>
-                    오늘의 공연
-                  </p>
+                  <p>오늘의 공연</p>
                 </FlexBox_Row>
 
-                <button>
-                  공연일정 보기
-                </button>
+                <button>공연일정 보기</button>
               </h1>
             </Link>
           </BigBox>
@@ -169,9 +156,7 @@ function Home() {
             <SmallBox>
               <h1>
                 주변관광지
-                <button>
-                  확인하러 가기 &gt;
-                </button>
+                <button>확인하러 가기 &gt;</button>
               </h1>
             </SmallBox>
           </Link>
@@ -203,21 +188,20 @@ export const FlexBox_Column = styled.div`
   align-items: center;
 `;
 
-
 export const LineDiv = styled.div`
   @media screen and (min-width: 450px) {
-    position:fixed;
-    left:50%;
-    transform:translateX(-50%);
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
 
     width: 392px;
-    border-width:0 1px 0 1px;
-    border-color:#ccc;
-    border-style:solid;
+    border-width: 0 1px 0 1px;
+    border-color: #ccc;
+    border-style: solid;
 
-    background-color:transparent;
+    background-color: transparent;
 
-    height:100vh;
+    height: 100vh;
 
     /* z-index:-1;
     //stacking(absolute, relative, fixed)일때만 z-index속성값이 해당되는거임.  */
@@ -232,14 +216,14 @@ export const Wrapper = styled.div`
   margin: 0;
   padding: 0;
 
-  background-color:black;
+  background-color: black;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
-  min-height:100vh;
+  min-height: 100vh;
   //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
 `;
 
@@ -259,14 +243,13 @@ export const UpperBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding:4px 16px;
+  padding: 4px 16px;
 `;
-
 
 export const Board = styled.div`
   @media screen and (min-width: 450px) {
-    width:390px;
-    background-color:transparent;
+    width: 390px;
+    background-color: transparent;
   }
 `;
 
@@ -280,17 +263,17 @@ export const TopFixedDiv = styled.div`
   margin: 0;
   padding: 0;
 
-  background-color:black;
+  background-color: black;
 
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
 
-  z-index:3;
+  z-index: 3;
 `;
 export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
-  left:4px;
+  left: 4px;
 
   width: 24px;
   height: 24px;
@@ -308,13 +291,13 @@ export const HomeBtn = styled.div`
   cursor: pointer;
   margin: 0;
 `;
-  // background-image: url(${home}); */
+// background-image: url(${home}); */
 
 export const Title = styled.h1`
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   color: #fff;
   text-align: center;
@@ -323,13 +306,13 @@ export const Title = styled.h1`
   font-style: normal;
   font-weight: 700;
 
-  line-height:32px;
+  line-height: 32px;
 `;
 
 //스타일 슬라이더 활용 (다음엔 다른거 써보자)
 export const StyledSlider = styled(Slider)`
-  background-color:#000;
-  border-radius:12px;
+  background-color: #000;
+  border-radius: 12px;
   .slick-dots {
     /* 여기에 원하는 스타일을 적용하세요. */
     z-index: 10;
@@ -347,36 +330,36 @@ export const StyledSlider = styled(Slider)`
         //눌렀던 버튼 스타일 (hover)
         color: white;
         font-size: 10px;
-        opacity:0.5;
+        opacity: 0.5;
       }
     }
     li.slick-active button:before {
       //현재 보여지고 있는 슬라이드
-      color: rgba(255,255,255);
-      opacity:1;
+      color: rgba(255, 255, 255);
+      opacity: 1;
     }
   }
   .slick-prev:before,
-  .slick-next:before{
-    display:none;
+  .slick-next:before {
+    display: none;
   }
 `;
 
 export const ImgBlock = styled.div`
   width: 358px;
-  background-color:#000;
+  background-color: #000;
 `;
 
 export const ImgBoard = styled.img`
-  object-fit:fill;
-  object-position:center;
-    //이미지 태그용 (<> background-position)
+  object-fit: fill;
+  object-position: center;
+  //이미지 태그용 (<> background-position)
   width: 100%;
   height: 100%;
   flex-shrink: 0;
-  background-color:#000;
+  background-color: #000;
 
-  border-radius:12px;
+  border-radius: 12px;
 
   z-index: 2;
   cursor: ${(props) => props.cursor};
@@ -394,9 +377,9 @@ export const SecondBlock = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap:12px;
+  gap: 12px;
 
-  color:white;
+  color: white;
 
   ${BigBox} {
     width: 358px;
@@ -409,36 +392,36 @@ export const SecondBlock = styled.div`
 
     padding: 20px 16px;
 
-    hr{
-      margin:20px;
+    hr {
+      margin: 20px;
     }
 
     h1 {
-      color: #FFF;
+      color: #fff;
       /* headline1 */
-      font-family: "NanumSquare Neo OTF";
+      font-family: 'NanumSquare Neo OTF';
       font-size: 18px;
       font-style: normal;
       font-weight: 900;
       line-height: 26px; /* 144.444% */
 
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-      ${GrayBox}{
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
+      ${GrayBox} {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
 
-      border-radius: 4px;
-      background: #D9D9D9;
+        border-radius: 4px;
+        background: #d9d9d9;
 
-      margin-right:12px;
+        margin-right: 12px;
       }
 
-      button{
-        color: #FFF;
+      button {
+        color: #fff;
         font-family: Pretendard;
         font-size: 14px;
         font-style: normal;
@@ -446,7 +429,7 @@ export const SecondBlock = styled.div`
         line-height: 20px; /* 142.857% */
 
         border-radius: 8px;
-        border: 1px solid #CCC;
+        border: 1px solid #ccc;
 
         display: inline-flex;
         padding: 8px 12px;
@@ -454,7 +437,7 @@ export const SecondBlock = styled.div`
         align-items: center;
         gap: 10px;
 
-        z-index:5;
+        z-index: 5;
       }
     }
   }
@@ -471,22 +454,21 @@ export const SecondBlock = styled.div`
     padding: 12px;
 
     h1 {
-      color: #FFF;
+      color: #fff;
 
       /* headline2 */
-      font-family: "NanumSquare Neo OTF";
+      font-family: 'NanumSquare Neo OTF';
       font-size: 16px;
       font-style: normal;
       font-weight: 900;
       line-height: 24px; /* 150% */
 
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-
-      button{
-        color: #DDD;
+      button {
+        color: #ddd;
         font-family: Pretendard;
         font-size: 14px;
         font-style: normal;
@@ -497,72 +479,70 @@ export const SecondBlock = styled.div`
   }
 `;
 
-
 //For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
 
 export const MainBoard = styled.div`
-width:390px;
+  width: 390px;
 
-margin-top:48px;
+  margin-top: 48px;
 
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-background-color:#000;
+  background-color: #000;
 `;
 
-
 export const TextBoard = styled.div`
-width:390px;
+  width: 390px;
 
-margin-top:32px;
+  margin-top: 32px;
 
-display:flex;
-justify-content:center;
-align-items:flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
-div{
+  div {
     width: 390px;
     flex-shrink: 0;
 
-    background-color:#000;
-    padding:16px 12px 16px 12px;
-    box-sizing:border-box;
-    z-index:2;
-    h1{
-        color: #FFF;
-        font-family: Pretendard;
-        font-size: 20px;
-        font-style: normal;
-        font-weight: 600;
-        margin-bottom:12px;
+    background-color: #000;
+    padding: 16px 12px 16px 12px;
+    box-sizing: border-box;
+    z-index: 2;
+    h1 {
+      color: #fff;
+      font-family: Pretendard;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      margin-bottom: 12px;
     }
-    h2{
-        color: #FFF;
-        font-family: Pretendard;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 600;
-        line-height:24px;
-        margin-bottom:12px;
+    h2 {
+      color: #fff;
+      font-family: Pretendard;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      margin-bottom: 12px;
     }
-    h3{
-        color: #FFF;
-        font-family: Pretendard;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 24px;
+    h3 {
+      color: #fff;
+      font-family: Pretendard;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
 
-        margin:0;
-        padding:0;
+      margin: 0;
+      padding: 0;
     }
-    hr{
-      margin-top:12px;
-      margin-bottom:16px;
+    hr {
+      margin-top: 12px;
+      margin-bottom: 16px;
     }
-}
+  }
 `;
 //For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
