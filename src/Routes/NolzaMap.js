@@ -5,14 +5,14 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import sojuImg from 'asset/category/sojuCateogory.svg';
-import boothImg from 'asset/category/boothCategory.svg';
-import foodImg from 'asset/category/foodtruckCategory.svg';
-import doctorImg from 'asset/marker/doctor.png';
+
 import hallMarker from 'asset/marker/concertHall.png';
 import getMarker from '../components/getMarker';
-import eventMarker from 'asset/marker/eventImg.svg';
-import toiletMarker from 'asset/marker/toiletImg.svg';
+import eventMarker from 'asset/marker/event.png';
+import toiletMarker from 'asset/marker/toilet.png';
+import infoMarker from 'asset/marker/info.png';
+import storeMarker from 'asset/marker/store.png';
+import trashMarker from 'asset/marker/trash.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
@@ -44,10 +44,10 @@ function NolzaMap(props) {
 
   useEffect(() => {
     if (activeCategory == 1) markerImg = eventMarker;
-    else if (activeCategory == 2) markerImg = foodImg;
-    else if (activeCategory == 3) markerImg = sojuImg;
+    else if (activeCategory == 2) markerImg = infoMarker;
+    else if (activeCategory == 3) markerImg = storeMarker;
     else if (activeCategory == 4) markerImg = toiletMarker;
-    else if (activeCategory == 5) markerImg = doctorImg;
+    else if (activeCategory == 5) markerImg = trashMarker;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {

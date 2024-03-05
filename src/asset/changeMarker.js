@@ -1,8 +1,14 @@
 import { useState } from 'react';
-import activeToilet from 'asset/marker/activeToiletImg.svg';
-import toilet from 'asset/marker/toiletImg.svg';
-import event from 'asset/marker/eventImg.svg';
-
+import activeToilet from 'asset/marker/activeToilet.png';
+import toilet from 'asset/marker/toilet.png';
+import event from 'asset/marker/event.png';
+import activeEvent from 'asset/marker/activeEvent.png';
+import info from 'asset/marker/info.png';
+import activeInfo from 'asset/marker/activeInfo.png';
+import store from 'asset/marker/store.png';
+import activeStore from 'asset/marker/activeStore.png';
+import trash from 'asset/marker/trash.png';
+import activeTrash from 'asset/marker/activeTrash.png';
 export const changeMarker = (activeCategory, isPrev) => {
   //   const [text, setText] = useState();
   //   const [img, setImg] = useState();
@@ -11,14 +17,20 @@ export const changeMarker = (activeCategory, isPrev) => {
   let text = '관리자';
 
   if (activeCategory == 1) {
+    isPrev ? (img = event) : (img = activeEvent);
+    text = '관리자';
   } else if (activeCategory == 2) {
+    isPrev ? (img = info) : (img = activeInfo);
+    text = '관광안내소';
   } else if (activeCategory == 3) {
+    isPrev ? (img = store) : (img = activeStore);
+    text = '편의점';
   } else if (activeCategory == 4) {
-    isPrev ? console.log('is Prev 이전꺼') : console.log('지금꺼');
     isPrev ? (img = toilet) : (img = activeToilet);
     text = '화장실';
-    console.log(img, text);
   } else if (activeCategory == 5) {
+    isPrev ? (img = trash) : (img = activeTrash);
+    text = '쓰레기통';
   }
 
   return {
