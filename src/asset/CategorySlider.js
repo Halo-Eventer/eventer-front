@@ -6,6 +6,7 @@ import eventImg from 'asset/category/eventCategory.svg';
 import boothImg from 'asset/category/boothCategory.svg';
 import foodtruckImg from 'asset/category/foodtruckCategory.svg';
 import amenityImg from 'asset/category/amenityCategory.svg';
+import trashImg from 'asset/category/trashCategory.png';
 export default class SwipeToSlide extends Component {
   constructor(props) {
     super(props);
@@ -35,9 +36,9 @@ export default class SwipeToSlide extends Component {
     const handleClick = (e) => {
       this.setState({ active: e.target.id });
       this.setActiveCategory(e.target.id);
-      if (e.target.id == 3 && (hour > 22 || hour < 18)) {
-        alert('주점은 현재 운영시간이 아닙니다.');
-      }
+      // if (e.target.id == 3 && (hour > 22 || hour < 18)) {
+      //   alert('주점은 현재 운영시간이 아닙니다.');
+      // }
     };
 
     return (
@@ -96,8 +97,8 @@ export default class SwipeToSlide extends Component {
               id="5"
               onClick={handleClick}
             >
-              <img id="5" src={amenityImg}></img>
-              <CategoryText id="5">편의시설</CategoryText>
+              <img id="5" src={trashImg}></img>
+              <CategoryText id="5">쓰레기통</CategoryText>
             </CategoryBox>
           </div>
         </StyledSlider>
@@ -117,7 +118,7 @@ const StyledSlider = styled(Slider)`
     font-size: 13px;
 
     margin-left: 6px;
-    margin-top: 6px;
+    margin-top: 45px;
     background-color: transparent;
   }
 `;

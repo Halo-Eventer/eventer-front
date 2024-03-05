@@ -5,22 +5,19 @@ import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../asset/CategorySlider';
 import ClickInfo from '../components/map/ClickInfo';
 import { markerHandle } from '../asset/MarkerHandle';
-import sojuImg from 'asset/category/sojuCateogory.svg';
-import boothImg from 'asset/category/boothCategory.svg';
-import foodImg from 'asset/category/foodtruckCategory.svg';
-import doctorImg from 'asset/marker/doctor.png';
+
 import hallMarker from 'asset/marker/concertHall.png';
 import getMarker from '../components/getMarker';
-import eventMarker from 'asset/marker/eventImg.svg';
-import toiletMarker from 'asset/marker/toiletImg.svg';
+import eventMarker from 'asset/marker/event.png';
+import toiletMarker from 'asset/marker/toilet.png';
+import infoMarker from 'asset/marker/info.png';
+import storeMarker from 'asset/marker/store.png';
+import trashMarker from 'asset/marker/trash.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
 import { TopFixedDiv, UpperBar, BkBtn, Title } from './Home';
-
-
-
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');
@@ -30,8 +27,9 @@ function NolzaMap(props) {
   const [concertHallMarker, setConcertHallMarker] = useState([]);
   const [concertData, setConcertData] = useState([]);
   const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
-  const [prevActiveMarker, setPrevActiveMarker] = useState(null);
+
   let markerImg = '';
+
   const mapElement = useRef(1);
   const [prevMarkers, setPrevMarkers] = useState([]);
   const [map, setMap] = useState(null);
@@ -40,15 +38,16 @@ function NolzaMap(props) {
   const [data, setData] = useState([]);
   const [openId, setOpenId] = useState(0);
 
-  const selectedMarker = useRef(null); // 선택된 마커를 구분하기 위해 useRef 추가
+  const selectedMarker = useRef(null);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     if (activeCategory == 1) markerImg = eventMarker;
-    else if (activeCategory == 2) markerImg = foodImg;
-    else if (activeCategory == 3) markerImg = sojuImg;
+    else if (activeCategory == 2) markerImg = infoMarker;
+    else if (activeCategory == 3) markerImg = storeMarker;
     else if (activeCategory == 4) markerImg = toiletMarker;
-    else if (activeCategory == 5) markerImg = doctorImg;
+    else if (activeCategory == 5) markerImg = trashMarker;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
@@ -63,13 +62,15 @@ function NolzaMap(props) {
       mapTypeControl: false,
     };
     const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
-    setMap(tmpMap);
+
     getAllConcert(1)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
         setConcertData(res.data);
-        let concertHallMarkerInfo = res.data.map((e) => {
+        const info = res.data?.map((e) => {
+          console.log(e);
           return markerHandle(
+            e.id,
             naver,
             tmpMap,
             e.latitude,
@@ -79,20 +80,31 @@ function NolzaMap(props) {
             '공연장'
           );
         });
-        setConcertHallMarker(concertHallMarkerInfo);
+        console.log(info);
+        setConcertHallMarker(info);
       })
       .catch((err) => {
         console.log(err);
       });
+    setMap(tmpMap);
   }, []);
   useEffect(() => {
     concertHallMarker.map((e, i) => {
+      console.log(e);
       e.setMap(map);
       naver.maps.Event.addListener(e, 'click', () =>
         handleConcertHallMarker(concertData[i].id)
       );
     });
   }, [concertHallMarker]);
+  useEffect(() => {
+    if (popup == false) {
+      if (!!selectedMarker.current) {
+        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+        selectedMarker.current = null;
+      }
+    }
+  }, [popup]);
   useEffect(() => {
     // 내 위치 찾기
     let options = {
@@ -125,7 +137,7 @@ function NolzaMap(props) {
         </div>`,
           },
         });
-        console.log(marker);
+
         marker.setMap(map);
         flag = true;
       }
@@ -227,14 +239,15 @@ function NolzaMap(props) {
     setOpenId(id);
   };
   const handleMarkers = (data, marker) => {
-    console.log(data);
-
     setActiveId(data.id);
-    console.log('전꺼 : ', prevActiveMarker, '지금꺼 : ', marker);
-
-    marker.setIcon(changeMarker(activeCategory, 0));
-    prevActiveMarker.setIcon(changeMarker(activeCategory, 1));
-    setPrevActiveMarker(marker);
+    console.log(marker);
+    if (!selectedMarker.current || selectedMarker.current !== marker) {
+      if (!!selectedMarker.current) {
+        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+      }
+      marker.setIcon(changeMarker(activeCategory, 0));
+    }
+    selectedMarker.current = marker;
 
     getDetailInfo(data.id, setClickInfo, activeCategory);
     setConcertClick(false);
@@ -242,56 +255,48 @@ function NolzaMap(props) {
     setOpenId(data.id);
   };
 
-
-
   const onClick_bkBtn = () => {
     navigate(-1);
     //그냥 뒤로가는 기능
-  }
+  };
 
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-      }}
-    >
+    <div>
       <GlobalStyle />
-          <UpperBar style={{width:'100%'}}>
-            <BkBtn style={{left:'20px'}} onClick={onClick_bkBtn}/>
-            <Title>공연장 지도</Title>
-          </UpperBar>
+      <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
+        <BkBtn style={{ left: '20px' }} onClick={onClick_bkBtn} />
+        <Title>공연장 지도</Title>
+      </UpperBar>
       <MapContainer ref={mapElement}>
         <SwipeToSlide setActiveCategory={setActiveCategory} />
         {concertClick
           ? concertData.map((e) => {
-            return (
-              <ClickInfo
-                data={e}
-                openId={openId}
-                mapElement={mapElement}
-                popup={popup}
-                clickInfo={clickInfo}
-                setPopup={setPopup}
-                setShowChangeBlock={props.setShowChangeBlock}
-              />
-            );
-          })
-          : data.map((e) => {
-            if (e.id == openId)
               return (
                 <ClickInfo
                   data={e}
-                  activeCategory={activeCategory}
                   openId={openId}
                   mapElement={mapElement}
                   popup={popup}
-                  setPopup={setPopup}
                   clickInfo={clickInfo}
-                  setShowChangeBlock={props.setShowChangeBlock}
+                  setPopup={setPopup}
                 />
               );
-          })}
+            })
+          : data.map((e) => {
+              if (e.id == openId)
+                return (
+                  <ClickInfo
+                    data={e}
+                    activeCategory={activeCategory}
+                    openId={openId}
+                    mapElement={mapElement}
+                    popup={popup}
+                    setPopup={setPopup}
+                    clickInfo={clickInfo}
+                    // marker={marker}
+                  />
+                );
+            })}
       </MapContainer>
     </div>
   );
@@ -304,9 +309,9 @@ const Map = styled.div`
   }
 `;
 
-const MapContainer = styled.div`
+export const MapContainer = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   z-index: 0;
 `;
 const GlobalStyle = createGlobalStyle`//전역 스타일 설정
@@ -314,5 +319,8 @@ const GlobalStyle = createGlobalStyle`//전역 스타일 설정
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
+/* display: fixed;
+  overflow: hidden; */
   }
 `;
