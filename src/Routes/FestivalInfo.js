@@ -60,3 +60,4 @@ height:100vh;
 top:0; 
 left:0;
 `;
+//svg 모바일 흐림해결
