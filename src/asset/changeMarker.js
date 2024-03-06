@@ -18,10 +18,10 @@ export const changeMarker = (activeCategory, isPrev) => {
 
   if (activeCategory == 1) {
     isPrev ? (img = event) : (img = activeEvent);
-    text = '관리자';
+    text = '관리자(안내요원)';
   } else if (activeCategory == 2) {
     isPrev ? (img = info) : (img = activeInfo);
-    text = '안내소';
+    text = '관광안내소';
   } else if (activeCategory == 3) {
     isPrev ? (img = store) : (img = activeStore);
     text = '편의점';

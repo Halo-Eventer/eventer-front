@@ -5,7 +5,8 @@ import sojuImg from '../asset/category/sojuCateogory.svg';
 import eventImg from 'asset/category/eventCategory.svg';
 import boothImg from 'asset/category/boothCategory.svg';
 import foodtruckImg from 'asset/category/foodtruckCategory.svg';
-import amenityImg from 'asset/category/amenityCategory.svg';
+import smokeImg from 'asset/category/smokeCategory.png';
+import parkImg from 'asset/category/parkingCategory.png';
 import trashImg from 'asset/category/trashCategory.png';
 export default class SwipeToSlide extends Component {
   constructor(props) {
@@ -99,6 +100,26 @@ export default class SwipeToSlide extends Component {
             >
               <img id="5" src={trashImg}></img>
               <CategoryText id="5">쓰레기통</CategoryText>
+            </CategoryBox>
+          </div>
+          <div>
+            <CategoryBox
+              active={this.state.active}
+              id="6"
+              onClick={handleClick}
+            >
+              <img id="6" src={smokeImg}></img>
+              <CategoryText id="6">흡연장</CategoryText>
+            </CategoryBox>
+          </div>
+          <div>
+            <CategoryBox
+              active={this.state.active}
+              id="7"
+              onClick={handleClick}
+            >
+              <img id="7" src={parkImg}></img>
+              <CategoryText id="7">주차장</CategoryText>
             </CategoryBox>
           </div>
         </StyledSlider>

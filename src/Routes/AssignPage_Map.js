@@ -6,7 +6,10 @@ import { Wrapper } from './AssignPage_Home';
 import Assign_List from '../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
 import { getAll, getDetail } from '../apis/apis';
-import { MiddleBar_Component2, UpperBar_Component,} from 'components/assign/Assign_Bar';
+import {
+  MiddleBar_Component2,
+  UpperBar_Component,
+} from 'components/assign/Assign_Bar';
 
 function AssignPage_Map() {
   const id_param = useParams().id;
@@ -14,9 +17,16 @@ function AssignPage_Map() {
   const [category, setCategory] = useState('concert');
   const [categoryList, setCategoryList] = useState({
     concert: '콘서트',
-    booth: '부스',
-    amenity: '편의시설',
-    store: ['주점', '푸드트럭'],
+
+    store: [
+      '관리자',
+      '관광안내소',
+      '편의점',
+      '화장실',
+      '쓰레기통',
+      '흡연장',
+      '주차장',
+    ],
   });
   const [type, setType] = useState('');
   const [boardList, setBoardList] = useState([]);
@@ -24,7 +34,7 @@ function AssignPage_Map() {
   const [pageNum, setPageNum] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
   const [itemID, setItemID] = useState(1);
-  const [SE,setSE]=useState("");
+  const [SE, setSE] = useState('');
 
   const [mode, setMode] = useState('');
   const [cancle, setCancle] = useState(true);
@@ -67,27 +77,22 @@ function AssignPage_Map() {
       });
   };
 
-  useEffect(()=>
-  {
-    console.log("cateogry, type (Assign_Map):",category, type);
+  useEffect(() => {
+    console.log('cateogry, type (Assign_Map):', category, type);
     setCancle(true);
-    setMode("");
-    setInfo(firstInfo(category,type));
+    setMode('');
+    setInfo(firstInfo(category, type));
     fetchList();
-  },[category,type])
+  }, [category, type]);
 
-  useEffect(()=>
-  {
-    console.log("mode (AssignPage_Map):",mode);
-    if(mode == 'a')
-    {
-      setInfo(firstInfo(category,type));  
-        //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
+  useEffect(() => {
+    console.log('mode (AssignPage_Map):', mode);
+    if (mode == 'a') {
+      setInfo(firstInfo(category, type));
+      //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
-    }
-    else if(mode == 'r')
-    {
-      setInfo(firstInfo(category,type));
+    } else if (mode == 'r') {
+      setInfo(firstInfo(category, type));
       fetchDetail();
       setCancle(false);
     } else if (mode == 'f') {
@@ -103,42 +108,39 @@ function AssignPage_Map() {
       <MiddleBar_Component2 text="지도" id_param={id_param} />
 
       <AssignBox>
+        <Assign_List
+          category={category}
+          setCategory={setCategory}
+          categoryList={categoryList}
+          setType={setType}
+          boardList={boardList}
+          setBoardList={setBoardList}
+          setSE={setSE}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNum={pageNum}
+          totalPages={totalPages}
+          itemid={itemID}
+          setItemID={setItemID}
+          setMode={setMode}
+          setCancle={setCancle}
+        />
 
-        <Assign_List 
-        category={category} setCategory={setCategory}
-        categoryList = {categoryList} setType={setType}
-
-        boardList={boardList} setBoardList={setBoardList}
-        setSE={setSE}
-
-        currentPage={currentPage} setCurrentPage={setCurrentPage}
-        pageNum={pageNum} totalPages={totalPages}
-
-        itemid = {itemID} setItemID={setItemID}
-        setMode = {setMode} setCancle={setCancle}/>
-
-        {cancle 
-        ?
-        <Assign_Blank/>
-        :
-        <Assign 
-        category={category}
-        cancle = {cancle}
-
-        mode = {mode}
-        setMode = {setMode}
-        
-        itemID = {itemID}
-
-        info={info}
-        setInfo={setInfo}
-
-        setCancle = {setCancle}/>
-        }
-        
+        {cancle ? (
+          <Assign_Blank />
+        ) : (
+          <Assign
+            category={category}
+            cancle={cancle}
+            mode={mode}
+            setMode={setMode}
+            itemID={itemID}
+            info={info}
+            setInfo={setInfo}
+            setCancle={setCancle}
+          />
+        )}
       </AssignBox>
-
-
     </Wrapper>
   );
 }
