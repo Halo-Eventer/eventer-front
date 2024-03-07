@@ -274,7 +274,7 @@ export const TopFixedDiv = styled.div`
 export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
-  left: 4px;
+  left: 16px;
 
   width: 24px;
   height: 24px;
@@ -394,7 +394,14 @@ export const SecondBlock = styled.div`
     padding: 20px 16px;
 
     hr {
-      margin: 20px;
+      width: 326px;
+      height: 0px;
+      flex-shrink: 0;
+
+      stroke-width: 1px;
+      stroke: #999;
+
+      margin:20px 0px;
     }
 
     h1 {

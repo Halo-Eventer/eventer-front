@@ -56,7 +56,7 @@ export const ImgForSvg=styled.iframe`
 border:none;
 
 width:390px; 
-height:100vh;
+height:1810px;
 top:0; 
 left:0;
 `;
