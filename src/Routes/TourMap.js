@@ -4,7 +4,9 @@ import { MapContainer } from './NolzaMap';
 import { useNavigate } from 'react-router-dom';
 import { markerHandle } from 'asset/MarkerHandle';
 import cableCar from 'asset/marker/cableCar.png';
+import getMarker from 'components/getMarker';
 function TourMap() {
+  const [data, setData] = useState([]);
   const mapElement = useRef(1);
   const [map, setMap] = useState(null);
 
@@ -38,7 +40,13 @@ function TourMap() {
     naver.maps.Event.addListener(marker, 'click', () =>
       console.log('케이블카 클릭')
     );
+    getMarker(8, setData);
   }, []);
+  useEffect(() => {
+    data.map((e) => {
+      return markerHandle(e.id, naver, map, e.lat, e.lng, null, 50, e.name);
+    });
+  }, [data]);
 
   return (
     <div>
