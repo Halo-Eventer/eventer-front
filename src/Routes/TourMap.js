@@ -25,7 +25,7 @@ function TourMap() {
     };
     const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
     setMap(tmpMap);
-    markerHandle(
+    const marker = markerHandle(
       -1,
       naver,
       tmpMap,
@@ -34,6 +34,9 @@ function TourMap() {
       cableCar,
       600,
       '목포해상케이블카'
+    );
+    naver.maps.Event.addListener(marker, 'click', () =>
+      console.log('케이블카 클릭')
     );
   }, []);
 

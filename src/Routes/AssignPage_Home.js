@@ -4,71 +4,66 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Flex } from 'asset/Style';
-import { FlexBox_Column, FlexBox_Row} from './Home';
+import { FlexBox_Column, FlexBox_Row } from './Home';
 
-import {UpperBar_Component,
-  MiddleBar_Component1} from '../components/assign/Assign_Bar';
-
+import {
+  UpperBar_Component,
+  MiddleBar_Component1,
+} from '../components/assign/Assign_Bar';
 
 import dropDown from '../images/DropDown.svg';
 import next from '../images/Next.svg';
 import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 
-
-export const firstInfo = (category,type) => {
+export const firstInfo = (category, type) => {
   let tmp;
-  console.log("category, type in firstInfo : ",category, type);
-  if(category === 'notice')
-    {
-      tmp =  {
-        title:"",
-        simpleExplanation:"",
-        subtitle:"",
-        content:"",
+  console.log('category, type in firstInfo : ', category, type);
+  if (category === 'notice') {
+    tmp = {
+      title: '',
+      simpleExplanation: '',
+      subtitle: '',
+      content: '',
 
-        thumbnail:thumbnail_preview,
-        images:[]
-      };  
-    }
-    else if(category==='store')
-    {
-      tmp = {
-          id:"",
-          name:"",
-          summary:"",
-          content:"",
-          latitude:0,
-          longitude:0,
-          location:"",
-          isOperation:true,
-          operationHours:"",
-          type:type,
-    
-          thumbnail:thumbnail_preview,
-          menus:[]
-        };  
-    }else
-    {
-      tmp = {
-        tag:"",
-        name:"",
-        summary:"",
-        subtitle:"",
-        content:"",
-        latitude:0,
-        longitude:0,
-        location:"",
-        isOperation:true,
-        operationHours:"",
-  
-        thumbnail:thumbnail_preview,
-        images:[]
-      };  
-    }
+      thumbnail: thumbnail_preview,
+      images: [],
+    };
+  } else if (category === 'store') {
+    tmp = {
+      id: '',
+      name: '',
+      summary: '',
+      content: '',
+      latitude: 0,
+      longitude: 0,
+      location: '',
+      isOperation: true,
+      operationHours: '',
+      type: type,
 
-    return tmp;
-}
+      thumbnail: thumbnail_preview,
+      menus: [],
+    };
+  } else {
+    tmp = {
+      tag: '',
+      name: '',
+      summary: '',
+      subtitle: '',
+      content: '',
+      latitude: 0,
+      longitude: 0,
+      location: '',
+      isOperation: true,
+      operationHours: '',
 
+      thumbnail: thumbnail_preview,
+      images: [],
+    };
+  }
+
+  return tmp;
+};
 
 function AssignPage_Home() {
   const navigate = useNavigate();
@@ -136,14 +131,6 @@ function AssignPage_Home() {
   );
 }
 export default AssignPage_Home;
-
-
-
-
-
-
-
-
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -372,30 +359,27 @@ export const FestivalSelect_MainBox = styled.div`
 //=================메인박스 (대학교 선택, 대학선택 select, 버튼 등) : 끝
 
 export const Assign_Blank = styled.div`
-width: 352px;
-height: 724px;
-flex-shrink: 0;
+  width: 352px;
+  height: 724px;
+  flex-shrink: 0;
 
-border-radius: 4px;
-border: 1px solid #EEE;
-background: linear-gradient(159deg, #F6F6F6 0%, rgba(244, 244, 244, 0.00) 48%, #F6F6F6 100%);
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background: linear-gradient(
+    159deg,
+    #f6f6f6 0%,
+    rgba(244, 244, 244, 0) 48%,
+    #f6f6f6 100%
+  );
 
-display:flex;
-justify-content:center;
-align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AssignBox = styled(Flex)`
-  align-items:flex-start;
-  gap:32px;
+  align-items: flex-start;
+  gap: 32px;
 
   margin-top: 32px;
 `;
-
-
-
-
-
-
-
-
