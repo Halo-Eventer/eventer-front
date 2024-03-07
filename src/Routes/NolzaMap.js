@@ -57,7 +57,7 @@ function NolzaMap(props) {
     let mapOption = {
       center: new naver.maps.LatLng(34.7969637033503, 126.43264179058626),
       zoom: 17,
-      minZoom: 17,
+      minZoom: 16,
       tileTransition: true,
       scaleControl: true,
       logoControl: false,
