@@ -72,7 +72,7 @@ const Close = styled.img`
 const Time = styled.div`
   color: #07b0c7;
 
-  font-family: Pretendard;
+  font-family: 'Pretendard-Regular';
   font-size: 15px;
   font-weight: 500;
   line-height: 24px; /* 160% */
@@ -87,7 +87,7 @@ const DetailBox = styled.div`
 `;
 const Show = styled.div`
   color: #111;
-  font-family: Pretendard;
+  font-family: 'Pretendard-Regular';
   font-size: 16px;
   font-weight: 500;
   line-height: 24px; /* 150% */

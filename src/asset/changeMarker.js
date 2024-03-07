@@ -44,9 +44,11 @@ export const changeMarker = (activeCategory, isPrev, text) => {
   <img style="width:36px;height:40px;" src = ${img}></img>
   </div>
   </div>
-  <div style="display:flex; font-size: 12px;-webkit-text-stroke-width: 0.2px;-webkit-text-stroke-color: #FFF;
-  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-   font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+  <div style="display:flex; font-size: 12px;
+          font-family: 'NanumSquareNeo';
+          text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+           font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+          </div>
   </div>`,
     size: new naver.maps.Size(50, 50),
     origin: new naver.maps.Point(0, 0),
