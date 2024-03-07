@@ -1,4 +1,5 @@
 import axios from 'axios';
+import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
@@ -20,10 +21,10 @@ export const getAllNotice = (festivalId) => {
 };
 export const getAllConcert = (festivalId) => {
   return axios.get(`/concert?festivalId=${festivalId}`);
-}
-export const getDetailConcert = (id)=>{
-    return axios.get(`/concert/${id}`);
-}
+};
+export const getDetailConcert = (id) => {
+  return axios.get(`/concert/${id}`);
+};
 export const getDetailNotice = (id) => {
   return axios.get(`/notice/${id}`);
 };
@@ -66,22 +67,22 @@ export const assignMenuApi = (storeId, menus) => {
   });
 };
 export const assignApi = (info, category, festivalId) => {
-  console.log("info in assignApi : ",info);
-
+  console.log('info in assignApi : ', info);
+  console.log(info.thumbnail);
+  if (info.thumbnail == thumbnail_preview) info.thumbnail = '';
   return axios.post(`/${category}`, info, {
     params: {
       festivalId: festivalId,
-      type:info.type
+      type: info.type,
     },
   });
 };
 export const reviseApi = (info, category, id) => {
-  console.log("info in reviseApi : ", info);
+  console.log('info in reviseApi : ', info);
   return axios.patch(`/${category}/${id}`, info);
 };
 export const reviseMenuApi = (menus) => {
-  return axios.patch(`/menu/${menus.id}`, menus, {
-  });
+  return axios.patch(`/menu/${menus.id}`, menus, {});
 };
 
 export const imageUploadApi = (imgInfo) => {
@@ -93,6 +94,3 @@ export const imageUploadApi = (imgInfo) => {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
-
-
-
