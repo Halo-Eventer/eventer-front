@@ -20,9 +20,13 @@ function InfoBox(props) {
         <Close onClick={handleClose} src={closeImg}></Close>
       </PlaceBox>
       <DetailBox>
-        <Time>{data.operationHours}</Time>
+        <Time activeCategory={props.activeCategory}>{data.operationHours}</Time>
         {data.operationHours ? <Dot src={dot}></Dot> : ''}
-        <Place>{data.location}</Place>
+        {props.activeCategory == 1 ? (
+          <Show>{data.location}</Show>
+        ) : (
+          <Place>{data.location}</Place>
+        )}
       </DetailBox>
       <Show>{data.summary}</Show>
     </div>
@@ -38,9 +42,11 @@ const PlaceBox = styled.div`
 `;
 const PlaceName = styled.div`
   color: #000;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 600;
+  font-family: 'NanumSquareNeo';
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 24px; /* 141.176% */
 `;
 
 const PlaceType = styled.div`

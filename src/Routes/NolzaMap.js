@@ -92,9 +92,7 @@ function NolzaMap(props) {
     concertHallMarker.map((e, i) => {
       console.log(e);
       e.setMap(map);
-      naver.maps.Event.addListener(e, 'click', () =>
-        handleConcertHallMarker(concertData[i].id)
-      );
+      naver.maps.Event.addListener(e, 'click', () => navigate('/festivalInfo'));
     });
   }, [concertHallMarker]);
   useEffect(() => {
