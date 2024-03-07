@@ -13,6 +13,8 @@ import toiletMarker from 'asset/marker/toilet.png';
 import infoMarker from 'asset/marker/info.png';
 import storeMarker from 'asset/marker/store.png';
 import trashMarker from 'asset/marker/trash.png';
+import smokeMarker from 'asset/marker/smokeImg.png';
+import parkMarker from 'asset/marker/parkImg.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
@@ -39,7 +41,7 @@ function NolzaMap(props) {
   const [openId, setOpenId] = useState(0);
 
   const selectedMarker = useRef(null);
-
+  const selectedName = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,6 +50,8 @@ function NolzaMap(props) {
     else if (activeCategory == 3) markerImg = storeMarker;
     else if (activeCategory == 4) markerImg = toiletMarker;
     else if (activeCategory == 5) markerImg = trashMarker;
+    else if (activeCategory == 6) markerImg = smokeMarker;
+    else if (activeCategory == 7) markerImg = parkMarker;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
@@ -98,7 +102,10 @@ function NolzaMap(props) {
   useEffect(() => {
     if (popup == false) {
       if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+        selectedMarker.current.setIcon(
+          changeMarker(activeCategory, 1, selectedName.current)
+        );
+        selectedName.current = null;
         selectedMarker.current = null;
       }
     }
@@ -238,14 +245,17 @@ function NolzaMap(props) {
   };
   const handleMarkers = (data, marker) => {
     setActiveId(data.id);
-    console.log(marker);
+    console.log(data.name);
     if (!selectedMarker.current || selectedMarker.current !== marker) {
       if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(changeMarker(activeCategory, 1));
+        selectedMarker.current.setIcon(
+          changeMarker(activeCategory, 1, selectedName.current)
+        );
       }
-      marker.setIcon(changeMarker(activeCategory, 0));
+      marker.setIcon(changeMarker(activeCategory, 0, data.name));
     }
     selectedMarker.current = marker;
+    selectedName.current = data.name;
 
     getDetailInfo(data.id, setClickInfo, activeCategory);
     setConcertClick(false);
