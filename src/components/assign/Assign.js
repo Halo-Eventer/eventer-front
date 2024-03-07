@@ -15,11 +15,10 @@ function Assign(props) {
    => 이렇게 하면 하위 컴포넌트에서 렌더링이 한박자 늦게됨. 
    그냥 fucntion Assign({category})를 하던가
    props.category처럼 일일이 props.를 달아주던가 해야함 */
-
-  const [noRender,setNoRender]=useState(false);
-  console.log(props.info.menus);
+  // const [thumbnail, setThumbnail] = useState('');
+  const [noRender, setNoRender] = useState(false);
+  console.log(props.info);
   console.log('category', props.category);
-
 
   return (
     <AssignContainer>
@@ -39,37 +38,34 @@ function Assign(props) {
         type={props.type}
       />
       <InfoContainer>
-        {
-        props.category != 'amenity'
-        &&
-        (props.category == 'store' 
-        ? (
-          <AssignMenu
-            // menus={menus}
-            // thumbnail={thumbnail}
-            // setThumbnail={setThumbnail}
-            // setMenus={setMenus}
+        {props.category != 'amenity' &&
+          (props.category == 'store' ? (
+            <AssignMenu
+              // menus={menus}
+              // thumbnail={thumbnail}
+              // setThumbnail={setThumbnail}
+              // setMenus={setMenus}
 
-            info={props.info}
-            setInfo={props.setInfo}
-            itemID={props.itemID}
-            mode={props.mode}
-            setNoRender={setNoRender}
-          />
-        ) : (
-          <AssignImage
-            // img={img}
-            // setImg={setImg}
-            // thumbnail={thumbnail}
-            // setThumbnail={setThumbnail}
+              info={props.info}
+              setInfo={props.setInfo}
+              itemID={props.itemID}
+              mode={props.mode}
+              setNoRender={setNoRender}
+            />
+          ) : (
+            <AssignImage
+              // img={img}
+              // setImg={setImg}
+              // thumbnail={thumbnail}
+              // setThumbnail={setThumbnail}
 
-            info={props.info}
-            setInfo={props.setInfo}
-            itemID={props.itemID}
-            mode={props.mode}
-            setNoRender={setNoRender}
-          />
-        ))}
+              info={props.info}
+              setInfo={props.setInfo}
+              itemID={props.itemID}
+              mode={props.mode}
+              setNoRender={setNoRender}
+            />
+          ))}
 
         {props.category == 'notice' ? (
           <AssignBasicInfo_BoardOnly
@@ -90,7 +86,6 @@ function Assign(props) {
     </AssignContainer>
   );
 }
-
 
 export default Assign;
 

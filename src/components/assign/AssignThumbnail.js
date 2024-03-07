@@ -6,20 +6,20 @@ import styled from 'styled-components';
 
 function AssignThumbnail(props) {
   const thumbnailInput = useRef(null);
-  const [thumbnailPreview, setThumbnailPreview] = useState("");
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
   const handleImg = (e) => {
-    if(e.target.files[0]!=undefined){
-    imageUploadApi(e.target.files[0])
-      .then((res) => {
-        props.setInfo({...props.info, thumbnail:res.data});
-        setThumbnailPreview(res.data);
-      })
-      .catch((err) => {
-        alert(err.response.data.error)
-      });
+    if (e.target.files[0] != undefined) {
+      imageUploadApi(e.target.files[0])
+        .then((res) => {
+          props.setInfo({ ...props.info, thumbnail: res.data });
+          setThumbnailPreview(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.error);
+        });
     }
   };
-
 
   // useEffect(()=>{
   //   console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
@@ -31,14 +31,11 @@ function AssignThumbnail(props) {
   //     setThumbnailPreview(props.thumbnail);}
   // ,[props.thumbnail,props.mode,props.itemID]);
 
-
-  useEffect(()=>{
-    console.log("THUMBNAIL RERENDERING : ",props.mode,thumbnailPreview);
+  useEffect(() => {
+    console.log('THUMBNAIL RERENDERING : ', props.mode, thumbnailPreview);
     setThumbnailPreview(props.info.thumbnail);
-    console.log("thumbnail changed!");}
-  ,[props.info.thumbnail,
-    props.mode,
-    props.itemID]);
+    console.log('thumbnail changed!');
+  }, [props.info.thumbnail, props.mode, props.itemID]);
 
   return (
     <InputBox>
