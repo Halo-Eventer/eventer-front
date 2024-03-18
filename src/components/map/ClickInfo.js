@@ -2,7 +2,7 @@ import styled, { css, keyframes } from 'styled-components';
 import FullInfo from './FullInfo';
 import Up from '../../asset/up.svg';
 import { useEffect, useRef, useState } from 'react';
-import InfoBox from '../InfoBox';
+import InfoBox from './InfoBox';
 function ClickInfo(props) {
   const [full, setFull] = useState(false);
   const [close, setClose] = useState(false);

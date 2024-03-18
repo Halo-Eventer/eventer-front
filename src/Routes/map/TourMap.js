@@ -4,7 +4,7 @@ import { MapContainer } from './NolzaMap';
 import { useNavigate } from 'react-router-dom';
 import { markerHandle } from 'asset/MarkerHandle';
 import cableCar from 'asset/marker/cableCar.png';
-import getMarker from 'components/getMarker';
+import getMarker from 'components/map/getMarker';
 function TourMap() {
   const [data, setData] = useState([]);
   const mapElement = useRef(1);

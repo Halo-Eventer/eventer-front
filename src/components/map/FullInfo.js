@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import InfoBox from '../InfoBox';
+import InfoBox from './InfoBox';
 import { VectorBox } from './ClickInfo';
 import Up from '../../asset/up.svg';
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import closeImg from '../asset/Close.svg';
-import dot from '../asset/dot.svg';
+import closeImg from 'asset/Close.svg';
+import dot from 'asset/dot.svg';
 function InfoBox(props) {
   const handleClose = () => {
     props.setClose(true);

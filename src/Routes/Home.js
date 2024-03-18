@@ -9,28 +9,40 @@ import logo from 'asset/images/Logo.svg';
 import instagram from 'asset/images/instagram.svg';
 import facebook from 'asset/images/facebook.svg';
 
+
+import marker from 'asset/images/Marker.png';
+import festival from 'asset/images/Festival.png';
+import survey from 'asset/images/Survey.png';
+import disabled from 'asset/images/Disabled.png';
+import lost from 'asset/images/Lost.png';
+import missing from 'asset/images/Missing.png';
+
+
 import { getAll } from '../apis/apis';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Footer from 'components/Footer';
 
 function Home() {
   const navigate = useNavigate();
 
   const festivalId = 1;
-  const [barPos, setBarPos] = useState('0');
-  const [colorInfo, setColorInfo] = useState('white');
-  const [colorMap, setColorMap] = useState('black');
-  const [infoMap, setInfoMap] = useState(true);
+
+  const [currentNum, setCurrentNum]=useState(1);
 
   var settings = {
-    dots: true, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
+    dots: false, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
     infinite: true, // 무한 반복되게 할 것인지 설정
     speed: 300, // 슬라이드하는데 걸리는 시간 설정
     slidesToShow: 1, // 한 번에 보여줄 슬라이드 개수
     slidesToScroll: 1, // 슬라이드 넘어갈 때마다 몇 개의 슬라이드를 넘길 것인지 설정
     autoplay: true, // 자동으로 슬라이드를 넘길 것인지 설정
+    afterChange:(current)=>{
+      //event처럼 이미 current자리는 현재 슬라이드 번호에 대한 인자임
+      setCurrentNum(current+1);
+    } //현재 슬라이드 위치에 따른 변화 get가능
   };
   const onClick_detailNoti = (event) => {
     event.preventDefault();
@@ -93,6 +105,9 @@ function Home() {
         </UpperBar>
         <FlexBox_Row style={{ width: '100%' }}>
           <ImgBlock>
+            <Index>
+                {currentNum}/{noticeList?.length + eventList?.length}
+            </Index>
             <StyledSlider {...settings}>
               {noticeList.map((item, key) => {
                 // if (key === 0 || key === 4)
@@ -127,18 +142,18 @@ function Home() {
             <Link to="/map">
               <h1>
                 <FlexBox_Row>
-                  <GrayBox />
+                  <Imoji src={marker} />
                   <p>공연장 지도</p>
                 </FlexBox_Row>
 
                 <button>주변시설 확인</button>
               </h1>
             </Link>
-            <hr />
+            <hr/>
             <Link to="/festivalInfo">
               <h1>
                 <FlexBox_Row>
-                  <GrayBox />
+                  <Imoji src={festival}/>
                   <p>오늘의 공연</p>
                 </FlexBox_Row>
 
@@ -146,6 +161,49 @@ function Home() {
               </h1>
             </Link>
           </BigBox>
+
+          <SurveyBox>
+              <h1>
+                축제 만족도 조사
+              </h1>
+              <h2>
+                축제 피드백해줘! 멘트써줘! 경품을 줘야하나
+              </h2>
+              <Imoji src={survey}></Imoji>
+          </SurveyBox>
+
+          <ETCBox>
+            <ETC>
+              <Imoji src={disabled}/>
+              <h1>
+                장애인 지원
+              </h1>
+              <h2>
+                휠체어, 배리어프리존
+              </h2>
+            </ETC>
+
+            <ETC>
+              <Imoji src={missing}/>
+              <h1>
+                실종자 찾기
+              </h1>
+              <h2>
+                실종자 공지 신청하기
+              </h2>
+            </ETC>
+
+            <ETC>
+              <Imoji src={lost}/>
+              <h1>
+                분실물 찾기
+              </h1>
+              <h2>
+                분실물 리스트 확인
+              </h2>
+            </ETC>
+          </ETCBox>
+
           <Link to="/tourmap">
             <SmallBox>
               <h1>
@@ -160,6 +218,8 @@ function Home() {
               <h1>공지사항 / 이벤트</h1>
             </SmallBox>
           </Link>
+
+          <Footer/>
         </SecondBlock>
       </Board>
     </Wrapper>
@@ -211,9 +271,8 @@ export const LineDiv = styled.div`
 //Linediv같이 fixed요소를 추가할 게 있으면 애매해지기 때문. Wrapper자체가 absolute를 하면 안 되기 때문
 export const Wrapper = styled.div`
   width: 100vw;
-
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
+  //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
 
   background-color: black;
 
@@ -221,10 +280,6 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
-  min-height: 100vh;
-  overflow-x: hidden;
-  //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
 `;
 
 export const UpperBar = styled.div`
@@ -331,6 +386,8 @@ export const StyledSlider = styled(Slider)`
     z-index: 10;
     bottom: -18px;
     li {
+      display:none;
+      
       //버튼이 차지하는 공간 스타일
       width: 30px;
       height: 0px;
@@ -359,10 +416,32 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const ImgBlock = styled.div`
+  position:relative;
+
   width: 358px;
   background-color: #000;
+  margin-bottom:6px;
 `;
+export const Index = styled(Flex)`
+  position:absolute;
+  top:8px;
+  right:8px;
 
+  width: 48px;
+  height: 28px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(2px);
+
+  z-index:20;
+
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 800;
+`;
 export const ImgBoard = styled.img`
   object-fit: fill;
   object-position: center;
@@ -380,11 +459,18 @@ export const ImgBoard = styled.img`
 
 export const BigBox = styled.div``;
 export const SmallBox = styled.div``;
-export const GrayBox = styled.div``;
+export const Imoji = styled.img`
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+
+      border-radius: 4px;
+
+      margin-right: 12px;
+`;
 export const SecondBlock = styled.div`
   width: 100%;
 
-  margin-top: 32px;
   margin-bottom: 28px;
   display: flex;
   flex-direction: column;
@@ -419,7 +505,6 @@ export const SecondBlock = styled.div`
     h1 {
       color: #fff;
       /* headline1 */
-      font-family: 'NanumSquare Neo OTF';
       font-size: 18px;
       font-style: normal;
       font-weight: 900;
@@ -428,17 +513,6 @@ export const SecondBlock = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-
-      ${GrayBox} {
-        width: 36px;
-        height: 36px;
-        flex-shrink: 0;
-
-        border-radius: 4px;
-        background: #d9d9d9;
-
-        margin-right: 12px;
-      }
 
       button {
         color: #fff;
@@ -566,3 +640,102 @@ export const TextBoard = styled.div`
   }
 `;
 //For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
+
+
+
+
+//신버전 추가
+//신버전 추가
+//신버전 추가
+export const SurveyBox = styled.button`
+position:relative;
+
+width: 358px;
+height: 80px;
+flex-shrink: 0;
+
+border-radius: 8px;
+border: 1px solid #999;
+background: #000;
+
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+align-items:flex-start;
+
+padding:16px;
+
+h1{
+  color: #DDD;
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 24px; /* 150% */
+}
+h2{
+  color: #DDD;
+
+  font-family: 'Pretendard';
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+}
+${Imoji}{
+  position:absolute;
+  top:50%;
+  right:16px; /*SurveyBox의 padding까지 계산*/
+  transform:translateY(-50%);
+}
+`;
+
+export const ETC = styled.button``;
+export const ETCBox = styled(Flex)`
+width:358px;
+height:126px;
+
+overflow-x:auto;
+
+justify-content:flex-start;
+gap:8px;
+
+${ETC}{
+width: 148px;
+height: 126px;
+flex-shrink: 0;
+
+border-radius: 12px;
+background: #222;
+box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
+
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+align-items:flex-start;
+
+padding:16px;
+
+h1{
+  margin-top:8px;
+
+  color: #FFF;
+  /* headline1 */
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 26px; /* 144.444% */
+}
+
+h2{
+  color: #DDD;
+
+/* body3 */
+font-family: 'Pretendard';
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; /* 142.857% */
+}
+}
+`;

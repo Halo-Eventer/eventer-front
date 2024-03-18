@@ -7,7 +7,7 @@ import ClickInfo from '../../components/map/ClickInfo';
 import { markerHandle } from '../../asset/MarkerHandle';
 
 import hallMarker from 'asset/marker/concertHall.png';
-import getMarker from '../../components/getMarker';
+import getMarker from '../../components/map/getMarker';
 import eventMarker from 'asset/marker/event.png';
 import toiletMarker from 'asset/marker/toilet.png';
 import infoMarker from 'asset/marker/info.png';

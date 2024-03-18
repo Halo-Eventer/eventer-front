@@ -4,7 +4,7 @@ import {
   getAllBooth,
   getAllEvent,
   getAllStore,
-} from '../apis/apis';
+} from '../../apis/apis';
 
 export function getMarker(activeCategory, setData) {
   if (activeCategory == 1) {
