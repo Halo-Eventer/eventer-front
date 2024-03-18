@@ -1,9 +1,11 @@
+//구버전
+
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import {ImageDiv,TextDiv, Section} from '../../Routes/FestivalNotice';
+import {ImageDiv,TextDiv, Section} from 'Routes/info/FestivalNotice_X';
 
 
 function Notice({ noticeList }) {

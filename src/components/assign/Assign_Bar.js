@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import {UpperBar, MiddleBar, Logo, H1} from '../../Routes/AssignPage_Home';
-import next from '../../images/Next.svg';
+import {UpperBar, MiddleBar, Logo, H1} from '../../Routes/assign/AssignPage_Home';
+import next from 'asset/images/Next.svg';
 
-import logo from '../../images/Logo.svg';
+import logo from 'asset/images/Logo.svg';
 
 
 

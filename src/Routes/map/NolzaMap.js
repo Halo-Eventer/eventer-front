@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { styled, createGlobalStyle } from 'styled-components';
-import SwipeToSlide from '../asset/CategorySlider';
-import ClickInfo from '../components/map/ClickInfo';
-import { markerHandle } from '../asset/MarkerHandle';
+import SwipeToSlide from '../../asset/CategorySlider';
+import ClickInfo from '../../components/map/ClickInfo';
+import { markerHandle } from '../../asset/MarkerHandle';
 
 import hallMarker from 'asset/marker/concertHall.png';
-import getMarker from '../components/getMarker';
+import getMarker from '../../components/getMarker';
 import eventMarker from 'asset/marker/event.png';
 import toiletMarker from 'asset/marker/toilet.png';
 import infoMarker from 'asset/marker/info.png';
@@ -17,7 +17,7 @@ import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert, getDetailConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
-import { TopFixedDiv, UpperBar, BkBtn, Title } from './Home';
+import { TopFixedDiv, UpperBar, BkBtn, Title } from '../Home';
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');

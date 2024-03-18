@@ -10,16 +10,16 @@ import {
   FlexBox_Column, 
   FlexBox_Row,
   StyledLink
-} from './Home';
+} from '../Home';
 import {
   UpperBar_Component,
   MiddleBar_Component2
-} from '../components/assign/Assign_Bar';
+} from '../../components/assign/Assign_Bar';
 
 import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
-import Assign_List from '../components/assign/Assign_List';
+import Assign_List from '../../components/assign/Assign_List';
 
-import {getAll, getDetail} from '../apis/apis';
+import {getAll, getDetail} from '../../apis/apis';
 
 
 

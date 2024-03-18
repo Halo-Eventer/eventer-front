@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import backSpace from '../images/BackSpace.svg';
+import backSpace from 'asset/images/BackSpace.svg';
 //import home from '../images/Home.png';
-import logo from '../images/Logo.svg';
-import instagram from '../images/instagram.svg';
-import facebook from '../images/facebook.svg';
+import logo from 'asset/images/Logo.svg';
+import instagram from 'asset/images/instagram.svg';
+import facebook from 'asset/images/facebook.svg';
 
 import { getAll } from '../apis/apis';
 
@@ -32,23 +32,17 @@ function Home() {
     slidesToScroll: 1, // 슬라이드 넘어갈 때마다 몇 개의 슬라이드를 넘길 것인지 설정
     autoplay: true, // 자동으로 슬라이드를 넘길 것인지 설정
   };
-  const onClick_festivalInfo = () => {
-    navigate('/festivalInfo');
-  };
-  const onClick_festivalNoti = () => {
-    navigate('/festivalNotice');
-  };
   const onClick_detailNoti = (event) => {
     event.preventDefault();
-    const notiId = event.currentTarget.id;
-    console.log('notiId : ', event.currentTarget.id);
-    navigate(`/notice/${notiId}`);
+    const noticeId = event.currentTarget.id;
+    console.log('noticeId : ', event.currentTarget.id);
+    navigate(`/post/notice/${noticeId}`);
   };
   const onClick_detailEvent = (event) => {
     event.preventDefault();
     const eventId = event.currentTarget.id;
     console.log('eventId : ', event.currentTarget.id);
-    navigate(`/event/${eventId}`);
+    navigate(`/post/event/${eventId}`);
   };
 
   //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
@@ -161,9 +155,9 @@ function Home() {
             </SmallBox>
           </Link>
 
-          <Link to="/festivalNotice">
+          <Link to="/post/notice">
             <SmallBox>
-              <h1>공지사항</h1>
+              <h1>공지사항 / 이벤트</h1>
             </SmallBox>
           </Link>
         </SecondBlock>
@@ -175,6 +169,11 @@ export default Home;
 //settings도 export하려고 했는데 얘는 함수 내부여서 안 됨.
 //무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
 
+export const Flex = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+`;
 export const FlexBox_Row = styled.div`
   display: flex;
   justify-content: center;
@@ -253,6 +252,19 @@ export const Board = styled.div`
     background-color: transparent;
   }
 `;
+
+
+export const BoardSet_Width = styled(Flex)`
+    flex-direction:column;
+    justify-content:flex-start;
+
+    width:100%;
+    @media screen and (min-width:450px){
+        width:390px;
+    }
+`;
+
+
 
 //for 가독성
 export const TopFixedDiv = styled.div`

@@ -4,15 +4,15 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Flex } from 'asset/Style';
-import { FlexBox_Column, FlexBox_Row } from './Home';
+import { FlexBox_Column, FlexBox_Row } from '../Home';
 
 import {
   UpperBar_Component,
   MiddleBar_Component1,
-} from '../components/assign/Assign_Bar';
+} from '../../components/assign/Assign_Bar';
 
-import dropDown from '../images/DropDown.svg';
-import next from '../images/Next.svg';
+import dropDown from 'asset/images/DropDown.svg';
+import next from 'asset/images/Next.svg';
 import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 
 export const firstInfo = (category, type) => {

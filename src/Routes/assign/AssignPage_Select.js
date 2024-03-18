@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import {Wrapper,GRID_WIDTH} from './AssignPage_Home';
 import {UpperBar_Component,
-  MiddleBar_Component1} from '../components/assign/Assign_Bar';
+  MiddleBar_Component1} from '../../components/assign/Assign_Bar';
 
 
 

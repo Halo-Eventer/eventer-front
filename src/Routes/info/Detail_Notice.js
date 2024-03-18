@@ -1,32 +1,20 @@
 import { useState, useEffect } from 'react';
-import {
-    Link, useNavigate,
-    useParams
-} from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import {
     Wrapper, TopFixedDiv,
     Title, BkBtn, HomeBtn,
     ImgBlock, StyledSlider, ImgBoard,
     MainBoard, TextBoard, LineDiv
-} from './Home';
+} from '../Home';
 
-import { getDetail } from '../apis/apis';
-import { UpperBar } from './Home';
+import { getDetail } from '../../apis/apis';
+import { UpperBar } from '../Home';
 
-//import * as axios from 'axios';
-/*import * as axios from 'axios';
-는 JavaScript의 ES6 모듈 구문입니다. 
-이 구문은 "axios"라는 모듈에서 
-모든 export를 가져와서 axios라는 객체로 묶어
-사용하겠다는 뜻입니다.*/
-
-
-function Detail_Event() {
+function Detail_Notice() {
     const navigate = useNavigate();
 
-    const eventId = useParams().id;
-
+    const id_param = useParams().id;
 
     var settings = {
         dots: true,  // 슬라이드 바닥에 점을 보이게 할 것인지 설정
@@ -39,13 +27,13 @@ function Detail_Event() {
 
     const [detailedList, setDetailedList] = useState([]);
 
-
     const onClick_bkBtn = () => {
         navigate(-1);
         //그냥 뒤로가는 기능
     }
+
     useEffect(() => {
-        getDetail('event', eventId)
+        getDetail('notice', id_param)
             .then((response) => {
                 if (typeof (response.data) === 'object') {
                     setDetailedList(response.data);
@@ -60,17 +48,12 @@ function Detail_Event() {
     }, []);
 
 
-    //useEffect(()=>{fetchDetail();},[]);
-
     return (
         <div>
             <TopFixedDiv>
                 <UpperBar>
                     <BkBtn onClick={onClick_bkBtn}></BkBtn>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <HomeBtn />
-                    </Link>
-                    <Title>공지사항 / 이벤트</Title>
+                    <Title>공지사항</Title>
                 </UpperBar>
             </TopFixedDiv>
             <Wrapper>
@@ -84,11 +67,12 @@ function Detail_Event() {
                     <TextBoard>
                         <div>
                             <h1>
-                                {detailedList.name}
+                                {detailedList.title}
                             </h1>
                             <h2>
                                 {detailedList.subtitle}
                             </h2>
+                            <hr/>
                             {detailedList.content?.split('\n').map((line, key) => {
                                 if (line.length === 0) {
                                     /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
@@ -109,4 +93,4 @@ function Detail_Event() {
     )
 }
 
-export default Detail_Event;
+export default Detail_Notice;

@@ -1,8 +1,8 @@
 import {useState, useEffect} from 'react';
 import styled from 'styled-components'
 
-import dropDown2 from '../../images/DropDown2.svg';
-import plus from 'images/Plus.svg';
+import dropDown2 from 'asset/images/DropDown2.svg';
+import plus from 'asset/images/Plus.svg';
 
 import { deleteDetail } from 'apis/apis';
 

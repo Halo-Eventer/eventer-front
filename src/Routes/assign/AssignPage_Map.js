@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Assign from '../components/assign/Assign';
+import Assign from '../../components/assign/Assign';
 import { Wrapper } from './AssignPage_Home';
-import Assign_List from '../components/assign/Assign_List';
+import Assign_List from '../../components/assign/Assign_List';
 import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
-import { getAll, getDetail } from '../apis/apis';
+import { getAll, getDetail } from '../../apis/apis';
 import {
   MiddleBar_Component2,
   UpperBar_Component,

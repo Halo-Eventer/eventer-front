@@ -1,3 +1,8 @@
+//구버전
+//구버전
+//구버전
+
+
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -6,14 +11,14 @@ import styled from 'styled-components';
 import {
     Wrapper, TopFixedDiv, LineDiv,
     Title, HomeBtn, BkBtn
-} from './Home';
+} from 'Routes/Home';
 // import {eventList,noticeList} from '../components/info/DataBase';
 
-import { getAll } from '../apis/apis';
+import { getAll } from 'apis/apis';
 
-import Event from '../components/info/Event';
-import Notice from '../components/info/Notice';
-import { UpperBar } from './Home';
+import Event from 'components/info/Event_X';
+import Notice from 'components/info/Notice_X';
+import { UpperBar } from 'Routes/Home';
 
 function FestivalNotice() {
     const navigate = useNavigate();

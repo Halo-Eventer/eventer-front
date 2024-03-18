@@ -11,10 +11,10 @@ import {
   BkBtn,
   HomeBtn,
   LineDiv
-} from './Home';
+} from '../Home';
 
-import line_up from '../images/LineUp.svg';
-import { UpperBar } from './Home';
+import line_up from 'asset/images/LineUp.svg';
+import { UpperBar } from '../Home';
 
 function FestivalInfo() {
   const navigate = useNavigate();
