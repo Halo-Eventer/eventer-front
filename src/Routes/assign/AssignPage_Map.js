@@ -17,7 +17,7 @@ function AssignPage_Map() {
   const [category, setCategory] = useState('concert');
   const [categoryList, setCategoryList] = useState({
     concert: '콘서트',
-
+    booth: '관광지',
     store: [
       '관리자',
       '관광안내소',

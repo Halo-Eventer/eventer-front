@@ -70,6 +70,15 @@ export function getMarker(activeCategory, setData) {
       .then((err) => {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
+  } else if (activeCategory == 8) {
+    getAllBooth()
+      .then((res) => {
+        console.log(res);
+        setData(res.data);
+      })
+      .then((err) => {
+        // alert('생성된 마커가 존재하지 않습니다.');
+      });
   }
 }
 

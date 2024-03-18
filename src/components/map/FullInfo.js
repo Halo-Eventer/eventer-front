@@ -5,6 +5,7 @@ import Up from '../../asset/up.svg';
 
 function FullInfo(props) {
   const data = props.data;
+
   const handleClose = () => {
     props.setClose(true);
     setTimeout(() => {
@@ -30,26 +31,11 @@ function FullInfo(props) {
       <DetailBox>
         <Content>{data.content}</Content>
         <DetailImgContainer>
-          {props.activeCategory == '2' || props.activeCategory == '3'
-            ? data.menus?.map((e, i) => {
-                return (
-                  <div>
-                    <MenuImg src={e.image} style={{ marginTop: '12px' }} />
-                    <MenuTxt>{e.name}</MenuTxt>
-                    <MenuTxt>{e.price.toLocaleString()}원</MenuTxt>
-                  </div>
-                );
-              })
-            : data.images?.map((e) => {
-                return (
-                  <div>
-                    <DetailImg
-                      src={e}
-                      style={{ marginTop: '12px' }}
-                    ></DetailImg>
-                  </div>
-                );
-              })}
+          <div>
+            <DetailImg src={data.thumbnail} style={{ marginTop: '12px' }} />
+            {/* <MenuTxt>{e.name}</MenuTxt>
+            <MenuTxt>{e.price.toLocaleString()}원</MenuTxt> */}
+          </div>
         </DetailImgContainer>
       </DetailBox>
     </FullInfoContainer>
@@ -75,8 +61,8 @@ const slideUp = keyframes`
     }
 `;
 const WhiteLine = styled.div`
-  background: #fff;
-  height: 1px;
+  border-bottom: 1px solid #dadada;
+
   width: 100vw;
 `;
 const FullInfoBox = styled.div`
@@ -96,7 +82,7 @@ const FullInfoContainer = styled.div`
   bottom: 0px;
 
   border-radius: 12px 12px 0px 0px;
-  background: #fcf2eb;
+  background: #fff;
   margin-top: 20px;
   width: 100vw;
   height: 70vh;
@@ -149,7 +135,7 @@ const DetailSemi = styled.div`
 const DetailBox = styled.div`
   width: 350px;
   height: 70vh;
-  margin: 35px auto;
+  margin: 20px auto;
   overflow-y: scroll;
   scrollbar-width: none;
 `;

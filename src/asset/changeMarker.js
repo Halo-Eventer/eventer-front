@@ -9,28 +9,30 @@ import store from 'asset/marker/store.png';
 import activeStore from 'asset/marker/activeStore.png';
 import trash from 'asset/marker/trash.png';
 import activeTrash from 'asset/marker/activeTrash.png';
-export const changeMarker = (activeCategory, isPrev) => {
+import smoke from 'asset/marker/smokeImg.png';
+import activeSmoke from 'asset/marker/activeSmoke.png';
+import park from 'asset/marker/parkImg.png';
+import activePark from 'asset/marker/activePark.png';
+export const changeMarker = (activeCategory, isPrev, text) => {
   //   const [text, setText] = useState();
   //   const [img, setImg] = useState();
   const { naver } = window;
   let img = event;
-  let text = '관리자';
 
   if (activeCategory == 1) {
     isPrev ? (img = event) : (img = activeEvent);
-    text = '관리자(안내요원)';
   } else if (activeCategory == 2) {
     isPrev ? (img = info) : (img = activeInfo);
-    text = '관광안내소';
   } else if (activeCategory == 3) {
     isPrev ? (img = store) : (img = activeStore);
-    text = '편의점';
   } else if (activeCategory == 4) {
     isPrev ? (img = toilet) : (img = activeToilet);
-    text = '화장실';
   } else if (activeCategory == 5) {
     isPrev ? (img = trash) : (img = activeTrash);
-    text = '쓰레기통';
+  } else if (activeCategory == 6) {
+    isPrev ? (img = smoke) : (img = activeSmoke);
+  } else if (activeCategory == 7) {
+    isPrev ? (img = park) : (img = activePark);
   }
 
   return {
@@ -42,8 +44,11 @@ export const changeMarker = (activeCategory, isPrev) => {
   <img style="width:36px;height:40px;" src = ${img}></img>
   </div>
   </div>
-  <div style="display:flex; font-size: 12px;-webkit-text-stroke-width: 0.2px;-webkit-text-stroke-color: #FFF;
-   font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+  <div style="display:flex; font-size: 12px;
+          font-family: 'NanumSquareNeo';
+          text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+           font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+          </div>
   </div>`,
     size: new naver.maps.Size(50, 50),
     origin: new naver.maps.Point(0, 0),
