@@ -55,7 +55,7 @@ function NolzaMap(props) {
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {
-      center: new naver.maps.LatLng(34.7969637033503, 126.43264179058626),
+      center: new naver.maps.LatLng(34.7955637033503, 126.43324179058626),
       zoom: 17,
       minZoom: 16,
       tileTransition: true,
@@ -328,7 +328,7 @@ const GlobalStyle = createGlobalStyle`//전역 스타일 설정
     padding: 0;
     box-sizing: border-box;
     
-/* display: fixed;
-  overflow: hidden; */
+display: fixed;
+  overflow: hidden;
   }
 `;
