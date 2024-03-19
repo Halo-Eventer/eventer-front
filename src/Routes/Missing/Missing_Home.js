@@ -88,11 +88,10 @@ function Missing_Home() {
             수 있으나, 동의를 거부할 경우 신청 대상에 포함되지 않습니다.
           </AgreeBox>
 
-          <Flex style={{ justifySelf: 'end' }}>
-            <Checkbox
-              onClick={() => setActive(!active)}
-              active={active}
-            ></Checkbox>
+          <Flex style={{ justifyContent: 'end', marginTop: '8px' }}>
+            <Checkbox onClick={() => setActive(!active)} active={active}>
+              {active ? <Circle /> : ''}
+            </Checkbox>
             <Agree>동의합니다.</Agree>
           </Flex>
         </div>
@@ -150,13 +149,15 @@ const Checkbox = styled.div`
   width: 20px;
   height: 20px;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid #999;
   border-radius: 20px;
-
-  ${(props) =>
-    props.active
-      ? ' background: #53CDDD;border: 1px solid #53CDDD;border-radius: 20px;'
-      : ''}
+  &:hover {
+    cursor: pointer;
+  }
+  ${(props) => (props.active ? ' border: 1px solid #53CDDD;' : '')}
 `;
 
 const ApplyBtn = styled.button`
@@ -175,4 +176,12 @@ const ApplyBtn = styled.button`
   font-style: normal;
   font-weight: 800;
   line-height: 24px; /* 150% */
+`;
+
+const Circle = styled.div`
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  background-color: #53cddd;
+  border-radius: 14px;
 `;
