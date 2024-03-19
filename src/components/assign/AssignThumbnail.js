@@ -14,13 +14,11 @@ function AssignThumbnail() {
 
 
   const thumbnailInput = useRef(null);
-  // const [thumbnailPreview, setThumbnailPreview] = useState('');
   const handleImg = (e) => {
     if (e.target.files[0] != undefined) {
       imageUploadApi(e.target.files[0])
         .then((res) => {
           setInfo({ ...info, thumbnail: res.data });
-          // setThumbnailPreview(res.data);
           console.log(res.data);
         })
         .catch((err) => {
@@ -31,7 +29,6 @@ function AssignThumbnail() {
 
   useEffect(() => {
     console.log('THUMBNAIL RERENDERING : ', mode);
-    // setThumbnailPreview(info.thumbnail);
     console.log('thumbnail changed!');
   }, [mode, itemID]);
 

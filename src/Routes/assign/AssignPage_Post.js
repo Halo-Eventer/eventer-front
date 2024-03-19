@@ -112,24 +112,7 @@ function AssignPage_Notice() {
       <UpperBar_Component />
       <MiddleBar_Component2 id_param={id_param} text="정보" />
       <AssignBox>
-        <Assign_List
-          category={category}
-          setCategory={setCategory}
-          categoryList={categoryList}
-          setType={setType}
-          boardList={boardList}
-          setBoardList={setBoardList}
-          setSE={setSE}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          pageNum={pageNum}
-          totalPages={totalPages}
-          itemid={itemID}
-          setItemID={setItemID}
-          setMode={setMode}
-          setCancle={setCancle}
-        />
-
+        
         <Assign_List 
         categoryList = {categoryList} 
         setType={setType}

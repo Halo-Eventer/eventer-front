@@ -26,7 +26,6 @@ function AssignMenu() {
   return (
     <div style={{ width: '352px' }}>
       <AssignThumbnail/>
-        
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
       {info.menus?.map((e, i) => {
         return (
@@ -40,28 +39,6 @@ function AssignMenu() {
           />
         );
       })}
-
-      <Flex style={{ marginTop: '8px' }}>
-        {/* <ImagesPreviewBox ImagesPreview={imagePreview}>
-          {imagePreview.map((e) => {
-            return (
-              <div
-                style={{
-                  width: '96px',
-                  height: '96px',
-                  marginLeft: '4px',
-                }}
-              >
-                <DeleteImages
-                  onClick={() => handleDeleteImages(e)}
-                  src={delete_images}
-                ></DeleteImages>
-                <ImagesPreview src={e} />
-              </div>
-            );
-          })}
-        </ImagesPreviewBox> */}
-      </Flex>
     </div>
   );
 }

@@ -127,16 +127,7 @@ function AssignPage_Map() {
         {cancle ? (
           <Assign_Blank />
         ) : (
-          <Assign
-            category={category}
-            cancle={cancle}
-            mode={mode}
-            setMode={setMode}
-            itemID={itemID}
-            info={info}
-            setInfo={setInfo}
-            setCancle={setCancle}
-          />
+          <Assign/>
         )}
       </AssignBox>
     </Wrapper>

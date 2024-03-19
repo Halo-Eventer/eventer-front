@@ -20,14 +20,12 @@ function AssignImage() {
     //*****전역 recoil모음*****
 
   const imagesInput = useRef(null);
-//  const [imagePreview, setImagePreview] = useState([]);
 
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
         let tmp = [...info.images, res.data]
         setInfo({...info,images:tmp});
-//        setImagePreview([...info.images, res.data]);
 
       })
       .catch((err) => {
@@ -41,14 +39,12 @@ function AssignImage() {
     });
 
     setInfo({...info,images:processedImages});
-//    setImagePreview(processedImages);
   };
 
 
 
   useEffect(()=>{
     console.log("mode",mode);
- //   setImagePreview(info.images);
     }
     ,[info.images,
       mode,
