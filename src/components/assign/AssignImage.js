@@ -8,23 +8,19 @@ import delete_images from 'asset/assign/delete_images.svg';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 
-
-
 function AssignImage(props) {
-
   const imagesInput = useRef(null);
   const [imagePreview, setImagePreview] = useState([]);
 
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        let tmp = [...props.info.images, res.data]
-        props.setInfo({...props.info,images:tmp});
+        let tmp = [...props.info.images, res.data];
+        props.setInfo({ ...props.info, images: tmp });
         setImagePreview([...props.info.images, res.data]);
-
       })
       .catch((err) => {
-        alert(err.response.data.error)
+        alert(err.response.data.error);
       });
   };
 
@@ -33,21 +29,16 @@ function AssignImage(props) {
       return deleteImg != images;
     });
 
-    props.setInfo({...props.info,images:processedImages});
+    props.setInfo({ ...props.info, images: processedImages });
     setImagePreview(processedImages);
     // const { type, ...rest } = props.img;
     // props.setImg([...rest]);
   };
 
-
-
-  useEffect(()=>{
-    console.log("IMAGE RERENDERING!! NOT MOUNTING",props.mode);
+  useEffect(() => {
+    console.log('IMAGE RERENDERING!! NOT MOUNTING', props.mode);
     setImagePreview(props.info.images);
-    }
-    ,[props.info.images,
-      props.mode,
-      props.itemID]);
+  }, [props.info.images, props.mode, props.itemID]);
 
   // useEffect(()=>{
   //     props.setInfo({...props.info,
@@ -58,17 +49,16 @@ function AssignImage(props) {
 
   return (
     <div>
-      <AssignThumbnail 
-      // thumbnail = {props.thumbnail}
-      // setThumbnail={props.setThumbnail}
-      info={props.info}
-      setInfo={props.setInfo}
-      
-      mode={props.mode}
-      itemID={props.itemID}
+      <AssignThumbnail
+        // thumbnail = {props.thumbnail}
+        // setThumbnail={props.setThumbnail}
+        info={props.info}
+        setInfo={props.setInfo}
+        mode={props.mode}
+        itemID={props.itemID}
       />
 
-      <Flex style={{ marginTop: '8px'}}>
+      <Flex style={{ marginTop: '8px' }}>
         <InputImages
           onClick={() => {
             imagesInput.current.click();
@@ -78,9 +68,10 @@ function AssignImage(props) {
         <ImagesPreviewBox ImagesPreview={imagePreview}>
           {imagePreview?.map((item, index) => {
             return (
-              <div key={index}
+              <div
+                key={index}
                 style={{
-                  position:'relative',
+                  position: 'relative',
                   width: '96px',
                   height: '96px',
                   marginLeft: '4px',
@@ -91,7 +82,7 @@ function AssignImage(props) {
                   src={delete_images}
                 ></DeleteImages>
                 <ImagesPreview src={item} />
-                <IndexImage>{index+1}</IndexImage>
+                <IndexImage>{index + 1}</IndexImage>
               </div>
             );
           })}
@@ -142,13 +133,13 @@ const ImagesPreview = styled.img`
   height: 96px;
   flex-shrink: 0;
 
-  border:1px solid #EEE;
+  border: 1px solid #eee;
 `;
 
 const DeleteImages = styled.img`
-  position:absolute;
-  left:4px;
-  top:4px;
+  position: absolute;
+  left: 4px;
+  top: 4px;
 
   width: 20px;
   height: 20px;
@@ -160,18 +151,17 @@ const DeleteImages = styled.img`
 `;
 
 const IndexImage = styled.p`
-position:absolute;
-bottom:4px;
-right:4px;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
 
-width:16px;
-height:16px;
-background-color:rgba(255,255,255,0.7);
-border-radius:12px;
+  width: 16px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
 
-
-text-align:center;
-font-size:12px;
-line-height:18px;
-color:#333;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+  color: #333;
 `;
