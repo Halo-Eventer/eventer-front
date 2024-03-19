@@ -14,6 +14,10 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
 }
 
+body{
+  background-color:#000;
+}
+
 button{
   border:none;
   background-color:transparent;
