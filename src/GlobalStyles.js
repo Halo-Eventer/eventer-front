@@ -19,7 +19,9 @@ button{
   background-color:transparent;
   cursor:pointer;
 }
-
+input{
+  outline: none;
+}
 a{
 text-decoration:none;
 color:inherit;
