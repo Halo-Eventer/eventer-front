@@ -7,20 +7,27 @@ import images_preview from 'asset/assign/input_images.png';
 import delete_images from 'asset/assign/delete_images.svg';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
+import { useRecoilState } from 'recoil';
+import { infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 
 
 
-function AssignImage(props) {
+function AssignImage() {
+    //*****전역 recoil모음*****
+    const [mode,setMode]=useRecoilState(modeState);
+    const [itemID, setItemID] = useRecoilState(itemIDState);
+    const [info, setInfo] = useRecoilState(infoState);
+    //*****전역 recoil모음*****
 
   const imagesInput = useRef(null);
-  const [imagePreview, setImagePreview] = useState([]);
+//  const [imagePreview, setImagePreview] = useState([]);
 
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        let tmp = [...props.info.images, res.data]
-        props.setInfo({...props.info,images:tmp});
-        setImagePreview([...props.info.images, res.data]);
+        let tmp = [...info.images, res.data]
+        setInfo({...info,images:tmp});
+//        setImagePreview([...info.images, res.data]);
 
       })
       .catch((err) => {
@@ -29,54 +36,39 @@ function AssignImage(props) {
   };
 
   const handleDeleteImages = (deleteImg) => {
-    const processedImages = props.info.images.filter((images) => {
+    const processedImages = info.images.filter((images) => {
       return deleteImg != images;
     });
 
-    props.setInfo({...props.info,images:processedImages});
-    setImagePreview(processedImages);
-    // const { type, ...rest } = props.img;
-    // props.setImg([...rest]);
+    setInfo({...info,images:processedImages});
+//    setImagePreview(processedImages);
   };
 
 
 
   useEffect(()=>{
-    console.log("IMAGE RERENDERING!! NOT MOUNTING",props.mode);
-    setImagePreview(props.info.images);
+    console.log("mode",mode);
+ //   setImagePreview(info.images);
     }
-    ,[props.info.images,
-      props.mode,
-      props.itemID]);
-
-  // useEffect(()=>{
-  //     props.setInfo({...props.info,
-  //       thumbnail:props.thumbnail,
-  //       images:props.img});
-  //     props.setNoRender(true);
-  // },[props.thumbnail,props.img])
+    ,[info.images,
+      mode,
+      itemID]);
 
   return (
     <div>
-      <AssignThumbnail 
-      // thumbnail = {props.thumbnail}
-      // setThumbnail={props.setThumbnail}
-      info={props.info}
-      setInfo={props.setInfo}
-      
-      mode={props.mode}
-      itemID={props.itemID}
-      />
+      <AssignThumbnail/>
 
       <Flex style={{ marginTop: '8px'}}>
+
         <InputImages
           onClick={() => {
             imagesInput.current.click();
           }}
           src={images_preview}
         ></InputImages>
-        <ImagesPreviewBox ImagesPreview={imagePreview}>
-          {imagePreview?.map((item, index) => {
+
+        <ImagesPreviewBox ImagesPreview={info.image}>
+          {info.images?.map((item, index) => {
             return (
               <div key={index}
                 style={{

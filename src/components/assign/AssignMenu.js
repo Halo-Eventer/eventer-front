@@ -1,52 +1,40 @@
-import { useState, useEffect } from 'react';
-
 import styled from 'styled-components';
 import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import AssignMenuBox from './AssignMenuBox';
 
 import images_preview from 'asset/assign/input_images.png';
+import { useRecoilState } from 'recoil';
+import { infoState } from 'recoils/atoms_assign';
 
-function AssignMenu(props) {
+function AssignMenu() {
+
+    //*****전역 recoil모음*****
+    const [info, setInfo] = useRecoilState(infoState);
+    //*****전역 recoil모음*****
+
   const handleAddMenu = () => {
-    let tmp = [...(props.info.menus||[]),{image:images_preview}]
-    props.setInfo({...props.info, menus:tmp});
+    let tmp = [...(info.menus||[]),{image:images_preview}]
+    setInfo({...info, menus:tmp});
   };
   const handleDeleteMenuBox = (menuI) => {
-    const filteredMenus = props.info.menus?.filter((e, i) => i !== menuI);
-    props.setInfo({...props.info, menus : filteredMenus});
+    const filteredMenus = info.menus?.filter((e, i) => i !== menuI);
+    setInfo({...info, menus : filteredMenus});
   };
-
-  // useEffect(()=>{
-  //     props.setInfo({...props.info,
-  //       thumbnail:props.thumbnail, 
-  //       menus:props.menus});
-  //       props.setNoRender(true);
-  // },[props.thumbnail,props.menus])
 
 
   return (
     <div style={{ width: '352px' }}>
-      <AssignThumbnail
-        // thumbnail={props.thumbnail}
-        // setThumbnail={props.setThumbnail}
-        info={props.info}
-        setInfo={props.setInfo}
-
-        mode={props.mode}
-        itemID={props.itemID}/>
+      <AssignThumbnail/>
         
       <AddMenuBox onClick={handleAddMenu}>메뉴 추가하기</AddMenuBox>
-      {props.info.menus?.map((e, i) => {
+      {info.menus?.map((e, i) => {
         return (
           <AssignMenuBox
             onDelete={() => handleDeleteMenuBox(i)}
 
             e={e}
             i={i}
-
-            info={props.info}
-            setInfo={props.setInfo}
 
             fetchedImage = {e.image}
           />

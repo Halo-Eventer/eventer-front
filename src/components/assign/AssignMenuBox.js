@@ -4,8 +4,16 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Input } from './Assign';
 import { imageUploadApi } from 'apis/apis';
+import { useRecoilState } from 'recoil';
+import { infoState } from 'recoils/atoms_assign';
 
 function AssignMenuBox(props) {
+
+    //*****전역 recoil모음*****
+    const [info, setInfo] = useRecoilState(infoState);
+    //*****전역 recoil모음*****
+
+
   const [menuInfo, setMenuInfo] = useState({});
   const [menuImg, setMenuImg] = useState("");
   const handleMenu = (e) => {
@@ -17,13 +25,13 @@ function AssignMenuBox(props) {
     setMenuImg(props.fetchedImage);
   },[]);
   useEffect(() => {
-    const updatedMenus = props.info.menus.map((menu, i) => {
+    const updatedMenus = info.menus.map((menu, i) => {
       if (i === props.i) {
         return { ...menu, ...menuInfo };
       }
       return menu;
     });
-    props.setInfo({...props.info,menus:updatedMenus});
+    setInfo({...info,menus:updatedMenus});
   }, [menuInfo]);
 
   const handleImg = (e) => {

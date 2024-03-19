@@ -1,10 +1,19 @@
 import styled from 'styled-components';
-import { Category, Input, InputLatLng, SemiTitle } from './Assign';
+import { Input, InputLatLng, } from './Assign';
 import { Flex } from 'asset/Style';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Assign_latlng from './Assign_latlng';
+import { useRecoilState } from 'recoil';
+import { categoryState_assign, infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo(props) {
+function AssignBasicInfo() {
+
+  //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
+
+
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -23,57 +32,56 @@ function AssignBasicInfo(props) {
     if (active) deleteLatLng();
   }, [active]);
 
-  let info = props.info;
 
   const deleteType = () => {
     const { type, ...rest } = info;
-    props.setInfo({ ...rest });
+    setInfo({ ...rest });
   };
   const deleteLatLng = () => {
     // const { latitude, longitude, ...rest } = info;
-    props.setInfo({ ...info, ['latitude']: '', ['longitude']: '' });
+    setInfo({ ...info, ['latitude']: '', ['longitude']: '' });
   };
   const handleInfo = (e) => {
     const [value, id] = [e.target.value, e.target.id];
 
-    props.setInfo({ ...info, [id]: value });
+    setInfo({ ...info, [id]: value });
   };
-  
+
   useEffect(() => {
-    console.log(props.info);
-  }, [props.info]);
+    console.log(info);
+  }, [info]);
 
   return (
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="name" 
-        value = {props.info.name} placeholder="제목"></Input>
+        <Input onChange={handleInfo} id="name"
+          value={info.name} placeholder="제목"></Input>
       </InputDiv>
 
       {
-      props.category==='event'
-      &&
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="subtitle" 
-        value = {props.info.subtitle} placeholder="부제목"></Input>
-      </InputDiv>
+        category === 'event'
+        &&
+        <InputDiv style={{ marginTop: '4px' }}>
+          <Input onChange={handleInfo} id="subtitle"
+            value={info.subtitle} placeholder="부제목"></Input>
+        </InputDiv>
       }
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
           onChange={handleInfo} id="summary"
-          value = {props.info.summary} placeholder="요약 설명"
+          value={info.summary} placeholder="요약 설명"
         ></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
           onChange={handleInfo} id="operationHours"
-          value = {props.info.value} placeholder="00:00 ~ 00:00"
+          value={info.value} placeholder="00:00 ~ 00:00"
         ></Input>
       </InputDiv>
       {!active ? (
-        <Assign_latlng info={props.info} setInfo={props.setInfo} />
+        <Assign_latlng />
       ) : (
         ''
       )}
@@ -90,36 +98,36 @@ function AssignBasicInfo(props) {
           disabled={true}
           onChange={handleInfo}
           id="latitude"
-          value={props.info.latitude}
+          value={info.latitude}
         ></InputLatLng>
         <InputLatLng
           disabled={true}
           onChange={handleInfo}
-          value={props.info.longitude}
+          value={info.longitude}
           id="longitude"
         ></InputLatLng>
       </MapInput>
 
       <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="location" 
-        value = {props.info.location}placeholder="위치"></Input>
+        <Input onChange={handleInfo} id="location"
+          value={info.location} placeholder="위치"></Input>
       </InputDiv>
 
-      {props.category!=='amenity'
-      &&
-      <TextAreaDiv style={{ width: '336px' }}>
-        <TextArea
-          value={props.info.content}
-          onChange={handleResizeHeight}
-          id="content"
-          rows={1}
-          ref={textRef}
-          placeholder="본문 내용"
-          style={{ marginTop: '12px', height: '96px' }}
-        ></TextArea>
-      </TextAreaDiv>
+      {category !== 'amenity'
+        &&
+        <TextAreaDiv style={{ width: '336px' }}>
+          <TextArea
+            value={info.content}
+            onChange={handleResizeHeight}
+            id="content"
+            rows={1}
+            ref={textRef}
+            placeholder="본문 내용"
+            style={{ marginTop: '12px', height: '96px' }}
+          ></TextArea>
+        </TextAreaDiv>
       }
-      
+
     </InputContainer>
   );
 }

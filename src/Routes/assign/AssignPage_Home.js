@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Flex } from 'asset/Style';
-import { FlexBox_Column, FlexBox_Row } from '../Home';
 
 import {
   UpperBar_Component,
@@ -13,74 +12,14 @@ import {
 
 import dropDown from 'asset/images/DropDown.svg';
 import next from 'asset/images/Next.svg';
-import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 
-export const firstInfo = (category, type) => {
-  let tmp;
-  console.log('category, type in firstInfo : ', category, type);
-  if (category === 'notice') {
-    tmp = {
-      title: '',
-      simpleExplanation: '',
-      subtitle: '',
-      content: '',
 
-      thumbnail: thumbnail_preview,
-      images: [],
-    };
-  } else if (category === 'store') {
-    tmp = {
-      id: '',
-      name: '',
-      summary: '',
-      content: '',
-      latitude: 0,
-      longitude: 0,
-      location: '',
-      isOperation: true,
-      operationHours: '',
-      type: type,
-
-      thumbnail: thumbnail_preview,
-      menus: [],
-    };
-  } else {
-    tmp = {
-      tag: '',
-      name: '',
-      summary: '',
-      subtitle: '',
-      content: '',
-      latitude: 0,
-      longitude: 0,
-      location: '',
-      isOperation: true,
-      operationHours: '',
-
-      thumbnail: thumbnail_preview,
-      images: [],
-    };
-  }
-
-  return tmp;
-};
 
 function AssignPage_Home() {
   const navigate = useNavigate();
 
   const [festival, setFestival] = useState('세종대학교');
   const [rotate, setRotate] = useState('0deg');
-
-  // const [widthUpperSelect, setWidthUpperSelect] = useState(0);
-  // const ref_upperSelect = useRef();
-
-  // useEffect(()=>{
-  //   if(ref_upperSelect.current)
-  //     setWidthUpperSelect(ref_upperSelect.current.getBoundingClientRect());
-  // },[]);
-
-  // <FestivalSelectBox ref={ref_upperSelect}>
-  //useRef 사용법
 
   const onClick_home = () => {
     navigate(`/assign_home`);
@@ -134,7 +73,7 @@ export default AssignPage_Home;
 
 export const Wrapper = styled.div`
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;

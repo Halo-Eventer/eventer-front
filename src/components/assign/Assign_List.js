@@ -1,30 +1,37 @@
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components'
 
 import dropDown2 from 'asset/images/DropDown2.svg';
 import plus from 'asset/images/Plus.svg';
 
 import { deleteDetail } from 'apis/apis';
+import { useRecoilState } from 'recoil';
+import { categoryState_assign, itemIDState, modeState } from 'recoils/atoms_assign';
 
-function Assign_List(props){
+function Assign_List(props) {
+    //*****전역 recoil모음*****
+    const [category, setCategory] = useRecoilState(categoryState_assign);
+    const [mode, setMode] = useRecoilState(modeState);
+    const [itemID, setItemID] = useRecoilState(itemIDState);
+    //*****전역 recoil모음*****
 
-    const [selectedDrop, setSelectedDrop]=useState("");
-    const [categoryEntries,setCategoryEntries]=useState([]);
+    const [selectedDrop, setSelectedDrop] = useState("");
+    const [categoryEntries, setCategoryEntries] = useState([]);
     const [showList, setShowList] = useState(false);
-    const [numList, setNumList]=useState([]);
+
 
     const onClick_dropDown = () => {
-        setShowList(prev=>!prev);
+        setShowList(prev => !prev);
     }
     const onClick_drops = (event) => {
         event.preventDefault();
-        const index=event.currentTarget.value;
-        props.setCategory(categoryEntries[index][0]);
+        const index = event.currentTarget.value;
+        setCategory(categoryEntries[index][0]);
 
-        if(typeof(categoryEntries[index][1])=='object'){
+        if (typeof (categoryEntries[index][1]) == 'object') {
             const index2 = event.currentTarget.id;
-            console.log("index, index2 :",index, index2);
-//            console.log("type : ",categoryEntries[index][1][index2]);
+            console.log("index, index2 :", index, index2);
+            //            console.log("type : ",categoryEntries[index][1][index2]);
             props.setType(categoryEntries[index][1][index2]);
         }
         else
@@ -36,15 +43,15 @@ function Assign_List(props){
     }
     const onClick_add = (event) => {
         event.preventDefault();
-        props.setMode('a');
+        setMode('a');
     }
     const onClick_revise = (event) => {
         event.preventDefault();
 
-        props.setMode('r');
-        props.setItemID(event.currentTarget.id);
+        setMode('r');
+        setItemID(event.currentTarget.id);
 
-        console.log("event.currentTarget.datset.index",event.currentTarget.dataset.index)
+        console.log("event.currentTarget.datset.index", event.currentTarget.dataset.index)
         props.setSE(
             props.boardList[event.currentTarget.dataset.index].simpleExplanation);
     }
@@ -52,59 +59,43 @@ function Assign_List(props){
         event.preventDefault();
 
         const id = event.currentTarget.id;
-        let ref=props.boardList[event.currentTarget.dataset.value];
+        let ref = props.boardList[event.currentTarget.dataset.value];
         let title;
-        if(props.category==='notice')
+        if (category === 'notice')
             title = ref.title;
         else
             title = ref.name;
 
-        console.log("id, title : ",id, title);
+        console.log("id, title : ", id, title);
         let tmp = window.confirm(`'${title}' 항목을 삭제하시겠습니까?`);
 
-        if(tmp)
-            deleteDetail(props.category,id)
-            .then((response)=>{
-                if(typeof(response.data)==='string')
-                {
-                    alert(`'${title}' 항목이 성공적으로 삭제되었습니다.`);
-                    console.log(response.data);
-                    props.setMode("f");
-                }
-                else
-                    console.log("fail : ",response.data)
-            }).catch((error)=>{
-                console.log("error : ",error);
-            });
-    }
-    const onClick_num = (event) => {
-        event.preventDefault();
-        props.setCurrentPage(event.currentTarget.value);
+        if (tmp)
+            deleteDetail(category, id)
+                .then((response) => {
+                    if (typeof (response.data) === 'string') {
+                        alert(`'${title}' 항목이 성공적으로 삭제되었습니다.`);
+                        console.log(response.data);
+                        setMode("f");
+                    }
+                    else
+                        console.log("fail : ", response.data)
+                }).catch((error) => {
+                    console.log("error : ", error);
+                });
     }
 
-    useEffect(()=>{
-        let tmp=[];
-        if(numList.length<props.totalPages)
-            for(let i=1;i<=props.totalPages;i++)
-                tmp.push(i);
-        setNumList(tmp);
-    },[])
-    useEffect(()=>{
-        // let tmp1 = Object.keys(props.categoryList);
-        // let tmp2 = Object.values(props.categoryList);
-        // setDropKeys(tmp1);
-        // setDropValues(tmp2);
+    useEffect(() => {
         setCategoryEntries(Object.entries(props.categoryList));
-      },[]);
-    useEffect(()=>{
-        if(categoryEntries.length>0)
+    }, []);
+    useEffect(() => {
+        if (categoryEntries.length > 0)
             setSelectedDrop(categoryEntries[0][1]);
-    },[categoryEntries])
-    useEffect(()=>{
-        if(props.category.length>0)
-        console.log("category, type : ", props.category, props.type);
-    },[props.category])
-    
+    }, [categoryEntries])
+    useEffect(() => {
+        if (category.length > 0)
+            console.log("category, type : ",category, props.type);
+    }, [category])
+
 
 
     return (
@@ -114,61 +105,48 @@ function Assign_List(props){
                     <h1>{selectedDrop}</h1>
                     <img src={dropDown2}></img>
                 </DropDownBar>
-                {showList&&
-                <DropDownlist>
-                    {categoryEntries.map((item,index)=>
-                    {
-                        if(typeof(item[1])==='object'){
-                            return item[1].map((item2,index2)=> 
-                            {
-                                if(item2!=selectedDrop)
-                                    return <button 
-                                    key = {index2}
-                                    id = {index2}
-                                    value = {index}
-                                    onClick={onClick_drops}>{item2}</button>
-                            });
-                            //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
-                        }
-                        if(item[1]!=selectedDrop)
-                            return <button 
-                            key = {index}
-                            value = {index}
-                            onClick={onClick_drops}>{item[1]}</button>
-                     
-                    })}
-                </DropDownlist>
-                }       
+                {showList &&
+                    <DropDownlist>
+                        {categoryEntries.map((item, index) => {
+                            if (typeof (item[1]) === 'object') {
+                                return item[1].map((item2, index2) => {
+                                    if (item2 != selectedDrop)
+                                        return <button
+                                            key={index2}
+                                            id={index2}
+                                            value={index}
+                                            onClick={onClick_drops}>{item2}</button>
+                                });
+                                //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
+                            }
+                            if (item[1] != selectedDrop)
+                                return <button
+                                    key={index}
+                                    value={index}
+                                    onClick={onClick_drops}>{item[1]}</button>
+
+                        })}
+                    </DropDownlist>
+                }
             </DropDown>
             <AddBar onClick={onClick_add}>
-                <img src={plus}/>
+                <img src={plus} />
                 <h1>{selectedDrop} 추가</h1>
             </AddBar>
-            {props.boardList.length>0 &&
-                <ListBoard pagenum={props.pageNum}>
-                    {props.boardList.map((item,index)=>
-                    <div key={index}>
-                        <h1 onClick={onClick_revise} id={item.id} data-index={index}>{
-                        props.category==='notice'
-                        ?
-                        item.title
-                        :
-                        item.name}</h1>
-                        <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
-                    </div>)}
+            {props.boardList.length > 0 &&
+                <ListBoard>
+                    {props.boardList.map((item, index) =>
+                        <div key={index}>
+                            <h1 onClick={onClick_revise} id={item.id} data-index={index}>{
+                                category === 'notice'
+                                    ?
+                                    item.title
+                                    :
+                                    item.name}</h1>
+                            <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
+                        </div>)}
                 </ListBoard>
             }
-            <NumList>
-                {numList.map((item,index)=>{
-                    if(item==props.currentPage)
-                        return <Num 
-                        key={index} bgColor="#4F33F6" color="#FFF" value={item}
-                        fontWeight="bold" onClick={onClick_num}>{item}</Num>
-                    else 
-                        return <Num key={index} value={item}
-                        onClick={onClick_num}>{item}</Num>
-                })}
-            </NumList>
         </Wrapper>
     )
 
@@ -300,7 +278,7 @@ img{
 `;
 
 const ListBoard = styled.div`
-height:${(n)=>48*n.pagenum}px;
+height:${(n) => 48 * n.pagenum}px;
 display:flex;
 flex-direction:column;
 justify-content:flex-start;
@@ -355,31 +333,5 @@ align-items: center;
 
 cursor:pointer;
 }
-}
-`;
-
-const Num = styled.button`
-color: ${props=>props.color||'#333'};
-font-weight: ${props=>props.fontWeight||'600'};
-background-color:${props=>props.bgColor||'transparent'};
-`;
-const NumList = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
-gap : 28px;
-
-${Num}{
-width:24px;
-height:24px;
-border-radius:50%;
-border:none;
-
-font-family: Pretendard;
-font-size: 16px;
-font-style: normal;
-
-transition:background-color 0.2s ease-out;
-cursor:pointer;
 }
 `;

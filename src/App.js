@@ -14,8 +14,7 @@ import Detail_Notice from './Routes/info/Detail_Notice';
 import AssignPage_Home from './Routes/assign/AssignPage_Home';
 import AssignPage_Select from './Routes/assign/AssignPage_Select';
 import AssignPage_Map from './Routes/assign/AssignPage_Map';
-import AssignPage_Rending from './Routes/assign/AssignPage_Rending';
-import AssignPage_Notice from './Routes/assign/AssignPage_Notice';
+import AssignPage_Post from './Routes/assign/AssignPage_Post';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -59,8 +58,7 @@ function App() {
             <Route path="/assign" element={<AssignPage_Select />} />
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
             {/* 이게 assign_map 및 AssignPage_Map 파트 */}
-            <Route path="/assign_rending/:id" element={<AssignPage_Rending />} />
-            <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
+            <Route path="/assign_post/:id" element={<AssignPage_Post />} />
             {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
           </Routes>
         </ThemeProvider>

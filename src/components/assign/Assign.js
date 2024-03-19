@@ -3,85 +3,38 @@ import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useState, useEffect } from 'react';
 
-import Assign_latlng from './Assign_latlng';
 import AssignBasicInfo from './AssignBasicInfo';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
-import AssignBasicInfo_BoardOnly from './AssignBasicInfo_Board';
+import AssignBasicInfo_Post from './AssignBasicInfo_Post';
+import { useRecoilState } from 'recoil';
+import { categoryState_assign, infoState } from 'recoils/atoms_assign';
 
-function Assign(props) {
-  /*const [category,setCategory] = useState(props.category);
-   => 이렇게 하면 하위 컴포넌트에서 렌더링이 한박자 늦게됨. 
-   그냥 fucntion Assign({category})를 하던가
-   props.category처럼 일일이 props.를 달아주던가 해야함 */
-  // const [thumbnail, setThumbnail] = useState('');
-  const [noRender, setNoRender] = useState(false);
-  console.log(props.info);
-  console.log('category', props.category);
+function Assign() {
+
+  //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
+
+  console.log("info:", info);
+  console.log('category', category);
 
   return (
     <AssignContainer>
-      <AssignBtn
-        itemID={props.itemID}
-        info={props.info}
-        setInfo={props.setInfo}
-        category={props.category}
-        // img={img}
-        // thumbnail={thumbnail}
-        // menus={menus}
-
-        cancle={props.cancle}
-        setCancle={props.setCancle}
-        mode={props.mode}
-        setMode={props.setMode}
-        type={props.type}
-      />
+      <AssignBtn />
       <InfoContainer>
-        {props.category != 'amenity' &&
-          (props.category == 'store' ? (
-            <AssignMenu
-              // menus={menus}
-              // thumbnail={thumbnail}
-              // setThumbnail={setThumbnail}
-              // setMenus={setMenus}
+        {category != 'amenity' &&
+          (category == 'store'
+            ? <AssignMenu />
+            : <AssignImage />
+          )}
 
-              info={props.info}
-              setInfo={props.setInfo}
-              itemID={props.itemID}
-              mode={props.mode}
-              setNoRender={setNoRender}
-            />
-          ) : (
-            <AssignImage
-              // img={img}
-              // setImg={setImg}
-              // thumbnail={thumbnail}
-              // setThumbnail={setThumbnail}
-
-              info={props.info}
-              setInfo={props.setInfo}
-              itemID={props.itemID}
-              mode={props.mode}
-              setNoRender={setNoRender}
-            />
-          ))}
-
-        {props.category == 'notice' ? (
-          <AssignBasicInfo_BoardOnly
-            setInfo={props.setInfo}
-            setCategory={props.setCategory}
-            info={props.info}
-            category={props.category}
-          />
-        ) : (
-          <AssignBasicInfo
-            setInfo={props.setInfo}
-            setCategory={props.setCategory}
-            info={props.info}
-            category={props.category}
-          />
-        )}
+        {category == 'notice'
+          ? <AssignBasicInfo_Post />
+          : <AssignBasicInfo/>
+        }
       </InfoContainer>
     </AssignContainer>
   );

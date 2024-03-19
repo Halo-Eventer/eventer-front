@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
-import {UpperBar, MiddleBar, Logo, H1} from '../../Routes/assign/AssignPage_Home';
+import {UpperBar, MiddleBar, H1, Logo} from '../../Routes/assign/AssignPage_Home';
 import next from 'asset/images/Next.svg';
 
-import logo from 'asset/images/Logo.svg';
+import logo from 'asset/images/Assign_Logo.png';
+import styled from 'styled-components';
 
 
 
@@ -10,7 +11,7 @@ export function UpperBar_Component()
 {
   return <UpperBar>
     <Link to = "/assign">
-      <Logo>목포해상 <span style={{color:'#4F33F6'}}>W</span>쇼</Logo>
+      <Logo>WABA</Logo>
     </Link>
 </UpperBar>
 };

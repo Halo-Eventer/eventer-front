@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 import {Input} from './Assign';
 import { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo_BoardOnly(props) {
-  console.log("props.info (AssignBasicInfo_Board.js):",props.info);
+function AssignBasicInfo_Post() {
+
+    //*****전역 recoil모음*****
+    const [info, setInfo] = useRecoilState(infoState);
+    //*****전역 recoil모음*****
+
+
+
+  console.log("info (AssignBasicInfo_Board.js):",info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -23,14 +32,14 @@ function AssignBasicInfo_BoardOnly(props) {
   };
   const deleteETC = () => 
   {
-    const { type, isOperation, ...rest } = props.info;
-    props.setInfo({ ...rest });
+    const { type, isOperation, ...rest } = info;
+    setInfo({ ...rest });
   };
   const handleInfo = (e) => 
   {
     console.log(e);
     const [value, id] = [e.target.value, e.target.id];
-    props.setInfo({ ...props.info, [id]: value });
+    setInfo({ ...info, [id]: value });
   };
 
 
@@ -42,25 +51,25 @@ function AssignBasicInfo_BoardOnly(props) {
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="title" 
-        value = {props.info.title} placeholder="제목"></Input>
+        value = {info.title} placeholder="제목"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="subtitle" 
-        value = {props.info.subtitle} placeholder="부제목"></Input>
+        value = {info.subtitle} placeholder="부제목"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
           onChange={handleInfo} id="simpleExplanation"
-          value = {props.info.simpleExplanation} placeholder="요약 설명"
+          value = {info.simpleExplanation} placeholder="요약 설명"
         ></Input>
       </InputDiv>
 
 
       <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
-          value={props.info.content}
+          value={info.content}
           onChange={handleResizeHeight}
           id="content"
           rows={1}
@@ -74,7 +83,7 @@ function AssignBasicInfo_BoardOnly(props) {
     </InputContainer>
   );
 }
-export default AssignBasicInfo_BoardOnly;
+export default AssignBasicInfo_Post;
 
 const TextAreaDiv = styled.div`
   background: #fafafa;

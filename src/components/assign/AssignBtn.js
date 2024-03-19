@@ -1,21 +1,32 @@
 import styled from 'styled-components';
 import { assignApi, assignMenuApi, reviseApi, reviseMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
+import { useRecoilState } from 'recoil';
+import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 
-function AssignBtn(props) {
+function AssignBtn() {
   const festivalId = 1;
 
-  const assignBoard = () => {
-    console.log(props.info);
+    //*****전역 recoil모음*****
+    const [category, setCategory] = useRecoilState(categoryState_assign);
+    const [mode,setMode]=useRecoilState(modeState);
+    const [cancle, setCancle] = useRecoilState(cancleState);
+    const [itemID, setItemID] = useRecoilState(itemIDState);
+    const [info, setInfo] = useRecoilState(infoState);
+    //*****전역 recoil모음*****
+
+
+  const assignPost = () => {
+    console.log(info);
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, props.category, festivalId)
+      assignApi(info, category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
             console.log('response.data : ', response.data);
             alert('해당 항목이 성공적으로 추가되었습니다');
-            props.setMode('f');
+            setMode('f');
           } else console.log('no response.data ;(');
         })
         .catch((error) => {
@@ -23,19 +34,19 @@ function AssignBtn(props) {
         });
   };
   const assignMarker = () => {
-    console.log(props.info);
+    console.log(info);
     let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
-      assignApi(props.info, props.category, festivalId)
+      assignApi(info, category, festivalId)
         .then((res) => {
           if (res.data.storeId) {
-            console.log("일단 가게등록은 성공",res.data.storeId, props.info.menus);
-            assignMenuApi(res.data.storeId, props.info.menus)
+            console.log("일단 가게등록은 성공",res.data.storeId, info.menus);
+            assignMenuApi(res.data.storeId, info.menus)
               .then((res) => {
                 console.log('res.data(menu) : ', res.data);
                 alert('해당 항목이 성공적으로 추가되었습니다.');
-                props.setMode('f');
+                setMode('f');
               })
               .catch((err) => {
                 alert('메뉴를 다시 추가해주십시오.');
@@ -43,7 +54,7 @@ function AssignBtn(props) {
           } else {
             console.log('res.data(not menu) : ', res.data);
             alert('해당 항목이 성공적으로 추가되었습니다.');
-            props.setMode('f');
+            setMode('f');
           }
         })
         .catch((err) => {
@@ -52,17 +63,17 @@ function AssignBtn(props) {
         });
   };
 
-  const reviseBoard = (id) => {
-    console.log(props.info);
+  const revisePost = (id) => {
+    console.log(info);
     let tmp = window.confirm("수정하시겠습니까?");
 
     if (tmp)
-      reviseApi(props.info, props.category, id)
+      reviseApi(info, category, id)
         .then((response) => {
           if (typeof(response.data) === 'object') {
             console.log("response.data : ", response.data);
             alert("해당 항목이 성공적으로 수정되었습니다.");
-            props.setMode("f");
+            setMode("f");
           }
           else
             console.log("no response.data ;(");
@@ -72,20 +83,20 @@ function AssignBtn(props) {
         })
   }
   const reviseMarker = (id) => {
-    console.log(props.info);
+    console.log(info);
     let tmp = window.confirm("수정하시겠습니까?");
     id = Number(id) 
       //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
       //일단 태그에서 target해서 받아오는 값들은 웬만하면 string
     if (tmp)
-      reviseApi(props.info, props.category, id)
+      reviseApi(info, category, id)
         .then((res) => {
           if (res.data.storeId) {
             console.log(res.data.storeId);
-            reviseMenuApi(props.info.menus)
+            reviseMenuApi(info.menus)
               .then((res) => {
                 alert('해당 항목이 성공적으로 수정되었습니다.');
-                props.setMode("f");
+                setMode("f");
               })
               .catch((err) => {
                 alert('메뉴를 다시 수정해주십시오.');
@@ -93,7 +104,7 @@ function AssignBtn(props) {
           } else {
             alert('수정되었습니다.');
             console.log('revise succenss', res.data);
-            props.setMode("f");
+            setMode("f");
           }
         })
         .catch((err) => {
@@ -102,8 +113,8 @@ function AssignBtn(props) {
   };
 
   const onClick_cancle = () => {
-    props.setCancle(true);
-    props.setMode('');
+    setCancle(true);
+    setMode('');
   };
 
   return (
@@ -112,20 +123,20 @@ function AssignBtn(props) {
         취소하기
       </Button>
 
-      {props.mode == 'a' 
+      {mode == 'a' 
       ? 
-        props.category == 'notice' 
+        category == 'notice' 
         ? 
-          <Button onClick={assignBoard}>추가하기</Button>
+          <Button onClick={assignPost}>추가하기</Button>
         : 
           <Button onClick={assignMarker}>추가하기</Button>
       :
-        props.category == 'notice'
+        category == 'notice'
         ?
-          <Button onClick={() => reviseBoard(props.itemID)}>수정하기</Button>
+          <Button onClick={() => revisePost(itemID)}>수정하기</Button>
           //onClick함수에 인자넣는 함수를 넣을 때 화살표함수로 넣을 것
         :
-          <Button onClick={() => reviseMarker(props.itemID)}>수정하기</Button>
+          <Button onClick={() => reviseMarker(itemID)}>수정하기</Button>
       }
     </Flex>
   );

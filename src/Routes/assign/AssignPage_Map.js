@@ -4,17 +4,28 @@ import { useParams } from 'react-router-dom';
 import Assign from '../../components/assign/Assign';
 import { Wrapper } from './AssignPage_Home';
 import Assign_List from '../../components/assign/Assign_List';
-import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
+import { AssignBox, Assign_Blank} from './AssignPage_Home';
 import { getAll, getDetail } from '../../apis/apis';
 import {
   MiddleBar_Component2,
   UpperBar_Component,
 } from 'components/assign/Assign_Bar';
+import { useRecoilState } from 'recoil';
+import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { InitInfo } from 'utils/InitInfo';
 
 function AssignPage_Map() {
+  //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [mode, setMode] = useRecoilState(modeState);
+  const [cancle, setCancle] = useRecoilState(cancleState);
+  const [itemID, setItemID] = useRecoilState(itemIDState);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
+
+
   const id_param = useParams().id;
 
-  const [category, setCategory] = useState('concert');
   const [categoryList, setCategoryList] = useState({
     concert: '콘서트',
     booth: '관광지',
@@ -30,20 +41,8 @@ function AssignPage_Map() {
   });
   const [type, setType] = useState('');
   const [boardList, setBoardList] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageNum, setPageNum] = useState(8);
-  const [totalPages, setTotalPages] = useState(1);
-  const [itemID, setItemID] = useState(1);
+
   const [SE, setSE] = useState('');
-
-  const [mode, setMode] = useState('');
-  const [cancle, setCancle] = useState(true);
-
-  const [info, setInfo] = useState({});
-
-  useEffect(() => {
-    console.log('type (AssignPage_Map):', type);
-  }, [type]);
 
   const fetchList = () => {
     const festivalId = id_param;
@@ -77,22 +76,31 @@ function AssignPage_Map() {
       });
   };
 
+
+  useEffect(() => {
+    setCategory('concert');
+  }, [])
+
+  useEffect(() => {
+    console.log('type (AssignPage_Map):', type);
+  }, [type]);
+
   useEffect(() => {
     console.log('cateogry, type (Assign_Map):', category, type);
     setCancle(true);
     setMode('');
-    setInfo(firstInfo(category, type));
+    setInfo(InitInfo(category, type));
     fetchList();
   }, [category, type]);
 
   useEffect(() => {
     console.log('mode (AssignPage_Map):', mode);
     if (mode == 'a') {
-      setInfo(firstInfo(category, type));
+      setInfo(InitInfo(category, type));
       //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      setInfo(firstInfo(category, type));
+      setInfo(InitInfo(category, type));
       fetchDetail();
       setCancle(false);
     } else if (mode == 'f') {
@@ -109,21 +117,11 @@ function AssignPage_Map() {
 
       <AssignBox>
         <Assign_List
-          category={category}
-          setCategory={setCategory}
           categoryList={categoryList}
           setType={setType}
           boardList={boardList}
           setBoardList={setBoardList}
           setSE={setSE}
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          pageNum={pageNum}
-          totalPages={totalPages}
-          itemid={itemID}
-          setItemID={setItemID}
-          setMode={setMode}
-          setCancle={setCancle}
         />
 
         {cancle ? (

@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { infoState } from 'recoils/atoms_assign';
 import styled from 'styled-components';
 
-function Assign_latlng(props) {
+function Assign_latlng() {
+  const [info, setInfo] = useRecoilState(infoState);
+
   const [latlng, setLatlng] = useState({});
 
   const { naver } = window;
@@ -23,8 +27,8 @@ function Assign_latlng(props) {
     naver.maps.Event.addListener(map, 'click', (e) => {
       console.log('hi');
       getLatLng(e);
-      props.setInfo({
-        ...props.info,
+      setInfo({
+        ...info,
         latitude: e.latlng._lat,
         longitude: e.latlng._lng,
       });

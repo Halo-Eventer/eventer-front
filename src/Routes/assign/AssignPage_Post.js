@@ -1,53 +1,47 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Flex } from 'asset/Style';
 
 import styled from 'styled-components';
 
 import Assign from 'components/assign/Assign';
 
 import {
-  FlexBox_Column, 
-  FlexBox_Row,
-  StyledLink
-} from '../Home';
-import {
   UpperBar_Component,
   MiddleBar_Component2
 } from '../../components/assign/Assign_Bar';
 
-import { AssignBox, Assign_Blank, firstInfo} from './AssignPage_Home';
+import { AssignBox, Assign_Blank} from './AssignPage_Home';
 import Assign_List from '../../components/assign/Assign_List';
 
 import {getAll, getDetail} from '../../apis/apis';
+import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { useRecoilState } from 'recoil';
+import { InitInfo } from 'utils/InitInfo';
 
 
 
 function AssignPage_Notice() {
+
+
+  //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [mode,setMode]=useRecoilState(modeState);
+  const [cancle, setCancle] = useRecoilState(cancleState);
+  const [itemID, setItemID] = useRecoilState(itemIDState);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
+
   const id_param = useParams().id;
 
-  const [category, setCategory] = useState("notice");
   const [categoryList, setCategoryList]= useState(
   {
       notice : "공지사항",
-      //event : "이벤트",
+      event : "이벤트",
   }
     );
   const [type, setType]=useState("");
   const [boardList,setBoardList] = useState([]);
   const [SE,setSE]=useState("");
-
-  const [currentPage,setCurrentPage]=useState(1);
-  const [pageNum,setPageNum]=useState(8);
-  const [totalPages,setTotalPages]=useState(1);
-  const [itemID, setItemID] = useState(1);
-
-  const [mode,setMode]=useState("");
-  const [cancle, setCancle] = useState(true);
-
-  const [info, setInfo] = useState({});
-
-
 
   const fetchList = () => {
     const festivalId = id_param;
@@ -83,11 +77,14 @@ function AssignPage_Notice() {
     })
   }
 
+  useEffect(()=>{
+    setCategory('notice');
+  },[])
   useEffect(()=>
   {
     console.log("cateogry (Assign_Notice):",category);
     setCancle(true);
-    setInfo(firstInfo(category));
+    setInfo(InitInfo(category));
     setMode("");
     fetchList();
   },[category])
@@ -98,7 +95,7 @@ function AssignPage_Notice() {
     if(mode == 'a')
     {
       fetchList();
-      setInfo(firstInfo(category));  
+      setInfo(InitInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     }
@@ -124,35 +121,15 @@ function AssignPage_Notice() {
       <AssignBox>
 
         <Assign_List 
-        category={category} setCategory={setCategory}
-        categoryList = {categoryList} setType={setType}
-
-        boardList={boardList} setBoardList={setBoardList}
-        setSE={setSE}
-
-        currentPage={currentPage} setCurrentPage={setCurrentPage}
-        pageNum={pageNum} totalPages={totalPages}
-
-        itemid = {itemID} setItemID={setItemID}
-        setMode = {setMode} setCancle={setCancle}/>
+        categoryList = {categoryList} 
+        setType={setType}
+        boardList={boardList} 
+        setBoardList={setBoardList}
+        setSE={setSE}/>
 
         {cancle 
-        ?
-        <Assign_Blank/>
-        :
-        <Assign 
-        category={category}
-        cancle = {cancle}
-
-        mode = {mode}
-        setMode = {setMode}
-        
-        itemID = {itemID}
-
-        info={info}
-        setInfo={setInfo}
-
-        setCancle = {setCancle}/>
+        ? <Assign_Blank/>
+        : <Assign/>
         }
 
       </AssignBox>
