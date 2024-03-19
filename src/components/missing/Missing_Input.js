@@ -1,17 +1,34 @@
-import { useState } from 'react';
+import { imageUploadApi } from 'apis/apis';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
-
+import imgUpload from 'asset/missing/imageUpload.svg';
+import { Flex } from 'asset/Style';
 function Missing_Input(props) {
   const [active, setActive] = useState(0);
   const handleClick = (e) => {
     setActive(e.target.id);
   };
+  console.log(props);
+  const [imagePreview, setImagePreview] = useState();
+  const imagesInput = useRef(null);
+  const handleImg = (e) => {
+    console.log(e);
+    imageUploadApi(e.target.files[0])
+      .then((res) => {
+        props.setInfo({ ...props.info, iamge: res.data });
+        setImagePreview(res.data);
+      })
+      .catch((err) => {
+        alert(err.response.data.error);
+      });
+  };
+
   return (
     <Container>
-      <Title>
+      <MissingSemiTitle>
         {props.title}
         <Require>{props.require ? '(필수)' : ''}</Require>
-      </Title>
+      </MissingSemiTitle>
       {props.btn ? (
         <BtnContainer>
           <GenderBtn active={active} id="1" onClick={handleClick}>
@@ -21,6 +38,32 @@ function Missing_Input(props) {
             여자
           </GenderBtn>
         </BtnContainer>
+      ) : props.img ? (
+        <>
+          <input
+            style={{ display: 'none' }}
+            accept="image/*"
+            id="images"
+            onChange={handleImg}
+            type="file"
+            ref={imagesInput}
+          ></input>
+          <Flex>
+            <div>
+              {imagePreview ? <ImgPreview src={imagePreview} /> : ''}
+              <AddPic
+                onClick={() => {
+                  imagesInput.current.click();
+                }}
+              >
+                <img src={imgUpload}></img>
+                <span style={{ marginLeft: '8px' }}>사진 추가</span>
+              </AddPic>
+            </div>
+
+            <PicD>최대 업로드 파일 크기: 10MB (jpg, png만 가능)</PicD>
+          </Flex>
+        </>
       ) : (
         <Input placeholder={props.placeholder}></Input>
       )}
@@ -33,14 +76,25 @@ export default Missing_Input;
 const Container = styled.div`
   margin-top: 20px;
 `;
-
-const Title = styled.div`
+const PicD = styled.div`
+  color: var(--Font3, #888);
+  padding: 4px 0;
+  margin-left: 8px;
+  width: 168px;
+  /* body3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
+`;
+export const MissingSemiTitle = styled.div`
   color: #999;
   font-family: Pretendard;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px; /* 142.857% */
-
+  margin-bottom: 6px;
   display: flex;
 `;
 const Input = styled.input`
@@ -97,4 +151,26 @@ const BtnContainer = styled.div`
   display: flex;
 
   padding: 4px;
+`;
+
+const ImgPreview = styled.img`
+  width: 200px;
+  height: 200px;
+`;
+const AddPic = styled.button`
+  width: 128px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
