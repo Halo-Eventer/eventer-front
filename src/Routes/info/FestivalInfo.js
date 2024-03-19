@@ -4,14 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import {
-  Wrapper,
-  TopFixedDiv,
-  Title,
-  BkBtn,
-  HomeBtn,
-  LineDiv
-} from '../Home';
+import { Wrapper, TopFixedDiv, Title, BkBtn, HomeBtn, LineDiv } from '../Home';
 
 import line_up from 'asset/images/LineUp.svg';
 import { UpperBar } from '../Home';
@@ -32,9 +25,9 @@ function FestivalInfo() {
           <Title>오늘의 공연</Title>
         </UpperBar>
       </TopFixedDiv>
-      <WrapperSvg style={{marginTop:'48px'}}>
+      <WrapperSvg style={{ marginTop: '48px' }}>
         <ImgForSvg src={line_up}>
-            해당 브라우저에서 지원하지 않는 이미지입니다.
+          해당 브라우저에서 지원하지 않는 이미지입니다.
         </ImgForSvg>
       </WrapperSvg>
     </div>
@@ -43,21 +36,21 @@ function FestivalInfo() {
 
 export default FestivalInfo;
 
-export const WrapperSvg=styled.div`
-position:relative;
-background-color:black;
+export const WrapperSvg = styled.div`
+  position: relative;
+  background-color: black;
 
-display:flex;
-justify-content:center;
-align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const ImgForSvg=styled.iframe`
-border:none;
+export const ImgForSvg = styled.iframe`
+  border: none;
 
-width:390px; 
-height:1810px;
-top:0; 
-left:0;
+  width: 390px;
+  height: 1810px;
+  top: 0;
+  left: 0;
 `;
 //svg 모바일 흐림해결

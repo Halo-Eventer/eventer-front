@@ -20,6 +20,7 @@ import AssignPage_Notice from './Routes/assign/AssignPage_Notice';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect } from 'react';
+import Missing_Home from 'Routes/Missing/Missing_Home';
 
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './Theme';
@@ -48,20 +49,22 @@ function App() {
             <Route path="/tourmap" element={<TourMap />} />
             <Route path="/festivalInfo" element={<FestivalInfo />} />
             <Route path="/post" element={<PostList_Root />}>
-              <Route path="notice" element={<NoticeList/>}/>
-              <Route path="event" element={<EventList/>}/>
+              <Route path="notice" element={<NoticeList />} />
+              <Route path="event" element={<EventList />} />
             </Route>
             <Route path="/post/event/:id" element={<Detail_Event />} />
             <Route path="/post/notice/:id" element={<Detail_Notice />} />
             {/* Detail을 루트로 처리하는 법 */}
-
-
             <Route path="/assign" element={<AssignPage_Select />} />
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
             {/* 이게 assign_map 및 AssignPage_Map 파트 */}
-            <Route path="/assign_rending/:id" element={<AssignPage_Rending />} />
+            <Route
+              path="/assign_rending/:id"
+              element={<AssignPage_Rending />}
+            />
             <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
             {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
+            <Route path="/missing" element={<Missing_Home />}></Route>
           </Routes>
         </ThemeProvider>
       </RecoilRoot>
