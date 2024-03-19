@@ -3,7 +3,7 @@ import { Flex } from 'asset/Style';
 import Missing_Input, {
   MissingSemiTitle,
 } from 'components/missing/Missing_Input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
@@ -12,7 +12,9 @@ function Missing_Home() {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [info, setInfo] = useState({});
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Wrapper>
       <TopFixedDiv>

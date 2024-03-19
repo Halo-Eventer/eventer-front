@@ -3,11 +3,13 @@ import { onClick_bkBtn } from '../../hooks/hooks';
 import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function Lost_Home() {
   const navigate = useNavigate();
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const data = [
     {
       id: 1,
