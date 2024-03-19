@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom';
-import {UpperBar, MiddleBar, H1, Logo} from '../../Routes/assign/AssignPage_Home';
+import {
+  UpperBar,
+  MiddleBar,
+  Logo,
+  H1,
+} from '../../Routes/assign/AssignPage_Home';
 import next from 'asset/images/Next.svg';
 
 import logo from 'asset/images/Assign_Logo.png';

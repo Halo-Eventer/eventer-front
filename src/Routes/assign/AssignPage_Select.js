@@ -30,31 +30,31 @@ function AssignPage_Select() {
           </Link>
           
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>지도 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
 
           <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도관리 페이지</h1></PageBtn>
+            <PageBtn><h1>미정 페이지</h1></PageBtn>
           </Link>
           
         </MainBox>

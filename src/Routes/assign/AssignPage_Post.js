@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
@@ -7,7 +7,7 @@ import Assign from 'components/assign/Assign';
 
 import {
   UpperBar_Component,
-  MiddleBar_Component2
+  MiddleBar_Component2,
 } from '../../components/assign/Assign_Bar';
 
 import { AssignBox, Assign_Blank} from './AssignPage_Home';
@@ -45,37 +45,38 @@ function AssignPage_Notice() {
 
   const fetchList = () => {
     const festivalId = id_param;
-    getAll(festivalId,category,type)
-    .then((response)=>{
-      if(response.data.length>0){
-        console.log("fetch List success",response.data);
-        setBoardList(response.data);
-      }else{
-        console.log("fetch List no data ;(",response);
-        setBoardList([]);
-      }
-    }).catch((error)=>{
-      console.log('fetch List error',error);
-    })
-  }
+    getAll(festivalId, category, type)
+      .then((response) => {
+        if (response.data.length > 0) {
+          console.log('fetch List success', response.data);
+          setBoardList(response.data);
+        } else {
+          console.log('fetch List no data ;(', response);
+          setBoardList([]);
+        }
+      })
+      .catch((error) => {
+        console.log('fetch List error', error);
+      });
+  };
 
-  const fetchDetail=()=>{
-    getDetail(category,itemID)
-    .then((response)=>{
-      if(typeof(response.data) === 'object'){
-        console.log("fetch Detail success",response.data);
+  const fetchDetail = () => {
+    getDetail(category, itemID)
+      .then((response) => {
+        if (typeof response.data === 'object') {
+          console.log('fetch Detail success', response.data);
 
-        if(category==='notice')
-          setInfo({...response.data, simpleExplanation:SE})
-        else
-          setInfo(response.data);
-      }else{
-        console.log("fetch Detail no data ;(",response);
-      }
-    }).catch((error)=>{
-      console.log('fetch Detail error',error);
-    })
-  }
+          if (category === 'notice')
+            setInfo({ ...response.data, simpleExplanation: SE });
+          else setInfo(response.data);
+        } else {
+          console.log('fetch Detail no data ;(', response);
+        }
+      })
+      .catch((error) => {
+        console.log('fetch Detail error', error);
+      });
+  };
 
   useEffect(()=>{
     setCategory('notice');
@@ -87,38 +88,47 @@ function AssignPage_Notice() {
     setInfo(InitInfo(category));
     setMode("");
     fetchList();
-  },[category])
+  }, [category]);
 
-  useEffect(()=>
-  {
-    console.log("mode (AssignPage_Map):",mode);
-    if(mode == 'a')
-    {
+  useEffect(() => {
+    console.log('mode (AssignPage_Map):', mode);
+    if (mode == 'a') {
       fetchList();
       setInfo(InitInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
-    }
-    else if(mode == 'r')
-    {
+    } else if (mode == 'r') {
       fetchDetail();
       setCancle(false);
-    }
-    else if (mode == 'f')
-    {
+    } else if (mode == 'f') {
       fetchList();
       setCancle(true);
-      setMode("");
+      setMode('');
     }
-  },[mode,itemID]);
-
-  
+  }, [mode, itemID]);
 
   return (
     <Wrapper>
       <UpperBar_Component />
       <MiddleBar_Component2 id_param={id_param} text="정보" />
       <AssignBox>
+        <Assign_List
+          category={category}
+          setCategory={setCategory}
+          categoryList={categoryList}
+          setType={setType}
+          boardList={boardList}
+          setBoardList={setBoardList}
+          setSE={setSE}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          pageNum={pageNum}
+          totalPages={totalPages}
+          itemid={itemID}
+          setItemID={setItemID}
+          setMode={setMode}
+          setCancle={setCancle}
+        />
 
         <Assign_List 
         categoryList = {categoryList} 
@@ -133,23 +143,22 @@ function AssignPage_Notice() {
         }
 
       </AssignBox>
-
     </Wrapper>
   );
 }
 export default AssignPage_Notice;
 
 export const Wrapper = styled.div`
-width:100vw;
+  width: 100vw;
 
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 export const InputBox = styled.div`
   width: 400px;
-  display:flex;
+  display: flex;
   justify-content: space-between;
   margin-top: 10px;
   align-items: center;
@@ -166,24 +175,22 @@ export const Category = styled.select`
   height: 30px;
 `;
 export const PlusImage = styled.button`
-width:25px;
-height:25px;
-font-size:25px;
-line-height:12.5px; //글자 위 기준으로 height가 설정됨
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  line-height: 12.5px; //글자 위 기준으로 height가 설정됨
 
-margin:0;
-padding:0;
+  margin: 0;
+  padding: 0;
 `;
 export const ImageBox = styled.div`
-width:400px;
-p{
-align-self:flex-start;
-}
+  width: 400px;
+  p {
+    align-self: flex-start;
+  }
 `;
 export const Image = styled.img`
-width:200px;
-height:200px;
-border:1px solid gray;
+  width: 200px;
+  height: 200px;
+  border: 1px solid gray;
 `;
-
-

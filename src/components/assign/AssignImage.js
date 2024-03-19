@@ -31,7 +31,7 @@ function AssignImage() {
 
       })
       .catch((err) => {
-        alert(err.response.data.error)
+        alert(err.response.data.error);
       });
   };
 
@@ -70,9 +70,10 @@ function AssignImage() {
         <ImagesPreviewBox ImagesPreview={info.image}>
           {info.images?.map((item, index) => {
             return (
-              <div key={index}
+              <div
+                key={index}
                 style={{
-                  position:'relative',
+                  position: 'relative',
                   width: '96px',
                   height: '96px',
                   marginLeft: '4px',
@@ -83,7 +84,7 @@ function AssignImage() {
                   src={delete_images}
                 ></DeleteImages>
                 <ImagesPreview src={item} />
-                <IndexImage>{index+1}</IndexImage>
+                <IndexImage>{index + 1}</IndexImage>
               </div>
             );
           })}
@@ -134,13 +135,13 @@ const ImagesPreview = styled.img`
   height: 96px;
   flex-shrink: 0;
 
-  border:1px solid #EEE;
+  border: 1px solid #eee;
 `;
 
 const DeleteImages = styled.img`
-  position:absolute;
-  left:4px;
-  top:4px;
+  position: absolute;
+  left: 4px;
+  top: 4px;
 
   width: 20px;
   height: 20px;
@@ -152,18 +153,17 @@ const DeleteImages = styled.img`
 `;
 
 const IndexImage = styled.p`
-position:absolute;
-bottom:4px;
-right:4px;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
 
-width:16px;
-height:16px;
-background-color:rgba(255,255,255,0.7);
-border-radius:12px;
+  width: 16px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
 
-
-text-align:center;
-font-size:12px;
-line-height:18px;
-color:#333;
+  text-align: center;
+  font-size: 12px;
+  line-height: 18px;
+  color: #333;
 `;

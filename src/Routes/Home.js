@@ -9,14 +9,12 @@ import logo from 'asset/images/Logo.svg';
 import instagram from 'asset/images/instagram.svg';
 import facebook from 'asset/images/facebook.svg';
 
-
 import marker from 'asset/images/Marker.png';
 import festival from 'asset/images/Festival.png';
 import survey from 'asset/images/Survey.png';
 import disabled from 'asset/images/Disabled.png';
 import lost from 'asset/images/Lost.png';
 import missing from 'asset/images/Missing.png';
-
 
 import { getAll } from '../apis/apis';
 
@@ -30,7 +28,7 @@ function Home() {
 
   const festivalId = 1;
 
-  const [currentNum, setCurrentNum]=useState(1);
+  const [currentNum, setCurrentNum] = useState(1);
 
   var settings = {
     dots: false, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
@@ -39,10 +37,10 @@ function Home() {
     slidesToShow: 1, // 한 번에 보여줄 슬라이드 개수
     slidesToScroll: 1, // 슬라이드 넘어갈 때마다 몇 개의 슬라이드를 넘길 것인지 설정
     autoplay: true, // 자동으로 슬라이드를 넘길 것인지 설정
-    afterChange:(current)=>{
+    afterChange: (current) => {
       //event처럼 이미 current자리는 현재 슬라이드 번호에 대한 인자임
-      setCurrentNum(current+1);
-    } //현재 슬라이드 위치에 따른 변화 get가능
+      setCurrentNum(current + 1);
+    }, //현재 슬라이드 위치에 따른 변화 get가능
   };
   const onClick_detailNoti = (event) => {
     event.preventDefault();
@@ -106,7 +104,7 @@ function Home() {
         <FlexBox_Row style={{ width: '100%' }}>
           <ImgBlock>
             <Index>
-                {currentNum}/{noticeList?.length + eventList?.length}
+              {currentNum}/{noticeList?.length + eventList?.length}
             </Index>
             <StyledSlider {...settings}>
               {noticeList.map((item, key) => {
@@ -149,11 +147,11 @@ function Home() {
                 <button>주변시설 확인</button>
               </h1>
             </Link>
-            <hr/>
+            <hr />
             <Link to="/festivalInfo">
               <h1>
                 <FlexBox_Row>
-                  <Imoji src={festival}/>
+                  <Imoji src={festival} />
                   <p>오늘의 공연</p>
                 </FlexBox_Row>
 
@@ -163,44 +161,28 @@ function Home() {
           </BigBox>
 
           <SurveyBox>
-              <h1>
-                축제 만족도 조사
-              </h1>
-              <h2>
-                축제 피드백해줘! 멘트써줘! 경품을 줘야하나
-              </h2>
-              <Imoji src={survey}></Imoji>
+            <h1>축제 만족도 조사</h1>
+            <h2>축제 피드백해줘! 멘트써줘! 경품을 줘야하나</h2>
+            <Imoji src={survey}></Imoji>
           </SurveyBox>
 
           <ETCBox>
             <ETC>
-              <Imoji src={disabled}/>
-              <h1>
-                장애인 지원
-              </h1>
-              <h2>
-                휠체어, 배리어프리존
-              </h2>
+              <Imoji src={disabled} />
+              <h1>장애인 지원</h1>
+              <h2>휠체어, 배리어프리존</h2>
             </ETC>
 
-            <ETC>
-              <Imoji src={missing}/>
-              <h1>
-                실종자 찾기
-              </h1>
-              <h2>
-                실종자 공지 신청하기
-              </h2>
+            <ETC onClick={() => navigate('/missing')}>
+              <Imoji src={missing} />
+              <h1>실종자 찾기</h1>
+              <h2>실종자 공지 신청하기</h2>
             </ETC>
 
-            <ETC>
-              <Imoji src={lost}/>
-              <h1>
-                분실물 찾기
-              </h1>
-              <h2>
-                분실물 리스트 확인
-              </h2>
+            <ETC onClick={() => navigate('/lost')}>
+              <Imoji src={lost} />
+              <h1>분실물 찾기</h1>
+              <h2>분실물 리스트 확인</h2>
             </ETC>
           </ETCBox>
 
@@ -219,7 +201,7 @@ function Home() {
             </SmallBox>
           </Link>
 
-          <Footer/>
+          <Footer />
         </SecondBlock>
       </Board>
     </Wrapper>
@@ -230,9 +212,9 @@ export default Home;
 //무조건 전역자료들만 가능(객체라서 export가 중괄호 안에 안 들어갔다 이런게 아니라)
 
 export const Flex = styled.div`
-display:flex;
-justify-content:center;
-align-items:center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const FlexBox_Row = styled.div`
   display: flex;
@@ -298,7 +280,7 @@ export const UpperBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 4px 16px;
+  padding: 8px 16px;
 `;
 
 export const Board = styled.div`
@@ -308,18 +290,15 @@ export const Board = styled.div`
   }
 `;
 
-
 export const BoardSet_Width = styled(Flex)`
-    flex-direction:column;
-    justify-content:flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
 
-    width:100%;
-    @media screen and (min-width:450px){
-        width:390px;
-    }
+  width: 100%;
+  @media screen and (min-width: 450px) {
+    width: 390px;
+  }
 `;
-
-
 
 //for 가독성
 export const TopFixedDiv = styled.div`
@@ -341,7 +320,6 @@ export const TopFixedDiv = styled.div`
 export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
-  left: 16px;
 
   width: 24px;
   height: 24px;
@@ -386,8 +364,8 @@ export const StyledSlider = styled(Slider)`
     z-index: 10;
     bottom: -18px;
     li {
-      display:none;
-      
+      display: none;
+
       //버튼이 차지하는 공간 스타일
       width: 30px;
       height: 0px;
@@ -416,16 +394,16 @@ export const StyledSlider = styled(Slider)`
 `;
 
 export const ImgBlock = styled.div`
-  position:relative;
+  position: relative;
 
   width: 358px;
   background-color: #000;
-  margin-bottom:6px;
+  margin-bottom: 6px;
 `;
 export const Index = styled(Flex)`
-  position:absolute;
-  top:8px;
-  right:8px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
 
   width: 48px;
   height: 28px;
@@ -435,9 +413,9 @@ export const Index = styled(Flex)`
   background: rgba(255, 255, 255, 0.16);
   backdrop-filter: blur(2px);
 
-  z-index:20;
+  z-index: 20;
 
-  color: #FFF;
+  color: #fff;
   font-size: 12px;
   font-style: normal;
   font-weight: 800;
@@ -460,13 +438,13 @@ export const ImgBoard = styled.img`
 export const BigBox = styled.div``;
 export const SmallBox = styled.div``;
 export const Imoji = styled.img`
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
 
-      border-radius: 4px;
+  border-radius: 4px;
 
-      margin-right: 12px;
+  margin-right: 12px;
 `;
 export const SecondBlock = styled.div`
   width: 100%;
@@ -499,7 +477,7 @@ export const SecondBlock = styled.div`
       stroke-width: 1px;
       stroke: #999;
 
-      margin:20px 0px;
+      margin: 20px 0px;
     }
 
     h1 {
@@ -641,101 +619,98 @@ export const TextBoard = styled.div`
 `;
 //For Detail_Event/Notice.js  //For Detail_Event/Notice.js  //For Detail_Event/Notice.js
 
-
-
-
 //신버전 추가
 //신버전 추가
 //신버전 추가
 export const SurveyBox = styled.button`
-position:relative;
+  position: relative;
 
-width: 358px;
-height: 80px;
-flex-shrink: 0;
+  width: 358px;
+  height: 80px;
+  flex-shrink: 0;
 
-border-radius: 8px;
-border: 1px solid #999;
-background: #000;
+  border-radius: 8px;
+  border: 1px solid #999;
+  background: #000;
 
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-align-items:flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 
-padding:16px;
+  padding: 16px;
 
-h1{
-  color: #DDD;
+  h1 {
+    color: #ddd;
 
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 24px; /* 150% */
-}
-h2{
-  color: #DDD;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 24px; /* 150% */
+  }
+  h2 {
+    color: #ddd;
 
-  font-family: 'Pretendard';
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 20px; /* 142.857% */
-}
-${Imoji}{
-  position:absolute;
-  top:50%;
-  right:16px; /*SurveyBox의 padding까지 계산*/
-  transform:translateY(-50%);
-}
+    font-family: 'Pretendard';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+  }
+  ${Imoji} {
+    position: absolute;
+    top: 50%;
+    right: 16px; /*SurveyBox의 padding까지 계산*/
+    transform: translateY(-50%);
+  }
 `;
 
 export const ETC = styled.button``;
 export const ETCBox = styled(Flex)`
-width:358px;
-height:126px;
+  width: 358px;
+  height: 126px;
 
-overflow-x:auto;
+  overflow-x: auto;
 
-justify-content:flex-start;
-gap:8px;
+  justify-content: flex-start;
+  gap: 8px;
 
-${ETC}{
-width: 148px;
-height: 126px;
-flex-shrink: 0;
+  ${ETC} {
+    width: 148px;
+    height: 126px;
+    flex-shrink: 0;
 
-border-radius: 12px;
-background: #222;
-box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
+    border-radius: 12px;
+    background: #222;
+    box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
 
-display:flex;
-flex-direction:column;
-justify-content:flex-start;
-align-items:flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 
-padding:16px;
+    padding: 16px;
 
-h1{
-  margin-top:8px;
+    h1 {
+      margin-top: 8px;
 
-  color: #FFF;
-  /* headline1 */
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 26px; /* 144.444% */
-}
+      color: #fff;
+      /* headline1 */
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 26px; /* 144.444% */
+    }
 
-h2{
-  color: #DDD;
+    h2 {
+      color: #ddd;
 
-/* body3 */
-font-family: 'Pretendard';
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 20px; /* 142.857% */
-}
-}
+      /* body3 */
+      font-family: 'Pretendard';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px; /* 142.857% */
+    }
+  }
 `;
