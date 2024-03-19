@@ -8,15 +8,16 @@ import Assign from 'components/assign/Assign';
 import {
   UpperBar_Component,
   MiddleBar_Component2,
-} from '../../components/assign/Assign_Bar';
+} from 'components/assign/Assign_Bar';
 
-import { AssignBox, Assign_Blank} from './AssignPage_Home';
-import Assign_List from '../../components/assign/Assign_List';
+import { AssignBox, Assign_Blank} from 'Routes/assign/AssignPage_Home';
+import Assign_List from 'components/assign/Assign_List';
 
-import {getAll, getDetail} from '../../apis/apis';
+import {getAll, getDetail} from 'apis/apis';
 import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
+import { postCategory } from 'constants/Const_Assign';
 
 
 
@@ -33,12 +34,7 @@ function AssignPage_Notice() {
 
   const id_param = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(
-  {
-      notice : "공지사항",
-      event : "이벤트",
-  }
-    );
+  const [categoryList, setCategoryList]= useState(postCategory);
   const [type, setType]=useState("");
   const [boardList,setBoardList] = useState([]);
   const [SE,setSE]=useState("");

@@ -1,18 +1,27 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
-import Assign from '../../components/assign/Assign';
-import { Wrapper } from './AssignPage_Home';
-import Assign_List from '../../components/assign/Assign_List';
-import { AssignBox, Assign_Blank} from './AssignPage_Home';
-import { getAll, getDetail } from '../../apis/apis';
+import Assign from 'components/assign/Assign';
+import { Wrapper } from 'Routes/assign/AssignPage_Home';
+import Assign_List from 'components/assign/Assign_List';
+import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
+import { getAll, getDetail } from 'apis/apis';
 import {
   MiddleBar_Component2,
   UpperBar_Component,
 } from 'components/assign/Assign_Bar';
-import { useRecoilState } from 'recoil';
-import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import {
+  cancleState,
+  categoryState_assign,
+  infoState,
+  itemIDState,
+  modeState
+} from 'recoils/atoms_assign';
 import { InitInfo } from 'utils/InitInfo';
+import { mapCategory } from 'constants/Const_Assign';
+
+
 
 function AssignPage_Map() {
   //*****전역 recoil모음*****
@@ -26,19 +35,7 @@ function AssignPage_Map() {
 
   const id_param = useParams().id;
 
-  const [categoryList, setCategoryList] = useState({
-    concert: '콘서트',
-    booth: '관광지',
-    store: [
-      '관리자',
-      '관광안내소',
-      '편의점',
-      '화장실',
-      '쓰레기통',
-      '흡연장',
-      '주차장',
-    ],
-  });
+  const [categoryList, setCategoryList] = useState(mapCategory);
   const [type, setType] = useState('');
   const [boardList, setBoardList] = useState([]);
 
@@ -127,7 +124,7 @@ function AssignPage_Map() {
         {cancle ? (
           <Assign_Blank />
         ) : (
-          <Assign/>
+          <Assign />
         )}
       </AssignBox>
     </Wrapper>

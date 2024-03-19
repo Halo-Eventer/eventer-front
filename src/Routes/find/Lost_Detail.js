@@ -1,8 +1,17 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { onClick_bkBtn } from '../../hooks/hooks';
-import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
+import { onClick_bkBtn } from 'hooks/hooks';
+import {
+  BkBtn,
+  Title,
+  TopFixedDiv,
+  UpperBar,
+  Wrapper
+} from 'Routes/Home';
 import styled from 'styled-components';
-import { Category, Name } from './Lost_Home';
+import { Category, Name } from 'Routes/find/Lost_Home';
+
+
+
 function Lost_Detail() {
   const navigate = useNavigate();
   const location = useLocation();

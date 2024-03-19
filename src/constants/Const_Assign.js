@@ -1,5 +1,24 @@
 import thumbnail_preview from 'asset/assign/input_thumbnail.png';
 
+export const postCategory = {
+    notice : "공지사항",
+    event : "이벤트"
+}
+
+export const mapCategory = {
+    concert: '콘서트',
+    booth: '관광지',
+    store: [
+      '관리자',
+      '관광안내소',
+      '편의점',
+      '화장실',
+      '쓰레기통',
+      '흡연장',
+      '주차장',
+    ],
+}
+
 export const mapForm_blank = {
     tag: '',
     name: '',
