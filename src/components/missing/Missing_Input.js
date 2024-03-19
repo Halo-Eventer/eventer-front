@@ -5,6 +5,8 @@ import imgUpload from 'asset/missing/imageUpload.svg';
 import { Flex } from 'asset/Style';
 function Missing_Input(props) {
   const [active, setActive] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const handleClick = (e) => {
     setActive(e.target.id);
   };
@@ -12,14 +14,17 @@ function Missing_Input(props) {
   const [imagePreview, setImagePreview] = useState();
   const imagesInput = useRef(null);
   const handleImg = (e) => {
-    console.log(e);
+    setLoading(true);
     imageUploadApi(e.target.files[0])
       .then((res) => {
         props.setInfo({ ...props.info, iamge: res.data });
         setImagePreview(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         alert(err.response.data.error);
+        setImagePreview('');
+        setLoading(false);
       });
   };
 
@@ -51,13 +56,32 @@ function Missing_Input(props) {
           <Flex>
             <div>
               {imagePreview ? <ImgPreview src={imagePreview} /> : ''}
+              {loading ? (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '200px',
+                    height: '200px',
+                  }}
+                >
+                  <Loading />
+                </div>
+              ) : (
+                ''
+              )}
               <AddPic
                 onClick={() => {
                   imagesInput.current.click();
                 }}
+                loading={loading}
+                imagePreview={imagePreview}
               >
                 <img src={imgUpload}></img>
-                <span style={{ marginLeft: '8px' }}>사진 추가</span>
+
+                <span style={{ marginLeft: '8px' }}>
+                  {imagePreview ? '사진 변경' : '사진 추가'}
+                </span>
               </AddPic>
             </div>
 
@@ -82,7 +106,7 @@ const PicD = styled.div`
   margin-left: 8px;
   width: 168px;
   /* body3 */
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -90,7 +114,7 @@ const PicD = styled.div`
 `;
 export const MissingSemiTitle = styled.div`
   color: #999;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 14px;
   font-weight: 700;
   line-height: 20px; /* 142.857% */
@@ -103,16 +127,19 @@ const Input = styled.input`
   flex-shrink: 0;
   border-radius: 12px;
   background: #222;
-  color: #999;
+  color: #fff;
+  ::placeholder {
+    color: #999;
+  }
+
   padding-left: 12px;
   border: none;
-  :focus {
-    outline: none !important;
-    box-shadow: none !important;
-  }
-  ::placeholder {
-    margin-left: 12px;
-  }
+
+  font-family: Pretendard-Regular;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
 `;
 
 const Require = styled.div`
@@ -128,7 +155,7 @@ const GenderBtn = styled.button`
   flex-shrink: 0;
   color: #fff;
   text-align: center;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -164,7 +191,7 @@ const AddPic = styled.button`
   border-radius: 8px;
   border: 1px solid #fff;
   color: #fff;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
 
   font-weight: 600;
@@ -173,4 +200,29 @@ const AddPic = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${(props) => props.loading && 'margin-left: 36px;'}
+  ${(props) => props.imagePreview && 'margin-left: 36px;'}
+`;
+
+const Loading = styled.div`
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+      border: 2px solid #f3f3f3; /* Light grey */
+    }
+    50% {
+      transform: rotate(180deg);
+      border: 2px solid #53cddd; /* Light grey */
+    }
+    100% {
+      transform: rotate(360deg);
+      border: 2px solid #f3f3f3; /* Light grey */
+    }
+  }
+  margin: 0 auto;
+
+  width: 20px;
+  height: 20px;
+
+  animation: spin 2s ease-in-out infinite;
 `;
