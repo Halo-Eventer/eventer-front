@@ -42,7 +42,7 @@ function Home() {
       setCurrentNum(current + 1);
     }, //현재 슬라이드 위치에 따른 변화 get가능
   };
-  const onClick_detailNoti = (event) => {
+  const onClick_detailNotice = (event) => {
     event.preventDefault();
     const noticeId = event.currentTarget.id;
     console.log('noticeId : ', event.currentTarget.id);
@@ -113,7 +113,7 @@ function Home() {
                   <ImgBoard
                     cursor="pointer"
                     //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-                    onClick={onClick_detailNoti}
+                    onClick={onClick_detailNotice}
                     key={key}
                     id={item.id}
                     src={item.thumbnail}
@@ -148,7 +148,7 @@ function Home() {
               </h1>
             </Link>
             <hr />
-            <Link to="/festivalInfo">
+            <Link to="/concertInfo">
               <h1>
                 <FlexBox_Row>
                   <Imoji src={festival} />

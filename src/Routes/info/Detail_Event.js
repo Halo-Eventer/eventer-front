@@ -70,7 +70,7 @@ function Detail_Event() {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <HomeBtn />
           </Link>
-          <Title>공지사항 / 이벤트</Title>
+          <Title>이벤트</Title>
         </UpperBar>
       </TopFixedDiv>
       <Wrapper>

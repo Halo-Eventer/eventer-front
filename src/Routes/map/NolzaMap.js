@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../../asset/CategorySlider';
@@ -19,7 +19,7 @@ import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
-import { TopFixedDiv, UpperBar, BkBtn, Title } from '../Home';
+import {UpperBar, BkBtn, Title } from '../Home';
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');
@@ -251,15 +251,11 @@ function NolzaMap(props) {
     setOpenId(data.id);
   };
 
-  const onClick_bkBtn = () => {
-    navigate(-1);
-  };
-
   return (
     <div>
       <GlobalStyle />
       <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
-        <BkBtn style={{ left: '20px' }} onClick={onClick_bkBtn} />
+        <BkBtn style={{ left: '20px' }} onClick={()=>navigate(-1)}/>
         <Title>공연장 지도</Title>
       </UpperBar>
       <MapContainer ref={mapElement}>

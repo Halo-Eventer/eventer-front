@@ -6,8 +6,7 @@ import NolzaMap from './Routes/map/NolzaMap';
 import TourMap from './Routes/map/TourMap';
 
 import PostList_Root from './Routes/info/PostList_Root';
-import FestivalInfo from './Routes/info/FestivalInfo';
-import FestivalNotice from './Routes/info/FestivalNotice_X';
+import ConcertInfo from './Routes/info/ConcertInfo';
 import Detail_Event from './Routes/info/Detail_Event';
 import Detail_Notice from './Routes/info/Detail_Notice';
 
@@ -48,7 +47,7 @@ function App() {
             <Route path="" element={<Home />} />
             <Route path="/map" element={<NolzaMap />} />
             <Route path="/tourmap" element={<TourMap />} />
-            <Route path="/festivalInfo" element={<FestivalInfo />} />
+            <Route path="/concertInfo" element={<ConcertInfo />} />
             <Route path="/post" element={<PostList_Root />}>
               <Route path="notice" element={<NoticeList />} />
               <Route path="event" element={<EventList />} />
@@ -56,14 +55,16 @@ function App() {
             <Route path="/post/event/:id" element={<Detail_Event />} />
             <Route path="/post/notice/:id" element={<Detail_Notice />} />
             {/* Detail을 루트로 처리하는 법 */}
+            <Route path="/missing" element={<Missing_Home />}></Route>
+            <Route path="/lost" element={<Lost_Home />}></Route>
+            <Route path="/lost/:id" element={<Lost_Detail />}></Route>
+
             <Route path="/assign" element={<AssignPage_Select />} />
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
             {/* 이게 assign_map 및 AssignPage_Map 파트 */}
             <Route path="/assign_post/:id" element={<AssignPage_Post />} />
             {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
-            <Route path="/missing" element={<Missing_Home />}></Route>
-            <Route path="/lost" element={<Lost_Home />}></Route>
-            <Route path="/lost/:id" element={<Lost_Detail />}></Route>
+
           </Routes>
         </ThemeProvider>
       </RecoilRoot>
