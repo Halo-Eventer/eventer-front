@@ -1,49 +1,43 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Flex } from 'asset/Style';
 
-import Assign from '../components/assign/Assign';
-import { Wrapper } from './AssignPage_Home';
-import Assign_List from '../components/assign/Assign_List';
-import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
-import { getAll, getDetail } from '../apis/apis';
+import styled from 'styled-components';
+
+import Assign from 'components/assign/Assign';
+
+import { FlexBox_Column, FlexBox_Row, StyledLink } from '../Home';
 import {
-  MiddleBar_Component2,
   UpperBar_Component,
-} from 'components/assign/Assign_Bar';
+  MiddleBar_Component2,
+} from '../../components/assign/Assign_Bar';
 
-function AssignPage_Map() {
+import { AssignBox, Assign_Blank, firstInfo } from './AssignPage_Home';
+import Assign_List from '../../components/assign/Assign_List';
+
+import { getAll, getDetail } from '../../apis/apis';
+
+function AssignPage_Notice() {
   const id_param = useParams().id;
 
-  const [category, setCategory] = useState('concert');
+  const [category, setCategory] = useState('notice');
   const [categoryList, setCategoryList] = useState({
-    concert: '콘서트',
-    booth: '관광지',
-    store: [
-      '관리자',
-      '관광안내소',
-      '편의점',
-      '화장실',
-      '쓰레기통',
-      '흡연장',
-      '주차장',
-    ],
+    notice: '공지사항',
+    //event : "이벤트",
   });
   const [type, setType] = useState('');
   const [boardList, setBoardList] = useState([]);
+  const [SE, setSE] = useState('');
+
   const [currentPage, setCurrentPage] = useState(1);
   const [pageNum, setPageNum] = useState(8);
   const [totalPages, setTotalPages] = useState(1);
   const [itemID, setItemID] = useState(1);
-  const [SE, setSE] = useState('');
 
   const [mode, setMode] = useState('');
   const [cancle, setCancle] = useState(true);
 
   const [info, setInfo] = useState({});
-
-  useEffect(() => {
-    console.log('type (AssignPage_Map):', type);
-  }, [type]);
 
   const fetchList = () => {
     const festivalId = id_param;
@@ -67,7 +61,10 @@ function AssignPage_Map() {
       .then((response) => {
         if (typeof response.data === 'object') {
           console.log('fetch Detail success', response.data);
-          setInfo(response.data);
+
+          if (category === 'notice')
+            setInfo({ ...response.data, simpleExplanation: SE });
+          else setInfo(response.data);
         } else {
           console.log('fetch Detail no data ;(', response);
         }
@@ -78,21 +75,21 @@ function AssignPage_Map() {
   };
 
   useEffect(() => {
-    console.log('cateogry, type (Assign_Map):', category, type);
+    console.log('cateogry (Assign_Notice):', category);
     setCancle(true);
+    setInfo(firstInfo(category));
     setMode('');
-    setInfo(firstInfo(category, type));
     fetchList();
-  }, [category, type]);
+  }, [category]);
 
   useEffect(() => {
     console.log('mode (AssignPage_Map):', mode);
     if (mode == 'a') {
-      setInfo(firstInfo(category, type));
+      fetchList();
+      setInfo(firstInfo(category));
       //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      setInfo(firstInfo(category, type));
       fetchDetail();
       setCancle(false);
     } else if (mode == 'f') {
@@ -103,10 +100,9 @@ function AssignPage_Map() {
   }, [mode, itemID]);
 
   return (
-    <Wrapper style={{ height: 'auto' }}>
+    <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component2 text="지도" id_param={id_param} />
-
+      <MiddleBar_Component2 id_param={id_param} text="정보" />
       <AssignBox>
         <Assign_List
           category={category}
@@ -144,5 +140,51 @@ function AssignPage_Map() {
     </Wrapper>
   );
 }
+export default AssignPage_Notice;
 
-export default AssignPage_Map;
+export const Wrapper = styled.div`
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+`;
+export const InputBox = styled.div`
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  align-items: center;
+`;
+export const Input = styled.input`
+  height: 30px;
+`;
+export const SemiTitle = styled.div`
+  display: flex;
+  height: 30px;
+`;
+export const Category = styled.select`
+  width: 200px;
+  height: 30px;
+`;
+export const PlusImage = styled.button`
+  width: 25px;
+  height: 25px;
+  font-size: 25px;
+  line-height: 12.5px; //글자 위 기준으로 height가 설정됨
+
+  margin: 0;
+  padding: 0;
+`;
+export const ImageBox = styled.div`
+  width: 400px;
+  p {
+    align-self: flex-start;
+  }
+`;
+export const Image = styled.img`
+  width: 200px;
+  height: 200px;
+  border: 1px solid gray;
+`;

@@ -2,19 +2,19 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyles } from 'asset/GlobalStyles';
 
 import Home from './Routes/Home';
-import NolzaMap from 'Routes/NolzaMap';
-import TourMap from 'Routes/TourMap';
+import NolzaMap from 'Routes/map/NolzaMap';
+import TourMap from 'Routes/map/TourMap';
 
-import FestivalInfo from './Routes/FestivalInfo';
-import FestivalNotice from './Routes/FestivalNotice';
-import Detail_Event from './Routes/Detail_Event';
-import Detail_Notice from './Routes/Detail_Notice';
+import FestivalInfo from './Routes/info/FestivalInfo';
+import FestivalNotice from './Routes/info/FestivalNotice';
+import Detail_Event from './Routes/info/Detail_Event';
+import Detail_Notice from './Routes/info/Detail_Notice';
 
-import AssignPage_Home from './Routes/AssignPage_Home';
-import AssignPage_Select from './Routes/AssignPage_Select';
-import AssignPage_Map from './Routes/AssignPage_Map';
-import AssignPage_Rending from './Routes/AssignPage_Rending';
-import AssignPage_Notice from './Routes/AssignPage_Notice';
+import AssignPage_Home from './Routes/assign/AssignPage_Home';
+import AssignPage_Select from './Routes/assign/AssignPage_Select';
+import AssignPage_Map from './Routes/assign/AssignPage_Map';
+import AssignPage_Rending from './Routes/assign/AssignPage_Rending';
+import AssignPage_Notice from './Routes/assign/AssignPage_Notice';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';

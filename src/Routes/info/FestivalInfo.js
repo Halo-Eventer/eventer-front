@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { Wrapper, TopFixedDiv, Title, BkBtn, HomeBtn, LineDiv } from './Home';
+import { Wrapper, TopFixedDiv, Title, BkBtn, HomeBtn, LineDiv } from '../Home';
 
 import line_up from '../images/LineUp.svg';
-import { UpperBar } from './Home';
+import { UpperBar } from '../Home';
 
 function FestivalInfo() {
   const navigate = useNavigate();

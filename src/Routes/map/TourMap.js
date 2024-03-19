@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { BkBtn, Title, UpperBar } from './Home';
+import { BkBtn, Title, UpperBar } from '../Home';
 import { MapContainer } from './NolzaMap';
 import { useNavigate } from 'react-router-dom';
 import { markerHandle } from 'asset/MarkerHandle';
