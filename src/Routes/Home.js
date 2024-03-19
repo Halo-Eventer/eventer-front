@@ -173,7 +173,7 @@ function Home() {
               <h2>휠체어, 배리어프리존</h2>
             </ETC>
 
-            <ETC>
+            <ETC onClick={() => navigate('/missing')}>
               <Imoji src={missing} />
               <h1>실종자 찾기</h1>
               <h2>실종자 공지 신청하기</h2>

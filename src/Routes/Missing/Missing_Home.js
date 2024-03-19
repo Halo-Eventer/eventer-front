@@ -162,7 +162,7 @@ const Checkbox = styled.div`
 
 const ApplyBtn = styled.button`
   margin-top: 64px;
-
+  margin-bottom: 24px;
   width: 358px;
   height: 48px;
   flex-shrink: 0;
