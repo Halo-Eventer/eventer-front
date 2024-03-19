@@ -179,7 +179,7 @@ function Home() {
               <h2>실종자 공지 신청하기</h2>
             </ETC>
 
-            <ETC>
+            <ETC onClick={() => navigate('/lost')}>
               <Imoji src={lost} />
               <h1>분실물 찾기</h1>
               <h2>분실물 리스트 확인</h2>

@@ -6,20 +6,18 @@ import Missing_Input, {
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { onClick_bkBtn } from '../../hooks/hooks';
 
 function Missing_Home() {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [info, setInfo] = useState({});
-  const onClick_bkBtn = () => {
-    navigate(-1);
-  };
 
   return (
     <Wrapper>
       <TopFixedDiv>
         <UpperBar>
-          <BkBtn onClick={onClick_bkBtn}></BkBtn>
+          <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
           <Title>실종자 찾기 신청</Title>
         </UpperBar>
       </TopFixedDiv>
