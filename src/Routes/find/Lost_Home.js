@@ -111,7 +111,7 @@ const Tag = styled.div`
   box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
 
   /* body1 */
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -120,7 +120,7 @@ const Tag = styled.div`
 
 export const Category = styled.div`
   color: #53cddd;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
@@ -130,7 +130,7 @@ export const Category = styled.div`
 export const Name = styled.div`
   color: #fff;
 
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
