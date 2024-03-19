@@ -30,7 +30,7 @@ function ConcertInfo() {
         <Wrapper>
             <TopFixedBar>
                 <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
-                <Title>공연장 지도</Title>
+                <Title>오늘의 공연</Title>
             </TopFixedBar>
             <TopFixedBar_Blank />
             <BoardSvg>
