@@ -3,7 +3,7 @@ import { Flex } from 'asset/Style';
 import Missing_Input, {
   MissingSemiTitle,
 } from 'components/missing/Missing_Input';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
@@ -12,7 +12,9 @@ function Missing_Home() {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [info, setInfo] = useState({});
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Wrapper>
       <TopFixedDiv>
@@ -107,7 +109,7 @@ const AgreeBox = styled.div`
   border-radius: 12px;
   background: #222;
   color: #aaa;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -135,7 +137,7 @@ const MissingInfoContainer = styled.div`
 `;
 const Agree = styled.div`
   color: #ddd;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
 
   font-weight: 600;
@@ -169,7 +171,7 @@ const ApplyBtn = styled.button`
 
   color: #111;
   text-align: center;
-  font-family: Pretendard;
+  font-family: Pretendard-Regular;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
