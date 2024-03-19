@@ -244,7 +244,7 @@ export const UpperBar = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  padding: 4px 16px;
+  padding: 8px 16px;
 `;
 
 export const Board = styled.div`
@@ -274,7 +274,6 @@ export const TopFixedDiv = styled.div`
 export const BkBtn = styled.div`
   background-image: url(${backSpace});
   position: absolute;
-  left: 4px;
 
   width: 24px;
   height: 24px;

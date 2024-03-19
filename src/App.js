@@ -19,6 +19,7 @@ import AssignPage_Notice from './Routes/AssignPage_Notice';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect } from 'react';
+import Missing_Home from 'Routes/Missing/Missing_Home';
 
 function App() {
   function setScreenSize() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/assign_rending/:id" element={<AssignPage_Rending />} />
         <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
         {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
+        <Route path="/missing" element={<Missing_Home />}></Route>
       </Routes>
     </BrowserRouter>
   );

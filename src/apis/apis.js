@@ -7,38 +7,17 @@ export const getAllStore = (type) => {
   console.log(type);
   return axios.get('/store?festivalId=1', { params: { type: type } });
 };
-export const getAllEvent = () => {
-  return axios.get('/event?festivalId=1');
-};
+
 export const getAllBooth = () => {
   return axios.get('/booth?festivalId=1');
 };
-export const getAllAmenity = () => {
-  return axios.get('/amenity?festivalId=1');
-};
-export const getAllNotice = (festivalId) => {
-  return axios.get(`/notice/${festivalId}/list`);
-};
+
 export const getAllConcert = (festivalId) => {
   return axios.get(`/concert?festivalId=${festivalId}`);
 };
-export const getDetailConcert = (id) => {
-  return axios.get(`/concert/${id}`);
-};
-export const getDetailNotice = (id) => {
-  return axios.get(`/notice/${id}`);
-};
+
 export const getDetailStore = (storeId) => {
   return axios.get(`/store/${storeId}`);
-};
-export const getDetailEvent = (id) => {
-  return axios.get(`/event/${id}`);
-};
-export const getDetailBooth = (id) => {
-  return axios.get(`/booth/${id}`);
-};
-export const getDetailAmenity = (id) => {
-  return axios.get(`/amenity/${id}`);
 };
 
 export const getAll = (festivalId, category, type) => {

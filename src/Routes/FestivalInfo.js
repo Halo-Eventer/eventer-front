@@ -4,14 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import {
-  Wrapper,
-  TopFixedDiv,
-  Title,
-  BkBtn,
-  HomeBtn,
-  LineDiv
-} from './Home';
+import { Wrapper, TopFixedDiv, Title, BkBtn, HomeBtn, LineDiv } from './Home';
 
 import line_up from '../images/LineUp.svg';
 import { UpperBar } from './Home';
@@ -32,8 +25,8 @@ function FestivalInfo() {
           <Title>오늘의 공연</Title>
         </UpperBar>
       </TopFixedDiv>
-      <Wrapper style={{height:'auto'}}>
-          <img src={line_up} />
+      <Wrapper style={{ height: 'auto' }}>
+        <img src={line_up} />
       </Wrapper>
     </div>
   );

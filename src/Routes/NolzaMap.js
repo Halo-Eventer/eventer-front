@@ -16,7 +16,7 @@ import trashMarker from 'asset/marker/trash.png';
 import smokeMarker from 'asset/marker/smokeImg.png';
 import parkMarker from 'asset/marker/parkImg.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
-import { getAllConcert, getDetailConcert } from 'apis/apis';
+import { getAllConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
 import { TopFixedDiv, UpperBar, BkBtn, Title } from './Home';
@@ -231,18 +231,6 @@ function NolzaMap(props) {
     setOpenId(-2);
   }, [activeCategory]);
 
-  const handleConcertHallMarker = (id) => {
-    setPopup(true);
-    setConcertClick(true);
-    getDetailConcert(id)
-      .then((res) => {
-        setClickInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setOpenId(id);
-  };
   const handleMarkers = (data, marker) => {
     setActiveId(data.id);
     console.log(data.name);
@@ -265,7 +253,6 @@ function NolzaMap(props) {
 
   const onClick_bkBtn = () => {
     navigate(-1);
-    //그냥 뒤로가는 기능
   };
 
   return (
