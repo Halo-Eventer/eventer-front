@@ -20,13 +20,15 @@ import AssignPage_Notice from './Routes/assign/AssignPage_Notice';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect } from 'react';
-import Missing_Home from 'Routes/Missing/Missing_Home';
+import Missing_Home from 'Routes/find/Missing_Home';
+import Lost_Home from './Routes/find/Lost_Home';
 
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './Theme';
 import { RecoilRoot } from 'recoil';
 import NoticeList from 'Routes/info/NoticeList';
 import EventList from 'Routes/info/EventList';
+import Lost_Detail from './Routes/find/Lost_Detail';
 
 function App() {
   function setScreenSize() {
@@ -65,6 +67,8 @@ function App() {
             <Route path="/assign_notice/:id" element={<AssignPage_Notice />} />
             {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
             <Route path="/missing" element={<Missing_Home />}></Route>
+            <Route path="/lost" element={<Lost_Home />}></Route>
+            <Route path="/lost/:id" element={<Lost_Detail />}></Route>
           </Routes>
         </ThemeProvider>
       </RecoilRoot>
