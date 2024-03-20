@@ -55,7 +55,19 @@ function Missing_Input(props) {
           ></input>
           <Flex>
             <div>
-              {imagePreview ? <ImgPreview src={imagePreview} /> : ''}
+              <AddPic
+                onClick={() => {
+                  imagesInput.current.click();
+                }}
+                loading={loading}
+                imagePreview={imagePreview}
+              >
+                <img src={imgUpload}></img>
+
+                <span style={{ marginLeft: '8px' }}>
+                  {imagePreview ? '사진 변경' : '사진 추가'}
+                </span>
+              </AddPic>
               {loading ? (
                 <div
                   style={{
@@ -70,19 +82,7 @@ function Missing_Input(props) {
               ) : (
                 ''
               )}
-              <AddPic
-                onClick={() => {
-                  imagesInput.current.click();
-                }}
-                loading={loading}
-                imagePreview={imagePreview}
-              >
-                <img src={imgUpload}></img>
-
-                <span style={{ marginLeft: '8px' }}>
-                  {imagePreview ? '사진 변경' : '사진 추가'}
-                </span>
-              </AddPic>
+              {imagePreview ? <ImgPreview src={imagePreview} /> : ''}
             </div>
 
             <PicD>최대 업로드 파일 크기: 10MB (jpg, png만 가능)</PicD>
@@ -191,7 +191,7 @@ const AddPic = styled.button`
   border-radius: 8px;
   border: 1px solid #fff;
   color: #fff;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 16px;
 
   font-weight: 600;
@@ -200,8 +200,6 @@ const AddPic = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  ${(props) => props.loading && 'margin-left: 36px;'}
-  ${(props) => props.imagePreview && 'margin-left: 36px;'}
 `;
 
 const Loading = styled.div`
