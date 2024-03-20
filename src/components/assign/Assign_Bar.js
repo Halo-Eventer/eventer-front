@@ -7,9 +7,6 @@ import {
 } from '../../Routes/assign/AssignPage_Home';
 import next from 'asset/images/Next.svg';
 
-import logo from 'asset/images/Assign_Logo.png';
-import styled from 'styled-components';
-
 
 
 export function UpperBar_Component()
