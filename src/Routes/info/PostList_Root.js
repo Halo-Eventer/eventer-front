@@ -1,41 +1,56 @@
 import { Link, Outlet } from "react-router-dom";
-import { BoardSet_Width, Wrapper } from "Routes/Home";
+import { BoardSet_Width, Wrapper, festivalId } from "Routes/Home";
 import styled, { useTheme } from "styled-components";
 import { useEffect, useState } from "react";
 
 import sampleThumbnail from 'asset/images/Logo.svg'
 import { TopFixedBar_Blank } from "components/info/TopFixedBar";
 import TopFixedBar_PostList from "components/info/TopFixedBar_PostList";
-import { categoryState } from "recoils/atoms";
-import { useRecoilState } from "recoil";
+import { useQuery } from "react-query";
+import { getAll } from "apis/apis";
 
 
 
 function PostList_Root() {
     const theme = useTheme();
-    const [category, setCategory] = useRecoilState(categoryState);
+    const [dataList, setDataList] = useState({});
 
-    const [noticeList, setNoticeList] = useState([
-        {
-            id: 1,
-            title: '2023 LACAUS 청진낭만 축제 일정 안내',
-            index: '축제 일정',
-            time: '축제기획단 2024.02.13 16:00',
-            thumbnail: sampleThumbnail
-        },
-        {
-            id: 2,
-            title: '2023 LACAUS 청진낭만 축제 일정 안내',
-            index: '축제 일정',
-            time: '축제기획단 2024.02.13 16:00',
-            thumbnail: sampleThumbnail
-        }
-    ]);
+    const {isLoading : noticeListLoading, data:noticeListData} 
+    = useQuery("noticeList",()=>getAll(festivalId,'notice',''));
+    const {isLoading : eventListLoading, data:eventListData} 
+    = useQuery("eventList",()=>getAll(festivalId,'event',''));
+
+    // const [noticeList, setNoticeList] = useState([
+    //     {
+    //         id: 1,
+    //         title: '2023 LACAUS 청진낭만 축제 일정 안내',
+    //         index: '축제 일정',
+    //         time: '축제기획단 2024.02.13 16:00',
+    //         thumbnail: sampleThumbnail
+    //     },
+    //     {
+    //         id: 2,
+    //         title: '2023 LACAUS 청진낭만 축제 일정 안내',
+    //         index: '축제 일정',
+    //         time: '축제기획단 2024.02.13 16:00',
+    //         thumbnail: sampleThumbnail
+    //     }
+    // ]);
+    //포스트에서 필요한 api
 
     useEffect(()=>{window.scrollTo(0, 0);},[]);
     //스크롤 오류 때문에 일단 이렇게 강제로 올려놈
+    useEffect(()=>{
+        setDataList(
+            {
+                noticeList : noticeListData?.data, 
+                eventList : eventListData?.data
+            }
+        )
+    },[noticeListData, eventListData])
 
-
+    console.log('Lists', noticeListData?.data,eventListData?.data);
+    console.log('dataList',dataList);
     return (
         <Wrapper>
             <BoardSet_Width>
@@ -45,7 +60,7 @@ function PostList_Root() {
                 <TopFixedBar_Blank />
 
                 <TitleBoard>
-                    {noticeList?.map((item, index) =>
+                    {noticeListData?.data.map((item, index) =>
                         <TitleElement 
                         key={index} 
                         to = {`notice/${item.id}`}
@@ -56,7 +71,7 @@ function PostList_Root() {
                     )}
                 </TitleBoard>
 
-                <Outlet></Outlet> {/* 게시글 목록 */}
+                <Outlet context={dataList}></Outlet> {/* 게시글 목록 */}
 
             </BoardSet_Width>
         </Wrapper>
