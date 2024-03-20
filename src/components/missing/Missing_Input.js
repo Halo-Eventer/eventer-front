@@ -55,19 +55,6 @@ function Missing_Input(props) {
           ></input>
           <Flex>
             <div>
-              <AddPic
-                onClick={() => {
-                  imagesInput.current.click();
-                }}
-                loading={loading}
-                imagePreview={imagePreview}
-              >
-                <img src={imgUpload}></img>
-
-                <span style={{ marginLeft: '8px' }}>
-                  {imagePreview ? '사진 변경' : '사진 추가'}
-                </span>
-              </AddPic>
               {loading ? (
                 <div
                   style={{
@@ -83,6 +70,19 @@ function Missing_Input(props) {
                 ''
               )}
               {imagePreview ? <ImgPreview src={imagePreview} /> : ''}
+              <AddPic
+                onClick={() => {
+                  imagesInput.current.click();
+                }}
+                loading={loading}
+                imagePreview={imagePreview}
+              >
+                <img src={imgUpload}></img>
+
+                <span style={{ marginLeft: '8px' }}>
+                  {imagePreview ? '사진 변경' : '사진 추가'}
+                </span>
+              </AddPic>
             </div>
 
             <PicD>최대 업로드 파일 크기: 10MB (jpg, png만 가능)</PicD>
