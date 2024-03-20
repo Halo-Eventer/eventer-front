@@ -24,10 +24,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import Footer from 'components/Footer';
 import Missing_Popup from 'components/popup/Missing_Popup';
 
+export const festivalId = 1;
+
 function Home() {
   const navigate = useNavigate();
-
-  const festivalId = 1;
 
   const [currentNum, setCurrentNum] = useState(1);
 

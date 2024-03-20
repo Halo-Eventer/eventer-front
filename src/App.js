@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GlobalStyles } from './GlobalStyles';
+import {ReactQueryDevtools} from 'react-query/devtools';
 
 import Home from './Routes/Home';
 import NolzaMap from './Routes/map/NolzaMap';
@@ -27,12 +28,15 @@ import { RecoilRoot } from 'recoil';
 import NoticeList from 'Routes/info/NoticeList';
 import EventList from 'Routes/info/EventList';
 import Lost_Detail from './Routes/find/Lost_Detail';
+import { Query, QueryClient, QueryClientProvider } from 'react-query';
 
 function App() {
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
   }
+
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     setScreenSize();
@@ -41,6 +45,8 @@ function App() {
   return (
     <BrowserRouter>
       <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+        {/* <ReactQueryDevtools initialIsOpen = {true}/> */}
         <GlobalStyles />
         <ThemeProvider theme={Theme}>
           <Routes>
@@ -67,6 +73,7 @@ function App() {
 
           </Routes>
         </ThemeProvider>
+        </QueryClientProvider>
       </RecoilRoot>
     </BrowserRouter>
   );
