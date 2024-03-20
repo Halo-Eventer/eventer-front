@@ -57,11 +57,12 @@ function Lost_Home() {
             console.log(e.category);
             return (
               <div onClick={() => navigate(`${e.id}`, { state: { props: e } })}>
-                <Box />
-                <Tag>
-                  <Category>{e.category}</Category>
-                  <Name>{e.name}</Name>
-                </Tag>
+                <Box>
+                  <Tag>
+                    <Category>{e.category}</Category>
+                    <Name>{e.name}</Name>
+                  </Tag>
+                </Box>
               </div>
             );
           })}
@@ -75,13 +76,18 @@ export default Lost_Home;
 
 const Box = styled.div`
   width: 173px;
-  height: 120px;
+  height: 186px;
   flex-shrink: 0;
-  border-radius: 8px 8px 0px 0px;
+  border-radius: 9px;
+
   background: #fff;
   box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
   color: #fff;
   margin-top: 12px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 `;
 
 const Container = styled.div`

@@ -1,16 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { onClick_bkBtn } from 'hooks/hooks';
-import {
-  BkBtn,
-  Title,
-  TopFixedDiv,
-  UpperBar,
-  Wrapper
-} from 'Routes/Home';
+import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from 'Routes/Home';
 import styled from 'styled-components';
-import { Category, Name } from 'Routes/find/Lost_Home';
-
-
 
 function Lost_Detail() {
   const navigate = useNavigate();
@@ -34,12 +25,33 @@ function Lost_Detail() {
           <Date style={{ marginTop: '4px' }}>발견날짜:{data.date}</Date>
         </Tag>
 
-        <Btn>전화걸기</Btn>
+        <Btn onClick={() => (document.location.href = 'tel:01063920549')}>
+          분실물 센터 연락하기
+        </Btn>
+        <Tel>연락처: 010-6392-0549</Tel>
       </Wrapper>
     </>
   );
 }
 export default Lost_Detail;
+const Category = styled.div`
+  color: #53cddd;
+
+  /* body1 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+`;
+const Name = styled.div`
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 140% */
+`;
 const Img = styled.div`
   margin-top: 64px;
   width: 358px;
@@ -63,7 +75,7 @@ const Date = styled.div`
   color: #ddd;
 
   /* body3 */
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -83,9 +95,20 @@ const Btn = styled.button`
   text-align: center;
 
   /* headline2 */
-  font-family: 'NanumSquare Neo OTF';
+  font-family: 'NanumSquareNeo-Variable';
   font-size: 16px;
   font-style: normal;
   font-weight: 900;
   line-height: 24px; /* 150% */
+`;
+
+const Tel = styled.div`
+  color: #777;
+  text-align: center;
+  margin-top: 4px;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 142.857% */
 `;

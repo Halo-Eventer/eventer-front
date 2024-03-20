@@ -16,7 +16,7 @@ function Missing_Popup({ popupList, prop, setPopupList }) {
         {prop.type == 1 ? '' : <Img />}
         <Content>{prop.name} 내용</Content>
         <BtnBox>
-          <FindBtn>아이를 발견했어요</FindBtn>
+          {prop.type == 1 ? '' : <FindBtn>아이를 발견했어요</FindBtn>}
           <CloseBtn onClick={closePopup}>창 닫기</CloseBtn>
         </BtnBox>
       </Container>
