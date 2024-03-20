@@ -32,10 +32,10 @@ export function MiddleBar_Component2(props)
   return  <MiddleBar>
             <div>
               <Link to = "/assign">
-                <H1>페이지선택</H1>
+                <H1>페이지 선택</H1>
               </Link>
               <img src={next}/>
-              <H1 color='#4F33F6' fontWeight='bold'>{props.text}페이지</H1>
+              <H1 color='#4F33F6' fontWeight='bold'>{props.text}</H1>
             </div>
         </MiddleBar>
 };

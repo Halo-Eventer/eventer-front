@@ -17,11 +17,11 @@ import {getAll, getDetail} from 'apis/apis';
 import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { postCategory } from 'constants/Const_Assign';
+import { missingCategory, postCategory } from 'constants/Const_Assign';
 
 
 
-function AssignPage_Notice() {
+function AssignPage_Missing() {
 
 
   //*****전역 recoil모음*****
@@ -34,7 +34,7 @@ function AssignPage_Notice() {
 
   const id_param = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(postCategory);
+  const [categoryList, setCategoryList]= useState(missingCategory);
   const [type, setType]=useState("");
   const [boardList,setBoardList] = useState([]);
   const [SE,setSE]=useState("");
@@ -106,7 +106,7 @@ function AssignPage_Notice() {
   return (
     <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component2 id_param={id_param} text="정보" />
+      <MiddleBar_Component2 id_param={id_param} text="실종자 현황 관리" />
       <AssignBox>
         
         <Assign_List 
@@ -125,7 +125,7 @@ function AssignPage_Notice() {
     </Wrapper>
   );
 }
-export default AssignPage_Notice;
+export default AssignPage_Missing;
 
 export const Wrapper = styled.div`
   width: 100vw;

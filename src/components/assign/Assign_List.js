@@ -93,42 +93,46 @@ function Assign_List(props) {
     }, [categoryEntries])
     useEffect(() => {
         if (category.length > 0)
-            console.log("category, type : ",category, props.type);
+            console.log("category, type : ", category, props.type);
     }, [category])
 
 
 
     return (
         <Wrapper>
-            <DropDown>
-                <DropDownBar onClick={onClick_dropDown}>
-                    <h1>{selectedDrop}</h1>
-                    <img src={dropDown2}></img>
-                </DropDownBar>
-                {showList &&
-                    <DropDownlist>
-                        {categoryEntries.map((item, index) => {
-                            if (typeof (item[1]) === 'object') {
-                                return item[1].map((item2, index2) => {
-                                    if (item2 != selectedDrop)
-                                        return <button
-                                            key={index2}
-                                            id={index2}
-                                            value={index}
-                                            onClick={onClick_drops}>{item2}</button>
-                                });
-                                //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
-                            }
-                            if (item[1] != selectedDrop)
-                                return <button
-                                    key={index}
-                                    value={index}
-                                    onClick={onClick_drops}>{item[1]}</button>
+            {categoryEntries.length > 1
+                &&
+                <DropDown>
+                    <DropDownBar onClick={onClick_dropDown}>
+                        <h1>{selectedDrop}</h1>
+                        <img src={dropDown2}></img>
+                    </DropDownBar>
+                    {showList &&
+                        <DropDownlist>
+                            {categoryEntries.map((item, index) => {
+                                if (typeof (item[1]) === 'object') {
+                                    return item[1].map((item2, index2) => {
+                                        if (item2 != selectedDrop)
+                                            return <button
+                                                key={index2}
+                                                id={index2}
+                                                value={index}
+                                                onClick={onClick_drops}>{item2}</button>
+                                    });
+                                    //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
+                                }
+                                if (item[1] != selectedDrop)
+                                    return <button
+                                        key={index}
+                                        value={index}
+                                        onClick={onClick_drops}>{item[1]}</button>
 
-                        })}
-                    </DropDownlist>
-                }
-            </DropDown>
+                            })}
+                        </DropDownlist>
+                    }
+                </DropDown>
+            }
+
             <AddBar onClick={onClick_add}>
                 <img src={plus} />
                 <h1>{selectedDrop} 추가</h1>

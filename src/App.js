@@ -13,8 +13,8 @@ import Detail_Notice from './Routes/info/Detail_Notice';
 
 import AssignPage_Home from './Routes/assign/AssignPage_Home';
 import AssignPage_Select from './Routes/assign/AssignPage_Select';
-import AssignPage_Map from './Routes/assign/AssignPage_Map';
-import AssignPage_Post from './Routes/assign/AssignPage_Post';
+import AssignPage_Map from './Routes/assign/selections/AssignPage_Map';
+import AssignPage_Post from './Routes/assign/selections/AssignPage_Post';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -30,6 +30,11 @@ import EventList from 'Routes/info/EventList';
 import Lost_Detail from './Routes/find/Lost_Detail';
 import { Query, QueryClient, QueryClientProvider } from 'react-query';
 import { inAssignState } from 'recoils/atoms_assign';
+import AssignPage_WheelChair from 'Routes/assign/selections/AssignPage_WheelChair';
+import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
+import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
+import AssignPage_BarrierFree from 'Routes/assign/selections/AssignPage_BarrierFree';
+import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
 
 function App() {
   function setScreenSize() {
@@ -79,10 +84,13 @@ function App() {
 
             <Route path="/assign" element={<AssignPage_Select />} />
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
-            {/* 이게 assign_map 및 AssignPage_Map 파트 */}
             <Route path="/assign_post/:id" element={<AssignPage_Post />} />
-            {/* assign_home => assign_select => (assign_rending/notice/map/performance) */}
-
+            <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
+            <Route path="/assign_missing/:id" element={<AssignPage_Missing />} />
+            <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
+            <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} />
+            <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
+            
           </Routes>
         </ThemeProvider>
         </QueryClientProvider>

@@ -25,36 +25,32 @@ function AssignPage_Select() {
        <UpperBar_Component/>
         <MiddleBar_Component1 id_param={id_param}/>
         <MainBox>
+          <Link to={`/assign_map/${id_param}`}>
+            <PageBtn><h1>축제 지도</h1></PageBtn>
+          </Link>
+
           <Link to={`/assign_post/${id_param}`}>
-            <PageBtn><h1>공지관리 페이지</h1></PageBtn>
+            <PageBtn><h1>공지사항/이벤트</h1></PageBtn>
           </Link>
           
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>지도 페이지</h1></PageBtn>
+          <Link to={`/assign_lost/${id_param}`}>
+            <PageBtn><h1>분실물 리스트</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
+          <Link to={`/assign_missing/${id_param}`}>
+            <PageBtn><h1>실종자 현황 관리</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
+          <Link to={`/assign_wheelChair/${id_param}`}>
+            <PageBtn><h1>휠체어</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
+          <Link to={`/assign_barrierFree/${id_param}`}>
+            <PageBtn><h1>배리어프리존</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
-          </Link>
-
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
-          </Link>
-
-          <Link to={`/assign_map/${id_param}`}>
-            <PageBtn><h1>미정 페이지</h1></PageBtn>
+          <Link to={`/assign_urgent/${id_param}`}>
+            <PageBtn><h1>긴급공지</h1></PageBtn>
           </Link>
           
         </MainBox>

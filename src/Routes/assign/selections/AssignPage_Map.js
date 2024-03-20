@@ -110,7 +110,7 @@ function AssignPage_Map() {
   return (
     <Wrapper style={{ height: 'auto' }}>
       <UpperBar_Component />
-      <MiddleBar_Component2 text="지도" id_param={id_param} />
+      <MiddleBar_Component2 text="축제 지도" id_param={id_param} />
 
       <AssignBox>
         <Assign_List
