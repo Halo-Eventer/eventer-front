@@ -22,6 +22,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from 'components/Footer';
+import Missing_Popup from 'components/popup/Missing_Popup';
 
 function Home() {
   const navigate = useNavigate();
@@ -82,8 +83,30 @@ function Home() {
   }, []);
   //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
 
+  const [popupList, setPopupList] = useState([]);
+  useEffect(() => {
+    // 팝업 띄울 정보 받아오기
+    setPopupList([
+      { type: 0, name: '실종자 찾는 팝업' },
+      { type: 1, name: '긴급공지 팝업' },
+    ]);
+  }, []);
+  console.log(popupList);
   return (
     <Wrapper>
+      {popupList.length == 0 ? '' : <Overlay />}
+      {popupList?.map((e) => {
+        console.log(e.type);
+
+        return (
+          <Missing_Popup
+            prop={e}
+            popupList={popupList}
+            setPopupList={setPopupList}
+          />
+        );
+      })}
+
       <Board>
         <UpperBar>
           <img src={logo}></img>
@@ -713,4 +736,16 @@ export const ETCBox = styled(Flex)`
       line-height: 20px; /* 142.857% */
     }
   }
+`;
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 `;

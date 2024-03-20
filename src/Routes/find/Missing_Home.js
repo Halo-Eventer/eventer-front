@@ -160,7 +160,7 @@ const Checkbox = styled.div`
   ${(props) => (props.active ? ' border: 1px solid #53CDDD;' : '')}
 `;
 
-const ApplyBtn = styled.button`
+export const ApplyBtn = styled.button`
   margin-top: 64px;
   margin-bottom: 24px;
   width: 358px;
