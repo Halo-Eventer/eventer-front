@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { GlobalStyles } from './GlobalStyles';
 import {ReactQueryDevtools} from 'react-query/devtools';
 
@@ -24,11 +24,12 @@ import Lost_Home from './Routes/find/Lost_Home';
 
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './Theme';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, useRecoilState } from 'recoil';
 import NoticeList from 'Routes/info/NoticeList';
 import EventList from 'Routes/info/EventList';
 import Lost_Detail from './Routes/find/Lost_Detail';
 import { Query, QueryClient, QueryClientProvider } from 'react-query';
+import { inAssignState } from 'recoils/atoms_assign';
 
 function App() {
   function setScreenSize() {
@@ -38,16 +39,27 @@ function App() {
 
   const queryClient = new QueryClient();
 
+  const [inAssign,setInAssign]=useRecoilState(inAssignState);
+  //RecoilRoot안에서 쓰여야 함. 즉 index.js에서 쓰여야 함
+  const location = window.location.pathname;
+
   useEffect(() => {
     setScreenSize();
   });
+  useEffect(()=>{
+    if(location.includes('assign'))
+      setInAssign(true);
+    else
+      setInAssign(false);
+  },[location])
 
+
+  console.log("location, inAssign",location, inAssign);
   return (
     <BrowserRouter>
-      <RecoilRoot>
         <QueryClientProvider client={queryClient}>
         {/* <ReactQueryDevtools initialIsOpen = {true}/> */}
-        <GlobalStyles />
+        <GlobalStyles inAssign={inAssign}/>
         <ThemeProvider theme={Theme}>
           <Routes>
             <Route path="" element={<Home />} />
@@ -74,7 +86,6 @@ function App() {
           </Routes>
         </ThemeProvider>
         </QueryClientProvider>
-      </RecoilRoot>
     </BrowserRouter>
   );
 }

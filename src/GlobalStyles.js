@@ -15,7 +15,10 @@ export const GlobalStyles = createGlobalStyle`
 }
 
 body{
-  background-color:#000;
+  background-color:${props=>props.inAssign 
+  ? '#FFF'
+  : '#000'
+  };
 }
 
 button{
