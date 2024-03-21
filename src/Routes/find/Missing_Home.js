@@ -7,14 +7,29 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
+import { useRecoilState } from 'recoil';
+import { missingInfoState } from 'recoils/atoms_missing';
 
 function Missing_Home() {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
-  const [info, setInfo] = useState({});
+  const [info, setInfo] = useRecoilState(missingInfoState);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const handleSumbit = () => {
+    // Object.entries(info)로 info 객체의 키-값 쌍을 배열로 변환
+    // filter() 함수로 'another' 키를 제외
+    const hasEmptyValue = Object.entries(info)
+      .filter(([key, value]) => key !== 'another') // 'another' 키 제외
+      .some(([key, value]) => value === '' || value == null);
+    // some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트
+    //즉, 여기서는 하나라도 빈값이 나오면 true를 return할 것이다.
+    if (hasEmptyValue) alert('필수 항목을 작성해주세요.');
+    if (!active) alert('개인정보 수집, 이용에 동의해주세요.');
+    else console.log(info);
+  };
   return (
     <Wrapper>
       <TopFixedDiv>
@@ -29,17 +44,20 @@ function Missing_Home() {
           require={true}
           title="실종자 이름"
           placeholder="이름 입력"
+          id="name"
         />
         <Missing_Input
           require={true}
           title="실종자 나이"
           placeholder="나이 입력(숫자만)"
+          id="age"
         />
         <Missing_Input
           setInfo={setInfo}
           require={true}
           title="실종자 성별"
           btn={true}
+          id="gender"
         />
         <Missing_Input setInfo={setInfo} title="실종자 사진" img={true} />
       </MissingInfoContainer>
@@ -49,16 +67,19 @@ function Missing_Home() {
           require={true}
           title="실종 위치"
           placeholder="실종 위치 입력"
+          id="location"
         />
         <Missing_Input
           require={true}
           title="실종 시간"
           placeholder="실종 시간 입력 (ex: 23:00)"
+          id="time"
         />
         <Missing_Input
           setInfo={setInfo}
           title="기타 특이사항"
           placeholder="특징, 인상착의 등 입력"
+          id="another"
         />
       </MissingInfoContainer>
       <MissingInfoContainer>
@@ -67,11 +88,13 @@ function Missing_Home() {
           require={true}
           title="보호자 성함"
           placeholder="성함 입력"
+          id="parentName"
         />
         <Missing_Input
           require={true}
           title="보호자 연락처"
           placeholder="전화번호 입력 (-없이 숫자만)"
+          id="parentPhone"
         />
         <div>
           <MissingSemiTitle style={{ marginTop: '20px' }}>
@@ -95,7 +118,7 @@ function Missing_Home() {
             <Agree>동의합니다.</Agree>
           </Flex>
         </div>
-        <ApplyBtn>찾기 신청</ApplyBtn>
+        <ApplyBtn onClick={handleSumbit}>찾기 신청</ApplyBtn>
       </MissingInfoContainer>
     </Wrapper>
   );
