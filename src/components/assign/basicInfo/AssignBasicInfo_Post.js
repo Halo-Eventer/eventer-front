@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Input} from './Assign';
+import {Input} from '../Assign';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
@@ -12,7 +12,7 @@ function AssignBasicInfo_Post() {
 
 
 
-  console.log("info (AssignBasicInfo_Board.js):",info);
+  console.log("info (AssignBasicInfo_Post.js):",info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();

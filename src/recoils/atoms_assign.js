@@ -1,5 +1,10 @@
 import { atom } from 'recoil';
 
+export const inAssignState=atom({
+    key:"inAssignState",
+    default:false
+})
+
 export const infoState = atom({
     key: "infoState",
     default: {}

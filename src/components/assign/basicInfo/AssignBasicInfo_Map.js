@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import { Input, InputLatLng, } from './Assign';
+import { Input, InputLatLng, } from '../Assign';
 import { Flex } from 'asset/Style';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Assign_latlng from './Assign_latlng';
+import Assign_latlng from '../Assign_latlng';
 import { useRecoilState } from 'recoil';
 import { categoryState_assign, infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo() {
+function AssignBasicInfo_Map() {
 
   //*****전역 recoil모음*****
   const [category, setCategory] = useRecoilState(categoryState_assign);
@@ -131,7 +131,7 @@ function AssignBasicInfo() {
     </InputContainer>
   );
 }
-export default AssignBasicInfo;
+export default AssignBasicInfo_Map;
 
 const TextAreaDiv = styled.div`
   background: #fafafa;

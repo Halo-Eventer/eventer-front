@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useState, useEffect } from 'react';
 
-import AssignBasicInfo from './AssignBasicInfo';
+import AssignBasicInfo_Map from './basicInfo/AssignBasicInfo_Map';
 import AssignImage from './AssignImage';
 import AssignBtn from './AssignBtn';
 import AssignMenu from './AssignMenu';
-import AssignBasicInfo_Post from './AssignBasicInfo_Post';
+import AssignBasicInfo_Post from './basicInfo/AssignBasicInfo_Post';
 import { useRecoilState } from 'recoil';
 import { categoryState_assign, infoState } from 'recoils/atoms_assign';
 
@@ -33,7 +33,7 @@ function Assign() {
 
         {category == 'notice'
           ? <AssignBasicInfo_Post />
-          : <AssignBasicInfo/>
+          : <AssignBasicInfo_Map/>
         }
       </InfoContainer>
     </AssignContainer>
