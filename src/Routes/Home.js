@@ -209,15 +209,6 @@ function Home() {
             </ETC>
           </ETCBox>
 
-          <Link to="/tourmap">
-            <SmallBox>
-              <h1>
-                주변관광지
-                <button>확인하러 가기 &gt;</button>
-              </h1>
-            </SmallBox>
-          </Link>
-
           <Link to="/post/notice">
             <SmallBox>
               <h1>공지사항 / 이벤트</h1>

@@ -3,7 +3,7 @@ import { ApplyBtn } from 'Routes/find/Missing_Home';
 import styled from 'styled-components';
 
 function Missing_Popup({ popupList, prop, setPopupList }) {
-  console.log(prop.type);
+  console.log(prop.type); // 1이면 긴급공지 2면 실종자 찾기
   const closePopup = () => {
     const newPopupList = [...popupList]; // 기존 팝업 리스트 복사
     newPopupList.pop(); // 첫 번째 요소 삭제
@@ -14,9 +14,17 @@ function Missing_Popup({ popupList, prop, setPopupList }) {
       <Container>
         <Head type={prop.type}>{prop.name}</Head>
         {prop.type == 1 ? '' : <Img />}
-        <Content>{prop.name} 내용</Content>
+        <Content type={prop.type}>{prop.name} 내용</Content>
         <BtnBox>
-          {prop.type == 1 ? '' : <FindBtn>아이를 발견했어요</FindBtn>}
+          {prop.type == 1 ? (
+            ''
+          ) : (
+            <FindBtn
+              onClick={() => (document.location.href = 'tel:01063920549')}
+            >
+              실종자 센터 연락하기
+            </FindBtn>
+          )}
           <CloseBtn onClick={closePopup}>창 닫기</CloseBtn>
         </BtnBox>
       </Container>
@@ -72,7 +80,7 @@ const Img = styled.div`
   background: #d9d9d9;
 `;
 const Content = styled.div`
-  margin-top: 12px;
+  margin-top: ${(props) => (props.type ? '16px' : '12px')};
   width: 278px;
   color: #fff;
 
