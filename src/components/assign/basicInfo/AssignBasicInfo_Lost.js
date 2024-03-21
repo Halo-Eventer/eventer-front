@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo_Post() {
+function AssignBasicInfo_Lost() {
 
     //*****전역 recoil모음*****
     const [info, setInfo] = useRecoilState(infoState);
     //*****전역 recoil모음*****
 
 
-  console.log("info (AssignBasicInfo_Post.js):",info);
+  console.log("info (AssignBasicInfo_Lost.js):",info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -50,39 +50,25 @@ function AssignBasicInfo_Post() {
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="title" 
-        value = {info.title} placeholder="제목"></Input>
+        value = {info.title} placeholder="물건 카테고리 입력"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="subtitle" 
-        value = {info.subtitle} placeholder="부제목"></Input>
+        value = {info.subtitle} placeholder="물건 이름 입력"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
           onChange={handleInfo} id="simpleExplanation"
-          value = {info.simpleExplanation} placeholder="요약 설명"
+          value = {info.simpleExplanation} placeholder="발견 날짜 입력"
         ></Input>
       </InputDiv>
-
-
-      <TextAreaDiv style={{ width: '336px' }}>
-        <TextArea
-          value={info.content}
-          onChange={handleResizeHeight}
-          id="content"
-          rows={1}
-          ref={textRef}
-          placeholder="본문 내용"
-          style={{ marginTop: '12px', height: '96px' }}
-        ></TextArea>
-
-      </TextAreaDiv>
       
     </InputContainer>
   );
 }
-export default AssignBasicInfo_Post;
+export default AssignBasicInfo_Lost;
 
 const TextAreaDiv = styled.div`
   background: #fafafa;

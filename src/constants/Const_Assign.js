@@ -54,7 +54,6 @@ export const mapForm_blank = {
 
     thumbnail: thumbnail_preview,
     images: [],
-
 }
 
 export const storeForm_blank = {
@@ -74,6 +73,41 @@ export const storeForm_blank = {
 }
 
 export const postForm_blank = {
+    title: '',
+    simpleExplanation: '',
+    subtitle: '',
+    content: '',
+
+    thumbnail: thumbnail_preview,
+    images: [],
+}
+
+
+
+
+export const lostForm_blank = {
+    title: '',
+    simpleExplanation: '',
+    subtitle: '',
+    content: '',
+
+    thumbnail: thumbnail_preview,
+    images: [],
+}
+
+
+export const missingForm_blank = {
+    title: '',
+    simpleExplanation: '',
+    subtitle: '',
+    content: '',
+
+    thumbnail: thumbnail_preview,
+    images: [],
+}
+
+
+export const urgentForm_blank = {
     title: '',
     simpleExplanation: '',
     subtitle: '',

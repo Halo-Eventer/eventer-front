@@ -21,7 +21,7 @@ import { postCategory } from 'constants/Const_Assign';
 
 
 
-function AssignPage_Notice() {
+function AssignPage_Post() {
 
 
   //*****전역 recoil모음*****
@@ -32,7 +32,9 @@ function AssignPage_Notice() {
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
+
   const id_param = useParams().id;
+
 
   const [categoryList, setCategoryList]= useState(postCategory);
   const [type, setType]=useState("");
@@ -79,7 +81,7 @@ function AssignPage_Notice() {
   },[])
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category));
     setMode("");
@@ -87,7 +89,7 @@ function AssignPage_Notice() {
   }, [category]);
 
   useEffect(() => {
-    console.log('mode (AssignPage_Map):', mode);
+    console.log('mode:', mode);
     if (mode == 'a') {
       fetchList();
       setInfo(InitInfo(category));  
@@ -125,7 +127,7 @@ function AssignPage_Notice() {
     </Wrapper>
   );
 }
-export default AssignPage_Notice;
+export default AssignPage_Post;
 
 export const Wrapper = styled.div`
   width: 100vw;

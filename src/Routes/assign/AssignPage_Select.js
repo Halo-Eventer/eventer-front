@@ -41,11 +41,11 @@ function AssignPage_Select() {
             <PageBtn><h1>실종자 현황 관리</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_wheelChair/${id_param}`}>
+          <Link to={`https://www.naver.com/`}>
             <PageBtn><h1>휠체어</h1></PageBtn>
           </Link>
 
-          <Link to={`/assign_barrierFree/${id_param}`}>
+          <Link to={`https://www.youtube.com/`}>
             <PageBtn><h1>배리어프리존</h1></PageBtn>
           </Link>
 

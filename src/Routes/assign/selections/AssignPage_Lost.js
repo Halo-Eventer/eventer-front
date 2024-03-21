@@ -75,11 +75,11 @@ function AssignPage_Lost() {
   };
 
   useEffect(()=>{
-    setCategory('notice');
+    setCategory('lost');
   },[])
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category));
     setMode("");

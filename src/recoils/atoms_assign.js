@@ -11,7 +11,7 @@ export const infoState = atom({
 });
 
 export const categoryState_assign = atom({
-    key: "categoryState",
+    key: "categoryState_assign",
     default: ''
 })
 

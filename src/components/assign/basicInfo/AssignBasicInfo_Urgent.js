@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo_Post() {
+function AssignBasicInfo_Urgent() {
 
     //*****전역 recoil모음*****
     const [info, setInfo] = useRecoilState(infoState);
     //*****전역 recoil모음*****
 
 
-  console.log("info (AssignBasicInfo_Post.js):",info);
+  console.log("info (AssignBasicInfo_Urgent.js):",info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -53,18 +53,6 @@ function AssignBasicInfo_Post() {
         value = {info.title} placeholder="제목"></Input>
       </InputDiv>
 
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="subtitle" 
-        value = {info.subtitle} placeholder="부제목"></Input>
-      </InputDiv>
-
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value = {info.simpleExplanation} placeholder="요약 설명"
-        ></Input>
-      </InputDiv>
-
 
       <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
@@ -73,16 +61,15 @@ function AssignBasicInfo_Post() {
           id="content"
           rows={1}
           ref={textRef}
-          placeholder="본문 내용"
+          placeholder="내용"
           style={{ marginTop: '12px', height: '96px' }}
         ></TextArea>
-
       </TextAreaDiv>
       
     </InputContainer>
   );
 }
-export default AssignBasicInfo_Post;
+export default AssignBasicInfo_Urgent;
 
 const TextAreaDiv = styled.div`
   background: #fafafa;

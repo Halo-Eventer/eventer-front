@@ -75,11 +75,12 @@ function AssignPage_Urgent() {
   };
 
   useEffect(()=>{
-    setCategory('notice');
+    setCategory('urgent');
   },[])
+
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category));
     setMode("");
@@ -87,7 +88,7 @@ function AssignPage_Urgent() {
   }, [category]);
 
   useEffect(() => {
-    console.log('mode (AssignPage_Map):', mode);
+    console.log('mode:', mode);
     if (mode == 'a') {
       fetchList();
       setInfo(InitInfo(category));  

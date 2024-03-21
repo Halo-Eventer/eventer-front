@@ -79,11 +79,11 @@ function AssignPage_Map() {
   }, [])
 
   useEffect(() => {
-    console.log('type (AssignPage_Map):', type);
+    console.log('type:', type);
   }, [type]);
 
   useEffect(() => {
-    console.log('cateogry, type (Assign_Map):', category, type);
+    console.log('cateogry, type:', category, type);
     setCancle(true);
     setMode('');
     setInfo(InitInfo(category, type));
@@ -91,7 +91,7 @@ function AssignPage_Map() {
   }, [category, type]);
 
   useEffect(() => {
-    console.log('mode (AssignPage_Map):', mode);
+    console.log('mode:', mode);
     if (mode == 'a') {
       setInfo(InitInfo(category, type));
       //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용

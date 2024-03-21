@@ -10,6 +10,9 @@ import AssignMenu from './AssignMenu';
 import AssignBasicInfo_Post from './basicInfo/AssignBasicInfo_Post';
 import { useRecoilState } from 'recoil';
 import { categoryState_assign, infoState } from 'recoils/atoms_assign';
+import AssignBasicInfo_Lost from './basicInfo/AssignBasicInfo_Lost';
+import AssignBasicInfo_Missing from './basicInfo/AssignBasicInfo_Missing';
+import AssignBasicInfo_Urgent from './basicInfo/AssignBasicInfo_Urgent';
 
 function Assign() {
 
@@ -18,8 +21,20 @@ function Assign() {
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
+
   console.log("info:", info);
   console.log('category', category);
+
+  const AssignBasicInfo_Object={
+    notice : <AssignBasicInfo_Post/>,
+    event : <AssignBasicInfo_Post/>,
+
+    lost : <AssignBasicInfo_Lost/>,
+    
+    missing:<AssignBasicInfo_Missing/>,
+
+    urgent:<AssignBasicInfo_Urgent/>
+  }
 
   return (
     <AssignContainer>
@@ -31,10 +46,10 @@ function Assign() {
             : <AssignImage />
           )}
 
-        {category == 'notice'
-          ? <AssignBasicInfo_Post />
-          : <AssignBasicInfo_Map/>
-        }
+        {AssignBasicInfo_Object[category] || <AssignBasicInfo_Map/>}
+        {/* 특별한 카테고리가 아니면 기본값으로 지도폼 렌더링 */}
+        
+
       </InfoContainer>
     </AssignContainer>
   );

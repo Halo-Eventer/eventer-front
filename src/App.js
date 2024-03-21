@@ -87,8 +87,9 @@ function App() {
             <Route path="/assign_post/:id" element={<AssignPage_Post />} />
             <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
             <Route path="/assign_missing/:id" element={<AssignPage_Missing />} />
-            <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
-            <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} />
+            {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
+            <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} /> */}
+            {/* 얘네는 구글폼링크로 연결 */}
             <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
             
           </Routes>

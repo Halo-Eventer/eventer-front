@@ -1,17 +1,17 @@
 import styled from 'styled-components';
-import {Input} from '../Assign';
+import { Input } from '../Assign';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 
-function AssignBasicInfo_Post() {
+function AssignBasicInfo_Missing() {
 
     //*****전역 recoil모음*****
     const [info, setInfo] = useRecoilState(infoState);
     //*****전역 recoil모음*****
 
 
-  console.log("info (AssignBasicInfo_Post.js):",info);
+  console.log("info (AssignBasicInfo_Missing.js):",info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -50,21 +50,34 @@ function AssignBasicInfo_Post() {
     <InputContainer ref={boxRef}>
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="title" 
-        value = {info.title} placeholder="제목"></Input>
+        value = {info.title} placeholder="실종자 이름"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input onChange={handleInfo} id="subtitle" 
-        value = {info.subtitle} placeholder="부제목"></Input>
+        value = {info.subtitle} placeholder="실종자 나이"></Input>
       </InputDiv>
 
       <InputDiv style={{ marginTop: '4px' }}>
         <Input
           onChange={handleInfo} id="simpleExplanation"
-          value = {info.simpleExplanation} placeholder="요약 설명"
+          value = {info.simpleExplanation} placeholder="실종자 성별"
         ></Input>
       </InputDiv>
 
+      <InputDiv style={{ marginTop: '4px' }}>
+        <Input
+          onChange={handleInfo} id="simpleExplanation"
+          value = {info.simpleExplanation} placeholder="실종 위치"
+        ></Input>
+      </InputDiv>
+
+      <InputDiv style={{ marginTop: '4px' }}>
+        <Input
+          onChange={handleInfo} id="simpleExplanation"
+          value = {info.simpleExplanation} placeholder="실종 시간"
+        ></Input>
+      </InputDiv>
 
       <TextAreaDiv style={{ width: '336px' }}>
         <TextArea
@@ -73,16 +86,29 @@ function AssignBasicInfo_Post() {
           id="content"
           rows={1}
           ref={textRef}
-          placeholder="본문 내용"
+          placeholder="기타 특이사항"
           style={{ marginTop: '12px', height: '96px' }}
         ></TextArea>
-
       </TextAreaDiv>
+
+      <InputDiv style={{ marginTop: '4px' }}>
+        <Input
+          onChange={handleInfo} id="simpleExplanation"
+          value = {info.simpleExplanation} placeholder="보호자 성함"
+        ></Input>
+      </InputDiv>
+
+      <InputDiv style={{ marginTop: '4px' }}>
+        <Input
+          onChange={handleInfo} id="simpleExplanation"
+          value = {info.simpleExplanation} placeholder="보호자 연락처"
+        ></Input>
+      </InputDiv>
       
     </InputContainer>
   );
 }
-export default AssignBasicInfo_Post;
+export default AssignBasicInfo_Missing;
 
 const TextAreaDiv = styled.div`
   background: #fafafa;
@@ -109,7 +135,7 @@ const InputContainer = styled.div`
 const TextArea = styled.textarea`
   margin-left: 8px;
   width: 320px;
-  height: 96px;
+  height: 112px;
 
   background: #fafafa;
 
