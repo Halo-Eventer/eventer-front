@@ -3,14 +3,24 @@ import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import imgUpload from 'asset/missing/imageUpload.svg';
 import { Flex } from 'asset/Style';
+import { useRecoilState } from 'recoil';
+import { missingInfoState } from 'recoils/atoms_missing';
 function Missing_Input(props) {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [info, setInfo] = useRecoilState(missingInfoState);
 
   const handleClick = (e) => {
     setActive(e.target.id);
+    const value = e.target.id;
+    setInfo({ ...info, ['gender']: value });
   };
-  console.log(props);
+  const handleChange = (e) => {
+    const id = e.target.id;
+    const value = e.target.value;
+
+    setInfo({ ...info, [id]: value });
+  };
   const [imagePreview, setImagePreview] = useState();
   const imagesInput = useRef(null);
   const handleImg = (e) => {
@@ -20,6 +30,7 @@ function Missing_Input(props) {
         props.setInfo({ ...props.info, iamge: res.data });
         setImagePreview(res.data);
         setLoading(false);
+        setInfo({ ...info, ['image']: res.data });
       })
       .catch((err) => {
         alert(err.response.data.error);
@@ -89,7 +100,11 @@ function Missing_Input(props) {
           </Flex>
         </>
       ) : (
-        <Input placeholder={props.placeholder}></Input>
+        <Input
+          id={props.id}
+          onChange={handleChange}
+          placeholder={props.placeholder}
+        ></Input>
       )}
     </Container>
   );

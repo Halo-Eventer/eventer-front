@@ -718,6 +718,12 @@ export const ETCBox = styled(Flex)`
 
     h2 {
       color: #ddd;
+      width: 148px;
+      display: flex;
+      justify-content: flex-start;
+
+      justify-content: start;
+      align-items: center;
 
       /* body3 */
       font-family: 'Pretendard';
