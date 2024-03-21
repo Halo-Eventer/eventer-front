@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { imageUploadApi } from '../../apis/apis';
-import { Input, InputBox, SemiTitle } from './Assign';
 import styled from 'styled-components';
 
 import images_preview from 'asset/assign/input_images.png';
@@ -9,6 +8,7 @@ import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import { useRecoilState } from 'recoil';
 import { infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { Input } from 'Routes/assign/AssignPage_Home';
 
 
 
@@ -53,7 +53,6 @@ function AssignImage() {
   return (
     <div>
       <AssignThumbnail/>
-
       <Flex style={{ marginTop: '8px'}}>
 
         <InputImages

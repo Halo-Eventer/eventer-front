@@ -324,3 +324,98 @@ export const AssignBox = styled(Flex)`
 
   margin-top: 32px;
 `;
+
+
+
+
+//Assign.js에 있던 중복 컴포넌트들
+export const InputBox = styled(Flex)`
+  position:relative;
+  
+  justify-content: space-between;
+  align-items: center;
+`;
+export const Input = styled.input`
+  padding: 0;
+  margin-left: 8px;
+  margin-top: 8px;
+  background: #fafafa;
+  height: 24px;
+  width: 300px;
+  border-radius: 4px;
+  border: 0;
+
+  color: #111;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
+
+  &::placeholder {
+    display: flex;
+    align-items: center;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const TextAreaDiv = styled.div`
+  width: 336px;
+  height: 96px;
+  background: #fafafa;
+  padding:8px;
+`;
+
+export const TextArea = styled.textarea`
+  width: 320px;
+  background: #fafafa;
+
+  color: #111;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
+
+  resize: none;
+
+  overflow-y: visible;
+  border: none;
+
+  white-space: pre-wrap;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SemiTitle = styled.div`
+  display: flex;
+  height: 30px;
+`;
+export const Category = styled.select`
+  width: 200px;
+  height: 30px;
+`;
+
+export const InputDiv = styled.div`
+  background: #fafafa;
+  width: 336px;
+  height: 40px;
+`;
+
+export const InputContainer = styled(Flex)`
+  margin-top: 8px;
+  width: 350px;
+  height: auto;
+  flex-shrink: 0;
+  border-radius: 4px;
+  border: 1px solid #eee;
+
+  padding-top:8px;
+  padding-bottom:8px;
+
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+`;

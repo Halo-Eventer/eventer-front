@@ -67,6 +67,7 @@ function AssignPage_Post() {
           if (category === 'notice')
             setInfo({ ...response.data, simpleExplanation: SE });
           else setInfo(response.data);
+          
         } else {
           console.log('fetch Detail no data ;(', response);
         }
@@ -105,6 +106,7 @@ function AssignPage_Post() {
     }
   }, [mode, itemID]);
 
+  console.log("info:",info);
   return (
     <Wrapper>
       <UpperBar_Component />

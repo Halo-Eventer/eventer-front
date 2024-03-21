@@ -1,4 +1,6 @@
-import thumbnail_preview from 'asset/assign/input_thumbnail.png';
+import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
+import thumbnail_preview2 from 'asset/assign/thumbnail_preview2.png';
+import thumbnail_preview_missing from 'asset/assign/thumbnail_blank.png';
 
 export const mapCategory = {
     concert: '콘서트',
@@ -91,7 +93,7 @@ export const lostForm_blank = {
     subtitle: '',
     content: '',
 
-    thumbnail: thumbnail_preview,
+    thumbnail: thumbnail_preview2,
     images: [],
 }
 
@@ -102,7 +104,7 @@ export const missingForm_blank = {
     subtitle: '',
     content: '',
 
-    thumbnail: thumbnail_preview,
+    thumbnail: thumbnail_preview_missing,
     images: [],
 }
 

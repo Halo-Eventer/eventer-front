@@ -1,25 +1,24 @@
-import styled from 'styled-components';
-import {Input} from '../Assign';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
+import AssignThumbnail from '../AssignThumbnail';
+import { Input, InputContainer, InputDiv } from 'Routes/assign/AssignPage_Home';
 
 function AssignBasicInfo_Lost() {
 
-    //*****전역 recoil모음*****
-    const [info, setInfo] = useRecoilState(infoState);
-    //*****전역 recoil모음*****
+  //*****전역 recoil모음*****
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
 
 
-  console.log("info (AssignBasicInfo_Lost.js):",info);
+  console.log("info (AssignBasicInfo_Lost.js):", info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
 
 
 
-  const handleResizeHeight = (e) => 
-  {
+  const handleResizeHeight = (e) => {
     if (e.keyCode == 13 || 8) {
       textRef.current.style.height = `auto`;
       textRef.current.style.height = `${textRef.current.scrollHeight}px`;
@@ -29,89 +28,47 @@ function AssignBasicInfo_Lost() {
     }
     handleInfo(e);
   };
-  const deleteETC = () => 
-  {
+  const deleteETC = () => {
     const { type, isOperation, ...rest } = info;
     setInfo({ ...rest });
   };
-  const handleInfo = (e) => 
-  {
+  const handleInfo = (e) => {
     console.log(e);
     const [value, id] = [e.target.value, e.target.id];
     setInfo({ ...info, [id]: value });
   };
 
 
-  useEffect(()=>{deleteETC();},[]);
+  useEffect(() => { deleteETC(); }, []);
 
 
 
   return (
-    <InputContainer ref={boxRef}>
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="title" 
-        value = {info.title} placeholder="물건 카테고리 입력"></Input>
-      </InputDiv>
+    <div>
+      <AssignThumbnail />
 
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input onChange={handleInfo} id="subtitle" 
-        value = {info.subtitle} placeholder="물건 이름 입력"></Input>
-      </InputDiv>
+      <InputContainer ref={boxRef}>
+        <InputDiv>
+          <Input onChange={handleInfo} id="title"
+            value={info.title} placeholder="물건 카테고리 입력"></Input>
+        </InputDiv>
 
-      <InputDiv style={{ marginTop: '4px' }}>
-        <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value = {info.simpleExplanation} placeholder="발견 날짜 입력"
-        ></Input>
-      </InputDiv>
-      
-    </InputContainer>
+        <InputDiv>
+          <Input onChange={handleInfo} id="subtitle"
+            value={info.subtitle} placeholder="물건 이름 입력"></Input>
+        </InputDiv>
+
+        <InputDiv>
+          <Input
+            onChange={handleInfo} id="simpleExplanation"
+            value={info.simpleExplanation} placeholder="발견 날짜 입력"
+          ></Input>
+        </InputDiv>
+
+      </InputContainer>
+    </div>
   );
 }
 export default AssignBasicInfo_Lost;
 
-const TextAreaDiv = styled.div`
-  background: #fafafa;
-  margin-left: 8px;
-  margin-top: 4px;
-`;
-const InputDiv = styled.div`
-  background: #fafafa;
-  width: 336px;
-  height: 40px;
 
-  margin-left: 8px;
-`;
-
-const InputContainer = styled.div`
-  margin-top: 8px;
-  width: 350px;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 4px;
-  border: 1px solid #eee;
-  padding-bottom: 8px;
-`;
-const TextArea = styled.textarea`
-  margin-left: 8px;
-  width: 320px;
-  height: 96px;
-
-  background: #fafafa;
-
-  color: #111;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px; /* 160% */
-
-  resize: none;
-
-  overflow-y: visible;
-  border: none;
-
-  white-space: pre-wrap;
-
-  &:focus {
-    outline: none;
-  }
-`;

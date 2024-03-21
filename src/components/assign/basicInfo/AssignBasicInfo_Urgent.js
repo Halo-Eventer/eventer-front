@@ -1,8 +1,7 @@
-import styled from 'styled-components';
-import {Input} from '../Assign';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
+import { Input, InputContainer, InputDiv, TextArea, TextAreaDiv } from 'Routes/assign/AssignPage_Home';
 
 function AssignBasicInfo_Urgent() {
 
@@ -48,13 +47,13 @@ function AssignBasicInfo_Urgent() {
 
   return (
     <InputContainer ref={boxRef}>
-      <InputDiv style={{ marginTop: '4px' }}>
+      <InputDiv>
         <Input onChange={handleInfo} id="title" 
         value = {info.title} placeholder="제목"></Input>
       </InputDiv>
 
 
-      <TextAreaDiv style={{ width: '336px' }}>
+      <TextAreaDiv>
         <TextArea
           value={info.content}
           onChange={handleResizeHeight}
@@ -62,7 +61,6 @@ function AssignBasicInfo_Urgent() {
           rows={1}
           ref={textRef}
           placeholder="내용"
-          style={{ marginTop: '12px', height: '96px' }}
         ></TextArea>
       </TextAreaDiv>
       
@@ -70,49 +68,3 @@ function AssignBasicInfo_Urgent() {
   );
 }
 export default AssignBasicInfo_Urgent;
-
-const TextAreaDiv = styled.div`
-  background: #fafafa;
-  margin-left: 8px;
-  margin-top: 4px;
-`;
-const InputDiv = styled.div`
-  background: #fafafa;
-  width: 336px;
-  height: 40px;
-
-  margin-left: 8px;
-`;
-
-const InputContainer = styled.div`
-  margin-top: 8px;
-  width: 350px;
-  height: auto;
-  flex-shrink: 0;
-  border-radius: 4px;
-  border: 1px solid #eee;
-  padding-bottom: 8px;
-`;
-const TextArea = styled.textarea`
-  margin-left: 8px;
-  width: 320px;
-  height: 96px;
-
-  background: #fafafa;
-
-  color: #111;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px; /* 160% */
-
-  resize: none;
-
-  overflow-y: visible;
-  border: none;
-
-  white-space: pre-wrap;
-
-  &:focus {
-    outline: none;
-  }
-`;

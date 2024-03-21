@@ -61,10 +61,7 @@ function AssignPage_Lost() {
       .then((response) => {
         if (typeof response.data === 'object') {
           console.log('fetch Detail success', response.data);
-
-          if (category === 'notice')
-            setInfo({ ...response.data, simpleExplanation: SE });
-          else setInfo(response.data);
+          setInfo(response.data);
         } else {
           console.log('fetch Detail no data ;(', response);
         }
@@ -103,6 +100,8 @@ function AssignPage_Lost() {
     }
   }, [mode, itemID]);
 
+
+  console.log("info:",info);
   return (
     <Wrapper>
       <UpperBar_Component />

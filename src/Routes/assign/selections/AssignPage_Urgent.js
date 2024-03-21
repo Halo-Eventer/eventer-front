@@ -61,10 +61,7 @@ function AssignPage_Urgent() {
       .then((response) => {
         if (typeof response.data === 'object') {
           console.log('fetch Detail success', response.data);
-
-          if (category === 'notice')
-            setInfo({ ...response.data, simpleExplanation: SE });
-          else setInfo(response.data);
+          setInfo(response.data);
         } else {
           console.log('fetch Detail no data ;(', response);
         }

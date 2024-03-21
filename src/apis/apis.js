@@ -1,5 +1,5 @@
 import axios from 'axios';
-import thumbnail_preview from 'asset/assign/input_thumbnail.png';
+import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
