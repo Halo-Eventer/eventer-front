@@ -49,7 +49,7 @@ function AssignBasicInfo_Missing() {
 
   return (
     <InputContainer ref={boxRef}>
-      <Flex style={{paddingTop:'8px'}}>
+      <Flex>
         <AssignThumbnail />
         <MissingPersonDiv>
           <InputDiv>
