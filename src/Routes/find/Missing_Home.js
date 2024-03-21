@@ -27,7 +27,7 @@ function Missing_Home() {
     // some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트
     //즉, 여기서는 하나라도 빈값이 나오면 true를 return할 것이다.
     if (hasEmptyValue) alert('필수 항목을 작성해주세요.');
-    if (!active) alert('개인정보 수집, 이용에 동의해주세요.');
+    else if (!active) alert('개인정보 수집, 이용에 동의해주세요.');
     else console.log(info);
   };
   return (
@@ -118,7 +118,7 @@ function Missing_Home() {
             <Agree>동의합니다.</Agree>
           </Flex>
         </div>
-        <ApplyBtn onClick={handleSumbit}>찾기 신청</ApplyBtn>
+        <ApplyBtn onClick={handleSumbit}>신청하기</ApplyBtn>
       </MissingInfoContainer>
     </Wrapper>
   );
@@ -194,7 +194,7 @@ export const ApplyBtn = styled.button`
 
   color: #111;
   text-align: center;
-  font-family: Pretendard-Regular;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
