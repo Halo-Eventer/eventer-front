@@ -4,7 +4,6 @@ import {ReactQueryDevtools} from 'react-query/devtools';
 
 import Home from './Routes/Home';
 import NolzaMap from './Routes/map/NolzaMap';
-import TourMap from './Routes/map/TourMap';
 
 import PostList_Root from './Routes/info/PostList_Root';
 import ConcertInfo from './Routes/info/ConcertInfo';
@@ -69,7 +68,6 @@ function App() {
           <Routes>
             <Route path="" element={<Home />} />
             <Route path="/map" element={<NolzaMap />} />
-            <Route path="/tourmap" element={<TourMap />} />
             <Route path="/concertInfo" element={<ConcertInfo />} />
             <Route path="/post" element={<PostList_Root />}>
               <Route path="notice" element={<NoticeList />} />
@@ -81,10 +79,10 @@ function App() {
             <Route path="/missing" element={<Missing_Home />}></Route>
             <Route path="/lost" element={<Lost_Home />}></Route>
             <Route path="/lost/:id" element={<Lost_Detail />}></Route>
-
             <Route path="/assign" element={<AssignPage_Select />} />
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
             <Route path="/assign_post/:id" element={<AssignPage_Post />} />
+
             <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
             <Route path="/assign_missing/:id" element={<AssignPage_Missing />} />
             {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
@@ -92,6 +90,7 @@ function App() {
             {/* 얘네는 구글폼링크로 연결 */}
             <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
             
+
           </Routes>
         </ThemeProvider>
         </QueryClientProvider>

@@ -209,15 +209,6 @@ function Home() {
             </ETC>
           </ETCBox>
 
-          <Link to="/tourmap">
-            <SmallBox>
-              <h1>
-                주변관광지
-                <button>확인하러 가기 &gt;</button>
-              </h1>
-            </SmallBox>
-          </Link>
-
           <Link to="/post/notice">
             <SmallBox>
               <h1>공지사항 / 이벤트</h1>
@@ -727,6 +718,12 @@ export const ETCBox = styled(Flex)`
 
     h2 {
       color: #ddd;
+      width: 148px;
+      display: flex;
+      justify-content: flex-start;
+
+      justify-content: start;
+      align-items: center;
 
       /* body3 */
       font-family: 'Pretendard';
