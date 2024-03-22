@@ -3,6 +3,7 @@ import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
+//components/map 에서 쓰이는 apis (시작)
 export const getAllStore = (type) => {
   console.log(type);
   return axios.get('/store?festivalId=1', { params: { type: type } });
@@ -19,6 +20,8 @@ export const getAllConcert = (festivalId) => {
 export const getDetailStore = (storeId) => {
   return axios.get(`/store/${storeId}`);
 };
+//components/map 에서 쓰이는 apis (끝)
+
 
 export const getAll = (festivalId, category, type) => {
   if (category === 'notice') {

@@ -5,15 +5,25 @@ export const inAssignState=atom({
     default:false
 })
 
-export const infoState = atom({
-    key: "infoState",
-    default: {}
-});
-
 export const categoryState_assign = atom({
     key: "categoryState_assign",
     default: ''
 })
+
+export const typeState = atom({
+    key:"typeState",
+    default: ''
+})
+
+export const boardListState = atom ({
+    key:"boardListState",
+    default:[]
+})
+
+export const infoState = atom({
+    key: "infoState",
+    default: {}
+});
 
 export const cancleState = atom({
     key: "cancleState",

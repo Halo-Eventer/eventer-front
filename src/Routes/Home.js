@@ -462,8 +462,7 @@ export const Imoji = styled.img`
 `;
 export const SecondBlock = styled.div`
   width: 100%;
-
-  margin-bottom: 28px;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;

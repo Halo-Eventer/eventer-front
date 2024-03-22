@@ -35,10 +35,12 @@ function AssignBasicInfo_Map() {
   }, [active]);
 
 
-  const deleteType = () => {
-    const { type, ...rest } = info;
-    setInfo({ ...rest });
-  };
+  // const deleteType = () => {
+  //   const { type, ...rest } = info;
+  //   setInfo({ ...rest });
+  // };
+
+  
   const deleteLatLng = () => {
     // const { latitude, longitude, ...rest } = info;
     setInfo({ ...info, ['latitude']: '', ['longitude']: '' });

@@ -28,11 +28,13 @@ function AssignBasicInfo_Urgent() {
     }
     handleInfo(e);
   };
-  const deleteETC = () => 
-  {
-    const { type, isOperation, ...rest } = info;
-    setInfo({ ...rest });
-  };
+
+  // const deleteETC = () => 
+  // {
+  //   const { type, isOperation, ...rest } = info;
+  //   setInfo({ ...rest });
+  // };
+
   const handleInfo = (e) => 
   {
     console.log(e);
@@ -40,8 +42,7 @@ function AssignBasicInfo_Urgent() {
     setInfo({ ...info, [id]: value });
   };
 
-
-  useEffect(()=>{deleteETC();},[]);
+  // useEffect(()=>{deleteETC();},[]);
 
 
 

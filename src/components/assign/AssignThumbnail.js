@@ -60,7 +60,6 @@ ${props=>props.category=='missing'
 ? 'width: 128px; height: 128px;'
 : 'width: 352px; height: 352px; margin-top: 8px;'}
   border-radius: 4px;
-  border: 1px solid #eee;
   &:hover {
     cursor: pointer;
   }

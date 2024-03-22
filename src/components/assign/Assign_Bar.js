@@ -17,7 +17,7 @@ export function UpperBar_Component()
     </Link>
 </UpperBar>
 };
-export function MiddleBar_Component1(props)
+export function MiddleBar_Component1()
 {
   return  <MiddleBar>
             <div>

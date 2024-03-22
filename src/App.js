@@ -29,10 +29,8 @@ import EventList from 'Routes/info/EventList';
 import Lost_Detail from './Routes/find/Lost_Detail';
 import { Query, QueryClient, QueryClientProvider } from 'react-query';
 import { inAssignState } from 'recoils/atoms_assign';
-import AssignPage_WheelChair from 'Routes/assign/selections/AssignPage_WheelChair';
 import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
 import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
-import AssignPage_BarrierFree from 'Routes/assign/selections/AssignPage_BarrierFree';
 import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
 
 function App() {

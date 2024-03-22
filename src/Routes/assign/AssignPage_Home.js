@@ -328,10 +328,10 @@ export const AssignBox = styled(Flex)`
 
 
 
-//Assign.js에 있던 중복 컴포넌트들
+//===== Assign.js에 있던 중복 컴포넌트들 (AssignPage의 대부분 컴포넌트들은 여기서 관리) =====//
 export const InputBox = styled(Flex)`
   position:relative;
-  
+
   justify-content: space-between;
   align-items: center;
 `;

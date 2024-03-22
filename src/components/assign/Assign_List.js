@@ -6,11 +6,14 @@ import plus from 'asset/images/Plus.svg';
 
 import { deleteDetail } from 'apis/apis';
 import { useRecoilState } from 'recoil';
-import { categoryState_assign, itemIDState, modeState } from 'recoils/atoms_assign';
+import { boardListState, categoryState_assign, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 
 function Assign_List(props) {
+
     //*****전역 recoil모음*****
+    const [boardList, setBoardList]=useRecoilState(boardListState);
     const [category, setCategory] = useRecoilState(categoryState_assign);
+    const [type, setType]=useRecoilState(typeState);
     const [mode, setMode] = useRecoilState(modeState);
     const [itemID, setItemID] = useRecoilState(itemIDState);
     //*****전역 recoil모음*****
@@ -32,10 +35,10 @@ function Assign_List(props) {
             const index2 = event.currentTarget.id;
             console.log("index, index2 :", index, index2);
             //            console.log("type : ",categoryEntries[index][1][index2]);
-            props.setType(categoryEntries[index][1][index2]);
+            setType(categoryEntries[index][1][index2]);
         }
         else
-            props.setType("");
+            setType("");
 
         setSelectedDrop(event.currentTarget.textContent);
 
@@ -52,14 +55,14 @@ function Assign_List(props) {
         setItemID(event.currentTarget.id);
 
         console.log("event.currentTarget.datset.index", event.currentTarget.dataset.index)
-        props.setSE(
-            props.boardList[event.currentTarget.dataset.index].simpleExplanation);
+        // props.setSE(
+        //     boardList[event.currentTarget.dataset.index].simpleExplanation);
     }
     const onClick_delete = (event) => {
         event.preventDefault();
 
         const id = event.currentTarget.id;
-        let ref = props.boardList[event.currentTarget.dataset.value];
+        let ref = boardList[event.currentTarget.dataset.value];
         let title;
         if (category === 'notice')
             title = ref.title;
@@ -93,11 +96,11 @@ function Assign_List(props) {
     }, [categoryEntries])
     useEffect(() => {
         if (category.length > 0)
-            console.log("category, type : ", category, props.type);
+            console.log("category, type : ", category, type);
     }, [category])
 
 
-
+    console.log("boardList:",boardList);
     return (
         <Wrapper>
             {categoryEntries.length > 1
@@ -137,9 +140,9 @@ function Assign_List(props) {
                 <img src={plus} />
                 <h1>{selectedDrop} 추가</h1>
             </AddBar>
-            {props.boardList.length > 0 &&
+            {boardList.length > 0 &&
                 <ListBoard>
-                    {props.boardList.map((item, index) =>
+                    {boardList.map((item, index) =>
                         <div key={index}>
                             <h1 onClick={onClick_revise} id={item.id} data-index={index}>{
                                 category === 'notice'

@@ -22,7 +22,11 @@ export default Footer;
 export const FooterBox = styled.div`
   width: 358px;
 
-  margin-top: 28px;
+  background-color:#111;
+
+  margin-top: 16px;
+
+  padding:16px;
 
   display: flex;
   flex-direction: column;
@@ -31,7 +35,7 @@ export const FooterBox = styled.div`
 
   h1 {
     color: #999;
-    font-family: 'Pretendard';
+    font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
     font-weight: 900;

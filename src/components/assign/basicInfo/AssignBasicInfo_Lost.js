@@ -28,10 +28,10 @@ function AssignBasicInfo_Lost() {
     }
     handleInfo(e);
   };
-  const deleteETC = () => {
-    const { type, isOperation, ...rest } = info;
-    setInfo({ ...rest });
-  };
+  // const deleteETC = () => {
+  //   const { type, isOperation, ...rest } = info;
+  //   setInfo({ ...rest });
+  // };
   const handleInfo = (e) => {
     console.log(e);
     const [value, id] = [e.target.value, e.target.id];
@@ -39,7 +39,7 @@ function AssignBasicInfo_Lost() {
   };
 
 
-  useEffect(() => { deleteETC(); }, []);
+  // useEffect(() => { deleteETC(); }, []);
 
 
 
