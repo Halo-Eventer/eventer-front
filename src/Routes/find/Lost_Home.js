@@ -4,44 +4,21 @@ import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useEffect, useState } from 'react';
+import { lostGet } from 'apis/apis';
 
 function Lost_Home() {
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  const data = [
-    {
-      id: 1,
-      category: '가방',
-      name: '뉴발란스 가방',
-      date: '2024.02.13',
-    },
-    {
-      id: 2,
-      category: '시계',
-      name: '롤렉스',
-      date: '2024.02.13',
-    },
-    {
-      id: 3,
-      category: '자동차',
-      name: '람보르기니',
-      date: '2024.01.13',
-    },
-    {
-      id: 4,
-      category: '아파트',
-      name: '반포자이',
-      date: '2024.02.10',
-    },
-    {
-      id: 5,
-      category: '머리카락',
-      name: '대머리',
-      date: '2024.03.13',
-    },
-  ];
+  useEffect(() => {
+    lostGet().then((res) => {
+      setData(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <>
       <Wrapper>
@@ -54,12 +31,12 @@ function Lost_Home() {
 
         <Container>
           {data.map((e) => {
-            console.log(e.category);
+            console.log(e);
             return (
               <div onClick={() => navigate(`${e.id}`, { state: { props: e } })}>
-                <Box>
+                <Box image={e.image}>
                   <Tag>
-                    <Category>{e.category}</Category>
+                    <Category>{e.type}</Category>
                     <Name>{e.name}</Name>
                   </Tag>
                 </Box>
@@ -80,7 +57,9 @@ const Box = styled.div`
   flex-shrink: 0;
   border-radius: 9px;
 
-  background: #fff;
+  background: url(${(props) => props.image});
+  background-size: 173px 186px;
+
   box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
   color: #fff;
   margin-top: 12px;

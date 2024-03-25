@@ -80,3 +80,7 @@ export const imageUploadApi = (imgInfo) => {
 export const missingPost = (info) => {
   return axios.post('/user/missing-person', info);
 };
+
+export const lostGet = () => {
+  return axios.get('/user/lost-items');
+};
