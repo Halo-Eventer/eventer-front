@@ -1,12 +1,14 @@
 import { useRef, useEffect } from 'react';
-import { Input, InputBox } from './Assign';
 import { imageUploadApi } from 'apis/apis';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { Input, InputBox } from 'Routes/assign/AssignPage_Home';
+
 
 function AssignThumbnail() {
     //*****전역 recoil모음*****
+    const [category, setCategory] = useRecoilState(categoryState_assign);
     const [mode, setMode] = useRecoilState(modeState);
     const [itemID, setItemID] = useRecoilState(itemIDState);
     const [info, setInfo] = useRecoilState(infoState);
@@ -35,6 +37,7 @@ function AssignThumbnail() {
   return (
     <InputBox>
       <InputThumbnail
+        category={category}
         onClick={() => {
           thumbnailInput.current.click();
         }}
@@ -53,11 +56,10 @@ function AssignThumbnail() {
 }
 
 const InputThumbnail = styled.img`
-  width: 352px;
-  height: 352px;
+${props=>props.category=='missing' 
+? 'width: 128px; height: 128px;'
+: 'width: 352px; height: 352px; margin-top: 8px;'}
   border-radius: 4px;
-  margin-top: 8px;
-  border: 1px solid #eee;
   &:hover {
     cursor: pointer;
   }

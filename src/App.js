@@ -29,10 +29,8 @@ import EventList from 'Routes/info/EventList';
 import Lost_Detail from './Routes/find/Lost_Detail';
 import { Query, QueryClient, QueryClientProvider } from 'react-query';
 import { inAssignState } from 'recoils/atoms_assign';
-import AssignPage_WheelChair from 'Routes/assign/selections/AssignPage_WheelChair';
 import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
 import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
-import AssignPage_BarrierFree from 'Routes/assign/selections/AssignPage_BarrierFree';
 import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
 
 function App() {
@@ -85,8 +83,9 @@ function App() {
 
             <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
             <Route path="/assign_missing/:id" element={<AssignPage_Missing />} />
-            <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
-            <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} />
+            {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
+            <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} /> */}
+            {/* 얘네는 구글폼링크로 연결 */}
             <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
             
 

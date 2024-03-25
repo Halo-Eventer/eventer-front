@@ -1,18 +1,17 @@
-import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
-import AssignImage from '../AssignImage';
-import { Input, InputContainer, InputDiv, TextArea, TextAreaDiv } from 'Routes/assign/AssignPage_Home';
+import AssignThumbnail from '../AssignThumbnail';
+import { Input, InputContainer, InputDiv } from 'Routes/assign/AssignPage_Home';
 
-function AssignBasicInfo_Post() {
+function AssignBasicInfo_Lost() {
 
   //*****전역 recoil모음*****
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
 
-  console.log("info (AssignBasicInfo_Post.js):", info);
+  console.log("info (AssignBasicInfo_Lost.js):", info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
@@ -29,12 +28,10 @@ function AssignBasicInfo_Post() {
     }
     handleInfo(e);
   };
-  
   // const deleteETC = () => {
   //   const { type, isOperation, ...rest } = info;
   //   setInfo({ ...rest });
   // };
-
   const handleInfo = (e) => {
     console.log(e);
     const [value, id] = [e.target.value, e.target.id];
@@ -48,40 +45,30 @@ function AssignBasicInfo_Post() {
 
   return (
     <div>
-      <AssignImage />
+      <AssignThumbnail />
+
       <InputContainer ref={boxRef}>
         <InputDiv>
           <Input onChange={handleInfo} id="title"
-            value={info.title} placeholder="제목"></Input>
+            value={info.title} placeholder="물건 카테고리 입력"></Input>
         </InputDiv>
 
         <InputDiv>
           <Input onChange={handleInfo} id="subtitle"
-            value={info.subtitle} placeholder="부제목"></Input>
+            value={info.subtitle} placeholder="물건 이름 입력"></Input>
         </InputDiv>
 
         <InputDiv>
           <Input
             onChange={handleInfo} id="simpleExplanation"
-            value={info.simpleExplanation} placeholder="요약 설명"
+            value={info.simpleExplanation} placeholder="발견 날짜 입력"
           ></Input>
         </InputDiv>
-
-
-        <TextAreaDiv>
-          <TextArea
-            value={info.content}
-            onChange={handleResizeHeight}
-            id="content"
-            rows={1}
-            ref={textRef}
-            placeholder="본문 내용"
-          ></TextArea>
-
-        </TextAreaDiv>
 
       </InputContainer>
     </div>
   );
 }
-export default AssignBasicInfo_Post;
+export default AssignBasicInfo_Lost;
+
+

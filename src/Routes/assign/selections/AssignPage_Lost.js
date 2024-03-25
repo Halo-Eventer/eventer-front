@@ -13,11 +13,12 @@ import {
 import { AssignBox, Assign_Blank} from 'Routes/assign/AssignPage_Home';
 import Assign_List from 'components/assign/Assign_List';
 
-import {getAll, getDetail} from 'apis/apis';
-import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { lostCategory, postCategory } from 'constants/Const_Assign';
+import { lostCategory } from 'constants/Const_Assign';
+import fetchDetail from 'utils/fetchDetail';
+import fetchList from 'utils/fetchList';
 
 
 
@@ -26,95 +27,60 @@ function AssignPage_Lost() {
 
   //*****전역 recoil모음*****
   const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [boardList,setBoardList] = useRecoilState(boardListState);
+  const [type, setType] = useRecoilState(typeState);
   const [mode,setMode]=useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [itemID, setItemID] = useRecoilState(itemIDState);
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
-  const id_param = useParams().id;
+  const festivalId = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(lostCategory);
-  const [type, setType]=useState("");
-  const [boardList,setBoardList] = useState([]);
-  const [SE,setSE]=useState("");
+  const categoryList = lostCategory;
 
-  const fetchList = () => {
-    const festivalId = id_param;
-    getAll(festivalId, category, type)
-      .then((response) => {
-        if (response.data.length > 0) {
-          console.log('fetch List success', response.data);
-          setBoardList(response.data);
-        } else {
-          console.log('fetch List no data ;(', response);
-          setBoardList([]);
-        }
-      })
-      .catch((error) => {
-        console.log('fetch List error', error);
-      });
-  };
-
-  const fetchDetail = () => {
-    getDetail(category, itemID)
-      .then((response) => {
-        if (typeof response.data === 'object') {
-          console.log('fetch Detail success', response.data);
-
-          if (category === 'notice')
-            setInfo({ ...response.data, simpleExplanation: SE });
-          else setInfo(response.data);
-        } else {
-          console.log('fetch Detail no data ;(', response);
-        }
-      })
-      .catch((error) => {
-        console.log('fetch Detail error', error);
-      });
-  };
 
   useEffect(()=>{
-    setCategory('notice');
+    setCategory('lost');
+    setType('');
+    setBoardList([]);
   },[])
+
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category));
     setMode("");
-    fetchList();
+    fetchList(festivalId,category,type, setBoardList);
   }, [category]);
 
   useEffect(() => {
     console.log('mode (AssignPage_Map):', mode);
     if (mode == 'a') {
-      fetchList();
+      fetchList(festivalId,category,type,setBoardList);
       setInfo(InitInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail();
+      fetchDetail(category, itemID,setInfo);
       setCancle(false);
     } else if (mode == 'f') {
-      fetchList();
+      fetchList(festivalId,category,type, setBoardList);
       setCancle(true);
       setMode('');
     }
   }, [mode, itemID]);
 
+
+  console.log("info:",info);
   return (
     <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component2 id_param={id_param} text="분실물 리스트" />
+      <MiddleBar_Component2 text="분실물 리스트" />
       <AssignBox>
         
-        <Assign_List 
-        categoryList = {categoryList} 
-        setType={setType}
-        boardList={boardList} 
-        setBoardList={setBoardList}
-        setSE={setSE}/>
+        <Assign_List categoryList = {categoryList} />
 
         {cancle 
         ? <Assign_Blank/>

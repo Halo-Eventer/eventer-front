@@ -13,18 +13,21 @@ import {
 import { AssignBox, Assign_Blank} from 'Routes/assign/AssignPage_Home';
 import Assign_List from 'components/assign/Assign_List';
 
-import {getAll, getDetail} from 'apis/apis';
-import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
 import { postCategory } from 'constants/Const_Assign';
+import fetchList from 'utils/fetchList';
+import fetchDetail from 'utils/fetchDetail';
 
 
 
-function AssignPage_Notice() {
+function AssignPage_Post() {
 
 
   //*****전역 recoil모음*****
+  const [boardList, setBoardList]=useRecoilState(boardListState);
+  const [type, setType]=useRecoilState(typeState);
   const [category, setCategory] = useRecoilState(categoryState_assign);
   const [mode,setMode]=useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
@@ -32,89 +35,72 @@ function AssignPage_Notice() {
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
-  const id_param = useParams().id;
+  const festivalId = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(postCategory);
-  const [type, setType]=useState("");
-  const [boardList,setBoardList] = useState([]);
-  const [SE,setSE]=useState("");
+  const categoryList = postCategory;
 
-  const fetchList = () => {
-    const festivalId = id_param;
-    getAll(festivalId, category, type)
-      .then((response) => {
-        if (response.data.length > 0) {
-          console.log('fetch List success', response.data);
-          setBoardList(response.data);
-        } else {
-          console.log('fetch List no data ;(', response);
-          setBoardList([]);
-        }
-      })
-      .catch((error) => {
-        console.log('fetch List error', error);
-      });
-  };
+  // const fetchDetail = () => {
+  //   getDetail(category, itemID)
+  //     .then((response) => {
+  //       if (typeof response.data === 'object') {
+  //         console.log('fetch Detail success', response.data);
 
-  const fetchDetail = () => {
-    getDetail(category, itemID)
-      .then((response) => {
-        if (typeof response.data === 'object') {
-          console.log('fetch Detail success', response.data);
-
-          if (category === 'notice')
-            setInfo({ ...response.data, simpleExplanation: SE });
-          else setInfo(response.data);
-        } else {
-          console.log('fetch Detail no data ;(', response);
-        }
-      })
-      .catch((error) => {
-        console.log('fetch Detail error', error);
-      });
-  };
+  //         if (category === 'notice')
+  //           setInfo({ ...response.data, simpleExplanation: SE });
+  //         else setInfo(response.data);
+          
+  //       } else {
+  //         console.log('fetch Detail no data ;(', response);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log('fetch Detail error', error);
+  //     });
+  // };
 
   useEffect(()=>{
     setCategory('notice');
+    setBoardList([]);
+    setType('');
   },[])
+
   useEffect(()=>
   {
-    console.log("cateogry (Assign_Notice):",category);
+    console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category));
     setMode("");
-    fetchList();
+    console.log('first useEffect');
+    fetchList(festivalId, category, type, setBoardList);
   }, [category]);
 
   useEffect(() => {
-    console.log('mode (AssignPage_Map):', mode);
+    console.log('mode:', mode);
+    console.log('secound useEFFect');
     if (mode == 'a') {
-      fetchList();
+      fetchList(festivalId, category, type, setBoardList);
       setInfo(InitInfo(category));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail();
+      fetchDetail(category,itemID,setInfo);
       setCancle(false);
     } else if (mode == 'f') {
-      fetchList();
+      fetchList(festivalId, category, type, setBoardList);
       setCancle(true);
       setMode('');
     }
   }, [mode, itemID]);
 
+  console.log("boardList, info:", boardList, info);
+
   return (
     <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component2 id_param={id_param} text="공지사항/이벤트" />
+      <MiddleBar_Component2 text="공지사항/이벤트" />
       <AssignBox>
         
-        <Assign_List 
-        categoryList = {categoryList} 
-        setType={setType}
-        boardList={boardList} 
-        setBoardList={setBoardList}
-        setSE={setSE}/>
+        <Assign_List categoryList = {categoryList} />
 
         {cancle 
         ? <Assign_Blank/>
@@ -125,7 +111,7 @@ function AssignPage_Notice() {
     </Wrapper>
   );
 }
-export default AssignPage_Notice;
+export default AssignPage_Post;
 
 export const Wrapper = styled.div`
   width: 100vw;
