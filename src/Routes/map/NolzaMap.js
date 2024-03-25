@@ -7,6 +7,8 @@ import ClickInfo from '../../components/map/ClickInfo';
 import { markerHandle } from '../../asset/MarkerHandle';
 
 import hallMarker from 'asset/marker/concertHall.png';
+import loveGate from 'asset/marker/loveGate.png';
+
 import getMarker from '../../components/map/getMarker';
 import eventMarker from 'asset/marker/event.png';
 import toiletMarker from 'asset/marker/toilet.png';
@@ -19,7 +21,7 @@ import { getDetailInfo } from 'components/map/getDetailInfo';
 import { getAllConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
-import {UpperBar, BkBtn, Title } from '../Home';
+import { UpperBar, BkBtn, Title } from '../Home';
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');
@@ -72,16 +74,24 @@ function NolzaMap(props) {
         console.log(res.data);
         setConcertData(res.data);
         const info = res.data?.map((e) => {
+          let img = '';
+          const text = e.name;
           console.log(e);
+          if (e.name == '공연장') {
+            img = hallMarker;
+          } else {
+            img = loveGate;
+          }
+
           return markerHandle(
             e.id,
             naver,
             tmpMap,
             e.latitude,
             e.longitude,
-            hallMarker,
+            img,
             100,
-            '공연장'
+            text
           );
         });
         console.log(info);
@@ -255,7 +265,7 @@ function NolzaMap(props) {
     <div>
       <GlobalStyle />
       <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
-        <BkBtn style={{ left: '20px' }} onClick={()=>navigate(-1)}/>
+        <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
         <Title>공연장 지도</Title>
       </UpperBar>
       <MapContainer ref={mapElement}>
