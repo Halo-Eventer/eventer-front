@@ -16,7 +16,7 @@ import disabled from 'asset/images/Disabled.png';
 import lost from 'asset/images/Lost.png';
 import missing from 'asset/images/Missing.png';
 
-import { getAll } from '../apis/apis';
+import { getAll, getHome } from '../apis/apis';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -43,45 +43,40 @@ function Home() {
       setCurrentNum(current + 1);
     }, //현재 슬라이드 위치에 따른 변화 get가능
   };
-  const onClick_detailNotice = (event) => {
+  const onClick_detailPost = (event) => {
     event.preventDefault();
-    const noticeId = event.currentTarget.id;
-    console.log('noticeId : ', event.currentTarget.id);
-    navigate(`/post/notice/${noticeId}`);
-  };
-  const onClick_detailEvent = (event) => {
-    event.preventDefault();
-    const eventId = event.currentTarget.id;
-    console.log('eventId : ', event.currentTarget.id);
-    navigate(`/post/event/${eventId}`);
+    const postId = event.currentTarget.id;
+    console.log('postId : ', event.currentTarget.id);
+    navigate(`/post/${postId}`);
   };
 
-  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
-  const [eventList, setEventList] = useState([]);
-  const [noticeList, setNoticeList] = useState([]);
-  const fetchList = (category) => {
-    let type = '';
-    getAll(festivalId, category, type)
-      .then((response) => {
-        if (response.data) {
-          console.log('fetch List success', response.data);
-          if (category === 'notice') setNoticeList(response.data);
-          else if (category === 'event') setEventList(response.data);
-        } else {
-          console.log('fetch List no data ;(', response);
-          if (category === 'notice') setNoticeList([]);
-          else if (category === 'event') setEventList([]);
-        }
+  //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch
+  const [homeList, setHomeList]=useState({});
+  const [bannerList, setBannerList] = useState([]);
+  const fetchHome = () => {
+    getHome()
+      .then(response => {
+        setHomeList(response.date)
+        console.log("homeList:", response.data);
       })
-      .catch((error) => {
-        console.log('fetch List error', error);
-      });
-  };
+      .catch(error => { console.log("fetchHome error:", error) })
+  }
+
+
+
   useEffect(() => {
-    fetchList('notice');
-    fetchList('event');
+    fetchHome();
   }, []);
-  //임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch////임시 랜딩페이지 Fetch//
+  //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch//
+
+
+
+  //배너 리스트 set
+  useEffect(()=>{
+    setBannerList(homeList?.banner);
+  },[homeList])
+  //배너 리스트 set
+
 
   const [popupList, setPopupList] = useState([]);
   useEffect(() => {
@@ -91,7 +86,11 @@ function Home() {
       { type: 1, name: '긴급공지 팝업' },
     ]);
   }, []);
+
+
+
   console.log(popupList);
+  console.log("bannerList:",bannerList);
   return (
     <Wrapper>
       {popupList.length == 0 ? '' : <Overlay />}
@@ -124,40 +123,36 @@ function Home() {
             </a>
           </FlexBox_Row>
         </UpperBar>
-        <FlexBox_Row style={{ width: '100%' }}>
-          <ImgBlock>
-            <Index>
-              {currentNum}/{noticeList?.length + eventList?.length}
-            </Index>
-            <StyledSlider {...settings}>
-              {noticeList.map((item, key) => {
-                // if (key === 0 || key === 4)
-                return (
-                  <ImgBoard
-                    cursor="pointer"
-                    //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
-                    onClick={onClick_detailNotice}
-                    key={key}
-                    id={item.id}
-                    src={item.thumbnail}
-                  />
-                );
-              })}
 
-              {eventList.map((item, key) => {
-                return (
-                  <ImgBoard
-                    cursor="pointer"
-                    onClick={onClick_detailEvent}
-                    key={key}
-                    id={item.id}
-                    src={item.thumbnail}
-                  />
-                );
-              })}
-            </StyledSlider>
-          </ImgBlock>
+
+        <FlexBox_Row style={{ width: '100%' }}>
+          {bannerList?.length > 0
+            &&
+            <ImgBlock>
+
+              <Index>
+                {currentNum}/{bannerList?.length}
+              </Index>
+
+              <StyledSlider {...settings}>
+                {bannerList.map((item, key) => {
+                  // if (key === 0 || key === 4)
+                  return (
+                    <ImgBoard
+                      cursor="pointer"
+                      //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
+                      onClick={onClick_detailPost}
+                      key={key}
+                      id={item.id}
+                      src={item.thumbnail}
+                    />
+                  );
+                })}
+              </StyledSlider>
+            </ImgBlock>
+          }
         </FlexBox_Row>
+
         <SecondBlock>
           <BigBox>
             <Link to="/map">

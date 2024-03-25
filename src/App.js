@@ -7,8 +7,6 @@ import NolzaMap from './Routes/map/NolzaMap';
 
 import PostList_Root from './Routes/info/PostList_Root';
 import ConcertInfo from './Routes/info/ConcertInfo';
-import Detail_Event from './Routes/info/Detail_Event';
-import Detail_Notice from './Routes/info/Detail_Notice';
 
 import AssignPage_Home from './Routes/assign/AssignPage_Home';
 import AssignPage_Select from './Routes/assign/AssignPage_Select';
@@ -32,6 +30,7 @@ import { inAssignState } from 'recoils/atoms_assign';
 import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
 import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
 import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
+import Detail_Post from 'Routes/info/Detail_Post';
 
 function App() {
   function setScreenSize() {
@@ -71,8 +70,7 @@ function App() {
               <Route path="notice" element={<NoticeList />} />
               <Route path="event" element={<EventList />} />
             </Route>
-            <Route path="/post/event/:id" element={<Detail_Event />} />
-            <Route path="/post/notice/:id" element={<Detail_Notice />} />
+            <Route path="/post/:id" element={<Detail_Post/>} />
             {/* Detail을 루트로 처리하는 법 */}
             <Route path="/missing" element={<Missing_Home />}></Route>
             <Route path="/lost" element={<Lost_Home />}></Route>

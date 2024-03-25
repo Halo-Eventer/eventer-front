@@ -16,9 +16,9 @@ function PostList_Root() {
     const [dataList, setDataList] = useState({});
 
     const {isLoading : noticeListLoading, data:noticeListData} 
-    = useQuery("noticeList",()=>getAll(festivalId,'notice',''));
+    = useQuery("noticeList",()=>getAll(festivalId,'notice','NOTICE'));
     const {isLoading : eventListLoading, data:eventListData} 
-    = useQuery("eventList",()=>getAll(festivalId,'event',''));
+    = useQuery("eventList",()=>getAll(festivalId,'notice','EVENT'));
 
     // const [noticeList, setNoticeList] = useState([
     //     {
@@ -59,17 +59,18 @@ function PostList_Root() {
                 <TopFixedBar_Blank />
                 <TopFixedBar_Blank />
 
-                <TitleBoard>
+                {/* <TitleBoard>
                     {noticeListData?.data.map((item, index) =>
                         <TitleElement 
                         key={index} 
-                        to = {`notice/${item.id}`}
+                        to = {`${item.id}`}
                         lineColor={theme.colors.lineColor}>
                             <button>공지사항</button>
                             <h1>{item.title}</h1>
                         </TitleElement>
                     )}
-                </TitleBoard>
+                </TitleBoard> */}
+                {/* only 공지사항 리스트(였던 것) */}
 
                 <Outlet context={dataList}></Outlet> {/* 게시글 목록 */}
 

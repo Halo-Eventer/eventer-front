@@ -25,10 +25,10 @@ import { UpperBar } from '../Home';
 모든 export를 가져와서 axios라는 객체로 묶어
 사용하겠다는 뜻입니다.*/
 
-function Detail_Event() {
+function Detail_Post() {
   const navigate = useNavigate();
 
-  const noticeId = useParams().id;
+  const postId = useParams().id;
 
   var settings = {
     dots: true, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
@@ -40,16 +40,21 @@ function Detail_Event() {
   };
 
   const [detailedList, setDetailedList] = useState([]);
+  const [titleText, setTitleText]=useState("");
 
   const onClick_bkBtn = () => {
     navigate(-1);
     //그냥 뒤로가는 기능
   };
   useEffect(() => {
-    getDetail('notice', noticeId)
+    getDetail('notice', postId) //url의 카테고리는 일단 notice
       .then((response) => {
         if (typeof response.data === 'object') {
           setDetailedList(response.data);
+          if(response.data.type==='NOTICE')
+            setTitleText('공지사항')
+          else
+            setTitleText('이벤트')
           console.log('detail fetch success : ', response.data);
         } else {
           console.log('detail fetch no data ;(');
@@ -68,7 +73,9 @@ function Detail_Event() {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <HomeBtn />
           </Link>
-          <Title>공지사항</Title>
+          <Title>
+            {titleText}
+          </Title>
         </UpperBar>
       </TopFixedDiv>
       <Wrapper>
@@ -101,4 +108,4 @@ function Detail_Event() {
   );
 }
 
-export default Detail_Event;
+export default Detail_Post;

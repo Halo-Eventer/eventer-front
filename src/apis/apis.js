@@ -3,6 +3,8 @@ import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
+
+
 //components/map 에서 쓰이는 apis (시작)
 export const getAllStore = (type) => {
   console.log(type);
@@ -23,9 +25,17 @@ export const getDetailStore = (storeId) => {
 //components/map 에서 쓰이는 apis (끝)
 
 
+
+
+
+
+export const getHome = () => {    //Home에 필요한 정보들 (팝업, 썸네일들)
+  return axios.get('/home')
+}
 export const getAll = (festivalId, category, type) => {
-  if (category === 'notice') {
-    return axios.get(`/notice/${festivalId}/list`);
+  if (category === 'notice') {    // 공지사항/이벤트(게시글) 리스트
+    return axios.get(`/notice/${festivalId}/list`,
+      { params: { type: type } });
   } else if (category === 'store') {
     return axios.get(`/store?festivalId=${festivalId}`, {
       params: { type: type },
