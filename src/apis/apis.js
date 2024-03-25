@@ -76,3 +76,7 @@ export const imageUploadApi = (imgInfo) => {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
+
+export const missingPost = (info) => {
+  return axios.post('/user/missing-person', info);
+};

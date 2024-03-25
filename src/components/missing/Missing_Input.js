@@ -19,6 +19,7 @@ function Missing_Input(props) {
     const id = e.target.id;
     const value = e.target.value;
 
+    console.log(info);
     setInfo({ ...info, [id]: value });
   };
   const [imagePreview, setImagePreview] = useState();
@@ -47,10 +48,10 @@ function Missing_Input(props) {
       </MissingSemiTitle>
       {props.btn ? (
         <BtnContainer>
-          <GenderBtn active={active} id="1" onClick={handleClick}>
+          <GenderBtn active={active} id="남자" onClick={handleClick}>
             남자
           </GenderBtn>
-          <GenderBtn active={active} id="2" onClick={handleClick}>
+          <GenderBtn active={active} id="여자" onClick={handleClick}>
             여자
           </GenderBtn>
         </BtnContainer>

@@ -92,14 +92,15 @@ export default class SwipeToSlide extends Component {
               <CategoryText id="4">화장실</CategoryText>
             </CategoryBox>
           </div>
+
           <div>
             <CategoryBox
               active={this.state.active}
               id="5"
               onClick={handleClick}
             >
-              <img id="5" src={trashImg}></img>
-              <CategoryText id="5">쓰레기통</CategoryText>
+              <img id="5" src={smokeImg}></img>
+              <CategoryText id="5">흡연장</CategoryText>
             </CategoryBox>
           </div>
           <div>
@@ -108,18 +109,8 @@ export default class SwipeToSlide extends Component {
               id="6"
               onClick={handleClick}
             >
-              <img id="6" src={smokeImg}></img>
-              <CategoryText id="6">흡연장</CategoryText>
-            </CategoryBox>
-          </div>
-          <div>
-            <CategoryBox
-              active={this.state.active}
-              id="7"
-              onClick={handleClick}
-            >
-              <img id="7" src={parkImg}></img>
-              <CategoryText id="7">주차장</CategoryText>
+              <img id="6" src={parkImg}></img>
+              <CategoryText id="6">주차장</CategoryText>
             </CategoryBox>
           </div>
         </StyledSlider>

@@ -39,15 +39,6 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 5) {
-    getAllStore('쓰레기통')
-      .then((res) => {
-        console.log(res);
-        setData(res.data);
-      })
-      .then((err) => {
-        // alert('생성된 마커가 존재하지 않습니다.');
-      });
-  } else if (activeCategory == 6) {
     getAllStore('흡연장')
       .then((res) => {
         console.log(res);
@@ -56,7 +47,7 @@ export function getMarker(activeCategory, setData) {
       .then((err) => {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
-  } else if (activeCategory == 7) {
+  } else if (activeCategory == 6) {
     getAllStore('주차장')
       .then((res) => {
         console.log(res);
@@ -65,7 +56,7 @@ export function getMarker(activeCategory, setData) {
       .then((err) => {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
-  } else if (activeCategory == 8) {
+  } else if (activeCategory == 7) {
     getAllBooth()
       .then((res) => {
         console.log(res);
