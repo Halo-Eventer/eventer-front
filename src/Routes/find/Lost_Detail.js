@@ -8,6 +8,7 @@ function Lost_Detail() {
   const location = useLocation();
   const data = location.state.props;
   console.log(data);
+  console.log(data.image);
   return (
     <>
       <Wrapper>
@@ -18,11 +19,11 @@ function Lost_Detail() {
           </UpperBar>
         </TopFixedDiv>
 
-        <Img></Img>
+        <Img src={data.image}></Img>
         <Tag>
-          <Category>{data.category}</Category>
+          <Category>{data.type}</Category>
           <Name style={{ marginTop: '2px' }}>{data.name}</Name>
-          <Date style={{ marginTop: '4px' }}>발견날짜:{data.date}</Date>
+          <Date style={{ marginTop: '4px' }}>발견날짜:{data.findDate}</Date>
         </Tag>
 
         <Btn onClick={() => (document.location.href = 'tel:01063920549')}>
@@ -52,7 +53,7 @@ const Name = styled.div`
   font-weight: 700;
   line-height: 28px; /* 140% */
 `;
-const Img = styled.div`
+const Img = styled.img`
   margin-top: 64px;
   width: 358px;
   height: 358px;
