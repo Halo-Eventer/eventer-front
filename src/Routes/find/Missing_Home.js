@@ -4,11 +4,12 @@ import Missing_Input, {
   MissingSemiTitle,
 } from 'components/missing/Missing_Input';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
 import { useRecoilState } from 'recoil';
 import { missingInfoState } from 'recoils/atoms_missing';
+import { missingPost } from 'apis/apis';
 
 function Missing_Home() {
   const navigate = useNavigate();
@@ -22,13 +23,20 @@ function Missing_Home() {
     // Object.entries(info)로 info 객체의 키-값 쌍을 배열로 변환
     // filter() 함수로 'another' 키를 제외
     const hasEmptyValue = Object.entries(info)
-      .filter(([key, value]) => key !== 'another') // 'another' 키 제외
+      .filter(([key, value]) => key !== 'content') // 'another' 키 제외
       .some(([key, value]) => value === '' || value == null);
     // some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트
     //즉, 여기서는 하나라도 빈값이 나오면 true를 return할 것이다.
     if (hasEmptyValue) alert('필수 항목을 작성해주세요.');
     else if (!active) alert('개인정보 수집, 이용에 동의해주세요.');
-    else console.log(info);
+    else
+      missingPost(info)
+        .then((res) => {
+          console.log(res);
+          alert('등록이 완료되었습니다.');
+          navigate('');
+        })
+        .catch((err) => console.log(err));
   };
   return (
     <Wrapper>
@@ -67,19 +75,19 @@ function Missing_Home() {
           require={true}
           title="실종 위치"
           placeholder="실종 위치 입력"
-          id="location"
+          id="missingLocation"
         />
         <Missing_Input
           require={true}
           title="실종 시간"
           placeholder="실종 시간 입력 (ex: 23:00)"
-          id="time"
+          id="missingTime"
         />
         <Missing_Input
           setInfo={setInfo}
           title="기타 특이사항"
           placeholder="특징, 인상착의 등 입력"
-          id="another"
+          id="content"
         />
       </MissingInfoContainer>
       <MissingInfoContainer>
@@ -94,7 +102,7 @@ function Missing_Home() {
           require={true}
           title="보호자 연락처"
           placeholder="전화번호 입력 (-없이 숫자만)"
-          id="parentPhone"
+          id="parentNo"
         />
         <div>
           <MissingSemiTitle style={{ marginTop: '20px' }}>

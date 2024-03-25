@@ -3,14 +3,15 @@ import { atom } from 'recoil';
 export const missingInfoState = atom({
   key: 'info',
   default: {
+    name: '',
     age: '',
-    another: '',
     gender: '',
     image: '',
-    location: '',
-    name: '',
+    missingLocation: '',
+    missingTime: '',
+    content: '',
     parentName: '',
-    parentPhone: '',
-    time: '',
+    parentNo: '',
+    popup: false,
   },
 });
