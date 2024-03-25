@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
@@ -59,14 +58,6 @@ function AssignBasicInfo_Post() {
           <Input onChange={handleInfo} id="subtitle"
             value={info.subtitle} placeholder="부제목"></Input>
         </InputDiv>
-
-        <InputDiv>
-          <Input
-            onChange={handleInfo} id="simpleExplanation"
-            value={info.simpleExplanation} placeholder="요약 설명"
-          ></Input>
-        </InputDiv>
-
 
         <TextAreaDiv>
           <TextArea

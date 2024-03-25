@@ -11,9 +11,9 @@ import { boardListState, categoryState_assign, itemIDState, modeState, typeState
 function Assign_List(props) {
 
     //*****전역 recoil모음*****
-    const [boardList, setBoardList]=useRecoilState(boardListState);
+    const [boardList, setBoardList] = useRecoilState(boardListState);
     const [category, setCategory] = useRecoilState(categoryState_assign);
-    const [type, setType]=useRecoilState(typeState);
+    const [type, setType] = useRecoilState(typeState);
     const [mode, setMode] = useRecoilState(modeState);
     const [itemID, setItemID] = useRecoilState(itemIDState);
     //*****전역 recoil모음*****
@@ -26,6 +26,7 @@ function Assign_List(props) {
     const onClick_dropDown = () => {
         setShowList(prev => !prev);
     }
+
     const onClick_drops = (event) => {
         event.preventDefault();
         const index = event.currentTarget.value;
@@ -35,7 +36,7 @@ function Assign_List(props) {
             const index2 = event.currentTarget.id;
             console.log("index, index2 :", index, index2);
             //            console.log("type : ",categoryEntries[index][1][index2]);
-            setType(categoryEntries[index][1][index2]);
+            setType(categoryEntries[index][1][index2].eng);
         }
         else
             setType("");
@@ -44,10 +45,12 @@ function Assign_List(props) {
 
         setShowList(false);
     }
+
     const onClick_add = (event) => {
         event.preventDefault();
         setMode('a');
     }
+
     const onClick_revise = (event) => {
         event.preventDefault();
 
@@ -58,6 +61,7 @@ function Assign_List(props) {
         // props.setSE(
         //     boardList[event.currentTarget.dataset.index].simpleExplanation);
     }
+
     const onClick_delete = (event) => {
         event.preventDefault();
 
@@ -87,23 +91,26 @@ function Assign_List(props) {
                 });
     }
 
+
     useEffect(() => {
         setCategoryEntries(Object.entries(props.categoryList));
     }, []);
+
     useEffect(() => {
-        if (categoryEntries.length > 0)
+        if (category == "notice") //for 게시글
+            setSelectedDrop("공지사항");
+        else if (categoryEntries[0] !== undefined) //그 외
             setSelectedDrop(categoryEntries[0][1]);
     }, [categoryEntries])
-    useEffect(() => {
-        if (category.length > 0)
-            console.log("category, type : ", category, type);
-    }, [category])
 
 
-    console.log("boardList:",boardList);
+    console.log("boardList:", boardList);
+    console.log("category, type : ", category, type);
+
+
     return (
         <Wrapper>
-            {categoryEntries.length > 1
+            {(category == "notice" || categoryEntries?.length > 1)
                 &&
                 <DropDown>
                     <DropDownBar onClick={onClick_dropDown}>
@@ -114,13 +121,14 @@ function Assign_List(props) {
                         <DropDownlist>
                             {categoryEntries.map((item, index) => {
                                 if (typeof (item[1]) === 'object') {
+                                    //'category'가 객체인 경우 (marker, notice 등)
                                     return item[1].map((item2, index2) => {
                                         if (item2 != selectedDrop)
                                             return <button
                                                 key={index2}
                                                 id={index2}
                                                 value={index}
-                                                onClick={onClick_drops}>{item2}</button>
+                                                onClick={onClick_drops}>{item2.kor}</button>
                                     });
                                     //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
                                 }

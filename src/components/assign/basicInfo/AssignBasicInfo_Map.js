@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { Flex } from 'asset/Style';
 import { useEffect, useRef, useState } from 'react';
 import Assign_latlng from '../Assign_latlng';
-import { useRecoilState } from 'recoil';
-import { categoryState_assign, infoState } from 'recoils/atoms_assign';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { categoryState_assign, infoState, typeState } from 'recoils/atoms_assign';
 import AssignMenu from '../AssignMenu';
 import AssignImage from '../AssignImage';
 import { Input, InputContainer, InputDiv, TextArea, TextAreaDiv } from 'Routes/assign/AssignPage_Home';
@@ -12,6 +12,7 @@ function AssignBasicInfo_Map() {
 
   //*****전역 recoil모음*****
   const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [type, setType] = useRecoilState(typeState);
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
@@ -58,7 +59,8 @@ function AssignBasicInfo_Map() {
   return (
     <div>
       {category != 'amenity' &&
-        (category == 'store'
+        ((type == 'PUB' || type == 'SHOP')
+        //옛날에 카테고리 'store'였을 때 메뉴 호출 여부 (지금은 미정)
           ? <AssignMenu />
           : <AssignImage />
         )}

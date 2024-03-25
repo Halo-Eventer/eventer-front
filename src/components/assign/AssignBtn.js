@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { assignApi, assignMenuApi, reviseApi, reviseMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 import { useRecoilState } from 'recoil';
-import { cancleState, categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import { cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 
 function AssignBtn() {
   const festivalId = 1;
 
     //*****전역 recoil모음*****
     const [category, setCategory] = useRecoilState(categoryState_assign);
+    const [type, setType] = useRecoilState(typeState);
     const [mode,setMode]=useRecoilState(modeState);
     const [cancle, setCancle] = useRecoilState(cancleState);
     const [itemID, setItemID] = useRecoilState(itemIDState);
@@ -20,8 +21,11 @@ function AssignBtn() {
     console.log(info);
     let tmp = window.confirm("추가하시겠습니까?");
 
+    let typed_info = {...info, type:type};
+    //현재 무슨 타입인지 추가
+
     if (tmp)
-      assignApi(info, category, festivalId)
+      assignApi(typed_info, category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
             console.log('response.data : ', response.data);
@@ -33,12 +37,14 @@ function AssignBtn() {
           console.log('postData error : ', error);
         });
   };
+
   const assignMarker = () => {
     console.log(info);
     let tmp = window.confirm("추가하시겠습니까?");
+    let typed_info = {...info,type:type};
 
     if (tmp)
-      assignApi(info, category, festivalId)
+      assignApi(typed_info, category, festivalId)
         .then((res) => {
           if (res.data.storeId) {
             console.log("일단 가게등록은 성공",res.data.storeId, info.menus);
@@ -87,7 +93,7 @@ function AssignBtn() {
     let tmp = window.confirm("수정하시겠습니까?");
     id = Number(id) 
       //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
-      //일단 태그에서 target해서 받아오는 값들은 웬만하면 string
+      //태그에서 target해서 받아오는 값들은 string
     if (tmp)
       reviseApi(info, category, id)
         .then((res) => {

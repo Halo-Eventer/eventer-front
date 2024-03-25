@@ -5,12 +5,46 @@ import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.pn
 export const mapCategory = {
   concert: '콘서트',
   booth: '관광지',
-  store: ['관리자', '관광안내소', '편의점', '화장실', '흡연장', '주차장'],
+  store: [
+    {
+      kor: '관리자',
+      eng: 'MANAGER'
+    },
+    {
+      kor: '관광안내소',
+      eng: 'INFO'
+    },
+    {
+      kor: '편의점',
+      eng: 'CONVINIENCESTORE'
+    },
+    {
+      kor: '화장실',
+      eng: 'TOILET'
+    },
+    {
+      kor: '흡연장',
+      eng: 'SMOKING'
+    },
+    {
+      kor: '주차장',
+      eng: 'PARKING'
+    }
+  ],
 };
 
 export const postCategory = {
-  notice: '공지사항',
-  event: '이벤트',
+  notice: [
+    {
+      kor: '공지사항',
+      eng: 'NOTICE'
+    },
+
+    {
+      kor: '이벤트',
+      eng: 'EVENT'
+    },
+  ]
 };
 
 export const lostCategory = {
@@ -35,19 +69,19 @@ export const urgentCategory = {
 
 export const mapForm_blank = {
 
-    tag: '',
-    name: '',
-    summary: '',
-    subtitle: '',
-    content: '',
-    latitude: 0,
-    longitude: 0,
-    location: '',
-    isOperation: true,
-    operationHours: '',
+  tag: '',
+  name: '',
+  summary: '',
+  subtitle: '',
+  content: '',
+  latitude: 0,
+  longitude: 0,
+  location: '',
+  isOperation: true,
+  operationHours: '',
 
-    thumbnail: thumbnail_preview,
-    images: [],
+  thumbnail: thumbnail_preview,
+  images: [],
 }
 
 export const storeForm_blank = {
@@ -68,47 +102,46 @@ export const storeForm_blank = {
 
 export const postForm_blank = {
   title: '',
-  simpleExplanation: '',
   subtitle: '',
   content: '',
-
-
-    thumbnail: thumbnail_preview,
-    images: [],
+  type:'',
+  
+  thumbnail: thumbnail_preview,
+  images: [],
 }
 
 
 
 
 export const lostForm_blank = {
-    title: '',
-    simpleExplanation: '',
-    subtitle: '',
-    content: '',
+  title: '',
+  simpleExplanation: '',
+  subtitle: '',
+  content: '',
 
-    thumbnail: thumbnail_preview2,
-    images: [],
+  thumbnail: thumbnail_preview2,
+  images: [],
 }
 
 
 export const missingForm_blank = {
-    title: '',
-    simpleExplanation: '',
-    subtitle: '',
-    content: '',
+  title: '',
+  simpleExplanation: '',
+  subtitle: '',
+  content: '',
 
-    thumbnail: thumbnail_preview_missing,
-    images: [],
+  thumbnail: thumbnail_preview_missing,
+  images: [],
 }
 
 
 export const urgentForm_blank = {
-    title: '',
-    simpleExplanation: '',
-    subtitle: '',
-    content: '',
+  title: '',
+  simpleExplanation: '',
+  subtitle: '',
+  content: '',
 
-    thumbnail: thumbnail_preview,
-    images: [],
+  thumbnail: thumbnail_preview,
+  images: [],
 }
 

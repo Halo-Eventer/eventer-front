@@ -60,8 +60,8 @@ function AssignPage_Post() {
 
   useEffect(()=>{
     setCategory('notice');
+    setType('NOTICE');
     setBoardList([]);
-    setType('');
   },[])
 
   useEffect(()=>
@@ -72,7 +72,7 @@ function AssignPage_Post() {
     setMode("");
     console.log('first useEffect');
     fetchList(festivalId, category, type, setBoardList);
-  }, [category]);
+  }, [category,type]);
 
   useEffect(() => {
     console.log('mode:', mode);

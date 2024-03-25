@@ -19,11 +19,13 @@ function AssignPage_Select() {
 
     //*****전역 recoil모음*****
     const setCategory = useSetRecoilState(categoryState_assign);
+    const setType = useSetRecoilState(typeState);
     //*****전역 recoil모음*****
 
     
     useEffect(()=>{
       setCategory('');
+      setType('');
     },[])
     // 이전 category에 대한 fetchList가 뒤늦게 실행되어서
     // 이전 카테고리에 대한 내용이 나오는 오류에 대한 방지

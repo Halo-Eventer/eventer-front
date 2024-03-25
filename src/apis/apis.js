@@ -62,12 +62,21 @@ export const assignApi = (info, category, festivalId) => {
   console.log('info in assignApi : ', info);
   console.log(info.thumbnail);
   if (info.thumbnail == thumbnail_preview) info.thumbnail = '';
-  return axios.post(`/${category}`, info, {
-    params: {
-      festivalId: festivalId,
-      type: info.type,
-    },
-  });
+
+  if(category=='notice') 
+    // 게시글인경우 type을 쿼리에 추가 X
+    return axios.post(`/${category}`, info, {
+      params: {
+        festivalId: festivalId,
+      },
+    });
+  else
+    return axios.post(`/${category}`, info, {
+      params: {
+        festivalId: festivalId,
+        type: info.type,
+      },
+    });
 };
 export const reviseApi = (info, category, id) => {
   console.log('info in reviseApi : ', info);

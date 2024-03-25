@@ -9,27 +9,33 @@ import styled, { useTheme } from "styled-components";
 
 
 function PostList({ postList }) {
-    const theme=useTheme();
+    const theme = useTheme();
     const category = useRecoilValue(categoryState);
 
     return (
         <ListBoard>
             <MainBoard>
                 {postList?.map((item, index) =>
-                        <PostElement 
-                        key={index} 
-                        to={`${item.id}`}
+                    <PostElement
+                        key={index}
+                        to={`/post/${item.id}`}
                         fontColor={theme.colors.fontColor}>
-                            <Flex style={{
-                                flexDirection: 'column',
-                                alignSelf: 'flex-start'
-                            }}>
-                                <h3>{item.index}</h3>
-                                <h1>{item.title}</h1>
-                                <h2>{item.time}</h2>
-                            </Flex>
-                            <img src={item.thumbnail}></img>
-                        </PostElement>
+                        <Flex style={{
+                            flexDirection: 'column',
+                            alignSelf: 'flex-start'
+                        }}>
+                            <h3>{item.subtitle}</h3>
+                            <h1>{item.title}</h1>
+                            <h2>
+                                {
+                                    item.time.slice(0, 10) +
+                                    ' ' +
+                                    item.time.slice(11, 19)
+                                }
+                            </h2>
+                        </Flex>
+                        <img src={item.thumbnail}></img>
+                    </PostElement>
                 )
                 }
             </MainBoard>
@@ -77,7 +83,7 @@ cursor:pointer;
     h3{
         width:100%;
         text-align:left;
-        color: ${props=>props.fontColor};
+        color: ${props => props.fontColor};
         font-family: 'Pretendard';
         font-size: 15px;
         font-style: normal;

@@ -89,7 +89,7 @@ function Detail_Post() {
           </ImgBlock>
           <TextBoard>
             <div>
-              <h1>{detailedList.name}</h1>
+              <h1>{detailedList.title}</h1>
               <h2>{detailedList.subtitle}</h2>
               {detailedList.content?.split('\n').map((line, key) => {
                 if (line.length === 0) {
