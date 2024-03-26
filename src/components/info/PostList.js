@@ -12,6 +12,7 @@ function PostList({ postList }) {
     const theme = useTheme();
     const category = useRecoilValue(categoryState);
 
+    console.log("postList:",postList);
     return (
         <ListBoard>
             <MainBoard>

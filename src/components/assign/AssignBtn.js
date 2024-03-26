@@ -18,11 +18,10 @@ function AssignBtn() {
 
 
   const assignPost = () => {
-    console.log(info);
-    let tmp = window.confirm("추가하시겠습니까?");
+    let typed_info = {...info, type:type};//현재 무슨 타입인지 추가
+    console.log("typed_info:", typed_info);
 
-    let typed_info = {...info, type:type};
-    //현재 무슨 타입인지 추가
+    let tmp = window.confirm("추가하시겠습니까?");
 
     if (tmp)
       assignApi(typed_info, category, festivalId)
@@ -39,16 +38,17 @@ function AssignBtn() {
   };
 
   const assignMarker = () => {
-    console.log(info);
-    let tmp = window.confirm("추가하시겠습니까?");
     let typed_info = {...info,type:type};
+    console.log("typed_info:", typed_info);
 
+    let tmp = window.confirm("추가하시겠습니까?");
+    
     if (tmp)
       assignApi(typed_info, category, festivalId)
         .then((res) => {
-          if (res.data.storeId) {
-            console.log("일단 가게등록은 성공",res.data.storeId, info.menus);
-            assignMenuApi(res.data.storeId, info.menus)
+          if (res.data.mapId) {
+            console.log("일단 가게등록은 성공",res.data.mapId, info.menus);
+            assignMenuApi(res.data.mapId, info.menus)
               .then((res) => {
                 console.log('res.data(menu) : ', res.data);
                 alert('해당 항목이 성공적으로 추가되었습니다.');
@@ -97,8 +97,8 @@ function AssignBtn() {
     if (tmp)
       reviseApi(info, category, id)
         .then((res) => {
-          if (res.data.storeId) {
-            console.log(res.data.storeId);
+          if (res.data.mapId) {
+            console.log(res.data.mapId);
             reviseMenuApi(info.menus)
               .then((res) => {
                 alert('해당 항목이 성공적으로 수정되었습니다.');

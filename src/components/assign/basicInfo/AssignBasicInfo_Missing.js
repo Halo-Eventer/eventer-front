@@ -39,6 +39,8 @@ function AssignBasicInfo_Missing() {
   const handleInfo = (e) => {
     console.log(e);
     const [value, id] = [e.target.value, e.target.id];
+    if(id==='age')
+      value=Number(value)
     setInfo({ ...info, [id]: value });
   };
 
@@ -53,19 +55,19 @@ function AssignBasicInfo_Missing() {
         <AssignThumbnail />
         <MissingPersonDiv>
           <InputDiv>
-            <Input onChange={handleInfo} id="title"
-              value={info.title} placeholder="실종자 이름"></Input>
+            <Input onChange={handleInfo} id="name"
+              value={info.name} placeholder="실종자 이름"></Input>
           </InputDiv>
 
           <InputDiv>
-            <Input onChange={handleInfo} id="subtitle"
-              value={info.subtitle} placeholder="실종자 나이"></Input>
+            <Input onChange={handleInfo} id="age"
+              value={info.age} placeholder="실종자 나이"></Input>
           </InputDiv>
 
           <InputDiv>
             <Input
-              onChange={handleInfo} id="simpleExplanation"
-              value={info.simpleExplanation} placeholder="실종자 성별"
+              onChange={handleInfo} id="gender"
+              value={info.gender} placeholder="실종자 성별"
             ></Input>
           </InputDiv>
         </MissingPersonDiv>
@@ -73,15 +75,15 @@ function AssignBasicInfo_Missing() {
 
       <InputDiv>
         <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value={info.simpleExplanation} placeholder="실종 위치"
+          onChange={handleInfo} id="missingLocation"
+          value={info.missingLocation} placeholder="실종 위치"
         ></Input>
       </InputDiv>
 
       <InputDiv>
         <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value={info.simpleExplanation} placeholder="실종 시간"
+          onChange={handleInfo} id="missingTime"
+          value={info.missingTime} placeholder="실종 시간"
         ></Input>
       </InputDiv>
 
@@ -98,15 +100,15 @@ function AssignBasicInfo_Missing() {
 
       <InputDiv>
         <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value={info.simpleExplanation} placeholder="보호자 성함"
+          onChange={handleInfo} id="parentName"
+          value={info.parentName} placeholder="보호자 성함"
         ></Input>
       </InputDiv>
 
       <InputDiv>
         <Input
-          onChange={handleInfo} id="simpleExplanation"
-          value={info.simpleExplanation} placeholder="보호자 연락처"
+          onChange={handleInfo} id="parentNo"
+          value={info.parentNo} placeholder="보호자 연락처"
         ></Input>
       </InputDiv>
     </InputContainer>

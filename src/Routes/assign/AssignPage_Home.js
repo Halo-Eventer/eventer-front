@@ -13,8 +13,6 @@ import {
 import dropDown from 'asset/images/DropDown.svg';
 import next from 'asset/images/Next.svg';
 
-
-
 function AssignPage_Home() {
   const navigate = useNavigate();
 

@@ -5,10 +5,12 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 
 
 
+
+
 //components/map 에서 쓰이는 apis (시작)
-export const getAllStore = (type) => {
+export const getAllMapCategory = (type) => {
   console.log(type);
-  return axios.get('/store?festivalId=1', { params: { type: type } });
+  return axios.get('/mapCategory?festivalId=1', { params: { type: type } });
 };
 
 export const getAllBooth = () => {
@@ -19,8 +21,8 @@ export const getAllConcert = (festivalId) => {
   return axios.get(`/concert?festivalId=${festivalId}`);
 };
 
-export const getDetailStore = (storeId) => {
-  return axios.get(`/store/${storeId}`);
+export const getDetailmapCategory = (mapId) => {
+  return axios.get(`/mapCategory/${mapId}`);
 };
 //components/map 에서 쓰이는 apis (끝)
 
@@ -36,8 +38,8 @@ export const getAll = (festivalId, category, type) => {
   if (category === 'notice') {    // 공지사항/이벤트(게시글) 리스트
     return axios.get(`/notice/${festivalId}/list`,
       { params: { type: type } });
-  } else if (category === 'store') {
-    return axios.get(`/store?festivalId=${festivalId}`, {
+  } else if (category === 'mapCategory') {
+    return axios.get(`/mapCategory?festivalId=${festivalId}`, {
       params: { type: type },
     });
   } else {
@@ -51,13 +53,6 @@ export const deleteDetail = (category, id) => {
   return axios.delete(`/${category}/${id}`);
 };
 
-export const assignMenuApi = (storeId, menus) => {
-  return axios.post(`/menu`, menus, {
-    params: {
-      storeId: storeId,
-    },
-  });
-};
 export const assignApi = (info, category, festivalId) => {
   console.log('info in assignApi : ', info);
   console.log(info.thumbnail);
@@ -70,6 +65,10 @@ export const assignApi = (info, category, festivalId) => {
         festivalId: festivalId,
       },
     });
+
+  else if (category=='lost' || category == 'urgent')
+    return axios.post(`/admin/${category}`, info);
+
   else
     return axios.post(`/${category}`, info, {
       params: {
@@ -78,10 +77,22 @@ export const assignApi = (info, category, festivalId) => {
       },
     });
 };
+export const assignMenuApi = (mapId, menus) => {
+  return axios.post(`/menu`, menus, {
+    params: {
+      mapId: mapId,
+    },
+  });
+};
 export const reviseApi = (info, category, id) => {
   console.log('info in reviseApi : ', info);
-  return axios.patch(`/${category}/${id}`, info);
+
+  if(category=='lost' || category == 'missing-person' || category == 'urgent')
+    return axios.patch(`/admin/${category}/${id}`, info);
+  else
+    return axios.patch(`/${category}/${id}`, info);
 };
+
 export const reviseMenuApi = (menus) => {
   return axios.patch(`/menu/${menus.id}`, menus, {});
 };

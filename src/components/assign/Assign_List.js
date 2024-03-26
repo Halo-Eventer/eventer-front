@@ -73,7 +73,7 @@ function Assign_List(props) {
         else
             title = ref.name;
 
-        console.log("id, title : ", id, title);
+        console.log("id, title, category, type: ", id, title, category, type);
         let tmp = window.confirm(`'${title}' 항목을 삭제하시겠습니까?`);
 
         if (tmp)
@@ -143,11 +143,19 @@ function Assign_List(props) {
                     }
                 </DropDown>
             }
-
+            
+            {
+            category!=='missing'
+            ?
             <AddBar onClick={onClick_add}>
                 <img src={plus} />
                 <h1>{selectedDrop} 추가</h1>
             </AddBar>
+            :
+            <AddBar style={{cursor:'default'}}>
+                <h1>실종자 목록</h1>
+            </AddBar>
+            }
             {boardList.length > 0 &&
                 <ListBoard>
                     {boardList.map((item, index) =>

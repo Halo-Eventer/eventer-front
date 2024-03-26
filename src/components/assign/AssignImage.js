@@ -24,12 +24,12 @@ function AssignImage() {
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
+        console.log("res.data, info.images:",res.data, info.images);
         let tmp = [...info.images, res.data]
         setInfo({...info,images:tmp});
-
       })
       .catch((err) => {
-        alert(err.response.data.error);
+        alert(err);
       });
   };
 
@@ -42,7 +42,7 @@ function AssignImage() {
   };
 
 
-
+  console.log("info",info);
   useEffect(()=>{
     console.log("mode",mode);
     }

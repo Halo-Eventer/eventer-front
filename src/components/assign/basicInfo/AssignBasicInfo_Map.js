@@ -59,7 +59,7 @@ function AssignBasicInfo_Map() {
   return (
     <div>
       {category != 'amenity' &&
-        ((type == 'PUB' || type == 'SHOP')
+        ((type == 'PUB')
         //옛날에 카테고리 'store'였을 때 메뉴 호출 여부 (지금은 미정)
           ? <AssignMenu />
           : <AssignImage />

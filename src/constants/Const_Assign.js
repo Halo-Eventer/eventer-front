@@ -1,22 +1,22 @@
 import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 import thumbnail_preview2 from 'asset/assign/thumbnail_preview2.png';
-import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.png';
+
 
 export const mapCategory = {
   concert: '콘서트',
   booth: '관광지',
-  store: [
+  mapCategory: [
     {
       kor: '관리자',
       eng: 'MANAGER'
-    },
+    }, 
     {
       kor: '관광안내소',
       eng: 'INFO'
     },
     {
       kor: '편의점',
-      eng: 'CONVINIENCESTORE'
+      eng: 'SHOP'
     },
     {
       kor: '화장실',
@@ -52,7 +52,7 @@ export const lostCategory = {
 };
 
 export const missingCategory = {
-  missing: '실종자',
+  'missing-person': '실종자',
 };
 
 export const wheelChairCategory = {
@@ -97,6 +97,7 @@ export const storeForm_blank = {
   type: '',
 
   thumbnail: thumbnail_preview,
+  images:[],
   menus: [],
 };
 
@@ -111,37 +112,33 @@ export const postForm_blank = {
 }
 
 
-
-
 export const lostForm_blank = {
-  title: '',
-  simpleExplanation: '',
-  subtitle: '',
-  content: '',
+  name: '',
+  type:'',
+  fineDate:'',
 
   thumbnail: thumbnail_preview2,
-  images: [],
 }
 
 
 export const missingForm_blank = {
-  title: '',
-  simpleExplanation: '',
-  subtitle: '',
-  content: '',
+  name: "",
+  age: 0,
+  gender: "",
+  thumbnail: "",
 
-  thumbnail: thumbnail_preview_missing,
-  images: [],
+  missingLocation: "",
+  missingTime: "",
+
+  content: "",
+  parentName: "",
+  parentNo: "",
+  popup: false
 }
 
 
 export const urgentForm_blank = {
   title: '',
-  simpleExplanation: '',
-  subtitle: '',
   content: '',
-
-  thumbnail: thumbnail_preview,
-  images: [],
 }
 

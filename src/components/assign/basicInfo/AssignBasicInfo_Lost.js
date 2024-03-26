@@ -49,18 +49,18 @@ function AssignBasicInfo_Lost() {
 
       <InputContainer ref={boxRef}>
         <InputDiv>
-          <Input onChange={handleInfo} id="title"
+          <Input onChange={handleInfo} id="type"
             value={info.title} placeholder="물건 카테고리 입력"></Input>
         </InputDiv>
 
         <InputDiv>
-          <Input onChange={handleInfo} id="subtitle"
+          <Input onChange={handleInfo} id="name"
             value={info.subtitle} placeholder="물건 이름 입력"></Input>
         </InputDiv>
 
         <InputDiv>
           <Input
-            onChange={handleInfo} id="simpleExplanation"
+            onChange={handleInfo} id="findDate"
             value={info.simpleExplanation} placeholder="발견 날짜 입력"
           ></Input>
         </InputDiv>

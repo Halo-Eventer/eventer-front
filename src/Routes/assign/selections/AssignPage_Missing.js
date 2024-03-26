@@ -40,7 +40,7 @@ function AssignPage_Missing() {
   const [categoryList, setCategoryList]= useState(missingCategory);
 
   useEffect(()=>{
-    setCategory('missing');
+    setCategory('missing-person');
     setBoardList([]);
     setType('');
   },[])
