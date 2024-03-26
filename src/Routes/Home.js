@@ -53,15 +53,16 @@ function Home() {
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch
   const [homeList, setHomeList]=useState({});
   const [bannerList, setBannerList] = useState([]);
+
+
   const fetchHome = () => {
     getHome()
       .then(response => {
-        setHomeList(response.date)
+        setHomeList(response.data)
         console.log("homeList:", response.data);
       })
       .catch(error => { console.log("fetchHome error:", error) })
   }
-
 
 
   useEffect(() => {
@@ -135,7 +136,7 @@ function Home() {
               </Index>
 
               <StyledSlider {...settings}>
-                {bannerList.map((item, key) => {
+                {bannerList?.map((item, key) => {
                   // if (key === 0 || key === 4)
                   return (
                     <ImgBoard

@@ -38,9 +38,12 @@ function AssignBasicInfo_Missing() {
   // };
   const handleInfo = (e) => {
     console.log(e);
-    const [value, id] = [e.target.value, e.target.id];
-    if(id==='age')
-      value=Number(value)
+    let [value, id] = [e.target.value, e.target.id];
+    if (id === 'age') { //age인 경우 숫자로 변환
+      value = Number(value);
+      if (value == 0) //but 0인 경우는 문자열 빈칸으로 돌려서 placeholder 출력
+        value = "";
+    }
     setInfo({ ...info, [id]: value });
   };
 
@@ -60,7 +63,7 @@ function AssignBasicInfo_Missing() {
           </InputDiv>
 
           <InputDiv>
-            <Input onChange={handleInfo} id="age"
+            <Input onChange={handleInfo} id="age" type='number'
               value={info.age} placeholder="실종자 나이"></Input>
           </InputDiv>
 

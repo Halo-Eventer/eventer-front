@@ -10,5 +10,3 @@ export const categoryState = atom({
     key: "categoryState",
     default: "notice"
 });
-
-

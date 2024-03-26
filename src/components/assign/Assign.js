@@ -26,7 +26,7 @@ function Assign() {
 
     lost : <AssignBasicInfo_Lost/>,
     
-    missing:<AssignBasicInfo_Missing/>,
+    'missing-person':<AssignBasicInfo_Missing/>,
 
     urgent:<AssignBasicInfo_Urgent/>
   }

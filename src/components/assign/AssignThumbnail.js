@@ -56,7 +56,7 @@ function AssignThumbnail() {
 }
 
 const InputThumbnail = styled.img`
-${props=>props.category=='missing' 
+${props=>props.category=='missing-person' 
 ? 'width: 128px; height: 128px;'
 : 'width: 352px; height: 352px; margin-top: 8px;'}
   border-radius: 4px;

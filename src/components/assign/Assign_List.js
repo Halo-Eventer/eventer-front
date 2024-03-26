@@ -4,9 +4,12 @@ import styled from 'styled-components'
 import dropDown2 from 'asset/images/DropDown2.svg';
 import plus from 'asset/images/Plus.svg';
 
-import { deleteDetail } from 'apis/apis';
+import { bannerApi, deleteDetail, popUpApi } from 'apis/apis';
 import { useRecoilState } from 'recoil';
 import { boardListState, categoryState_assign, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
+import { Flex } from 'asset/Style';
+import { festivalId } from 'Routes/Home';
+import fetchList from 'utils/fetchList';
 
 function Assign_List(props) {
 
@@ -21,6 +24,9 @@ function Assign_List(props) {
     const [selectedDrop, setSelectedDrop] = useState("");
     const [categoryEntries, setCategoryEntries] = useState([]);
     const [showList, setShowList] = useState(false);
+    const [upText, setUpText] = useState("");
+    const mainUpText = "[메인]";
+    const popUpText = "[팝업]";
 
 
     const onClick_dropDown = () => {
@@ -90,6 +96,49 @@ function Assign_List(props) {
                     console.log("error : ", error);
                 });
     }
+    const onClick_upDown = (event) => {
+        event.preventDefault();
+        const id = Number(event.currentTarget.id);
+        const value = event.currentTarget.dataset.value;
+
+        let up;
+
+        if (value == 'up')
+            up = true;
+        else
+            up = false;
+
+        console.log("category, id, value, popUp:",
+            category, id, value, up)
+
+        let tmp;
+
+        if (category === 'notice')
+            tmp = window.confirm('해당 항목을 메인페이지에 올리시겠습니까?');
+        else
+            tmp = window.confirm('해당 항목을 메인페이지의 팝업창에 올리시겠습니까?');
+
+
+        if (tmp) {
+            if (category === 'notice')
+                bannerApi(id, up)
+                    .then(response => {
+                        alert(response.data);
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+            else
+                popUpApi(category, id, up)
+                    .then(response => {
+                        alert(response.data);
+                        fetchList(festivalId, category, type, setBoardList);
+                    })
+                    .catch(error => {
+                        alert(error);
+                    })
+        }
+    }
 
 
     useEffect(() => {
@@ -103,6 +152,13 @@ function Assign_List(props) {
             setSelectedDrop(categoryEntries[0][1]);
     }, [categoryEntries])
 
+    useEffect(() => {
+        if (category === 'notice') {
+            setUpText('메인');
+        }
+        else
+            setUpText('팝업');
+    }, [category])
 
     console.log("boardList:", boardList);
     console.log("category, type : ", category, type);
@@ -143,31 +199,49 @@ function Assign_List(props) {
                     }
                 </DropDown>
             }
-            
+
             {
-            category!=='missing'
-            ?
-            <AddBar onClick={onClick_add}>
-                <img src={plus} />
-                <h1>{selectedDrop} 추가</h1>
-            </AddBar>
-            :
-            <AddBar style={{cursor:'default'}}>
-                <h1>실종자 목록</h1>
-            </AddBar>
+                <AddBar onClick={onClick_add}>
+                    <img src={plus} />
+                    <h1>{selectedDrop} 추가</h1>
+                </AddBar>
             }
             {boardList.length > 0 &&
                 <ListBoard>
                     {boardList.map((item, index) =>
-                        <div key={index}>
-                            <h1 onClick={onClick_revise} id={item.id} data-index={index}>{
-                                category === 'notice'
-                                    ?
-                                    item.title
-                                    :
-                                    item.name}</h1>
-                            <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
-                        </div>)}
+                        <BoardElement key={index}>
+                            <h1 onClick={onClick_revise} id={item.id} data-index={index}>
+                                {
+                                    (category === 'notice' || category === 'urgent')
+                                        ?
+                                        item.title
+                                        :
+                                        item.name
+                                }
+                                &nbsp;
+                                {
+                                    item.popup
+                                    && <span style={{ color: '#4F33F6' }}>{popUpText}</span>
+                                }
+                            </h1>
+                            <BtnDiv>
+                                {
+                                    (category == 'notice' ||
+                                        category == 'missing-person' ||
+                                        category == 'urgent')
+                                    &&
+                                    <Flex>
+                                        <h3 id={item.id} onClick={onClick_upDown} data-value='up'>
+                                            {upText} 올리기
+                                        </h3>
+                                        <h4 id={item.id} onClick={onClick_upDown} data-value='down'>
+                                            {upText} 내리기
+                                        </h4>
+                                    </Flex>
+                                }
+                                <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
+                            </BtnDiv>
+                        </BoardElement>)}
                 </ListBoard>
             }
         </Wrapper>
@@ -300,6 +374,7 @@ img{
 }
 `;
 
+const BoardElement = styled.div``;
 const ListBoard = styled.div`
 height:${(n) => 48 * n.pagenum}px;
 display:flex;
@@ -308,7 +383,7 @@ justify-content:flex-start;
 align-items:center;
 
 
-div{
+${BoardElement}{
 width: 544px;
 height: 48px;
 flex-shrink: 0;
@@ -340,6 +415,7 @@ cursor:pointer;
 h2{
 margin:0;
 
+width:42px;
 height:32px;
 
 color: #F00;
@@ -350,11 +426,58 @@ font-style: normal;
 font-weight: 600;
 line-height: 24px; /* 160% */
 
-padding: 4px 8px;
+display:flex;
 justify-content: center;
 align-items: center;
 
 cursor:pointer;
 }
+h3{
+width:72px;
+height:24px;
+
+border-radius: 4px;
+background: #E0DAFF;
+
+color: #4F33F6;
+text-align: right;
+
+/* flag1 */
+font-family: Pretendard;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+
+display: flex;
+justify-content: center;
+align-items: center;
+
 }
+h4{
+width:72px;
+height:24px;
+
+border-radius: 4px;
+background: #F2F2F2;
+
+color: #111;
+text-align: right;
+
+/* flag1 */
+font-family: Pretendard;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+
+display: flex;
+justify-content: center;
+align-items: center;
+}
+}
+`;
+const BtnDiv = styled(Flex)`
+gap:4px;
+align-items:center;
 `;
