@@ -121,14 +121,14 @@ const MenuTxt = styled.div`
 `;
 const DetailTitle = styled.div`
   color: #000;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 18px;
   font-weight: 600;
 `;
 const DetailSemi = styled.div`
   margin-top: 4px;
   color: #333;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 15px;
   font-weight: 500;
 `;

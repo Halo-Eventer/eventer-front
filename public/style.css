@@ -3,14 +3,9 @@
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2')
     format('woff2');
 }
-@font-face {
-  font-family: 'Pretendard-Regular';
-  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
-    format('woff');
-}
+
 @font-face {
   font-family: 'Pretendard';
-
   src: url('../src/asset/fonts/PretendardVariable.woff2') format('woff');
 }
 body {

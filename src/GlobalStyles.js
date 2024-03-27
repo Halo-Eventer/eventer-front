@@ -8,17 +8,16 @@ export const GlobalStyles = createGlobalStyle`
     font-style: normal;
 }
 
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body{
-  background-color:${props=>props.inAssign 
-  ? '#FFF'
-  : '#000'
-  };
+  background-color:${(props) => (props.inAssign ? '#FFF' : '#000')};
 }
 
 button{

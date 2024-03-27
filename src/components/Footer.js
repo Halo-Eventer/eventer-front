@@ -22,11 +22,11 @@ export default Footer;
 export const FooterBox = styled.div`
   width: 358px;
 
-  background-color:#111;
+  background-color: #111;
 
   margin-top: 16px;
 
-  padding:16px;
+  padding: 16px;
 
   display: flex;
   flex-direction: column;
