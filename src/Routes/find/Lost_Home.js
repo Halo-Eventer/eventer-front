@@ -35,7 +35,7 @@ function Lost_Home() {
             console.log(e);
             return (
               <div onClick={() => navigate(`${e.id}`, { state: { props: e } })}>
-                <Box image={e.image}>
+                <Box image={e.thumbnail}>
                   <Tag>
                     <Category>{e.type}</Category>
                     <Name>{e.name}</Name>
