@@ -12,12 +12,14 @@ import {
 
 import dropDown from 'asset/images/DropDown.svg';
 import next from 'asset/images/Next.svg';
+import { useRecoilState } from 'recoil';
 
 function AssignPage_Home() {
   const navigate = useNavigate();
 
   const [festival, setFestival] = useState('세종대학교');
   const [rotate, setRotate] = useState('0deg');
+  const [festivalId,setFestivalId] = useRecoilState(festivalId);
 
   const onClick_home = () => {
     navigate(`/assign_home`);
@@ -39,8 +41,7 @@ function AssignPage_Home() {
   //(뭘 선택하자마자 애니메이션 발생하게 하는건 힘듬. 그냥 select자체의 포커스 여부에만 집중해야함)
 
   const onClick_submit = () => {
-    const festivalID = 1;
-    navigate(`/assign_select/${festivalID}`);
+    navigate(`/assign_select/${festivalId}`);
   };
 
   return (

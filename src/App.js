@@ -75,7 +75,12 @@ function App() {
             <Route path="/missing" element={<Missing_Home />}></Route>
             <Route path="/lost" element={<Lost_Home />}></Route>
             <Route path="/lost/:id" element={<Lost_Detail />}></Route>
+
+
+          {/* 관리자페이지 */}
             <Route path="/assign" element={<AssignPage_Select />} />
+            {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
+            {/* 플랫폼화 됐을 때 */}
             <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
             <Route path="/assign_post/:id" element={<AssignPage_Post />} />
 

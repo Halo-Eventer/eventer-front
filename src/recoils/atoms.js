@@ -3,7 +3,7 @@ import { atom, selector } from "recoil";
 
 export const festivalIdState = atom({
     key:"festivalIdState",
-    default:0
+    default:1
 })
 
 export const categoryState = atom({

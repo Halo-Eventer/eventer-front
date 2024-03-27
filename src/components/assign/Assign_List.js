@@ -7,8 +7,6 @@ import plus from 'asset/images/Plus.svg';
 import { useRecoilState } from 'recoil';
 import { boardListState, categoryState_assign, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { Flex } from 'asset/Style';
-import { festivalId } from 'Routes/Home';
-import fetchList from 'utils/fetchList';
 import { popUpApi } from 'apis/apis_PATCH';
 import { bannerApi } from 'apis/apis_POST';
 import { deleteDetail } from 'apis/apis_DELETE';
@@ -116,9 +114,15 @@ function Assign_List(props) {
         let tmp;
 
         if (category === 'notice')
-            tmp = window.confirm('해당 항목을 메인페이지에 올리시겠습니까?');
+            tmp = window.confirm
+                (up
+                    ? '해당 항목을 메인페이지에 등록하시겠습니까?'
+                    : '해당 항목을 메인페이지에서 삭제하시겠습니까?');
         else
-            tmp = window.confirm('해당 항목을 메인페이지의 팝업창에 올리시겠습니까?');
+            tmp = window.confirm(
+                up
+                    ? '해당 항목을 팝업창에 등록하시겠습니까?'
+                    : '해당 항목을 팝업창에서 삭제하시겠습니까?');
 
 
         if (tmp) {
@@ -134,7 +138,7 @@ function Assign_List(props) {
                 popUpApi(category, id, up)
                     .then(response => {
                         alert(response.data);
-                        fetchList(festivalId, category, type, setBoardList);
+                        setMode("f");
                     })
                     .catch(error => {
                         alert(error);
