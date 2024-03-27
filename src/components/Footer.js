@@ -35,7 +35,7 @@ export const FooterBox = styled.div`
 
   h1 {
     color: #999;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 16px;
     font-style: normal;
     font-weight: 900;
@@ -46,7 +46,7 @@ export const FooterBox = styled.div`
 
   h2 {
     color: #777;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 14px;
     font-style: normal;
     font-weight: 500;

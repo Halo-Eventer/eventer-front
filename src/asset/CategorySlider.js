@@ -125,7 +125,7 @@ const StyledSlider = styled(Slider)`
     justify-content: center;
     align-items: center;
     background-color: #fff;
-
+    font-family: 'Pretendard';
     height: 36px;
     font-size: 13px;
 

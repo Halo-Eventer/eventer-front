@@ -471,7 +471,7 @@ export const SecondBlock = styled.div`
 
     hr {
       width: 326px;
-      height: 0px;
+      height: 0.5px;
       flex-shrink: 0;
 
       stroke-width: 1px;

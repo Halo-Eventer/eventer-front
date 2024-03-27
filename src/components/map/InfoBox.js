@@ -54,7 +54,7 @@ const PlaceType = styled.div`
   justify-content: center;
   align-items: center;
   color: #ff5c00;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 12px;
   font-weight: 500;
   border-radius: 4px;

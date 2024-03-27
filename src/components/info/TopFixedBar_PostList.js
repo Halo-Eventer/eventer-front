@@ -72,10 +72,10 @@ export const StyledTopFixedBar = styled(TopFixedBar)`
   background-color: black;
 
   h1 {
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     margin-top: 4px;
 
     color: white;
@@ -113,7 +113,7 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
@@ -130,7 +130,7 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
