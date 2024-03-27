@@ -19,7 +19,7 @@ function Lost_Detail() {
           </UpperBar>
         </TopFixedDiv>
 
-        <Img src={data.image}></Img>
+        <Img src={data.thumbnail}></Img>
         <Tag>
           <Category>{data.type}</Category>
           <Name style={{ marginTop: '2px' }}>{data.name}</Name>

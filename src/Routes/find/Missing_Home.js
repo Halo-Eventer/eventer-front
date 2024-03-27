@@ -34,7 +34,7 @@ function Missing_Home() {
         .then((res) => {
           console.log(res);
           alert('등록이 완료되었습니다.');
-          navigate('');
+          navigate('/');
         })
         .catch((err) => console.log(err));
   };
