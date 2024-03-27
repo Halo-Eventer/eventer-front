@@ -6,7 +6,7 @@ export const missingInfoState = atom({
     name: '',
     age: '',
     gender: '',
-    image: '',
+    thumbnail: '',
     missingLocation: '',
     missingTime: '',
     content: '',

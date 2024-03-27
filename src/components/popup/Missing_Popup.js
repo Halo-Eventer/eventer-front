@@ -2,8 +2,7 @@ import { ApplyBtn } from 'Routes/find/Missing_Home';
 
 import styled from 'styled-components';
 
-function Missing_Popup({ popupList, prop, setPopupList }) {
-  console.log(prop.type); // 1이면 긴급공지 2면 실종자 찾기
+function Missing_Popup({ popupList, prop, setPopupList, type }) {
   const closePopup = () => {
     const newPopupList = [...popupList]; // 기존 팝업 리스트 복사
     newPopupList.pop(); // 첫 번째 요소 삭제
@@ -12,11 +11,11 @@ function Missing_Popup({ popupList, prop, setPopupList }) {
   return (
     <Wrapper>
       <Container>
-        <Head type={prop.type}>{prop.name}</Head>
-        {prop.type == 1 ? '' : <Img />}
-        <Content type={prop.type}>{prop.name} 내용</Content>
+        <Head type={type}>{prop.title}</Head>
+        {type == 1 ? '' : <Img />}
+        <Content type={type}>{prop.content}</Content>
         <BtnBox>
-          {prop.type == 1 ? (
+          {type == 1 ? (
             ''
           ) : (
             <FindBtn

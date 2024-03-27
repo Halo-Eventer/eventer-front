@@ -27,7 +27,9 @@ export const festivalId = 1;
 
 function Home() {
   const navigate = useNavigate();
-
+  const [popupList, setPopupList] = useState([]);
+  const [urgentList, setUrgentList] = useState([]);
+  const [missingList, setMissingList] = useState([]);
   const [currentNum, setCurrentNum] = useState(1);
 
   var settings = {
@@ -50,55 +52,50 @@ function Home() {
   };
 
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch
-  const [homeList, setHomeList]=useState({});
+  const [homeList, setHomeList] = useState({});
   const [bannerList, setBannerList] = useState([]);
-
 
   const fetchHome = () => {
     getHome()
-      .then(response => {
-        setHomeList(response.data)
-        console.log("homeList:", response.data);
+      .then((response) => {
+        setHomeList(response.data);
+        console.log('homeList:', response.data);
       })
-      .catch(error => { console.log("fetchHome error:", error) })
-  }
-
+      .catch((error) => {
+        console.log('fetchHome error:', error);
+      });
+  };
 
   useEffect(() => {
     fetchHome();
   }, []);
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch//
 
-
-
   //배너 리스트 set
-  useEffect(()=>{
+  useEffect(() => {
     setBannerList(homeList?.banner);
-  },[homeList])
+  }, [homeList]);
   //배너 리스트 set
 
-
-  const [popupList, setPopupList] = useState([]);
   useEffect(() => {
     // 팝업 띄울 정보 받아오기
-    setPopupList([
-      { type: 0, name: '실종자 찾는 팝업' },
-      { type: 1, name: '긴급공지 팝업' },
-    ]);
-  }, []);
+    console.log(homeList);
+    const urgent = homeList.urgent || []; // homeList.urgent가 undefined일 경우 빈 배열 사용
+    const missingPerson = homeList.missingPerson || []; // homeList.missingPerson가 undefined일 경우 빈 배열 사용
+    setUrgentList(urgent);
+    setMissingList(missingPerson);
+    setPopupList(urgent.concat(missingPerson));
+  }, [homeList]);
 
-
-
-  console.log(popupList);
-  console.log("bannerList:",bannerList);
   return (
     <Wrapper>
       {popupList.length == 0 ? '' : <Overlay />}
       {popupList?.map((e) => {
-        console.log(e.type);
-
+        let type = 0;
+        if (urgentList.includes(e)) type = 1;
         return (
           <Missing_Popup
+            type={type}
             prop={e}
             popupList={popupList}
             setPopupList={setPopupList}
@@ -124,12 +121,9 @@ function Home() {
           </FlexBox_Row>
         </UpperBar>
 
-
         <FlexBox_Row style={{ width: '100%' }}>
-          {bannerList?.length > 0
-            &&
+          {bannerList?.length > 0 && (
             <ImgBlock>
-
               <Index>
                 {currentNum}/{bannerList?.length}
               </Index>
@@ -150,7 +144,7 @@ function Home() {
                 })}
               </StyledSlider>
             </ImgBlock>
-          }
+          )}
         </FlexBox_Row>
 
         <SecondBlock>
@@ -457,7 +451,7 @@ export const Imoji = styled.img`
 `;
 export const SecondBlock = styled.div`
   width: 100%;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: center;
