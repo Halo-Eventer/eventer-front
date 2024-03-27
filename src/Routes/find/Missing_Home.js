@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
 import { useRecoilState } from 'recoil';
 import { missingInfoState } from 'recoils/atoms_missing';
-import { missingPost } from 'apis/apis';
+import { missingPost } from 'apis/apis_POST';
 
 function Missing_Home() {
   const navigate = useNavigate();

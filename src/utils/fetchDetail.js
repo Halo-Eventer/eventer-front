@@ -1,4 +1,5 @@
-import { getDetail } from "apis/apis";
+import { getDetail } from "apis/apis_GET";
+
 
 function fetchDetail(category, itemID, setInfo) {
     getDetail(category, itemID)

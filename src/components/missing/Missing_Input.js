@@ -1,10 +1,13 @@
-import { imageUploadApi } from 'apis/apis';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import imgUpload from 'asset/missing/imageUpload.svg';
 import { Flex } from 'asset/Style';
 import { useRecoilState } from 'recoil';
 import { missingInfoState } from 'recoils/atoms_missing';
+import { imageUploadApi } from 'apis/apis_POST';
+
+
+
 function Missing_Input(props) {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);

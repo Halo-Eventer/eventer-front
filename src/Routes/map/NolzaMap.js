@@ -18,10 +18,10 @@ import trashMarker from 'asset/marker/trash.png';
 import smokeMarker from 'asset/marker/smokeImg.png';
 import parkMarker from 'asset/marker/parkImg.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
-import { getAllConcert } from 'apis/apis';
 import { changeMarker } from 'asset/changeMarker';
 
 import { UpperBar, BkBtn, Title } from '../Home';
+import { getAllConcert } from 'apis/apis_GET';
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');

@@ -16,13 +16,12 @@ import disabled from 'asset/images/Disabled.png';
 import lost from 'asset/images/Lost.png';
 import missing from 'asset/images/Missing.png';
 
-import { getAll, getHome } from '../apis/apis';
-
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from 'components/Footer';
 import Missing_Popup from 'components/popup/Missing_Popup';
+import { getHome } from 'apis/apis_GET';
 
 export const festivalId = 1;
 

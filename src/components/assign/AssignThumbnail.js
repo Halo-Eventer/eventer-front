@@ -1,9 +1,9 @@
 import { useRef, useEffect } from 'react';
-import { imageUploadApi } from 'apis/apis';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 import { Input, InputBox } from 'Routes/assign/AssignPage_Home';
+import { imageUploadApi } from 'apis/apis_POST';
 
 
 function AssignThumbnail() {

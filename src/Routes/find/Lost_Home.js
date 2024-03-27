@@ -4,7 +4,8 @@ import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useEffect, useState } from 'react';
-import { lostGet } from 'apis/apis';
+import { lostGet } from 'apis/apis_GET';
+
 
 function Lost_Home() {
   const navigate = useNavigate();

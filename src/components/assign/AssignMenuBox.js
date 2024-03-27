@@ -2,10 +2,10 @@ import { Flex } from 'asset/Style';
 import delete_menuBox from 'asset/assign/delete_menuBox.svg';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { imageUploadApi } from 'apis/apis';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 import { Input } from 'Routes/assign/AssignPage_Home';
+import { imageUploadApi } from 'apis/apis_POST';
 
 function AssignMenuBox(props) {
 

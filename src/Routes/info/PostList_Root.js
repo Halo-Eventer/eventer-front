@@ -7,7 +7,8 @@ import sampleThumbnail from 'asset/images/Logo.svg'
 import { TopFixedBar_Blank } from "components/info/TopFixedBar";
 import TopFixedBar_PostList from "components/info/TopFixedBar_PostList";
 import { useQuery } from "react-query";
-import { getAll } from "apis/apis";
+import { getAll } from "apis/apis_GET";
+
 
 
 

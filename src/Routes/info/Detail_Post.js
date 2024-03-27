@@ -15,8 +15,9 @@ import {
   LineDiv,
 } from '../Home';
 
-import { getDetail } from '../../apis/apis';
+
 import { UpperBar } from '../Home';
+import { getDetail } from 'apis/apis_GET';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { assignApi, assignMenuApi, reviseApi, reviseMenuApi } from '../../apis/apis';
 import { Flex } from 'asset/Style';
 import { useRecoilState } from 'recoil';
 import { cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
+import { assignApi, assignMenuApi } from 'apis/apis_POST';
+import { reviseApi, reviseMenuApi } from 'apis/apis_PATCH';
 
 function AssignBtn() {
   const festivalId = 1;

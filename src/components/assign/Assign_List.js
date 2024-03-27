@@ -4,12 +4,14 @@ import styled from 'styled-components'
 import dropDown2 from 'asset/images/DropDown2.svg';
 import plus from 'asset/images/Plus.svg';
 
-import { bannerApi, deleteDetail, popUpApi } from 'apis/apis';
 import { useRecoilState } from 'recoil';
 import { boardListState, categoryState_assign, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { Flex } from 'asset/Style';
 import { festivalId } from 'Routes/Home';
 import fetchList from 'utils/fetchList';
+import { popUpApi } from 'apis/apis_PATCH';
+import { bannerApi } from 'apis/apis_POST';
+import { deleteDetail } from 'apis/apis_DELETE';
 
 function Assign_List(props) {
 
@@ -480,4 +482,9 @@ align-items: center;
 const BtnDiv = styled(Flex)`
 gap:4px;
 align-items:center;
+
+${Flex}{
+    cursor:pointer;
+    gap:4px;
+}
 `;

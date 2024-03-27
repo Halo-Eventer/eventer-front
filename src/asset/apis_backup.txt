@@ -27,6 +27,7 @@ export const getDetailmapCategory = (mapId) => {
 export const getHome = () => {    //Home에 필요한 정보들 (팝업, 썸네일들)
   return axios.get('/home')
 }
+
 export const getAll = (festivalId, category, type) => {
   if (category === 'notice') {    // 공지사항/이벤트(게시글) 리스트
     return axios.get(`/notice/${festivalId}/list`,
@@ -53,6 +54,7 @@ export const getAll = (festivalId, category, type) => {
     return axios.get(`/${category}`, { params: { festivalId: festivalId } });
   }
 };
+
 export const getDetail = (category, id) => {
   if (category === 'lost')
     return axios.get(`user/lost-item/${id}`);
@@ -78,6 +80,8 @@ export const assignApi = (info, category, festivalId) => {
   console.log('info in assignApi : ', info);
   console.log(info.thumbnail);
   if (info.thumbnail == thumbnail_preview) info.thumbnail = '';
+
+
 
   if (category == 'notice')
     // 게시글인경우 type을 쿼리에 추가 X
@@ -142,6 +146,7 @@ export const reviseApi = (info, category, id) => {
     category == 'missing-person' ||
     category == 'urgent')
     return axios.patch(`/admin/${category}/${id}`, info);
+
   else
     return axios.patch(`/${category}/${id}`, info);
 };
@@ -152,6 +157,7 @@ export const reviseMenuApi = (menus) => {
 
 export const popUpApi = (category, id, check) => {
   console.log('category, id, check:', category, id, check);
+
   if (category === 'missing-person')
     return axios.patch(`/admin/${category}/popup`, '',
       {
@@ -160,6 +166,7 @@ export const popUpApi = (category, id, check) => {
           check: check,
         }
       });
+
   else if (category === 'urgent')
     return axios.patch(`/admin/${category}/popup/?urgentId=${id}&check=${check}`);
   // patch나 post는 RequestBody없이 query 보내줄 거면 두 번째 인자를 비우거나
@@ -175,8 +182,9 @@ export const deleteDetail = (category, id) => {
     category == 'missing-person' ||
     category == 'urgent')
     return axios.delete(`/admin/${category}/${id}`);
+
   else
     return axios.delete(`/${category}/${id}`);
-
 };
 // DELETE DELETE DELETE(끝)
+
