@@ -109,14 +109,19 @@ function Missing_Home() {
             개인정보 수집•이용 동의서
           </MissingSemiTitle>
           <AgreeBox>
-            이와 관련하여 아래와 같이 귀하의 개인정보를 수집 및 이용 내용을
-            개인정보보호법 제15조(개인정보의 수집·이용) 및 통계법 제33조(비밀의
-            보호 등)에 의거하여 안내드리니 확인하여 주시기 바랍니다. *
-            개인정보의 수집·이용 목적 : '2024 목포W쇼 배리어프리존 신청'을 위한
-            개인정보 수집 * 수집하려는 개인정보 항목 : 이름, 전화번호, 증명서류
-            * 개인정보의 보유 및 이용 기간 : 목포W쇼 기간 종료 후 즉시 폐기 ※
+            개인정보 수집 및 이용에 대해 하단의 동의란을 체크함에 따라 [개인정보
+            보호법] 제15조 및 제17조에 따라 아래의 내용으로 개인정보를 수집,
+            이용 및 제공하는데 동의합니다.   □ 개인정보의 수집 및 이용에 관한
+            사항 - 수집하는 개인정보 항목 (실종자 찾기 신청 내용 일체) : 실종자
+            이름, 실종자 나이, 실종자 성별, 실종자 사진, 실종 위치, 실종 시간,
+            기타 특이사항, 보호자 성함, 보호자 연락처 실종자 정보, 실종 상세
+            정보, 보호자 정보 등과 그 外 실종자 찾기 기재 내용 일체  -
+            개인정보의 이용 목적 : 수집된 개인정보를 실종자를 찾는 목적으로
+            활용하며, 목적 외의 용도로는 사용하지 않습니다.   □ 개인정보의 보관
+            및 이용 기간 - 귀하의 개인정보를 다음과 같이 보관하며, 수집, 이용 및
+            제공목적이 달성된 경우 [개인정보 보호법] 제21조에 따라 처리합니다.
             개인정보보호법에 의거하여 개인정보 수집 및 이용에 따른 동의를 거부할
-            수 있으나, 동의를 거부할 경우 신청 대상에 포함되지 않습니다.
+            수 있으나, 동의를 거부할 경우 “실종자 찾기” 진행이 불가능합니다.
           </AgreeBox>
 
           <Flex style={{ justifyContent: 'end', marginTop: '8px' }}>
@@ -140,7 +145,7 @@ const AgreeBox = styled.div`
   border-radius: 12px;
   background: #222;
   color: #aaa;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -168,7 +173,7 @@ const MissingInfoContainer = styled.div`
 `;
 const Agree = styled.div`
   color: #ddd;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 16px;
 
   font-weight: 600;

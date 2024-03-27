@@ -66,7 +66,6 @@ export const TopFixedBlock = styled(Flex)`
   }
   position: fixed;
   flex-direction: column;
-  gap: 4px;
 `;
 
 export const StyledTopFixedBar = styled(TopFixedBar)`
@@ -109,7 +108,7 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: Pretendard-Regular;
+    font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
@@ -126,7 +125,7 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: Pretendard-Regular;
+    font-family: Pretendard;
     font-size: 16px;
     font-style: normal;
     font-weight: 800;

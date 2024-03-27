@@ -143,8 +143,8 @@ const CategoryBox = styled.div`
 
   border-radius: 100px;
   background: #fff;
-  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
 
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.16);
   background-color: ${(props) => {
     return props.id == props.active ? '#53CDDD' : 'white';
   }};

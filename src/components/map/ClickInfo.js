@@ -136,7 +136,7 @@ const More = styled.button`
 
   color: #07b0c7;
   text-align: center;
-  font-family: Pretendard-Regular;
+  font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
