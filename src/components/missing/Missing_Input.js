@@ -34,7 +34,7 @@ function Missing_Input(props) {
         props.setInfo({ ...props.info, iamge: res.data });
         setImagePreview(res.data);
         setLoading(false);
-        setInfo({ ...info, ['image']: res.data });
+        setInfo({ ...info, ['thumbnail']: res.data });
       })
       .catch((err) => {
         alert(err.response.data.error);

@@ -94,7 +94,7 @@ function NolzaMap(props) {
             text
           );
         });
-        console.log(info);
+
         setConcertHallMarker(info);
       })
       .catch((err) => {
@@ -104,9 +104,11 @@ function NolzaMap(props) {
   }, []);
   useEffect(() => {
     concertHallMarker.map((e, i) => {
-      console.log(e);
-      e.setMap(map);
-      naver.maps.Event.addListener(e, 'click', () => navigate('/concertinfo'));
+      if (i == 0) {
+        naver.maps.Event.addListener(e, 'click', () =>
+          navigate('/concertinfo')
+        );
+      }
     });
   }, [concertHallMarker]);
   useEffect(() => {
