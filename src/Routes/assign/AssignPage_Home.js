@@ -300,7 +300,7 @@ export const FestivalSelect_MainBox = styled.div`
 
 export const Assign_Blank = styled.div`
   width: 352px;
-  height: 724px;
+  height: 560px;
   flex-shrink: 0;
 
   border-radius: 4px;

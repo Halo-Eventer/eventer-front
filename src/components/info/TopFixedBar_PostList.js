@@ -42,11 +42,10 @@ function TopFixedBar_PostList() {
   return (
     <TopFixedBlock>
       <StyledTopFixedBar>
-        <Flex style={{ marginLeft: '16px' }}>
+        <Flex>
           <BkBtn onClick={() => navigate('/')} src={bkBtn2} />
-          {category == 'notice' ? <h1>공지사항</h1> : <h1>이벤트</h1>}
+          <h1>공지사항 / 이벤트</h1>
         </Flex>
-        <MenuBtn src={menuBtn} />
       </StyledTopFixedBar>
       <SelectBar ref={ref_selectBar}>
         <h1 onClick={onClick_notice}>공지사항</h1>
@@ -72,7 +71,12 @@ export const TopFixedBlock = styled(Flex)`
 export const StyledTopFixedBar = styled(TopFixedBar)`
   position: relative;
   background-color: black;
+
   h1 {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     margin-top: 4px;
 
     color: white;
@@ -86,8 +90,9 @@ const MenuBtn = styled.img`
   margin-right: 16px;
   cursor: pointer;
 `;
+
 const BkBtn = styled.img`
-  margin-right: 12px;
+  margin-left: 12px;
   cursor: pointer;
 `;
 

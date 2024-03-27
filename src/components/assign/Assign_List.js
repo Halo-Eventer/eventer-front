@@ -26,6 +26,7 @@ function Assign_List(props) {
     const [itemID, setItemID] = useRecoilState(itemIDState);
     //*****전역 recoil모음*****
 
+    const [sortedBoardList,setSortedBoardList]=useState([]);
     const [selectedDrop, setSelectedDrop] = useState('');
     const [categoryEntries, setCategoryEntries] = useState([]);
     const [showList, setShowList] = useState(false);
@@ -134,6 +135,7 @@ function Assign_List(props) {
                 bannerApi(id, up)
                     .then(response => {
                         alert(response.data);
+                        setMode("f");
                     })
                     .catch(error => {
                         alert(error);
@@ -161,6 +163,28 @@ function Assign_List(props) {
         else if (categoryEntries[0] !== undefined) //그 외
             setSelectedDrop(categoryEntries[0][1]);
     }, [categoryEntries])
+
+    useEffect(()=>{
+        let upList = [];
+        let notList = [];
+        if(typeof(boardList)==='object'){
+            upList = boardList.filter((item)=>{
+                if (category === 'notice')
+                    return item.picked;
+                else
+                    return item.popup;
+            })
+
+            notList = boardList.filter((item)=>{
+                if (category === 'notice')
+                    return !item.picked;
+                else
+                    return !item.popup;
+            })
+
+            setSortedBoardList([...upList,...notList])
+        }
+    },[boardList])
 
     useEffect(() => {
         if (category === 'notice') {
@@ -209,14 +233,14 @@ function Assign_List(props) {
                 </DropDown>
             }
 
-                <AddBar onClick={onClick_add}>
-                    <img src={plus} />
-                    <h1>{selectedDrop} 추가</h1>
-                </AddBar>
+            <AddBar onClick={onClick_add}>
+                <img src={plus} />
+                <h1>{selectedDrop} 추가</h1>
+            </AddBar>
 
             {boardList.length > 0 &&
                 <ListBoard>
-                    {boardList.map((item, index) =>
+                    {sortedBoardList.map((item, index) =>
                         <BoardElement key={index}>
                             <h1 onClick={onClick_revise} id={item.id} data-index={index}>
                                 {
@@ -228,8 +252,19 @@ function Assign_List(props) {
                                 }
                                 &nbsp;
                                 {
-                                    item.popup
-                                    && <span style={{ color: '#4F33F6' }}>{popUpText}</span>
+                                    category === 'notice'
+                                        ?
+                                        (item.picked
+                                            &&
+                                            <span style={{ color: '#4F33F6' }}>
+                                                {mainUpText}
+                                            </span>)
+                                        :
+                                        (item.popup
+                                            &&
+                                            <span style={{ color: '#4F33F6' }}>
+                                                {popUpText}
+                                            </span>)
                                 }
                             </h1>
                             <BtnDiv>
@@ -382,7 +417,7 @@ const AddBar = styled.div`
 
 const BoardElement = styled.div``;
 const ListBoard = styled.div`
-  height: ${(n) => 48 * n.pagenum}px;
+  min-height:504px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
