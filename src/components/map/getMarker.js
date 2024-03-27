@@ -3,7 +3,7 @@ import { getAllBooth, getAllMapCategory } from 'apis/apis_GET';
 
 export function getMarker(activeCategory, setData) {
   if (activeCategory == 1) {
-    getAllMapCategory('관리자')
+    getAllMapCategory('MANAGER')
       .then((res) => {
         //console.log(res);
         setData(res.data);
@@ -12,7 +12,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 2) {
-    getAllMapCategory('관광안내소')
+    getAllMapCategory('INFO')
       .then((res) => {
         //console.log(res);
         setData(res.data);
@@ -21,7 +21,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 3) {
-    getAllMapCategory('편의점')
+    getAllMapCategory('SHOP')
       .then((res) => {
         //console.log(res);
         setData(res.data);
@@ -30,7 +30,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 4) {
-    getAllMapCategory('화장실')
+    getAllMapCategory('TOILET')
       .then((res) => {
         //console.log(res);
         setData(res.data);
@@ -39,7 +39,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 5) {
-    getAllMapCategory('흡연장')
+    getAllMapCategory('SMOKING')
       .then((res) => {
         //console.log(res);
         setData(res.data);
@@ -48,7 +48,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 6) {
-    getAllMapCategory('주차장')
+    getAllMapCategory('PARKING')
       .then((res) => {
         //console.log(res);
         setData(res.data);
