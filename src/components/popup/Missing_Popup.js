@@ -11,9 +11,15 @@ function Missing_Popup({ popupList, prop, setPopupList, type }) {
   return (
     <Wrapper>
       <Container>
-        <Head type={type}>{prop.title}</Head>
-        {type == 1 ? '' : <Img />}
-        <Content type={type}>{prop.content}</Content>
+        <Head type={type}>{type ? prop.title : '어린이를 찾습니다'}</Head>
+        {type == 1 ? '' : <Img src={prop.thumbnail} />}
+        <Content readOnly type={type}>
+          {type
+            ? prop.content
+            : `${prop.missingLocation}에서 실종된 ${prop.name}(${prop.gender}, ${prop.age})를 찾습니다.
+            
+특이사항 : ${prop.content}`}
+        </Content>
         <BtnBox>
           {type == 1 ? (
             ''
@@ -70,19 +76,24 @@ export const Head = styled.div`
   font-weight: 900;
   line-height: 28px; /* 140% */
 `;
-const Img = styled.div`
+const Img = styled.img`
   margin-top: 12px;
   width: 182px;
   height: 182px;
   flex-shrink: 0;
   border-radius: 4px;
-  background: #d9d9d9;
 `;
-const Content = styled.div`
+const Content = styled.textarea`
   margin-top: ${(props) => (props.type ? '16px' : '12px')};
   width: 278px;
+  height: 320px;
   color: #fff;
-
+  background: #333;
+  border: none;
+  resize: none;
+  &:focus {
+    outline: none;
+  }
   /* body2 */
   font-family: Pretendard;
   font-size: 15px;
