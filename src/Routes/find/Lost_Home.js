@@ -6,14 +6,13 @@ import { Flex } from '../../asset/Style';
 import { useEffect, useState } from 'react';
 import { lostGet } from 'apis/apis_GET';
 
-
 function Lost_Home() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  useEffect(() => {
+    console.log('위로');
+    window.scrollTo(0, -200);
     lostGet().then((res) => {
       setData(res.data);
       console.log(res.data);
