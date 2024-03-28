@@ -152,7 +152,10 @@ img{
 const Content = styled.textarea`
   margin-top: ${(props) => (props.type ? '16px' : '12px')};
   width: 278px;
-  height: 320px;
+  height: 100px;
+  
+  overflow:auto;
+
   color: #fff;
   background: #333;
   border: none;
