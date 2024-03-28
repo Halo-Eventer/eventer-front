@@ -12,7 +12,7 @@ function PostList({ postList }) {
     const theme = useTheme();
     const category = useRecoilValue(categoryState);
 
-    console.log("postList:",postList);
+    console.log("postList:", postList);
     return (
         <ListBoard>
             <MainBoard>
@@ -35,7 +35,10 @@ function PostList({ postList }) {
                                 }
                             </h2>
                         </Flex>
-                        <img src={item.thumbnail}></img>
+                        {
+                            item.thumbnail.length > 0
+                            && <img src={item.thumbnail} />
+                        }
                     </PostElement>
                 )
                 }

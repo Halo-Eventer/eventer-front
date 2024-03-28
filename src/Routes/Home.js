@@ -424,11 +424,11 @@ export const Index = styled(Flex)`
   font-weight: 800;
 `;
 export const ImgBoard = styled.img`
-  object-fit: fill;
-  object-position: center;
+  object-fit: cover;
+  object-position: top;
   //이미지 태그용 (<> background-position)
-  width: 100%;
-  height: 100%;
+  width: 358px;
+  height: 358px;
   flex-shrink: 0;
   background-color: #000;
 

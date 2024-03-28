@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import PostList from "components/info/PostList";
 
 import { useSetRecoilState } from "recoil";
