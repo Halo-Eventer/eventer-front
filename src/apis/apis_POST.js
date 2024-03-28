@@ -1,14 +1,18 @@
 import axios from 'axios';
 import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
+import thumbnail_preview2 from 'asset/assign/thumbnail_preview2.png';
+import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
 export const assignApi = (info, category, festivalId) => {
     console.log('info in assignApi : ', info);
     console.log(info.thumbnail);
-    if (info.thumbnail == thumbnail_preview) info.thumbnail = '';
+    if (info.thumbnail == thumbnail_preview||
+      info.thumbanil==thumbnail_preview2||
+      info.thumbnail==thumbnail_preview_missing) info.thumbnail = '';
   
-    
+
     if (category == 'notice')
       // 게시글인경우 type을 쿼리에 추가 X
       return axios.post(`/${category}`, info, {

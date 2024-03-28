@@ -12,7 +12,7 @@ function fetchDetail(festivalId, category, itemID, setInfo) {
         .then((response) => {
             if (typeof response.data === 'object') {
                 console.log('fetch Detail success', response.data);
-                if(response.data.thumbnail.length>0)
+                if(response.data.thumbnail?.length>0)
                     setInfo(response.data);
                 else{
                     switch(category){

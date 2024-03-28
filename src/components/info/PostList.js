@@ -73,6 +73,7 @@ export const MainBoard = styled.div`
 
 export const PostElement = styled(Link)`
 width:100%;
+height:100px;
 background-color:#111;
 
 border-bottom: 1px solid #555;

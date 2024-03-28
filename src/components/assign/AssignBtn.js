@@ -24,6 +24,8 @@ function AssignBtn() {
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
+  
+
   const assignPost = () => {
     let typed_info = { ...info, type: type }; //현재 무슨 타입인지 추가
     console.log('typed_info:', typed_info);
@@ -64,7 +66,7 @@ function AssignBtn() {
             //   .catch((err) => {
             //     alert('메뉴를 다시 추가해주십시오.');
             //   });
-            alert('해당 항목이 성공적으로 추가되었습니다.');
+            alert(`${info.title}이 성공적으로 추가되었습니다.`);
           } else {
             console.log('res.data(not menu) : ', res.data);
             alert('해당 항목이 성공적으로 추가되었습니다.');

@@ -134,7 +134,6 @@ function Home() {
                   // if (key === 0 || key === 4)
                   return (
                     <ImgBoard
-                      cursor="pointer"
                       //이상하게 cursor만 그냥 style={{}}로 전달이 안 되는 듯 하다
                       onClick={onClick_detailPost}
                       key={key}
@@ -435,7 +434,7 @@ export const ImgBoard = styled.img`
   border-radius: 12px;
 
   z-index: 2;
-  cursor: ${(props) => props.cursor};
+  cursor: pointer;
 `;
 
 export const BigBox = styled.div``;

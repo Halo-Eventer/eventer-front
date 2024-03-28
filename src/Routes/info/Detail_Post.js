@@ -9,16 +9,15 @@ import {
   HomeBtn,
   ImgBlock,
   StyledSlider,
-  ImgBoard,
   MainBoard,
   TextBoard,
-  LineDiv,
   festivalId,
 } from '../Home';
 
 
 import { UpperBar } from '../Home';
 import { getDetail } from 'apis/apis_GET';
+import styled from 'styled-components';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -87,7 +86,7 @@ function Detail_Post() {
           <ImgBlock>
             <StyledSlider {...settings}>
               {detailedList.images?.map((item, key) => (
-                <ImgBoard key={key} src={item}></ImgBoard>
+                <ImgBoardForPost key={key} src={item}/>
               ))}
             </StyledSlider>
           </ImgBlock>
@@ -113,3 +112,17 @@ function Detail_Post() {
 }
 
 export default Detail_Post;
+
+
+export const ImgBoardForPost = styled.img`
+  object-fit: cover;
+  object-position: top;
+  //이미지 태그용 (<> background-position)
+  width: 100%;
+  flex-shrink: 0;
+  background-color: #000;
+
+  border-radius: 12px;
+
+  z-index: 2;
+`;

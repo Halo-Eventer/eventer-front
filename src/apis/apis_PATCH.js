@@ -1,11 +1,18 @@
 import axios from 'axios';
 import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
+import thumbnail_preview2 from 'asset/assign/thumbnail_preview2.png';
+import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 
 
 export const reviseApi = (info, category, id) => {
     console.log('info in reviseApi : ', info);
+
+    if (info.thumbnail == thumbnail_preview||
+        info.thumbanil==thumbnail_preview2||
+        info.thumbnail==thumbnail_preview_missing) info.thumbnail = '';
+
 
     if (category == 'lostItem' ||
         category == 'missingPerson' ||
