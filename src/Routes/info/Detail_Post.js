@@ -13,6 +13,7 @@ import {
   MainBoard,
   TextBoard,
   LineDiv,
+  festivalId,
 } from '../Home';
 
 
@@ -47,8 +48,10 @@ function Detail_Post() {
     navigate(-1);
     //그냥 뒤로가는 기능
   };
-  useEffect(() => {
-    getDetail('notice', postId) //url의 카테고리는 일단 notice
+  useEffect(() => { 
+    /* '공지사항 / 이벤트' 전환때문에 얘는 fetchList()가 아닌 
+    getDetail을 가지고 직접 페이지 내 변수 조작*/
+    getDetail(festivalId,'notice', postId) //url의 카테고리는 일단 notice
       .then((response) => {
         if (typeof response.data === 'object') {
           setDetailedList(response.data);
