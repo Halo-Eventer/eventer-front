@@ -42,7 +42,10 @@ function Missing_Home() {
     <Wrapper>
       <TopFixedDiv>
         <UpperBar>
-          <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
+          <BkBtn
+            style={{ marginLeft: '16px' }}
+            onClick={onClick_bkBtn(navigate)}
+          ></BkBtn>
           <Title>실종자 찾기 신청</Title>
         </UpperBar>
       </TopFixedDiv>
@@ -160,7 +163,7 @@ const MissingTitle = styled.div`
   color: #fafafa;
 
   /* logo */
-  font-family: 'NanumSquareNeo-Variable';
+  font-family: 'NanumSquareNeo';
   font-size: 24px;
   font-style: normal;
   font-weight: 900;

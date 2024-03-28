@@ -14,7 +14,10 @@ function Lost_Detail() {
       <Wrapper>
         <TopFixedDiv>
           <UpperBar>
-            <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
+            <BkBtn
+              style={{ marginLeft: '16px' }}
+              onClick={onClick_bkBtn(navigate)}
+            ></BkBtn>
             <Title>분실물 리스트</Title>
           </UpperBar>
         </TopFixedDiv>
