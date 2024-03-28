@@ -6,10 +6,11 @@
 
 @font-face {
   font-family: 'Pretendard';
-  src: url('../src/asset/fonts/PretendardVariable.woff2') format('woff');
+  src: url('../src/asset/fonts/PretendardVariable.ttf') format('ttf');
 }
 body {
   -ms-overflow-style: none;
+  font-family: 'Pretendard';
 }
 
 ::-webkit-scrollbar {
