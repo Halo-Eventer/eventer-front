@@ -20,7 +20,10 @@ function Footer() {
 export default Footer;
 
 export const FooterBox = styled.div`
-  width: 358px;
+  width: 100%;
+  @media screen and (min-width: 450px) {
+    width: 358px;
+  }
 
   background-color:#111;
 

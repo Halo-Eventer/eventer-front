@@ -90,11 +90,12 @@ function Home() {
   return (
     <Wrapper>
       {popupList.length == 0 ? '' : <Overlay />}
-      {popupList?.map((e) => {
+      {popupList?.map((e,i) => {
         let type = 0;
         if (urgentList.includes(e)) type = 1;
         return (
           <Missing_Popup
+            key = {i}
             type={type}
             prop={e}
             popupList={popupList}
@@ -203,10 +204,9 @@ function Home() {
               <h1>공지사항 / 이벤트</h1>
             </SmallBox>
           </Link>
-
-          <Footer />
         </SecondBlock>
-      </Board>
+        </Board>
+      <Footer />
     </Wrapper>
   );
 }
@@ -287,6 +287,7 @@ export const UpperBar = styled.div`
 `;
 
 export const Board = styled.div`
+  width:100%;
   @media screen and (min-width: 450px) {
     width: 390px;
     background-color: transparent;
@@ -350,7 +351,7 @@ export const Title = styled.h1`
 
   color: #fff;
   text-align: center;
-  font-family: 'Pretendard';
+  font-family: Pretendard;
   font-size: 17px;
   font-style: normal;
   font-weight: 700;
@@ -482,6 +483,10 @@ export const SecondBlock = styled.div`
       margin: 20px 0px;
     }
 
+    p{
+      font-family:'NanumSquare Neo OTF';
+    }
+
     h1 {
       color: #fff;
       /* headline1 */
@@ -496,7 +501,7 @@ export const SecondBlock = styled.div`
 
       button {
         color: #fff;
-        font-family: 'Pretendard';
+        font-family: Pretendard;
         font-size: 14px;
         font-style: normal;
         font-weight: 700;
@@ -543,7 +548,7 @@ export const SecondBlock = styled.div`
 
       button {
         color: #ddd;
-        font-family: 'Pretendard';
+        font-family: Pretendard;
         font-size: 14px;
         font-style: normal;
         font-weight: 500;
@@ -587,7 +592,7 @@ export const TextBoard = styled.div`
     z-index: 2;
     h1 {
       color: #fff;
-      font-family: 'Pretendard';
+      font-family: Pretendard;
       font-size: 20px;
       font-style: normal;
       font-weight: 600;
@@ -595,7 +600,7 @@ export const TextBoard = styled.div`
     }
     h2 {
       color: #fff;
-      font-family: 'Pretendard';
+      font-family: Pretendard;
       font-size: 15px;
       font-style: normal;
       font-weight: 600;
@@ -604,7 +609,7 @@ export const TextBoard = styled.div`
     }
     h3 {
       color: #fff;
-      font-family: 'Pretendard';
+      font-family: Pretendard;
       font-size: 15px;
       font-style: normal;
       font-weight: 500;
@@ -653,7 +658,7 @@ export const SurveyBox = styled.button`
   h2 {
     color: #ddd;
 
-    font-family: 'Pretendard';
+    font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -700,6 +705,7 @@ export const ETCBox = styled(Flex)`
       /* headline1 */
       font-size: 18px;
       font-style: normal;
+      font-family:'NanumSquare Neo OTF';
       font-weight: 900;
       line-height: 26px; /* 144.444% */
     }
@@ -714,7 +720,7 @@ export const ETCBox = styled(Flex)`
       align-items: center;
 
       /* body3 */
-      font-family: 'Pretendard';
+      font-family: Pretendard;
       font-size: 14px;
       font-style: normal;
       font-weight: 500;

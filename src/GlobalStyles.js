@@ -1,9 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
+
 @font-face {
-    font-family: 'CWDangamAsac-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/CWDangamAsac-Bold.woff') format('woff');
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -19,6 +20,7 @@ body{
   ? '#FFF'
   : '#000'
   };
+  font-family:Pretendard; //폰트 이름이 공백이 없어서 따옴표없이도 가능
 }
 
 button{
