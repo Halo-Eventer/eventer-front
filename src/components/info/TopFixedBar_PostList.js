@@ -82,6 +82,7 @@ export const StyledTopFixedBar = styled(TopFixedBar)`
     font-size: 18px;
     font-style: normal;
     font-weight: 900;
+    font-family:'NanumSquareNeo';
   }
 `;
 
@@ -113,11 +114,11 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: 'Pretendard';
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 150% */
+    font-family:'NanumSquareNeo';
 
     cursor: pointer;
   }
@@ -130,11 +131,11 @@ export const SelectBar = styled.div`
 
     color: white;
     text-align: center;
-    font-family: 'Pretendard';
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 150% */
+    font-family:'NanumSquareNeo';
 
     cursor: pointer;
   }

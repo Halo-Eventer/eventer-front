@@ -12,6 +12,7 @@ height:48px;
 top:0;
 z-index:3;
 
+font-family:'NanumSquareNeo';
 
 background-color:#111;
 

@@ -160,7 +160,7 @@ function Home() {
                 <button>주변시설 확인</button>
               </h1>
             </Link>
-            <hr />
+            <HR/>
             <Link to="/concertInfo">
               <h1>
                 <FlexBox_Row>
@@ -271,6 +271,7 @@ export const UpperBar = styled.div`
   position: relative;
   height: 48px;
   width: 100%;
+
   @media screen and (min-width: 450px) {
     width: 390px;
   }
@@ -349,10 +350,10 @@ export const Title = styled.h1`
 
   color: #fff;
   text-align: center;
-  font-family: Pretendard;
+  font-family:'NanumSquareNeo';
   font-size: 17px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
 
   line-height: 32px;
 `;
@@ -439,6 +440,7 @@ export const ImgBoard = styled.img`
 
 export const BigBox = styled.div``;
 export const SmallBox = styled.div``;
+export const HR = styled.div``;
 export const Imoji = styled.img`
   width: 36px;
   height: 36px;
@@ -470,19 +472,18 @@ export const SecondBlock = styled.div`
 
     padding: 20px 16px;
 
-    hr {
+    ${HR} {
       width: 326px;
-      height: 0.5px;
+      height:1px;
       flex-shrink: 0;
 
-      stroke-width: 1px;
-      stroke: #999;
+      background-color: #999;
 
       margin: 20px 0px;
     }
 
     p{
-      font-family:'NanumSquare Neo OTF';
+      font-family:'NanumSquareNeo';
     }
 
     h1 {
@@ -534,7 +535,7 @@ export const SecondBlock = styled.div`
       color: #fff;
 
       /* headline2 */
-      font-family: 'NanumSquare Neo OTF';
+      font-family: 'NanumSquareNeo';
       font-size: 16px;
       font-style: normal;
       font-weight: 900;
@@ -652,6 +653,7 @@ export const SurveyBox = styled.button`
     font-style: normal;
     font-weight: 900;
     line-height: 24px; /* 150% */
+    font-family : 'NanumSquareNeo';
   }
   h2 {
     color: #ddd;
@@ -703,7 +705,7 @@ export const ETCBox = styled(Flex)`
       /* headline1 */
       font-size: 18px;
       font-style: normal;
-      font-family:'NanumSquare Neo OTF';
+      font-family:'NanumSquareNeo';
       font-weight: 900;
       line-height: 26px; /* 144.444% */
     }
