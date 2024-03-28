@@ -16,7 +16,7 @@ import Assign_List from 'components/assign/Assign_List';
 import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { missingCategory, postCategory } from 'constants/Const_Assign';
+import { missingPersonCategory } from 'constants/Const_Assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
 
@@ -37,10 +37,10 @@ function AssignPage_Missing() {
 
   const festivalId = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(missingCategory);
+  const [categoryList, setCategoryList]= useState(missingPersonCategory);
 
   useEffect(()=>{
-    setCategory('missing-person');
+    setCategory('missingPerson');
     setBoardList([]);
     setType('');
   },[])

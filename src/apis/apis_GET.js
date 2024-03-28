@@ -31,45 +31,42 @@ export const getHome = () => {    //Home에 필요한 정보들 (팝업, 썸네�
 
 export const getAll = (festivalId, category, type) => {
   if (category === 'notice') {    // 공지사항/이벤트(게시글) 리스트
-    return axios.get(`/notice/${festivalId}/list`,
+    return axios.get(`/notice/${festivalId}`,
       { params: { type: type } });
   }
   else if (category === 'mapCategory') {
-    return axios.get(`/mapCategory?festivalId=${festivalId}`, {
-      params: { type: type },
+    return axios.get(`/mapCategory`, {
+      params: {
+        festivalId: festivalId,
+        type: type
+      },
     });
   }
-  else if (category === 'lost') {
-    console.log('axios_lost!');
-    return axios.get(`/user/lost-items`);
-  }
-  else if (category === 'missing-person') {
-    console.log('axios_missing-person!');
-    return axios.get(`/user/missing-persons`);
+  else if (category === 'lostItem' || category === 'missingPerson') {
+    return axios.get(`/user/${category}`);
   }
   else if (category === 'urgent') {
-    console.log('axios_urgent!');
-    return axios.get('/admin/urgents');
+    return axios.get('/admin/urgent');
   }
   else {
-    return axios.get(`/${category}`, { params: { festivalId: festivalId } });
+    return axios.get(`/${category}`, {
+      params: { festivalId: festivalId }
+    });
   }
 };
 
 export const getDetail = (category, id) => {
-  if (category === 'lost')
-    return axios.get(`user/lost-item/${id}`);
 
-  else if (category === 'missing-person')
+  if (category === 'lostItem' || category === 'missingPerson')
     return axios.get(`user/${category}/${id}`);
 
   else if (category === 'urgent')
-    return axios.get(`admin/${category}/${id}`);
+    return axios.get(`admin/urgent/${id}`);
 
   else
     return axios.get(`/${category}/${id}`);
 };
 
-export const lostGet = () => {
-  return axios.get('/user/lost-items');
+export const lostItemGet = () => {
+  return axios.get('/user/lostItem');
 };

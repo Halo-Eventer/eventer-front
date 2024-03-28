@@ -16,9 +16,9 @@ import Assign_List from 'components/assign/Assign_List';
 import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { lostCategory } from 'constants/Const_Assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
+import { lostItemCategory } from 'constants/Const_Assign';
 
 
 
@@ -37,7 +37,7 @@ function AssignPage_Lost() {
 
   const festivalId = useParams().id;
 
-  const categoryList = lostCategory;
+  const categoryList = lostItemCategory;
 
 
   useEffect(()=>{

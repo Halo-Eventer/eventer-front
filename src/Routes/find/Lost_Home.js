@@ -4,7 +4,7 @@ import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useEffect, useState } from 'react';
-import { lostGet } from 'apis/apis_GET';
+import { lostItemGet } from 'apis/apis_GET';
 
 function Lost_Home() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function Lost_Home() {
   useEffect(() => {
     console.log('위로');
     window.scrollTo(0, -200);
-    lostGet().then((res) => {
+    lostItemGet().then((res) => {
       setData(res.data);
       console.log(res.data);
     });

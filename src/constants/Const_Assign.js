@@ -47,12 +47,12 @@ export const postCategory = {
   ]
 };
 
-export const lostCategory = {
-  lost: '분실물',
+export const lostItemCategory = {
+  lostItem: '분실물',
 };
 
-export const missingCategory = {
-  'missing-person': '실종자',
+export const missingPersonCategory = {
+  missingPerson: '실종자',
 };
 
 export const wheelChairCategory = {
@@ -112,7 +112,7 @@ export const postForm_blank = {
 }
 
 
-export const lostForm_blank = {
+export const lostItemForm_blank = {
   name: '',
   type:'',
   findDate:'',
@@ -121,7 +121,7 @@ export const lostForm_blank = {
 }
 
 
-export const missingForm_blank = {
+export const missingPersonForm_blank = {
   name: "",
   age: "",
   gender: "",

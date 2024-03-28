@@ -8,8 +8,7 @@ export const assignApi = (info, category, festivalId) => {
     console.log(info.thumbnail);
     if (info.thumbnail == thumbnail_preview) info.thumbnail = '';
   
-  
-  
+    
     if (category == 'notice')
       // 게시글인경우 type을 쿼리에 추가 X
       return axios.post(`/${category}`, info, {
@@ -18,10 +17,10 @@ export const assignApi = (info, category, festivalId) => {
         },
       });
   
-    else if (category == 'lost' || category == 'urgent')
+    else if (category == 'lostItem' || category == 'urgent')
       return axios.post(`/admin/${category}`, info);
   
-    else if (category == 'missing-person')
+    else if (category == 'missingPerson')
       return axios.post(`/user/${category}`, info);
   
     else
@@ -50,7 +49,7 @@ export const assignApi = (info, category, festivalId) => {
   };
   
   export const missingPost = (info) => {
-    return axios.post('/user/missing-person', info);
+    return axios.post('/user/missingPerson', info);
   };
   
   export const bannerApi = (id, pick) => {

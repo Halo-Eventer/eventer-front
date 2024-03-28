@@ -7,8 +7,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 export const reviseApi = (info, category, id) => {
     console.log('info in reviseApi : ', info);
 
-    if (category == 'lost' ||
-        category == 'missing-person' ||
+    if (category == 'lostItem' ||
+        category == 'missingPerson' ||
         category == 'urgent')
         return axios.patch(`/admin/${category}/${id}`, info);
 
@@ -25,7 +25,7 @@ export const reviseMenuApi = (menus) => {
 export const popUpApi = (category, id, check) => {
     console.log('category, id, check:', category, id, check);
 
-    if (category === 'missing-person')
+    if (category === 'missingPerson')
         return axios.patch(`/admin/${category}/popup`, '',
             {
                 params: {
@@ -33,9 +33,11 @@ export const popUpApi = (category, id, check) => {
                     check: check,
                 }
             });
+    // patch나 post는 RequestBody없이 query 보내줄 거면 두 번째 인자를 비우거나
 
     else if (category === 'urgent')
-        return axios.patch(`/admin/${category}/popup/?urgentId=${id}&check=${check}`);
-    // patch나 post는 RequestBody없이 query 보내줄 거면 두 번째 인자를 비우거나
+        return axios.patch(
+            `/admin/${category}/popup/?urgentId=${id}&check=${check}`
+        );
     // url에 ?= 써서 보내줘야됨
 }

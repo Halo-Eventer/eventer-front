@@ -252,7 +252,7 @@ function Assign_List(props) {
               </h1>
               <BtnDiv>
                 {(category == 'notice' ||
-                  category == 'missing-person' ||
+                  category == 'missingPerson' ||
                   category == 'urgent') && (
                   <Flex>
                     <h3 id={item.id} onClick={onClick_upDown} data-value="up">

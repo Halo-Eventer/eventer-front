@@ -6,8 +6,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 
 export const deleteDetail = (category, id) => {
 
-    if (category == 'lost' ||
-      category == 'missing-person' ||
+    if (category == 'lostItem' ||
+      category == 'missingPerson' || 
       category == 'urgent')
       return axios.delete(`/admin/${category}/${id}`);
   

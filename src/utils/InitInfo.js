@@ -1,4 +1,4 @@
-import { lostForm_blank, mapCategoryForm_blank, mapForm_blank, missingForm_blank, postForm_blank, urgentForm_blank } from "constants/Const_Assign";
+import { lostForm_blank, lostItemForm_blank, mapCategoryForm_blank, mapForm_blank, missingForm_blank, missingPersonForm_blank, postForm_blank, urgentForm_blank } from "constants/Const_Assign";
 
 export const InitInfo = (category, type) => {
     let tmp;
@@ -9,9 +9,9 @@ export const InitInfo = (category, type) => {
     else if (category === 'store')
         tmp = mapCategoryForm_blank
     else if (category === 'lost')
-        tmp = lostForm_blank;
-    else if (category === 'missing-person')
-        tmp = missingForm_blank;
+        tmp = lostItemForm_blank;
+    else if (category === 'missingPerson')
+        tmp = missingPersonForm_blank;
     else if (category === 'urgent')
         tmp = urgentForm_blank;
     else

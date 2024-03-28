@@ -24,9 +24,9 @@ function Assign() {
     notice : <AssignBasicInfo_Post/>,
     event : <AssignBasicInfo_Post/>,
 
-    lost : <AssignBasicInfo_Lost/>,
+    lostItem : <AssignBasicInfo_Lost/>,
     
-    'missing-person':<AssignBasicInfo_Missing/>,
+    missingPerson:<AssignBasicInfo_Missing/>,
 
     urgent:<AssignBasicInfo_Urgent/>
   }
