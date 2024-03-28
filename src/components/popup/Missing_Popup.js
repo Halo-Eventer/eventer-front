@@ -39,7 +39,7 @@ function Missing_Popup({ popupList, prop, setPopupList, type }) {
 
 export default Missing_Popup;
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   z-index: 1000;
   position: fixed;
   width: 100vw;
@@ -47,7 +47,7 @@ export const Wrapper = styled.div`
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  margin-top: 80px;
 `;
 
 export const Container = styled.div`
@@ -95,7 +95,7 @@ const Content = styled.textarea`
     outline: none;
   }
   /* body2 */
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -117,7 +117,7 @@ const FindBtn = styled.button`
   background: #53cddd;
   color: #111;
   text-align: center;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 700;

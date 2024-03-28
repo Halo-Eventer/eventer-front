@@ -19,7 +19,7 @@ function AssignPage_Home() {
 
   const [festival, setFestival] = useState('세종대학교');
   const [rotate, setRotate] = useState('0deg');
-  const [festivalId,setFestivalId] = useRecoilState(festivalId);
+  const [festivalId, setFestivalId] = useRecoilState(festivalId);
 
   const onClick_home = () => {
     navigate(`/assign_home`);
@@ -74,7 +74,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
 
-  background-color:white;
+  background-color: white;
 
   display: flex;
   flex-direction: column;
@@ -136,7 +136,7 @@ export const FestivalSelectBox = styled.div`
     z-index: 2;
 
     color: #111;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-style: normal;
     font-weight: 500;
   }
@@ -168,7 +168,7 @@ export const UpperBar = styled.div`
 
     select {
       color: black;
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 15px;
       font-style: normal;
       font-weight: 500;
@@ -210,7 +210,7 @@ export const MiddleBar = styled.div`
     ${H1} {
       margin-right: 4px;
 
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 16px;
       font-style: normal;
       line-height: 24px; /* 150% */
@@ -250,7 +250,7 @@ export const FestivalSelect_MainBox = styled.div`
 
     color: #111;
     text-align: center;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 32px;
     font-style: normal;
     font-weight: 800;
@@ -284,7 +284,7 @@ export const FestivalSelect_MainBox = styled.div`
 
     color: #fff;
     text-align: center;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 17px;
     font-style: normal;
     font-weight: 700;
@@ -324,12 +324,9 @@ export const AssignBox = styled(Flex)`
   margin-top: 32px;
 `;
 
-
-
-
 //===== Assign.js에 있던 중복 컴포넌트들 (AssignPage의 대부분 컴포넌트들은 여기서 관리) =====//
 export const InputBox = styled(Flex)`
-  position:relative;
+  position: relative;
 
   justify-content: space-between;
   align-items: center;
@@ -345,7 +342,7 @@ export const Input = styled.input`
   border: 0;
 
   color: #111;
-  font-family: Pretendard;
+  font-family: 'Pretendard';
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -364,7 +361,7 @@ export const TextAreaDiv = styled.div`
   width: 336px;
   height: 96px;
   background: #fafafa;
-  padding:8px;
+  padding: 8px;
 `;
 
 export const TextArea = styled.textarea`
@@ -411,10 +408,10 @@ export const InputContainer = styled(Flex)`
   border-radius: 4px;
   border: 1px solid #eee;
 
-  padding-top:8px;
-  padding-bottom:8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
-  flex-direction:column;
-  align-items:center;
-  gap:4px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
 `;

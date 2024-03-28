@@ -175,7 +175,7 @@ function Home() {
 
           <SurveyBox>
             <h1>축제 만족도 조사</h1>
-            <h2>축제 피드백해줘! 멘트써줘! 경품을 줘야하나</h2>
+            <h2>참여 시 추첨을 통해 목포사랑상품권 증정</h2>
             <Imoji src={survey}></Imoji>
           </SurveyBox>
 
@@ -282,8 +282,6 @@ export const UpperBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 8px 16px;
 `;
 
 export const Board = styled.div`
@@ -474,7 +472,7 @@ export const SecondBlock = styled.div`
 
     hr {
       width: 326px;
-      height: 0px;
+      height: 0.5px;
       flex-shrink: 0;
 
       stroke-width: 1px;

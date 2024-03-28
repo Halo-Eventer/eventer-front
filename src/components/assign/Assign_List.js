@@ -6,11 +6,11 @@ import plus from 'asset/images/Plus.svg';
 
 import { useRecoilState } from 'recoil';
 import {
-    boardListState,
-    categoryState_assign,
-    itemIDState,
-    modeState,
-    typeState,
+  boardListState,
+  categoryState_assign,
+  itemIDState,
+  modeState,
+  typeState,
 } from 'recoils/atoms_assign';
 import { Flex } from 'asset/Style';
 import { popUpApi } from 'apis/apis_PATCH';
@@ -18,277 +18,261 @@ import { bannerApi } from 'apis/apis_POST';
 import { deleteDetail } from 'apis/apis_DELETE';
 
 function Assign_List(props) {
-    //*****전역 recoil모음*****
-    const [boardList, setBoardList] = useRecoilState(boardListState);
-    const [category, setCategory] = useRecoilState(categoryState_assign);
-    const [type, setType] = useRecoilState(typeState);
-    const [mode, setMode] = useRecoilState(modeState);
-    const [itemID, setItemID] = useRecoilState(itemIDState);
-    //*****전역 recoil모음*****
+  //*****전역 recoil모음*****
+  const [boardList, setBoardList] = useRecoilState(boardListState);
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [type, setType] = useRecoilState(typeState);
+  const [mode, setMode] = useRecoilState(modeState);
+  const [itemID, setItemID] = useRecoilState(itemIDState);
+  //*****전역 recoil모음*****
 
-    const [sortedBoardList,setSortedBoardList]=useState([]);
-    const [selectedDrop, setSelectedDrop] = useState('');
-    const [categoryEntries, setCategoryEntries] = useState([]);
-    const [showList, setShowList] = useState(false);
-    const [upText, setUpText] = useState('');
-    const mainUpText = '[메인]';
-    const popUpText = '[팝업]';
+  const [sortedBoardList, setSortedBoardList] = useState([]);
+  const [selectedDrop, setSelectedDrop] = useState('');
+  const [categoryEntries, setCategoryEntries] = useState([]);
+  const [showList, setShowList] = useState(false);
+  const [upText, setUpText] = useState('');
+  const mainUpText = '[메인]';
+  const popUpText = '[팝업]';
 
-    const onClick_dropDown = () => {
-        setShowList((prev) => !prev);
-    };
+  const onClick_dropDown = () => {
+    setShowList((prev) => !prev);
+  };
 
-    const onClick_drops = (event) => {
-        event.preventDefault();
-        const index = event.currentTarget.value;
-        setCategory(categoryEntries[index][0]);
+  const onClick_drops = (event) => {
+    event.preventDefault();
+    const index = event.currentTarget.value;
+    setCategory(categoryEntries[index][0]);
 
-        if (typeof categoryEntries[index][1] == 'object') {
-            const index2 = event.currentTarget.id;
-            console.log('index, index2 :', index, index2);
-            //            console.log("type : ",categoryEntries[index][1][index2]);
-            setType(categoryEntries[index][1][index2].eng);
-        } else setType('');
+    if (typeof categoryEntries[index][1] == 'object') {
+      const index2 = event.currentTarget.id;
+      console.log('index, index2 :', index, index2);
+      //            console.log("type : ",categoryEntries[index][1][index2]);
+      setType(categoryEntries[index][1][index2].eng);
+    } else setType('');
 
-        setSelectedDrop(event.currentTarget.textContent);
+    setSelectedDrop(event.currentTarget.textContent);
 
-        setShowList(false);
-    };
+    setShowList(false);
+  };
 
+  const onClick_add = (event) => {
+    event.preventDefault();
+    setMode('a');
+  };
 
+  const onClick_revise = (event) => {
+    event.preventDefault();
 
-    const onClick_add = (event) => {
-        event.preventDefault();
-        setMode('a');
+    setMode('r');
+    setItemID(event.currentTarget.id);
+
+    console.log(
+      'event.currentTarget.datset.index',
+      event.currentTarget.dataset.index
+    );
+    // props.setSE(
+    //     boardList[event.currentTarget.dataset.index].simpleExplanation);
+  };
+
+  const onClick_delete = (event) => {
+    event.preventDefault();
+
+    const id = event.currentTarget.id;
+    let ref = boardList[event.currentTarget.dataset.value];
+    let title;
+    if (category === 'notice') title = ref.title;
+    else title = ref.name;
+
+    console.log('id, title, category, type: ', id, title, category, type);
+    let tmp = window.confirm(`'${title}' 항목을 삭제하시겠습니까?`);
+
+    if (tmp)
+      deleteDetail(category, id)
+        .then((response) => {
+          if (typeof response.data === 'string') {
+            alert(`'${title}' 항목이 성공적으로 삭제되었습니다.`);
+            console.log(response.data);
+            setMode('f');
+          } else console.log('fail : ', response.data);
+        })
+        .catch((error) => {
+          console.log('error : ', error);
+        });
+  };
+  const onClick_upDown = (event) => {
+    event.preventDefault();
+    const id = Number(event.currentTarget.id);
+    const value = event.currentTarget.dataset.value;
+
+    let up;
+
+    if (value == 'up') up = true;
+    else up = false;
+
+    console.log('category, id, value, popUp:', category, id, value, up);
+
+    let tmp;
+
+    if (category === 'notice')
+      tmp = window.confirm(
+        up
+          ? '해당 항목을 메인페이지에 등록하시겠습니까?'
+          : '해당 항목을 메인페이지에서 삭제하시겠습니까?'
+      );
+    else
+      tmp = window.confirm(
+        up
+          ? '해당 항목을 팝업창에 등록하시겠습니까?'
+          : '해당 항목을 팝업창에서 삭제하시겠습니까?'
+      );
+
+    if (tmp) {
+      if (category === 'notice')
+        bannerApi(id, up)
+          .then((response) => {
+            alert(response.data);
+            setMode('f');
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      else
+        popUpApi(category, id, up)
+          .then((response) => {
+            alert(response.data);
+            setMode('f');
+          })
+          .catch((error) => {
+            alert(error);
+          });
     }
+  };
 
-    const onClick_revise = (event) => {
-        event.preventDefault();
+  useEffect(() => {
+    setCategoryEntries(Object.entries(props.categoryList));
+  }, []);
 
-        setMode('r');
-        setItemID(event.currentTarget.id);
+  useEffect(() => {
+    if (category == 'notice')
+      //for 게시글
+      setSelectedDrop('공지사항');
+    else if (categoryEntries[0] !== undefined)
+      //그 외
+      setSelectedDrop(categoryEntries[0][1]);
+  }, [categoryEntries]);
 
-        console.log("event.currentTarget.datset.index", event.currentTarget.dataset.index)
-        // props.setSE(
-        //     boardList[event.currentTarget.dataset.index].simpleExplanation);
+  useEffect(() => {
+    let upList = [];
+    let notList = [];
+    if (typeof boardList === 'object') {
+      upList = boardList.filter((item) => {
+        if (category === 'notice') return item.picked;
+        else return item.popup;
+      });
+
+      notList = boardList.filter((item) => {
+        if (category === 'notice') return !item.picked;
+        else return !item.popup;
+      });
+
+      setSortedBoardList([...upList, ...notList]);
     }
+  }, [boardList]);
 
-    const onClick_delete = (event) => {
-        event.preventDefault();
+  useEffect(() => {
+    if (category === 'notice') {
+      setUpText('메인');
+    } else setUpText('팝업');
+  }, [category]);
 
-        const id = event.currentTarget.id;
-        let ref = boardList[event.currentTarget.dataset.value];
-        let title;
-        if (category === 'notice')
-            title = ref.title;
-        else
-            title = ref.name;
+  console.log('boardList:', boardList);
+  console.log('category, type : ', category, type);
 
-        console.log("id, title, category, type: ", id, title, category, type);
-        let tmp = window.confirm(`'${title}' 항목을 삭제하시겠습니까?`);
+  return (
+    <Wrapper>
+      {(category == 'notice' || categoryEntries?.length > 1) && (
+        <DropDown>
+          <DropDownBar onClick={onClick_dropDown}>
+            <h1>{selectedDrop}</h1>
+            <img src={dropDown2}></img>
+          </DropDownBar>
+          {showList && (
+            <DropDownlist>
+              {categoryEntries.map((item, index) => {
+                if (typeof item[1] === 'object') {
+                  //'category'가 객체인 경우 (marker, notice 등)
+                  return item[1].map((item2, index2) => {
+                    if (item2 != selectedDrop)
+                      return (
+                        <button
+                          key={index2}
+                          id={index2}
+                          value={index}
+                          onClick={onClick_drops}
+                        >
+                          {item2.kor}
+                        </button>
+                      );
+                  });
+                  //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
+                }
+                if (item[1] != selectedDrop)
+                  return (
+                    <button key={index} value={index} onClick={onClick_drops}>
+                      {item[1]}
+                    </button>
+                  );
+              })}
+            </DropDownlist>
+          )}
+        </DropDown>
+      )}
 
-        if (tmp)
-            deleteDetail(category, id)
-                .then((response) => {
-                    if (typeof (response.data) === 'string') {
-                        alert(`'${title}' 항목이 성공적으로 삭제되었습니다.`);
-                        console.log(response.data);
-                        setMode("f");
-                    }
-                    else
-                        console.log("fail : ", response.data)
-                }).catch((error) => {
-                    console.log("error : ", error);
-                });
-    }
-    const onClick_upDown = (event) => {
-        event.preventDefault();
-        const id = Number(event.currentTarget.id);
-        const value = event.currentTarget.dataset.value;
+      <AddBar onClick={onClick_add}>
+        <img src={plus} />
+        <h1>{selectedDrop} 추가</h1>
+      </AddBar>
 
-        let up;
-
-        if (value == 'up')
-            up = true;
-        else
-            up = false;
-
-        console.log("category, id, value, popUp:",
-            category, id, value, up)
-
-        let tmp;
-
-        if (category === 'notice')
-            tmp = window.confirm
-                (up
-                    ? '해당 항목을 메인페이지에 등록하시겠습니까?'
-                    : '해당 항목을 메인페이지에서 삭제하시겠습니까?');
-        else
-            tmp = window.confirm(
-                up
-                    ? '해당 항목을 팝업창에 등록하시겠습니까?'
-                    : '해당 항목을 팝업창에서 삭제하시겠습니까?');
-
-
-        if (tmp) {
-            if (category === 'notice')
-                bannerApi(id, up)
-                    .then(response => {
-                        alert(response.data);
-                        setMode("f");
-                    })
-                    .catch(error => {
-                        alert(error);
-                    })
-            else
-                popUpApi(category, id, up)
-                    .then(response => {
-                        alert(response.data);
-                        setMode("f");
-                    })
-                    .catch(error => {
-                        alert(error);
-                    })
-        }
-    }
-
-
-    useEffect(() => {
-        setCategoryEntries(Object.entries(props.categoryList));
-    }, []);
-
-    useEffect(() => {
-        if (category == "notice") //for 게시글
-            setSelectedDrop("공지사항");
-        else if (categoryEntries[0] !== undefined) //그 외
-            setSelectedDrop(categoryEntries[0][1]);
-    }, [categoryEntries])
-
-    useEffect(()=>{
-        let upList = [];
-        let notList = [];
-        if(typeof(boardList)==='object'){
-            upList = boardList.filter((item)=>{
-                if (category === 'notice')
-                    return item.picked;
-                else
-                    return item.popup;
-            })
-
-            notList = boardList.filter((item)=>{
-                if (category === 'notice')
-                    return !item.picked;
-                else
-                    return !item.popup;
-            })
-
-            setSortedBoardList([...upList,...notList])
-        }
-    },[boardList])
-
-    useEffect(() => {
-        if (category === 'notice') {
-            setUpText('메인');
-        }
-        else
-            setUpText('팝업');
-    }, [category])
-
-    console.log("boardList:", boardList);
-    console.log("category, type : ", category, type);
-
-    return (
-        <Wrapper>
-            {(category == "notice" || categoryEntries?.length > 1)
-                &&
-                <DropDown>
-                    <DropDownBar onClick={onClick_dropDown}>
-                        <h1>{selectedDrop}</h1>
-                        <img src={dropDown2}></img>
-                    </DropDownBar>
-                    {showList &&
-                        <DropDownlist>
-                            {categoryEntries.map((item, index) => {
-                                if (typeof (item[1]) === 'object') {
-                                    //'category'가 객체인 경우 (marker, notice 등)
-                                    return item[1].map((item2, index2) => {
-                                        if (item2 != selectedDrop)
-                                            return <button
-                                                key={index2}
-                                                id={index2}
-                                                value={index}
-                                                onClick={onClick_drops}>{item2.kor}</button>
-                                    });
-                                    //return (컴포넌트 배열) => 컴포넌트들 렌더링해줌
-                                }
-                                if (item[1] != selectedDrop)
-                                    return <button
-                                        key={index}
-                                        value={index}
-                                        onClick={onClick_drops}>{item[1]}</button>
-
-                            })}
-                        </DropDownlist>
-                    }
-                </DropDown>
-            }
-
-            <AddBar onClick={onClick_add}>
-                <img src={plus} />
-                <h1>{selectedDrop} 추가</h1>
-            </AddBar>
-
-            {boardList.length > 0 &&
-                <ListBoard>
-                    {sortedBoardList.map((item, index) =>
-                        <BoardElement key={index}>
-                            <h1 onClick={onClick_revise} id={item.id} data-index={index}>
-                                {
-                                    (category === 'notice' || category === 'urgent')
-                                        ?
-                                        item.title
-                                        :
-                                        item.name
-                                }
-                                &nbsp;
-                                {
-                                    category === 'notice'
-                                        ?
-                                        (item.picked
-                                            &&
-                                            <span style={{ color: '#4F33F6' }}>
-                                                {mainUpText}
-                                            </span>)
-                                        :
-                                        (item.popup
-                                            &&
-                                            <span style={{ color: '#4F33F6' }}>
-                                                {popUpText}
-                                            </span>)
-                                }
-                            </h1>
-                            <BtnDiv>
-                                {
-                                    (category == 'notice' ||
-                                        category == 'missing-person' ||
-                                        category == 'urgent')
-                                    &&
-                                    <Flex>
-                                        <h3 id={item.id} onClick={onClick_upDown} data-value='up'>
-                                            {upText} 올리기
-                                        </h3>
-                                        <h4 id={item.id} onClick={onClick_upDown} data-value='down'>
-                                            {upText} 내리기
-                                        </h4>
-                                    </Flex>
-                                }
-                                <h2 onClick={onClick_delete} id={item.id} data-value={index}>삭제</h2>
-                            </BtnDiv>
-                        </BoardElement>)}
-                </ListBoard>
-            }
-        </Wrapper>
-    )
+      {boardList.length > 0 && (
+        <ListBoard>
+          {sortedBoardList.map((item, index) => (
+            <BoardElement key={index}>
+              <h1 onClick={onClick_revise} id={item.id} data-index={index}>
+                {category === 'notice' || category === 'urgent'
+                  ? item.title
+                  : item.name}
+                &nbsp;
+                {category === 'notice'
+                  ? item.picked && (
+                      <span style={{ color: '#4F33F6' }}>{mainUpText}</span>
+                    )
+                  : item.popup && (
+                      <span style={{ color: '#4F33F6' }}>{popUpText}</span>
+                    )}
+              </h1>
+              <BtnDiv>
+                {(category == 'notice' ||
+                  category == 'missing-person' ||
+                  category == 'urgent') && (
+                  <Flex>
+                    <h3 id={item.id} onClick={onClick_upDown} data-value="up">
+                      {upText} 올리기
+                    </h3>
+                    <h4 id={item.id} onClick={onClick_upDown} data-value="down">
+                      {upText} 내리기
+                    </h4>
+                  </Flex>
+                )}
+                <h2 onClick={onClick_delete} id={item.id} data-value={index}>
+                  삭제
+                </h2>
+              </BtnDiv>
+            </BoardElement>
+          ))}
+        </ListBoard>
+      )}
+    </Wrapper>
+  );
 }
 
 export default Assign_List;
@@ -333,7 +317,7 @@ const DropDownBar = styled.div`
     padding: 0;
 
     color: #111;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
@@ -367,7 +351,7 @@ const DropDownlist = styled.ol`
     background-color: white;
 
     color: #111;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
@@ -402,7 +386,7 @@ const AddBar = styled.div`
     height: 32px;
 
     color: #111;
-    font-family: Pretendard;
+    font-family: 'Pretendard';
     font-size: 17px;
     font-style: normal;
     font-weight: 700;
@@ -417,7 +401,7 @@ const AddBar = styled.div`
 
 const BoardElement = styled.div``;
 const ListBoard = styled.div`
-  min-height:504px;
+  min-height: 504px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -443,7 +427,7 @@ const ListBoard = styled.div`
       height: 32px;
 
       color: #111;
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 17px;
       font-style: normal;
       font-weight: 500;
@@ -460,7 +444,7 @@ const ListBoard = styled.div`
 
       color: #f00;
       text-align: center;
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 15px;
       font-style: normal;
       font-weight: 600;
@@ -483,7 +467,7 @@ const ListBoard = styled.div`
       text-align: right;
 
       /* flag1 */
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
@@ -504,7 +488,7 @@ const ListBoard = styled.div`
       text-align: right;
 
       /* flag1 */
-      font-family: Pretendard;
+      font-family: 'Pretendard';
       font-size: 12px;
       font-style: normal;
       font-weight: 500;
