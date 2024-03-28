@@ -63,7 +63,7 @@ function AssignPage_Urgent() {
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail(category,itemID,setInfo);
+      fetchDetail(festivalId, category,itemID,setInfo);
       setCancle(false);
     } else if (mode == 'f') {
       fetchList(festivalId, category, type, setBoardList)

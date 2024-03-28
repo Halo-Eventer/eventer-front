@@ -55,9 +55,12 @@ export const getAll = (festivalId, category, type) => {
   }
 };
 
-export const getDetail = (category, id) => {
+export const getDetail = (festivalId, category, id) => {
 
-  if (category === 'lostItem' || category === 'missingPerson')
+  if (category === 'notice')
+    return axios.get(`notice/${festivalId}/${id}`);
+
+  else if (category === 'lostItem' || category === 'missingPerson')
     return axios.get(`user/${category}/${id}`);
 
   else if (category === 'urgent')

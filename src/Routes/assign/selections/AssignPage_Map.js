@@ -68,7 +68,7 @@ function AssignPage_Map() {
       setCancle(false);
     } else if (mode == 'r') {
       setInfo(InitInfo(category, type));
-      fetchDetail(category,itemID,setInfo);
+      fetchDetail(festivalId,category,itemID,setInfo);
       setCancle(false);
     } else if (mode == 'f') {
       fetchList(festivalId, category,type,setBoardList);

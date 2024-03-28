@@ -1,8 +1,8 @@
 import { getDetail } from "apis/apis_GET";
 
 
-function fetchDetail(category, itemID, setInfo) {
-    getDetail(category, itemID)
+function fetchDetail(festivalId, category, itemID, setInfo) {
+    getDetail(festivalId, category, itemID)
         .then((response) => {
             if (typeof response.data === 'object') {
                 console.log('fetch Detail success', response.data);
