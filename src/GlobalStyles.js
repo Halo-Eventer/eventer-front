@@ -10,26 +10,18 @@ export const GlobalStyles = createGlobalStyle`
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
+
 
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Pretendard';
+    font-family: 'Pretendard Variable';
 }
 
 body{
-  background-color:${props=>props.inAssign 
-  ? '#FFF'
-  : '#000'
-  };
-  font-family:Pretendard; //폰트 이름이 공백이 없어서 따옴표없이도 가능
+  background-color:${(props) => (props.inAssign ? '#FFF' : '#000')};
+  font-family:'Pretendard Variable'; //폰트 이름이 공백이 없어서 따옴표없이도 가능
 }
 
 button{

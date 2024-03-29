@@ -105,7 +105,7 @@ const SecondBar = styled.div`
   ${SecondBtn} {
     width: 185px;
     text-align: center;
-    font-family: 'Pretendard';
+
     font-size: 16px;
     font-style: normal;
     font-weight: 800;
@@ -163,7 +163,7 @@ export const Section = styled.div`
     padding: 12px;
     h1 {
       color: #fff;
-      font-family: 'Pretendard';
+
       font-size: 18px;
       font-style: normal;
       font-weight: 600;
@@ -172,7 +172,7 @@ export const Section = styled.div`
     }
     h2 {
       color: #ddd;
-      font-family: 'Pretendard';
+
       font-size: 14px;
       font-style: normal;
       font-weight: 400;

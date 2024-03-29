@@ -129,7 +129,6 @@ export const PageBtn = styled.div`
   }
 
   h1 {
-    font-family: 'Pretendard';
     font-size: 20px;
     font-style: normal;
     font-weight: 700;

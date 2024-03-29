@@ -188,7 +188,7 @@ const InputLatLng = styled(Input)`
   }};
 
   color: #111;
-  font-family: 'Pretendard';
+
   font-size: 15px;
   font-style: normal;
   font-weight: 500;

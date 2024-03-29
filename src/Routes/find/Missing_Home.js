@@ -42,10 +42,7 @@ function Missing_Home() {
     <Wrapper>
       <TopFixedDiv>
         <UpperBar>
-          <BkBtn
-            style={{ marginLeft: '16px' }}
-            onClick={onClick_bkBtn(navigate)}
-          ></BkBtn>
+          <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
           <Title>실종자 찾기 신청</Title>
         </UpperBar>
       </TopFixedDiv>
@@ -148,7 +145,7 @@ const AgreeBox = styled.div`
   border-radius: 12px;
   background: #222;
   color: #aaa;
-  font-family: 'Pretendard';
+
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -176,7 +173,7 @@ const MissingInfoContainer = styled.div`
 `;
 const Agree = styled.div`
   color: #ddd;
-  font-family: 'Pretendard';
+
   font-size: 16px;
 
   font-weight: 600;
@@ -210,7 +207,7 @@ export const ApplyBtn = styled.button`
 
   color: #111;
   text-align: center;
-  font-family: 'Pretendard';
+
   font-size: 16px;
   font-style: normal;
   font-weight: 800;
