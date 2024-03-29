@@ -500,7 +500,7 @@ export const SecondBlock = styled.div`
 
       button {
         color: #fff;
-        font-family: Pretendard;
+
         font-size: 14px;
         font-style: normal;
         font-weight: 700;
@@ -547,7 +547,7 @@ export const SecondBlock = styled.div`
 
       button {
         color: #ddd;
-        font-family: Pretendard;
+
         font-size: 14px;
         font-style: normal;
         font-weight: 500;
@@ -591,7 +591,7 @@ export const TextBoard = styled.div`
     z-index: 2;
     h1 {
       color: #fff;
-      font-family: Pretendard;
+
       font-size: 20px;
       font-style: normal;
       font-weight: 600;
@@ -599,7 +599,7 @@ export const TextBoard = styled.div`
     }
     h2 {
       color: #fff;
-      font-family: Pretendard;
+
       font-size: 15px;
       font-style: normal;
       font-weight: 600;
@@ -608,7 +608,7 @@ export const TextBoard = styled.div`
     }
     h3 {
       color: #fff;
-      font-family: Pretendard;
+
       font-size: 15px;
       font-style: normal;
       font-weight: 500;
@@ -658,7 +658,6 @@ export const SurveyBox = styled.button`
   h2 {
     color: #ddd;
 
-    font-family: Pretendard;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -720,7 +719,7 @@ export const ETCBox = styled(Flex)`
       align-items: center;
 
       /* body3 */
-      font-family: Pretendard;
+
       font-size: 14px;
       font-style: normal;
       font-weight: 500;

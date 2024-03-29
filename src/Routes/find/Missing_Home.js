@@ -145,7 +145,7 @@ const AgreeBox = styled.div`
   border-radius: 12px;
   background: #222;
   color: #aaa;
-  font-family: 'Pretendard';
+
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
@@ -173,7 +173,7 @@ const MissingInfoContainer = styled.div`
 `;
 const Agree = styled.div`
   color: #ddd;
-  font-family: 'Pretendard';
+
   font-size: 16px;
 
   font-weight: 600;
@@ -207,7 +207,7 @@ export const ApplyBtn = styled.button`
 
   color: #111;
   text-align: center;
-  font-family: 'Pretendard';
+
   font-size: 16px;
   font-style: normal;
   font-weight: 800;

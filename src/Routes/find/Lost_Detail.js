@@ -39,7 +39,7 @@ const Category = styled.div`
   color: #53cddd;
 
   /* body1 */
-  font-family: 'Pretendard';
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -47,7 +47,7 @@ const Category = styled.div`
 `;
 const Name = styled.div`
   color: #fff;
-  font-family: 'Pretendard';
+
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -76,7 +76,7 @@ const Date = styled.div`
   color: #ddd;
 
   /* body3 */
-  font-family: 'Pretendard';
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -107,7 +107,7 @@ const Tel = styled.div`
   color: #777;
   text-align: center;
   margin-top: 4px;
-  font-family: 'Pretendard';
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

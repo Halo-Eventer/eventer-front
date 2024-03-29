@@ -111,7 +111,7 @@ export const TitleElement = styled(Link)`
     background-color: #555555;
 
     color: white;
-    font-family: 'Pretendard';
+
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
@@ -128,7 +128,7 @@ export const TitleElement = styled(Link)`
 
   h1 {
     color: white;
-    font-family: 'Pretendard';
+
     font-size: 15px;
     font-style: normal;
     font-weight: 600;

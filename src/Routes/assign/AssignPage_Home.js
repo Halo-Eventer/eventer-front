@@ -136,7 +136,7 @@ export const FestivalSelectBox = styled.div`
     z-index: 2;
 
     color: #111;
-    font-family: 'Pretendard';
+
     font-style: normal;
     font-weight: 500;
   }
@@ -168,7 +168,7 @@ export const UpperBar = styled.div`
 
     select {
       color: black;
-      font-family: 'Pretendard';
+
       font-size: 15px;
       font-style: normal;
       font-weight: 500;
@@ -210,7 +210,6 @@ export const MiddleBar = styled.div`
     ${H1} {
       margin-right: 4px;
 
-      font-family: 'Pretendard';
       font-size: 16px;
       font-style: normal;
       line-height: 24px; /* 150% */
@@ -250,7 +249,7 @@ export const FestivalSelect_MainBox = styled.div`
 
     color: #111;
     text-align: center;
-    font-family: 'Pretendard';
+
     font-size: 32px;
     font-style: normal;
     font-weight: 800;
@@ -284,7 +283,7 @@ export const FestivalSelect_MainBox = styled.div`
 
     color: #fff;
     text-align: center;
-    font-family: 'Pretendard';
+
     font-size: 17px;
     font-style: normal;
     font-weight: 700;
@@ -342,7 +341,7 @@ export const Input = styled.input`
   border: 0;
 
   color: #111;
-  font-family: 'Pretendard';
+
   font-size: 15px;
   font-style: normal;
   font-weight: 500;
