@@ -291,6 +291,7 @@ export const Board = styled.div`
     width: 390px;
     background-color: transparent;
   }
+  overflow-x: hidden;
 `;
 
 export const BoardSet_Width = styled(Flex)`
