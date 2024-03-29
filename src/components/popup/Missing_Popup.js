@@ -65,7 +65,7 @@ ${prop.name}(${prop.gender}, ${prop.age}세) 를 찾습니다.
             ''
             :
             <FindBtn
-              onClick={() => (document.location.href = 'tel:01063920549')}
+              onClick={() => (document.location.href = 'tel:0612448729')}
             >
               실종자 센터 연락하기
             </FindBtn>
