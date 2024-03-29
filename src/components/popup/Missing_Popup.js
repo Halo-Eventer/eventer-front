@@ -27,7 +27,7 @@ function Missing_Popup({ popupList, prop, setPopupList, type }) {
         </FullImgDiv>
       )}
       <Container>
-        <Head type={type}>{type ? prop.title : '어린이를 찾습니다'}</Head>
+        <Head type={type}>{type ? prop.title : '실종자를 찾습니다'}</Head>
         {type == 1 ? (
           ''
         ) : (
