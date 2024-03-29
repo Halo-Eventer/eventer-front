@@ -90,12 +90,12 @@ function Home() {
   return (
     <Wrapper>
       {popupList.length == 0 ? '' : <Overlay />}
-      {popupList?.map((e,i) => {
+      {popupList?.map((e, i) => {
         let type = 0;
         if (urgentList.includes(e)) type = 1;
         return (
           <Missing_Popup
-            key = {i}
+            key={i}
             type={type}
             prop={e}
             popupList={popupList}
@@ -159,7 +159,7 @@ function Home() {
                 <button>주변시설 확인</button>
               </h1>
             </Link>
-            <HR/>
+            <HR />
             <Link to="/concertInfo">
               <h1>
                 <FlexBox_Row>
@@ -204,7 +204,7 @@ function Home() {
             </SmallBox>
           </Link>
         </SecondBlock>
-        </Board>
+      </Board>
       <Footer />
     </Wrapper>
   );
@@ -282,10 +282,11 @@ export const UpperBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
 `;
 
 export const Board = styled.div`
-  width:100%;
+  width: 100%;
   @media screen and (min-width: 450px) {
     width: 390px;
     background-color: transparent;
@@ -349,7 +350,7 @@ export const Title = styled.h1`
 
   color: #fff;
   text-align: center;
-  font-family:'NanumSquareNeo';
+  font-family: 'NanumSquareNeo';
   font-size: 17px;
   font-style: normal;
   font-weight: 900;
@@ -473,7 +474,7 @@ export const SecondBlock = styled.div`
 
     ${HR} {
       width: 326px;
-      height:1px;
+      height: 1px;
       flex-shrink: 0;
 
       background-color: #999;
@@ -481,8 +482,8 @@ export const SecondBlock = styled.div`
       margin: 20px 0px;
     }
 
-    p{
-      font-family:'NanumSquareNeo';
+    p {
+      font-family: 'NanumSquareNeo';
     }
 
     h1 {
@@ -652,7 +653,7 @@ export const SurveyBox = styled.button`
     font-style: normal;
     font-weight: 900;
     line-height: 24px; /* 150% */
-    font-family : 'NanumSquareNeo';
+    font-family: 'NanumSquareNeo';
   }
   h2 {
     color: #ddd;
@@ -704,7 +705,7 @@ export const ETCBox = styled(Flex)`
       /* headline1 */
       font-size: 18px;
       font-style: normal;
-      font-family:'NanumSquareNeo';
+      font-family: 'NanumSquareNeo';
       font-weight: 900;
       line-height: 26px; /* 144.444% */
     }

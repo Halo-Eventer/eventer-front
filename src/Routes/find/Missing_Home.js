@@ -42,10 +42,7 @@ function Missing_Home() {
     <Wrapper>
       <TopFixedDiv>
         <UpperBar>
-          <BkBtn
-            style={{ marginLeft: '16px' }}
-            onClick={onClick_bkBtn(navigate)}
-          ></BkBtn>
+          <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
           <Title>실종자 찾기 신청</Title>
         </UpperBar>
       </TopFixedDiv>

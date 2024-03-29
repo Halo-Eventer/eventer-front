@@ -24,10 +24,7 @@ function Lost_Home() {
       <Wrapper>
         <TopFixedDiv>
           <UpperBar>
-            <BkBtn
-              style={{ marginLeft: '16px' }}
-              onClick={onClick_bkBtn(navigate)}
-            ></BkBtn>
+            <BkBtn onClick={onClick_bkBtn(navigate)}></BkBtn>
             <Title>분실물 리스트</Title>
           </UpperBar>
         </TopFixedDiv>
