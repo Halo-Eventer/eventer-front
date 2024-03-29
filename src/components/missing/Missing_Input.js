@@ -123,7 +123,7 @@ const PicD = styled.div`
   margin-left: 8px;
   width: 168px;
   /* body3 */
-  font-family: 'Pretendard';
+
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -131,7 +131,7 @@ const PicD = styled.div`
 `;
 export const MissingSemiTitle = styled.div`
   color: #999;
-  font-family: 'Pretendard';
+
   font-size: 14px;
   font-weight: 700;
   line-height: 20px; /* 142.857% */
@@ -152,7 +152,6 @@ const Input = styled.input`
   padding-left: 12px;
   border: none;
 
-  font-family: 'Pretendard';
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -172,7 +171,7 @@ const GenderBtn = styled.button`
   flex-shrink: 0;
   color: #fff;
   text-align: center;
-  font-family: 'Pretendard';
+
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -208,7 +207,7 @@ const AddPic = styled.button`
   border-radius: 8px;
   border: 1px solid #fff;
   color: #fff;
-  font-family: 'Pretendard';
+
   font-size: 16px;
 
   font-weight: 600;

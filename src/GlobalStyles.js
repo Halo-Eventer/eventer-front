@@ -15,15 +15,12 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Pretendard';
+    font-family: 'Pretendard Variable';
 }
 
 body{
-  background-color:${props=>props.inAssign 
-  ? '#FFF'
-  : '#000'
-  };
-  font-family:Pretendard; //폰트 이름이 공백이 없어서 따옴표없이도 가능
+  background-color:${(props) => (props.inAssign ? '#FFF' : '#000')};
+  
 }
 
 button{

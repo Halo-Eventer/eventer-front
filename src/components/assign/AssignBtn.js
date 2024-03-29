@@ -27,13 +27,12 @@ function AssignBtn() {
   
 
   const assignPost = () => {
-    let typed_info = { ...info, type: type }; //현재 무슨 타입인지 추가
-    console.log('typed_info:', typed_info);
+    console.log('info:', info);
 
     let tmp = window.confirm('추가하시겠습니까?');
 
     if (tmp)
-      assignApi(typed_info, category, festivalId)
+      assignApi(info, category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
             console.log('response.data, type : ', response.data, type);
@@ -47,13 +46,12 @@ function AssignBtn() {
   };
 
   const assignMarker = () => {
-    let typed_info = { ...info, type: type };
-    console.log('typed_info:', typed_info);
+    console.log('info:', info);
 
     let tmp = window.confirm('추가하시겠습니까?');
 
     if (tmp)
-      assignApi(typed_info, category, festivalId)
+      assignApi(info, category, festivalId)
         .then((res) => {
           if (res.data.mapId) {
             // console.log('일단 가게등록은 성공', res.data.mapId, info.menus);
@@ -81,11 +79,10 @@ function AssignBtn() {
 
   const revisePost = (id) => {
     console.log(info);
-    let typed_info = { ...info, type: type }; //현재 무슨 타입인지 추가
     let tmp = window.confirm('수정하시겠습니까?');
 
     if (tmp)
-      reviseApi(typed_info, category, id)
+      reviseApi(info, category, id)
         .then((response) => {
           if (typeof response.data === 'object') {
             console.log('response : ', response);
@@ -99,14 +96,13 @@ function AssignBtn() {
   };
   const reviseMarker = (id) => {
     console.log(info);
-    let typed_info = { ...info, type: type }; //현재 무슨 타입인지 추가
     let tmp = window.confirm('수정하시겠습니까?');
     id = Number(id);
     //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
     //태그에서 target해서 받아오는 값들은 string
 
     if (tmp)
-      reviseApi(typed_info, category, id)
+      reviseApi(info, category, id)
         .then((res) => {
           if (res.data.mapId) {
             console.log(res.data.mapId);

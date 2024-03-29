@@ -31,8 +31,6 @@ export const FooterBox = styled.div`
 
   padding: 16px;
 
-  font-family: 'Pretendard';
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -105,9 +105,8 @@ function Assign_List(props) {
     const value = event.currentTarget.dataset.value;
     let element = sortedBoardList[event.currentTarget.dataset.index];
     let title;
-    if (category === 'notice' || category==='urgent') title = element.title;
+    if (category === 'notice' || category === 'urgent') title = element.title;
     else title = element.name;
-
 
     let up;
 
@@ -180,9 +179,7 @@ function Assign_List(props) {
         else return !item.popup;
       });
 
-      setSortedBoardList(
-        [...upList, ...notList]
-      );
+      setSortedBoardList([...upList, ...notList]);
     }
   }, [boardList]);
 
@@ -244,7 +241,9 @@ function Assign_List(props) {
         <ListBoard category={category}>
           {sortedBoardList.map((item, index) => (
             <BoardElement key={index}>
-              <Flex style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+              <Flex
+                style={{ flexDirection: 'column', alignItems: 'flex-start' }}
+              >
                 <h1 onClick={onClick_revise} id={item.id} data-index={index}>
                   {category === 'notice' || category === 'urgent'
                     ? item.title
@@ -252,45 +251,42 @@ function Assign_List(props) {
                   &nbsp;&nbsp;
                   {category === 'notice'
                     ? item.picked && (
-                      <span style={{ color: '#4F33F6' }}>{mainUpText}</span>
-                    )
+                        <span style={{ color: '#4F33F6' }}>{mainUpText}</span>
+                      )
                     : item.popup && (
-                      <span style={{ color: '#4F33F6' }}>{popUpText}</span>
-                    )}
+                        <span style={{ color: '#4F33F6' }}>{popUpText}</span>
+                      )}
                 </h1>
 
-                {category==='notice'
-                &&
-                <p>
-                    {item.time.slice(0, 10) +
-                    ' ' +
-                    item.time.slice(11, 19)}
-                </p>
-                }    
-
+                {category === 'notice' && (
+                  <p>
+                    {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
+                  </p>
+                )}
               </Flex>
               <BtnDiv>
                 {(category == 'notice' ||
                   category == 'missingPerson' ||
                   category == 'urgent') && (
-                    <Flex>
-                      <h3
-                        id={item.id}
-                        onClick={onClick_upDown}
-                        data-value="up"
-                        data-index={index}>
-                        {upText} 올리기
-                      </h3>
-                      <h4
-                        id={item.id}
-                        onClick={onClick_upDown}
-                        data-value="down"
-                        data-index={index}
-                      >
-                        {upText} 내리기
-                      </h4>
-                    </Flex>
-                  )}
+                  <Flex>
+                    <h3
+                      id={item.id}
+                      onClick={onClick_upDown}
+                      data-value="up"
+                      data-index={index}
+                    >
+                      {upText} 올리기
+                    </h3>
+                    <h4
+                      id={item.id}
+                      onClick={onClick_upDown}
+                      data-value="down"
+                      data-index={index}
+                    >
+                      {upText} 내리기
+                    </h4>
+                  </Flex>
+                )}
                 <h2 onClick={onClick_delete} id={item.id} data-index={index}>
                   삭제
                 </h2>
@@ -345,7 +341,7 @@ const DropDownBar = styled.div`
     padding: 0;
 
     color: #111;
-    font-family: 'Pretendard';
+
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
@@ -379,7 +375,7 @@ const DropDownlist = styled.ol`
     background-color: white;
 
     color: #111;
-    font-family: 'Pretendard';
+
     font-size: 15px;
     font-style: normal;
     font-weight: 600;
@@ -414,7 +410,7 @@ const AddBar = styled.div`
     height: 32px;
 
     color: #111;
-    font-family: 'Pretendard';
+
     font-size: 17px;
     font-style: normal;
     font-weight: 700;
@@ -435,33 +431,29 @@ const ListBoard = styled.div`
   flex-direction: column;
   justify-content: flex-start;
 
-  ${props=>props.category==='notice' && 'gap:12px;'}
+  ${(props) => props.category === 'notice' && 'gap:12px;'}
 
   ${BoardElement} {
     width: 544px;
     height: 48px;
     flex-shrink: 0;
 
-    
     /* border: 1px solid #ddd;
     border-radius:4px; */
 
     display: flex;
     justify-content: space-between;
-    align-items:  
-    ${props=>props.category==='notice'
-    ?'flex-end'
-    :'center'};
+    align-items: ${(props) =>
+      props.category === 'notice' ? 'flex-end' : 'center'};
 
     padding: 4px;
-
 
     h1 {
       margin: 0;
       padding: 0;
 
       color: #111;
-      font-family: 'Pretendard';
+
       font-size: 16px;
       font-style: normal;
       font-weight: 500;
@@ -470,9 +462,9 @@ const ListBoard = styled.div`
       cursor: pointer;
     }
 
-    p{
+    p {
       color: #888;
-      font-size:12px;
+      font-size: 12px;
     }
   }
 `;
@@ -486,64 +478,64 @@ const BtnDiv = styled(Flex)`
   }
 
   h2 {
-  margin: 0;
+    margin: 0;
 
-  width: 42px;
+    width: 42px;
 
-  color: #f00;
-  text-align: center;
-  font-family: 'Pretendard';
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 24px; /* 160% */
+    color: #f00;
+    text-align: center;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 160% */
 
-  cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
   }
   h3 {
-  width: 72px;
-  height: 24px;
+    width: 72px;
+    height: 24px;
 
-  border-radius: 4px;
-  background: #e0daff;
+    border-radius: 4px;
+    background: #e0daff;
 
-  color: #4f33f6;
-  text-align: right;
+    color: #4f33f6;
+    text-align: right;
 
-  /* flag1 */
-  font-family: 'Pretendard';
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px; /* 133.333% */
+    /* flag1 */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   h4 {
-  width: 72px;
-  height: 24px;
+    width: 72px;
+    height: 24px;
 
-  border-radius: 4px;
-  background: #f2f2f2;
+    border-radius: 4px;
+    background: #f2f2f2;
 
-  color: #111;
-  text-align: right;
+    color: #111;
+    text-align: right;
 
-  /* flag1 */
-  font-family: 'Pretendard';
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px; /* 133.333% */
+    /* flag1 */
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
