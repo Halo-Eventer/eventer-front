@@ -412,12 +412,12 @@ export const Index = styled(Flex)`
   flex-shrink: 0;
 
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(2px);
 
   z-index: 20;
 
-  color: #fff;
+  color: #111;
   font-size: 12px;
   font-style: normal;
   font-weight: 800;
