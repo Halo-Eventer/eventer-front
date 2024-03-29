@@ -100,6 +100,7 @@ function NolzaMap(props) {
         console.log(err);
       });
     setMap(tmpMap);
+    window.scrollTo(0, -200);
   }, []);
   useEffect(() => {
     concertHallMarker.map((e, i) => {
@@ -314,6 +315,7 @@ const Map = styled.div`
 export const MapContainer = styled.div`
   width: 100vw;
   height: calc(var(--vh, 1vh) * 100);
+  /* height: 100vh; */
   z-index: 0;
 `;
 const GlobalStyle = createGlobalStyle`//전역 스타일 설정
