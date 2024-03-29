@@ -179,7 +179,11 @@ function Assign_List(props) {
         else return !item.popup;
       });
 
-      setSortedBoardList([...upList, ...notList]);
+      setSortedBoardList(
+        [...upList.sort(
+          (a,b)=>new Date(b.time)-new Date(a.time)),
+         ...notList]
+         );
     }
   }, [boardList]);
 
