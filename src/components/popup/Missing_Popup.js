@@ -1,4 +1,5 @@
 import { ApplyBtn } from 'Routes/find/Missing_Home';
+import { Flex } from 'asset/Style';
 import { useState } from 'react';
 
 import styled from 'styled-components';
@@ -28,41 +29,47 @@ function Missing_Popup({ popupList, prop, setPopupList, type }) {
       )}
       <Container>
         <Head type={type}>{type ? prop.title : '어린이를 찾습니다'}</Head>
-        {type == 1 ? (
+        {type
+          ?
           ''
-        ) : (
-          <Img
-            onClick={() => {
-              setFullImgPopUp(true);
-            }}
-            src={prop.thumbnail}
-          />
-        )}
-        <p
-          onClick={() => {
-            setFullImgPopUp(true);
-          }}
-        >
-          이미지 확대하기
-        </p>
+          :
+          <Flex style={{ flexDirection: 'column', alignItems: 'center' }}>
+            <Img
+              onClick={() => {
+                setFullImgPopUp(true);
+              }}
+              src={prop.thumbnail}
+            />
+            <p
+              onClick={() => {
+                setFullImgPopUp(true);
+              }}
+            >
+              이미지 확대하기
+            </p>
+          </Flex>
+        }
+
         <Content readOnly type={type}>
           {type
-            ? prop.content
+            ?
+            prop.content
             : `${prop.missingLocation}에서 실종된
 ${prop.name}(${prop.gender}, ${prop.age}세) 를 찾습니다.
             
 특이사항 : ${prop.content}`}
         </Content>
         <BtnBox>
-          {type == 1 ? (
+          {type
+            ?
             ''
-          ) : (
+            :
             <FindBtn
               onClick={() => (document.location.href = 'tel:01063920549')}
             >
               실종자 센터 연락하기
             </FindBtn>
-          )}
+          }
           <CloseBtn onClick={closePopup}>창 닫기</CloseBtn>
         </BtnBox>
       </Container>
@@ -165,7 +172,7 @@ const FullImgDiv = styled.div`
 const Content = styled.textarea`
   margin-top: ${(props) => (props.type ? '16px' : '12px')};
   width: 278px;
-  height: 100px;
+  height: ${(props)=>props.type ? '360px' : '100px'};
 
   overflow: auto;
 

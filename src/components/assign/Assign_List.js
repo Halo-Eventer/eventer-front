@@ -182,6 +182,8 @@ function Assign_List(props) {
       setSortedBoardList(
         [...upList.sort(
           (a,b)=>new Date(b.time)-new Date(a.time)),
+          //단순히 문자열 연산을 냅다 하는게 아니라 Date객체끼리 연산을 해야함
+          //(그래야 양수 음수가 나오고 정렬 기준 확립)
          ...notList]
          );
     }
