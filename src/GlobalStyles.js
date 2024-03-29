@@ -21,7 +21,7 @@ export const GlobalStyles = createGlobalStyle`
 
 body{
   background-color:${(props) => (props.inAssign ? '#FFF' : '#000')};
-  font-family:'Pretendard Variable'; //폰트 이름이 공백이 없어서 따옴표없이도 가능
+  
 }
 
 button{

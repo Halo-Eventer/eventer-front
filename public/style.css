@@ -5,13 +5,8 @@
 }
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
-@font-face {
-  font-family: 'Pretendard';
-  src: url('../src/asset/fonts/PretendardVariable.woff2') format('woff2');
-}
 body {
   -ms-overflow-style: none;
-  font-family: 'Pretendard Variable';
 }
 
 ::-webkit-scrollbar {
