@@ -9,10 +9,16 @@ axios.defaults.baseURL = process.env.REACT_APP_API;
 export const reviseApi = (info, category, id) => {
     console.log('info in reviseApi : ', info);
 
-    if(category!=='urgent')
-        if (info.thumbnail == thumbnail_preview||
-            info.thumbanil==thumbnail_preview2||
-            info.thumbnail==thumbnail_preview_missing) info.thumbnail = '';
+    if (
+        category !== 'urgent'
+        &&
+        (
+            info.thumbnail == thumbnail_preview ||
+            info.thumbanil == thumbnail_preview2 ||
+            info.thumbnail == thumbnail_preview_missing
+        )
+    )
+        info.thumbnail = '';
 
 
     if (category == 'lostItem' ||

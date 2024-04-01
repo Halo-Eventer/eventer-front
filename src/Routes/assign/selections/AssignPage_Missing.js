@@ -48,7 +48,7 @@ function AssignPage_Missing() {
   {
     console.log("cateogry:",category);
     setCancle(true);
-    setInfo(InitInfo(category));
+    setInfo(InitInfo(category,type));
     setMode("");
     fetchList(festivalId,category,type,setBoardList);
   }, [category]);
@@ -57,7 +57,7 @@ function AssignPage_Missing() {
     console.log('mode:', mode);
     if (mode == 'a') {
       fetchList(festivalId,category,type,setBoardList);
-      setInfo(InitInfo(category));  
+      setInfo(InitInfo(category,type));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {

@@ -17,5 +17,5 @@ export const InitInfo = (category, type) => {
     else
         tmp = mapForm_blank;
 
-    return {...tmp,type:type};
+    return {...tmp, type:type};
 };

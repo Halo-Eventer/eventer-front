@@ -16,6 +16,7 @@ import { Flex } from 'asset/Style';
 import { popUpApi } from 'apis/apis_PATCH';
 import { bannerApi } from 'apis/apis_POST';
 import { deleteDetail } from 'apis/apis_DELETE';
+import Assign_ListBoard from './Assign_ListBoard';
 
 function Assign_List(props) {
   //*****전역 recoil모음*****
@@ -23,16 +24,13 @@ function Assign_List(props) {
   const [category, setCategory] = useRecoilState(categoryState_assign);
   const [type, setType] = useRecoilState(typeState);
   const [mode, setMode] = useRecoilState(modeState);
-  const [itemID, setItemID] = useRecoilState(itemIDState);
   //*****전역 recoil모음*****
 
-  const [sortedBoardList, setSortedBoardList] = useState([]);
   const [selectedDrop, setSelectedDrop] = useState('');
   const [categoryEntries, setCategoryEntries] = useState([]);
   const [showList, setShowList] = useState(false);
   const [upText, setUpText] = useState('');
-  const mainUpText = '[메인]';
-  const popUpText = '[팝업]';
+
 
   const onClick_dropDown = () => {
     setShowList((prev) => !prev);
@@ -60,97 +58,8 @@ function Assign_List(props) {
     setMode('a');
   };
 
-  const onClick_revise = (event) => {
-    event.preventDefault();
 
-    setMode('r');
-    setItemID(event.currentTarget.id);
 
-    console.log(
-      'event.currentTarget.datset.index',
-      event.currentTarget.dataset.index
-    );
-    // props.setSE(
-    //     boardList[event.currentTarget.dataset.index].simpleExplanation);
-  };
-
-  const onClick_delete = (event) => {
-    event.preventDefault();
-
-    const id = event.currentTarget.id;
-    let element = sortedBoardList[event.currentTarget.dataset.index];
-    let title;
-    if (category === 'notice') title = element.title;
-    else title = element.name;
-
-    console.log('id, title, category, type: ', id, title, category, type);
-    let tmp = window.confirm(`'"${title}"' 항목을 삭제하시겠습니까?`);
-
-    if (tmp)
-      deleteDetail(category, id)
-        .then((response) => {
-          if (typeof response.data === 'string') {
-            alert(`'"${title}"' 항목이 성공적으로 삭제되었습니다.`);
-            console.log(response.data);
-            setMode('f');
-          } else console.log('fail : ', response.data);
-        })
-        .catch((error) => {
-          console.log('error : ', error);
-        });
-  };
-  const onClick_upDown = (event) => {
-    event.preventDefault();
-    const id = Number(event.currentTarget.id);
-    const value = event.currentTarget.dataset.value;
-    let element = sortedBoardList[event.currentTarget.dataset.index];
-    let title;
-    if (category === 'notice' || category === 'urgent') title = element.title;
-    else title = element.name;
-
-    let up;
-
-    if (value == 'up') up = true;
-    else up = false;
-
-    console.log('category, id, value, popUp:', category, id, value, up);
-
-    let tmp;
-
-    if (category === 'notice')
-      tmp = window.confirm(
-        up
-          ? `"${title}" 항목을 메인페이지에 등록하시겠습니까?`
-          : `"${title}" 항목을 메인페이지에서 삭제하시겠습니까?`
-      );
-    else
-      tmp = window.confirm(
-        up
-          ? `"${title}" 항목을 팝업창에 등록하시겠습니까?`
-          : `"${title}" 항목을 팝업창에서 삭제하시겠습니까?`
-      );
-
-    if (tmp) {
-      if (category === 'notice')
-        bannerApi(id, up)
-          .then((response) => {
-            alert(response.data);
-            setMode('f');
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      else
-        popUpApi(category, id, up)
-          .then((response) => {
-            alert(response.data);
-            setMode('f');
-          })
-          .catch((error) => {
-            alert(error);
-          });
-    }
-  };
 
   useEffect(() => {
     setCategoryEntries(Object.entries(props.categoryList));
@@ -165,29 +74,6 @@ function Assign_List(props) {
       setSelectedDrop(categoryEntries[0][1]);
   }, [categoryEntries]);
 
-  useEffect(() => {
-    let upList = [];
-    let notList = [];
-    if (typeof boardList === 'object') {
-      upList = boardList.filter((item) => {
-        if (category === 'notice') return item.picked;
-        else return item.popup;
-      });
-
-      notList = boardList.filter((item) => {
-        if (category === 'notice') return !item.picked;
-        else return !item.popup;
-      });
-
-      setSortedBoardList(
-        [...upList.sort(
-          (a,b)=>new Date(b.time)-new Date(a.time)),
-          //단순히 문자열 연산을 냅다 하는게 아니라 Date객체끼리 연산을 해야함
-          //(그래야 양수 음수가 나오고 정렬 기준 확립)
-         ...notList]
-         );
-    }
-  }, [boardList]);
 
   useEffect(() => {
     if (category === 'notice') {
@@ -243,64 +129,8 @@ function Assign_List(props) {
         <h1>{selectedDrop} 추가</h1>
       </AddBar>
 
-      {boardList.length > 0 && (
-        <ListBoard category={category}>
-          {sortedBoardList.map((item, index) => (
-            <BoardElement key={index}>
-              <Flex
-                style={{ flexDirection: 'column', alignItems: 'flex-start' }}
-              >
-                <h1 onClick={onClick_revise} id={item.id} data-index={index}>
-                  {category === 'notice' || category === 'urgent'
-                    ? item.title
-                    : item.name}
-                  &nbsp;&nbsp;
-                  {category === 'notice'
-                    ? item.picked && (
-                        <span style={{ color: '#4F33F6' }}>{mainUpText}</span>
-                      )
-                    : item.popup && (
-                        <span style={{ color: '#4F33F6' }}>{popUpText}</span>
-                      )}
-                </h1>
+      <Assign_ListBoard upText={upText}/>
 
-                {category === 'notice' && (
-                  <p>
-                    {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
-                  </p>
-                )}
-              </Flex>
-              <BtnDiv>
-                {(category == 'notice' ||
-                  category == 'missingPerson' ||
-                  category == 'urgent') && (
-                  <Flex>
-                    <h3
-                      id={item.id}
-                      onClick={onClick_upDown}
-                      data-value="up"
-                      data-index={index}
-                    >
-                      {upText} 올리기
-                    </h3>
-                    <h4
-                      id={item.id}
-                      onClick={onClick_upDown}
-                      data-value="down"
-                      data-index={index}
-                    >
-                      {upText} 내리기
-                    </h4>
-                  </Flex>
-                )}
-                <h2 onClick={onClick_delete} id={item.id} data-index={index}>
-                  삭제
-                </h2>
-              </BtnDiv>
-            </BoardElement>
-          ))}
-        </ListBoard>
-      )}
     </Wrapper>
   );
 }
@@ -316,11 +146,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
 `;
 
 const DropDown = styled.div`
   width: 544px;
+
+  margin-bottom:8px;
 
   display: flex;
   flex-direction: column;
@@ -402,12 +233,13 @@ const AddBar = styled.div`
   flex-shrink: 0;
 
   border-radius: 4px;
-  background: #f2f2f2;
+  background: #DDD;
+
+  margin-bottom:8px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
   gap: 4px;
 
   cursor: pointer;

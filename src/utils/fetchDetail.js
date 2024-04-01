@@ -17,7 +17,7 @@ function fetchDetail(festivalId, category, itemID, setInfo) {
                 else{
                     switch(category){
                         case 'lostItem':
-                            tmp_thumbnail=thumbnail_preview2;
+                            tmp_thumbnail = thumbnail_preview2;
                             break;
                         case 'missing':
                             tmp_thumbnail = thumbnail_preview_missing;

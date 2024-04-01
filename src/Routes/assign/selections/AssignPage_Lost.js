@@ -22,6 +22,7 @@ import { lostItemCategory } from 'constants/Const_Assign';
 
 
 
+
 function AssignPage_Lost() {
 
 
@@ -50,7 +51,7 @@ function AssignPage_Lost() {
   {
     console.log("cateogry:",category);
     setCancle(true);
-    setInfo(InitInfo(category));
+    setInfo(InitInfo(category,type));
     setMode("");
     fetchList(festivalId,category,type, setBoardList);
   }, [category]);
@@ -59,11 +60,11 @@ function AssignPage_Lost() {
     console.log('mode (AssignPage_Map):', mode);
     if (mode == 'a') {
       fetchList(festivalId,category,type,setBoardList);
-      setInfo(InitInfo(category));  
+      setInfo(InitInfo(category,type));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail(festivalId, category, itemID,setInfo);
+      fetchDetail(festivalId, category, itemID, setInfo);
       setCancle(false);
     } else if (mode == 'f') {
       fetchList(festivalId,category,type, setBoardList);

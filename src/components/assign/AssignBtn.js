@@ -24,15 +24,17 @@ function AssignBtn() {
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
-  
+  let info_forApi;
 
   const assignPost = () => {
     console.log('info:', info);
 
     let tmp = window.confirm('추가하시겠습니까?');
+    
+    info_forApi={...info};
 
     if (tmp)
-      assignApi(info, category, festivalId)
+      assignApi(info_forApi, category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
             console.log('response.data, type : ', response.data, type);
@@ -50,8 +52,10 @@ function AssignBtn() {
 
     let tmp = window.confirm('추가하시겠습니까?');
 
+    info_forApi={...info};
+
     if (tmp)
-      assignApi(info, category, festivalId)
+      assignApi(info_forApi, category, festivalId)
         .then((res) => {
           if (res.data.mapId) {
             // console.log('일단 가게등록은 성공', res.data.mapId, info.menus);
@@ -81,8 +85,10 @@ function AssignBtn() {
     console.log(info);
     let tmp = window.confirm('수정하시겠습니까?');
 
+    info_forApi={...info};
+
     if (tmp)
-      reviseApi(info, category, id)
+      reviseApi(info_forApi, category, id)
         .then((response) => {
           if (typeof response.data === 'object') {
             console.log('response : ', response);
@@ -101,8 +107,10 @@ function AssignBtn() {
     //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
     //태그에서 target해서 받아오는 값들은 string
 
+    info_forApi={...info};
+
     if (tmp)
-      reviseApi(info, category, id)
+      reviseApi(info_forApi, category, id)
         .then((res) => {
           if (res.data.mapId) {
             console.log(res.data.mapId);

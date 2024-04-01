@@ -68,7 +68,7 @@ function AssignPage_Post() {
   {
     console.log("cateogry:",category);
     setCancle(true);
-    setInfo(InitInfo(category));
+    setInfo(InitInfo(category,type));
     setMode("");
     console.log('first useEffect');
     fetchList(festivalId, category, type, setBoardList);
@@ -79,11 +79,11 @@ function AssignPage_Post() {
     console.log('secound useEFFect');
     if (mode == 'a') {
       fetchList(festivalId, category, type, setBoardList);
-      setInfo(InitInfo(category));  
+      setInfo(InitInfo(category,type));  
         //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail(festivalId, category,itemID,setInfo);
+      fetchDetail(festivalId, category, itemID, setInfo);
       setCancle(false);
     } else if (mode == 'f') {
       fetchList(festivalId, category, type, setBoardList);
