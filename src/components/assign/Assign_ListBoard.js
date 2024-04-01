@@ -19,8 +19,8 @@ function Assign_ListBoard({ upText }) {
 
   const [upList, setUpList] = useState([]);
   const [notUpList, setNotUpList] = useState([]);
-  const mainUpText = '[메인]';
-  const popUpText = '[팝업]';
+  const mainUpText = '메인';
+  const popUpText = '팝업';
 
 
 
@@ -28,7 +28,7 @@ function Assign_ListBoard({ upText }) {
     event.preventDefault();
 
     const id = event.currentTarget.id;
-    let element = 
+    let element =
       notUpList[event.currentTarget.dataset.index] ||
       upList[event.currentTarget.dataset.index];
     let title;
@@ -71,7 +71,7 @@ function Assign_ListBoard({ upText }) {
     event.preventDefault();
     const id = Number(event.currentTarget.id);
     const value = event.currentTarget.dataset.value;
-    let element = 
+    let element =
       notUpList[event.currentTarget.dataset.index] ||
       upList[event.currentTarget.dataset.index];
     let title;
@@ -167,6 +167,7 @@ function Assign_ListBoard({ upText }) {
     <div style={{ flexDirection: 'column', alignItems: 'center' }}>
       {boardList.length > 0 && (
         <ListBoard category={category}>
+          <Tip>메인페이지/팝업 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수 있습니다.</Tip>
           <DragDropContext onDragEnd={onDragEnd}>
             <UpBlock>
               <Droppable droppableId='MAIN'>
@@ -197,10 +198,18 @@ function Assign_ListBoard({ upText }) {
                                 &nbsp;&nbsp;
                                 {category === 'notice'
                                   ? item.picked && (
-                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>{mainUpText}</span>
+                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
+                                      [
+                                      {mainUpText}
+                                      ]
+                                    </span>
                                   )
                                   : item.popup && (
-                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>{popUpText}</span>
+                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
+                                      [
+                                      {popUpText}
+                                      ]
+                                    </span>
                                   )}
                               </h1>
 
@@ -211,20 +220,24 @@ function Assign_ListBoard({ upText }) {
                               )}
                             </Flex>
                             <BtnDiv {...magic.dragHandleProps}>
+                              <span 
+                              {...magic.dragHandleProps} 
+                              style={{ color: '#4F33F6', marginRight:'4px'}}>
+                                #{index}
+                              </span>
+
                               {(category == 'notice' ||
                                 category == 'missingPerson' ||
                                 category == 'urgent') && (
-                                  <Flex {...magic.dragHandleProps}>
-                                    <h4
-                                      id={item.id}
-                                      onClick={onClick_upDown}
-                                      data-value="down"
-                                      data-index={index}
-                                      {...magic.dragHandleProps}
-                                    >
-                                      {upText} 내리기
-                                    </h4>
-                                  </Flex>
+                                  <h4
+                                    id={item.id}
+                                    onClick={onClick_upDown}
+                                    data-value="down"
+                                    data-index={index}
+                                    {...magic.dragHandleProps}
+                                  >
+                                    {upText} 내리기
+                                  </h4>
                                 )}
                               <h2
                                 onClick={onClick_delete}
@@ -249,7 +262,7 @@ function Assign_ListBoard({ upText }) {
             </UpBlock>
           </DragDropContext>
 
-          <HR up_length={upList.length}/>
+          <HR up_length={upList.length} />
 
           {notUpList.map((item, index) => (
             <BoardElement key={item.id.toString()}>
@@ -280,16 +293,14 @@ function Assign_ListBoard({ upText }) {
                 {(category == 'notice' ||
                   category == 'missingPerson' ||
                   category == 'urgent') && (
-                    <Flex>
-                      <h3
-                        id={item.id}
-                        onClick={onClick_upDown}
-                        data-value="up"
-                        data-index={index}
-                      >
-                        {upText} 올리기
-                      </h3>
-                    </Flex>
+                    <h3
+                      id={item.id}
+                      onClick={onClick_upDown}
+                      data-value="up"
+                      data-index={index}
+                    >
+                      {upText} 올리기
+                    </h3>
                   )}
                 <h2 onClick={onClick_delete} id={item.id} data-index={index}>
                   삭제
@@ -330,7 +341,8 @@ ${UpBlock}{
     background-color:#e0daff;
 
     border-radius:4px;
-    padding:8px;
+    padding:8px 12px;
+    
 
     width: 544px;
     height: 56px;
@@ -353,7 +365,7 @@ ${UpBlock}{
       font-size: 16px;
       font-style: normal;
       font-weight: 500;
-      line-height: 30px;
+      line-height: 24px;
 
       cursor: pointer;
     }
@@ -378,9 +390,9 @@ ${BoardElement} {
   display: flex;
   justify-content: space-between;
   align-items: ${(props) =>
-  props.category === 'notice' ? 'flex-end' : 'center'};
+    props.category === 'notice' ? 'flex-end' : 'center'};
 
-  padding: 8px;
+  padding: 8px 12px;
 
   h1 {
     margin: 0;
@@ -391,7 +403,7 @@ ${BoardElement} {
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
-    line-height: 30px;
+    line-height: 24px;
 
     cursor: pointer;
   }
@@ -402,7 +414,7 @@ ${BoardElement} {
   }
   }
   `;
-  const BtnDiv = styled(Flex)`
+const BtnDiv = styled(Flex)`
   gap: 4px;
   align-items: center;
 
@@ -451,6 +463,8 @@ ${BoardElement} {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor:pointer;
   }
 
   h4 {
@@ -476,11 +490,21 @@ ${BoardElement} {
   }
 `;
 
+const Tip = styled(Flex)`
+width:544px;
+
+font-size:12px;
+
+margin:8px;
+
+justify-content:center;
+`;
+
 const HR = styled.div`
 width: 540px;
 height:1px;
 
 background-color:#CCC;
 
-${props=>props.up_length==0 && 'margin-top:-4px;'}
+${props => props.up_length == 0 && 'margin-top:-6px;'}
 `;
