@@ -26,10 +26,10 @@ function Lost_Detail() {
           <Date style={{ marginTop: '4px' }}>발견날짜:{data.findDate}</Date>
         </Tag>
 
-        <Btn onClick={() => (document.location.href = 'tel:01063920549')}>
+        <Btn onClick={() => (document.location.href = 'tel:0612448729')}>
           분실물 센터 연락하기
         </Btn>
-        <Tel>연락처: 010-6392-0549</Tel>
+        <Tel>연락처: 061-244-8729</Tel>
       </Wrapper>
     </>
   );
