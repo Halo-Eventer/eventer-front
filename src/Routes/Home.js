@@ -55,32 +55,28 @@ function Home() {
   const [homeList, setHomeList] = useState({});
   const [bannerList, setBannerList] = useState([]);
 
-  const fetchHome = () => {
-    getHome()
-      .then((response) => {
-        setHomeList(response.data);
-        console.log('homeList:', response.data);
-      })
-      .catch((error) => {
-        console.log('fetchHome error:', error);
-      });
-  };
-
   useEffect(() => {
-    fetchHome();
+    getHome()
+    .then((response) => {
+      setHomeList(response.data);
+      console.log('homeList:', response.data);
+    })
+    .catch((error) => {
+      console.log('fetchHome error:', error);
+    });
   }, []);
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch//
 
   //배너 리스트 set
-  useEffect(()=>{
-    getBannerRank()
-    .then(response=>setBannerList(response.data.sort((a,b)=>a.rank-b.rank)))
-    .catch(error=>console.log(error));
-  });
 
   useEffect(() => {
     // 팝업 띄울 정보 받아오기
     console.log(homeList);
+    
+    getBannerRank()
+    .then(response=>setBannerList(response.data.sort((a,b)=>a.rank-b.rank)))
+    .catch(error=>console.log(error));
+
     const urgent = homeList.urgent || []; // homeList.urgent가 undefined일 경우 빈 배열 사용
     const missingPerson = homeList.missingPerson || []; // homeList.missingPerson가 undefined일 경우 빈 배열 사용
     setUrgentList(urgent);
