@@ -279,6 +279,8 @@ const ListBoard = styled.div`
     /* border: 1px solid #ddd;
     border-radius:4px; */
 
+    cursor:pointer;
+    
     display: flex;
     justify-content: space-between;
     align-items: ${(props) =>

@@ -72,7 +72,7 @@ function Home() {
   useEffect(() => {
     // 팝업 띄울 정보 받아오기
     console.log(homeList);
-    
+
     getBannerRank()
     .then(response=>setBannerList(response.data.sort((a,b)=>a.rank-b.rank)))
     .catch(error=>console.log(error));
@@ -82,6 +82,7 @@ function Home() {
     setUrgentList(urgent);
     setMissingList(missingPerson);
     setPopupList(urgent.concat(missingPerson));
+    
   }, [homeList]);
 
   return (

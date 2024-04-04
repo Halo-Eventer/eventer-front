@@ -165,6 +165,7 @@ function Assign_ListBoard({ upText }) {
         .then(response => {
           alert("수정되었습니다.");
           console.log(response);
+          setRevisable(false);
         })
         .catch(error => alert(error));
     }
@@ -504,6 +505,7 @@ ${UpBlock}{
     align-items: ${(props) =>
     props.category === 'notice' ? 'flex-end' : 'center'};
 
+    cursor:pointer;
     h1 {
       margin: 0;
       padding: 0;
@@ -542,6 +544,7 @@ ${BoardElement} {
 
   padding: 8px 12px;
 
+  cursor:pointer;
   h1 {
     margin: 0;
     padding: 0;
