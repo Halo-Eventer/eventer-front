@@ -73,3 +73,7 @@ export const getDetail = (festivalId, category, id) => {
 export const lostItemGet = () => {
   return axios.get('/user/lostItem');
 };
+
+export const getBannerRank = () => {
+  return axios.get('/notice/banner');
+}

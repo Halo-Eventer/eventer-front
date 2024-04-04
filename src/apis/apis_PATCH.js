@@ -55,3 +55,8 @@ export const popUpApi = (category, id, check) => {
         );
     // url에 ?= 써서 보내줘야됨
 }
+
+
+export const bannerRankApi = (bannerList) => {
+    return axios.patch('notice/banner',bannerList);
+}

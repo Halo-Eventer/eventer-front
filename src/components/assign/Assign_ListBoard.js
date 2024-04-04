@@ -1,5 +1,6 @@
 import { deleteDetail } from 'apis/apis_DELETE';
-import { popUpApi } from 'apis/apis_PATCH';
+import { getBannerRank } from 'apis/apis_GET';
+import { bannerRankApi, popUpApi } from 'apis/apis_PATCH';
 import { bannerApi } from 'apis/apis_POST';
 import { Flex } from 'asset/Style';
 import { useEffect, useState } from 'react';
@@ -18,10 +19,11 @@ function Assign_ListBoard({ upText }) {
   //*****전역 recoil모음*****
 
   const [upList, setUpList] = useState([]);
-  const [notUpList, setNotUpList] = useState([]);
   const mainUpText = '메인';
   const popUpText = '팝업';
 
+  const [rankList, setRankList] = useState([]);
+  const [revisable, setRevisable] = useState(false);
 
 
   const onClick_delete = (event) => {
@@ -29,7 +31,7 @@ function Assign_ListBoard({ upText }) {
 
     const id = event.currentTarget.id;
     let element =
-      notUpList[event.currentTarget.dataset.index] ||
+      boardList[event.currentTarget.dataset.index] ||
       upList[event.currentTarget.dataset.index];
     let title;
 
@@ -72,7 +74,7 @@ function Assign_ListBoard({ upText }) {
     const id = Number(event.currentTarget.id);
     const value = event.currentTarget.dataset.value;
     let element =
-      notUpList[event.currentTarget.dataset.index] ||
+      boardList[event.currentTarget.dataset.index] ||
       upList[event.currentTarget.dataset.index];
     let title;
     if (category === 'notice' || category === 'urgent') title = element.title;
@@ -139,6 +141,33 @@ function Assign_ListBoard({ upText }) {
       return copyMains;
     })
     //setState에 화살표함수 사용(return을 이용, 화살표함수의 인자는 현재 state값)
+
+    setRevisable(true);
+  }
+
+  const onClick_rank = () => {
+    let rank = 1;
+    let bannerList = [];
+    let upList_len = upList.length;
+
+    for (let i = 0; i < upList_len; i++) {
+      let { id } = upList[i];
+      bannerList.push({ noticeId: id, rank: rank });
+      rank++;
+    }
+
+    console.log("bannerList:", bannerList);
+
+    let tmp = window.confirm("메인페이지 순서를 수정하시겠습니까?")
+
+    if (tmp) {
+      bannerRankApi(bannerList)
+        .then(response => {
+          alert("수정되었습니다.");
+          console.log(response);
+        })
+        .catch(error => alert(error));
+    }
   }
 
 
@@ -151,15 +180,37 @@ function Assign_ListBoard({ upText }) {
         else return item.popup;
       });
 
-      tmp_down = boardList.filter((item) => {
-        if (category === 'notice') return !item.picked;
-        else return !item.popup;
-      });
-
       setUpList([...tmp_up]);
-      setNotUpList([...tmp_down]);
+
+      if(category==='notice')
+        getBannerRank()
+          .then(response => {
+            setRankList(response.data.sort((a, b) => a.rank - b.rank));
+            console.log("rankList:", response.data);
+          })
+          .catch(error => console.log(error));
     }
   }, [boardList]);
+
+  useEffect(() => {
+    let tmp_sorted = [];
+
+    if (category==='notice' && upList.length > 0) {
+
+      const rankList_len = rankList.length;
+
+      for (let i = 0; i < rankList_len; i++) {
+        for (let j = 0; j < rankList_len; j++) {
+          if (rankList[i].id === upList[j].id) {
+            tmp_sorted.push(upList[j]);
+            break;
+          }
+        }
+      }
+
+      setUpList(tmp_sorted);
+    }
+  }, [rankList])
 
 
   console.log("upList:", upList);
@@ -167,119 +218,200 @@ function Assign_ListBoard({ upText }) {
     <div style={{ flexDirection: 'column', alignItems: 'center' }}>
       {boardList.length > 0 && (
         <ListBoard category={category}>
-          <Tip>메인페이지/팝업 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수 있습니다.</Tip>
-          <DragDropContext onDragEnd={onDragEnd}>
-            <UpBlock>
-              <Droppable droppableId='MAIN'>
-                {/* droppable(보드)과 draggable(항목) 구분 */}
-                {(magic) => (
-                  <UpBoard
-                    ref={magic.innerRef}
-                    {...magic.droppableProps}>
-                    {/* droppableProps라는 객체 전달 (droppableProps는 Droppable의 타입정의에서 확인 가능)*/}
-                    {upList.map((item, index) =>
-                      <Draggable draggableId={item.id?.toString()} index={index} key={item.id?.toString()}>
-                        {/* index, draggableId(string) 꼭 설정해줘야 함 (애니메이션 오류 발생)*/}
-                        {(magic) => (
-                          <UpElement ref={magic.innerRef}
-                            {...magic.draggableProps}
-                            {...magic.dragHandleProps}>
-                            <Flex
-                              style={{ flexDirection: 'column', alignItems: 'flex-start' }}
-                              {...magic.dragHandleProps}>
-                              <h1
-                                onClick={onClick_revise}
-                                id={item.id}
-                                data-index={index}
+          {category === 'notice'
+            &&
+            <Tip>
+              <h1>
+                메인페이지 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수 있습니다. 
+                <br/>
+                메인페이지에 등록 가능한 게시글 수는 최대 10개입니다.
+              </h1>
+              <RankBtn revisable={revisable} onClick={onClick_rank}>순서 수정하기</RankBtn>
+            </Tip>
+          }
+          {category === 'notice'
+            ?
+            <DragDropContext onDragEnd={onDragEnd}>
+              <UpBlock>
+                <Droppable droppableId='MAIN'>
+                  {/* droppable(보드)과 draggable(항목) 구분 */}
+                  {(magic) => (
+                    <UpBoard
+                      ref={magic.innerRef}
+                      {...magic.droppableProps}>
+                      {/* droppableProps라는 객체 전달 (droppableProps는 Droppable의 타입정의에서 확인 가능)*/}
+                      {upList.map((item, index) =>
+                        <Draggable draggableId={item.id?.toString()} index={index} key={item.id?.toString()}>
+                          {/* index, draggableId(string) 꼭 설정해줘야 함 (애니메이션 오류 발생)*/}
+                          {(magic) => (
+                            <UpElement ref={magic.innerRef}
+                              {...magic.draggableProps}
+                              {...magic.dragHandleProps}
+                              id={item.id}
+                              onClick={onClick_revise}>
+                               
+                              <Flex
+                                style={{ flexDirection: 'column', alignItems: 'flex-start' }}
                                 {...magic.dragHandleProps}>
-                                {category === 'notice' || category === 'urgent'
-                                  ? item.title
-                                  : item.name}
-                                &nbsp;&nbsp;
-                                {category === 'notice'
-                                  ? item.picked && (
-                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
-                                      [
-                                      {mainUpText}
-                                      ]
-                                    </span>
-                                  )
-                                  : item.popup && (
-                                    <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
-                                      [
-                                      {popUpText}
-                                      ]
-                                    </span>
-                                  )}
-                              </h1>
+                                <h1
+                                  
+                                  data-index={index}
+                                  {...magic.dragHandleProps}>
+                                  {category === 'notice' || category === 'urgent'
+                                    ? item.title
+                                    : item.name}
+                                  &nbsp;&nbsp;
+                                  {category === 'notice'
+                                    ? item.picked && (
+                                      <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
+                                        [
+                                        {mainUpText}
+                                        ]
+                                      </span>
+                                    )
+                                    : item.popup && (
+                                      <span {...magic.dragHandleProps} style={{ color: '#4F33F6' }}>
+                                        [
+                                        {popUpText}
+                                        ]
+                                      </span>
+                                    )}
+                                </h1>
 
-                              {category === 'notice' && (
-                                <p {...magic.dragHandleProps}>
-                                  {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
-                                </p>
-                              )}
-                            </Flex>
-                            <BtnDiv {...magic.dragHandleProps}>
-                              <span 
-                              {...magic.dragHandleProps} 
-                              style={{ color: '#4F33F6', marginRight:'4px'}}>
-                                #{index}
-                              </span>
-
-                              {(category == 'notice' ||
-                                category == 'missingPerson' ||
-                                category == 'urgent') && (
-                                  <h4
-                                    id={item.id}
-                                    onClick={onClick_upDown}
-                                    data-value="down"
-                                    data-index={index}
-                                    {...magic.dragHandleProps}
-                                  >
-                                    {upText} 내리기
-                                  </h4>
+                                {category === 'notice' && (
+                                  <p {...magic.dragHandleProps}>
+                                    {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
+                                  </p>
                                 )}
-                              <h2
-                                onClick={onClick_delete}
-                                id={item.id}
-                                data-index={index}
-                                {...magic.dragHandleProps}>
-                                삭제
-                              </h2>
-                            </BtnDiv>
-                          </UpElement>
-                          /* dragHandleProps라는 객체 전달 (dragHandleProps는 Draggable의 타입정의에서 확인 가능)*/
+                              </Flex>
+                              <BtnDiv {...magic.dragHandleProps}>
+                                <span
+                                  {...magic.dragHandleProps}
+                                  style={{ color: '#4F33F6', marginRight: '4px' }}>
+                                  #{index + 1}
+                                </span>
+
+                                {(category == 'notice' ||
+                                  category == 'missingPerson' ||
+                                  category == 'urgent') && (
+                                    <h4
+                                      id={item.id}
+                                      onClick={onClick_upDown}
+                                      data-value="down"
+                                      data-index={index}
+                                      {...magic.dragHandleProps}
+                                    >
+                                      {upText} 내리기
+                                    </h4>
+                                  )}
+                                <h2
+                                  onClick={onClick_delete}
+                                  id={item.id}
+                                  data-index={index}
+                                  {...magic.dragHandleProps}>
+                                  삭제
+                                </h2>
+                              </BtnDiv>
+                            </UpElement>
+                            /* dragHandleProps라는 객체 전달 (dragHandleProps는 Draggable의 타입정의에서 확인 가능)*/
+                          )}
+                        </Draggable>
+                        /* magic의 타입(인터페이스)는 DraggableProvided */
+                      )}
+                      {magic.placeholder}
+                      {/* 드래그 앤 드롭 하는동안 높이가 변경 안되도록 도와줌 */}
+                    </UpBoard>
+                  )}
+                  {/* children으로 함수 요구 */}
+                </Droppable>
+              </UpBlock>
+            </DragDropContext>
+
+            :
+            <UpBlock>
+              <UpBoard>
+                {upList.map((item, index) =>
+                  <UpElement id={item.id} onClick={onClick_revise}>
+                    <Flex
+                      style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
+                      
+                      <h1
+                        
+                        
+                        data-index={index}>
+                        {category === 'notice' || category === 'urgent'
+                          ? item.title
+                          : item.name}
+                        &nbsp;&nbsp;
+                        {category === 'notice'
+                          ? item.picked && (
+                            <span style={{ color: '#4F33F6' }}>
+                              [
+                              {mainUpText}
+                              ]
+                            </span>
+                          )
+                          : item.popup && (
+                            <span style={{ color: '#4F33F6' }}>
+                              [
+                              {popUpText}
+                              ]
+                            </span>
+                          )}
+                      </h1>
+
+                      {category === 'notice' && (
+                        <p>
+                          {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
+                        </p>
+                      )}
+                    </Flex>
+                    <BtnDiv>
+
+                      {(category == 'notice' ||
+                        category == 'missingPerson' ||
+                        category == 'urgent') && (
+                          <h4
+                            id={item.id}
+                            onClick={onClick_upDown}
+                            data-value="down"
+                            data-index={index}>
+                            {upText} 내리기
+                          </h4>
                         )}
-                      </Draggable>
-                      /* magic의 타입(인터페이스)는 DraggableProvided */
-                    )}
-                    {magic.placeholder}
-                    {/* 드래그 앤 드롭 하는동안 높이가 변경 안되도록 도와줌 */}
-                  </UpBoard>
+                      <h2
+                        onClick={onClick_delete}
+                        id={item.id}
+                        data-index={index}>
+                        삭제
+                      </h2>
+                    </BtnDiv>
+                  </UpElement>
+                  /* dragHandleProps라는 객체 전달 (dragHandleProps는 Draggable의 타입정의에서 확인 가능)*/
                 )}
-                {/* children으로 함수 요구 */}
-              </Droppable>
+              </UpBoard>
+              {/* children으로 함수 요구 */}
             </UpBlock>
-          </DragDropContext>
+          }
 
           <HR up_length={upList.length} />
 
-          {notUpList.map((item, index) => (
-            <BoardElement key={item.id.toString()}>
+          {boardList.map((item, index) => (
+            <BoardElement key={item.id.toString()} id={item.id} onClick={onClick_revise}>
               <Flex
                 style={{ flexDirection: 'column', alignItems: 'flex-start' }}
               >
-                <h1 onClick={onClick_revise} id={item.id} data-index={index}>
+                <h1 data-index={index}>
                   {category === 'notice' || category === 'urgent'
                     ? item.title
                     : item.name}
                   &nbsp;&nbsp;
                   {category === 'notice'
                     ? item.picked && (
-                      <span style={{ color: '#4F33F6' }}>{mainUpText}</span>
+                      <span style={{ color: '#4F33F6' }}>[{mainUpText}]</span>
                     )
                     : item.popup && (
-                      <span style={{ color: '#4F33F6' }}>{popUpText}</span>
+                      <span style={{ color: '#4F33F6' }}>[{popUpText}]</span>
                     )}
                 </h1>
 
@@ -290,9 +422,25 @@ function Assign_ListBoard({ upText }) {
                 )}
               </Flex>
               <BtnDiv>
-                {(category == 'notice' ||
-                  category == 'missingPerson' ||
-                  category == 'urgent') && (
+                {category == 'notice'
+                  &&
+                  (!item.picked
+                    &&
+                    <h3
+                      id={item.id}
+                      onClick={onClick_upDown}
+                      data-value="up"
+                      data-index={index}
+                    >
+                      {upText} 올리기
+                    </h3>
+                  )}
+
+                {(category == 'missingPerson' ||
+                  category == 'urgent')
+                  && 
+                  (!item.popup
+                    &&
                     <h3
                       id={item.id}
                       onClick={onClick_upDown}
@@ -492,13 +640,36 @@ const BtnDiv = styled(Flex)`
 
 const Tip = styled(Flex)`
 width:544px;
-
-font-size:12px;
-
 margin:8px;
 
-justify-content:center;
+justify-content:space-between;
+align-items:center;
+
+h1{
+margin-left:12px;
+
+font-size:12px;
+font-weight:400;
+}
 `;
+const RankBtn = styled.button`
+width:100px;
+height:25px;
+font-family:Pretendard;
+
+${props => props.revisable
+    ?
+    'background-color:#4f33f6; cursor:pointer;'
+    :
+    'background-color:#DDD;'}
+
+border-radius:4px;
+color : white;
+
+margin-right:16px;
+
+`;
+//반드시 대문자로 시작해야함(컴포넌트라서)
 
 const HR = styled.div`
 width: 540px;

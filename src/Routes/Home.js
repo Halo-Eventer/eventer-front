@@ -21,7 +21,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from 'components/Footer';
 import Missing_Popup from 'components/popup/Missing_Popup';
-import { getHome } from 'apis/apis_GET';
+import { getBannerRank, getHome } from 'apis/apis_GET';
 
 export const festivalId = 1;
 
@@ -72,10 +72,11 @@ function Home() {
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch//
 
   //배너 리스트 set
-  useEffect(() => {
-    setBannerList(homeList?.banner);
-  }, [homeList]);
-  //배너 리스트 set
+  useEffect(()=>{
+    getBannerRank()
+    .then(response=>setBannerList(response.data.sort((a,b)=>a.rank-b.rank)))
+    .catch(error=>console.log(error));
+  });
 
   useEffect(() => {
     // 팝업 띄울 정보 받아오기
