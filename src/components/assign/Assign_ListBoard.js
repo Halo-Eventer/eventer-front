@@ -177,7 +177,7 @@ function Assign_ListBoard({ upText }) {
         console.log("rankList:", response.data);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [boardList]);
 
 
 
@@ -200,7 +200,7 @@ function Assign_ListBoard({ upText }) {
     }
 
     setUpList(tmp_sorted);
-  }, [rankList,tmpList])
+  }, [rankList,tmpList,boardList])
 
   /* useEffect들끼리 state인자 잘 살펴볼 것 (setState종류와 인자 종류)
   1. 맨 아래 useEffect는 rankList -> setUpList 구조임
