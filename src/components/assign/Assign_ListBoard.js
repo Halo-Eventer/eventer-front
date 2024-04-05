@@ -164,7 +164,8 @@ function Assign_ListBoard({ upText }) {
       });
       console.log("tmp_up:", tmp_up);
 
-      setUpList([...tmp_up]);
+      setUpList([...tmp_up].sort((a,b)=>b.id-a.id));
+      //이게 역순(첫 번째에서 두 번째 뺴는게 정순)
     }
   },[noticeList,eventList,boardList])
 
@@ -197,9 +198,9 @@ function Assign_ListBoard({ upText }) {
           }
         }
       }
+      setUpList(tmp_sorted);
     }
 
-    setUpList(tmp_sorted);
   }, [rankList,tmpList,boardList])
 
   /* useEffect들끼리 state인자 잘 살펴볼 것 (setState종류와 인자 종류)

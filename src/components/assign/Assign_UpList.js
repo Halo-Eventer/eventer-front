@@ -1,15 +1,15 @@
 import { getAll, getBannerRank } from 'apis/apis_GET';
-import { bannerRankApi} from 'apis/apis_PATCH';
+import { bannerRankApi } from 'apis/apis_PATCH';
 import { Flex } from 'asset/Style';
 import { useEffect, useState } from 'react';
 import { DragDropContext, Draggable, DropResult, Droppable } from 'react-beautiful-dnd';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { boardListState, categoryState_assign, modeState} from 'recoils/atoms_assign';
+import { boardListState, categoryState_assign, modeState } from 'recoils/atoms_assign';
 import styled from 'styled-components';
 
-function Assign_UpList({ 
-  upText, 
+function Assign_UpList({
+  upText,
   upList,
   setUpList,
   onClick_delete,
@@ -77,19 +77,25 @@ function Assign_UpList({
   return (
     <UpListBoard category={category}>
       {category === 'notice'
-        &&
+        ?
         <Tip>
           <h1>
             메인페이지 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수 있습니다.
             <br />
             메인페이지에 등록 가능한 게시글 수는 최대 10개입니다.
           </h1>
-          <RankBtn 
-          revisable={revisable} 
-          onClick={onClick_rank}
-          disabled={!revisable}>
+          <RankBtn
+            revisable={revisable}
+            onClick={onClick_rank}
+            disabled={!revisable}>
             순서 수정하기
           </RankBtn>
+        </Tip>
+        :
+        <Tip>
+          <h2>
+            팝업창은 가장 최근에 작성한 글이 먼저 표시됩니다.
+          </h2>
         </Tip>
       }
       {category === 'notice'
@@ -194,7 +200,7 @@ function Assign_UpList({
         <UpBlock>
           <UpBoard>
             {upList?.map((item, index) =>
-              <UpElement key = {item.id} id={item.id} onClick={onClick_revise}>
+              <UpElement key={item.id} id={item.id} onClick={onClick_revise}>
                 <Flex
                   style={{ flexDirection: 'column', alignItems: 'flex-start' }}>
 
@@ -230,7 +236,11 @@ function Assign_UpList({
                   )}
                 </Flex>
                 <BtnDiv>
-
+                  <span
+                    style={{ color: '#4F33F6', marginRight: '4px' }}>
+                    #{index + 1}
+                  </span>
+                  
                   {(category == 'notice' ||
                     category == 'missingPerson' ||
                     category == 'urgent') && (
@@ -242,6 +252,7 @@ function Assign_UpList({
                         {upText} 내리기
                       </h4>
                     )}
+                  
                   <h2
                     onClick={onClick_delete}
                     id={item.id}
@@ -401,6 +412,8 @@ const BtnDiv = styled(Flex)`
 `;
 
 const Tip = styled(Flex)`
+position:relative;
+
 width:544px;
 margin:8px;
 
@@ -413,7 +426,18 @@ margin-left:12px;
 font-size:12px;
 font-weight:400;
 }
+
+h2{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+
+font-size:12px;
+font-weight:400;
+}
 `;
+
 const RankBtn = styled.button`
 width:100px;
 height:25px;
