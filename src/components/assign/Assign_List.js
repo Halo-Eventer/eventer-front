@@ -194,7 +194,7 @@ const DropDownlist = styled.ol`
   position: absolute;
   top: 48px;
 
-  width: 100%;
+  width: 544px;
 
   cursor: pointer;
 
