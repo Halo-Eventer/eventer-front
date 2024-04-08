@@ -224,7 +224,8 @@ function Assign_ListBoard({ upText }) {
         onClick_upDown={onClick_upDown}
       />
 
-      <HR up_length={upList.length} />
+      {upList.length>0 &&  <HR up_length={upList.length} />}
+     
 
       <DownListBoard category={category}>
         {boardList?.map((item, index) => (
