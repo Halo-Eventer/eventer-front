@@ -51,8 +51,7 @@ function NolzaMap(props) {
     else if (activeCategory == 2) markerImg = infoMarker;
     else if (activeCategory == 3) markerImg = storeMarker;
     else if (activeCategory == 4) markerImg = toiletMarker;
-    else if (activeCategory == 5) markerImg = smokeMarker;
-    else if (activeCategory == 6) markerImg = parkMarker;
+    else if (activeCategory == 5) markerImg = parkMarker;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {

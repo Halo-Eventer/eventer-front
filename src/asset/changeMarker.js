@@ -28,10 +28,6 @@ export const changeMarker = (activeCategory, isPrev, text) => {
   } else if (activeCategory == 4) {
     isPrev ? (img = toilet) : (img = activeToilet);
   } else if (activeCategory == 5) {
-    isPrev ? (img = trash) : (img = activeTrash);
-  } else if (activeCategory == 6) {
-    isPrev ? (img = smoke) : (img = activeSmoke);
-  } else if (activeCategory == 7) {
     isPrev ? (img = park) : (img = activePark);
   }
 
