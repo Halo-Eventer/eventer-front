@@ -30,7 +30,7 @@ jobs:
         run : npm run build
 
       - name : Deploy
-        uses: eventer-frontend/s3-deploy@v3
+        uses: reggionick/s3-deploy@v3
         with:
           folder: build
           bucket: ${{ secrets.AWS_S3_BUCKET_NAME}}
