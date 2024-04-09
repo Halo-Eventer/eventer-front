@@ -23,6 +23,11 @@ jobs:
       - name : checkout Github Action
         uses: actions/checkout@v3
         
+      - name : setting .env
+        run : |
+         echo "REACT_APP_MAP_CLIENT_KEY=${{ secrets.REACT_APP_MAP_CLIENT_KEY }}" >> .env
+         echo "REACT_APP_API=${{ secrets.REACT_APP_API }}" >> .env
+      
       - name : install npm
         run : npm install
 
