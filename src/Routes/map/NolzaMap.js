@@ -20,6 +20,8 @@ import { changeMarker } from 'asset/changeMarker';
 
 import { UpperBar, BkBtn, Title } from '../Home';
 import { getAllConcert } from 'apis/apis_GET';
+import { makePolygon } from 'utils/map/makePolygon';
+import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 
 function NolzaMap(props) {
   const [activeId, setActiveId] = useState('');
@@ -96,6 +98,21 @@ function NolzaMap(props) {
         console.log(err);
       });
     setMap(tmpMap);
+
+    makePolygon(tmpMap, naver);
+    makeFixedMarker(tmpMap, naver);
+    //   const rect = new naver.maps.Rectangle({
+    //     // 영역 설정
+    //     map: tmpMap,
+    //     bounds: new naver.maps.LatLngBounds(
+    //       naver.maps.LatLng(34.7920975019376, 126.43248443747436),
+    //       naver.maps.LatLng(34.791263503821315, 126.43423101944666)
+    //     ),
+    //     fillColor: '#FED393',
+    //     fillOpacity: 0.4,
+    //     strokeWeight: 1,
+    //     strokeColor: '#FFAF36',
+    //   });
     window.scrollTo(0, -200);
   }, []);
   useEffect(() => {
