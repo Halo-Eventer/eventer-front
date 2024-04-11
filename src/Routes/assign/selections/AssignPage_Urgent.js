@@ -75,7 +75,7 @@ function AssignPage_Urgent() {
   return (
     <Wrapper>
       <UpperBar_Component />
-      <MiddleBar_Component2 text="긴급공지" />
+      <MiddleBar_Component2 text="긴급공지/팝업" />
       <AssignBox>
         
         <Assign_List categoryList = {categoryList} />

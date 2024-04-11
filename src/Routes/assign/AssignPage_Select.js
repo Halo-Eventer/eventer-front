@@ -75,13 +75,13 @@ function AssignPage_Select() {
           </PageBtn>
         </Link>
 
-        <Link to={`https://www.naver.com/`}>
+        <Link to={`/assign`}>
           <PageBtn>
             <h1>휠체어</h1>
           </PageBtn>
         </Link>
 
-        <Link to={`https://www.youtube.com/`}>
+        <Link to={`/assign`}>
           <PageBtn>
             <h1>배리어프리존</h1>
           </PageBtn>
@@ -89,7 +89,7 @@ function AssignPage_Select() {
 
         <Link to={`/assign_urgent/${festivalId}`}>
           <PageBtn>
-            <h1>긴급공지</h1>
+            <h1>긴급공지/팝업</h1>
           </PageBtn>
         </Link>
       </MainBox>

@@ -64,7 +64,7 @@ export const barrierFreeCategory = {
 };
 
 export const urgentCategory = {
-  urgent: '긴급공지',
+  urgent: '긴급공지/팝업',
 };
 
 export const mapForm_blank = {
