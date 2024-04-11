@@ -177,7 +177,7 @@ function Home() {
           </SurveyBox>
 
           <ETCBox>
-            <ETC onClick = {()=>navigate('https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform')}>
+            <ETC onClick = {()=>window.open('https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform')}>
               <Imoji src={disabled} />
               <h1>장애인 지원</h1>
               <h2>휠체어, 배리어프리존</h2>
