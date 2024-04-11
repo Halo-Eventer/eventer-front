@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { styled, createGlobalStyle } from 'styled-components';
 import SwipeToSlide from '../../asset/CategorySlider';
@@ -14,8 +14,6 @@ import eventMarker from 'asset/marker/event.png';
 import toiletMarker from 'asset/marker/toilet.png';
 import infoMarker from 'asset/marker/info.png';
 import storeMarker from 'asset/marker/store.png';
-import trashMarker from 'asset/marker/trash.png';
-import smokeMarker from 'asset/marker/smokeImg.png';
 import parkMarker from 'asset/marker/parkImg.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { changeMarker } from 'asset/changeMarker';
@@ -51,8 +49,7 @@ function NolzaMap(props) {
     else if (activeCategory == 2) markerImg = infoMarker;
     else if (activeCategory == 3) markerImg = storeMarker;
     else if (activeCategory == 4) markerImg = toiletMarker;
-    else if (activeCategory == 5) markerImg = smokeMarker;
-    else if (activeCategory == 6) markerImg = parkMarker;
+    else if (activeCategory == 5) markerImg = parkMarker;
   }, [activeCategory, data]);
   useEffect(() => {
     let mapOption = {

@@ -39,25 +39,7 @@ export function getMarker(activeCategory, setData) {
         // alert('생성된 마커가 존재하지 않습니다.');
       });
   } else if (activeCategory == 5) {
-    getAllMapCategory('SMOKING')
-      .then((res) => {
-        //console.log(res);
-        setData(res.data);
-      })
-      .then((err) => {
-        // alert('생성된 마커가 존재하지 않습니다.');
-      });
-  } else if (activeCategory == 6) {
     getAllMapCategory('PARKING')
-      .then((res) => {
-        //console.log(res);
-        setData(res.data);
-      })
-      .then((err) => {
-        // alert('생성된 마커가 존재하지 않습니다.');
-      });
-  } else if (activeCategory == 7) {
-    getAllBooth()
       .then((res) => {
         //console.log(res);
         setData(res.data);
