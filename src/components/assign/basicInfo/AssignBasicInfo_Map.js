@@ -106,7 +106,7 @@ function AssignBasicInfo_Map() {
           <Input
             onChange={handleInfo}
             id="operationHours"
-            value={info.value}
+            value={info.operationHours}
             placeholder="00:00 ~ 00:00"
           ></Input>
         </InputDiv>

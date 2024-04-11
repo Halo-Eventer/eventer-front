@@ -77,7 +77,7 @@ function Assign_UpList({
   return (
     <UpListBoard category={category}>
       {category === 'notice'
-        ?
+        &&
         <Tip>
           <h1>
             메인페이지 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수 있습니다.
@@ -91,7 +91,9 @@ function Assign_UpList({
             순서 수정하기
           </RankBtn>
         </Tip>
-        :
+      }
+      {category==='missingPerson' || category==='urgent'
+        &&
         <Tip>
           <h2>
             팝업창은 가장 최근에 작성한 글이 먼저 표시됩니다.
