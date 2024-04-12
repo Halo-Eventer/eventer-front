@@ -1,5 +1,6 @@
 import doctorImg from 'asset/images/doctor.svg';
 import { makeGate } from './makeGate';
+
 export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
   const gate1 = makeGate(tmpMap, naver, 34.79538675340553, 126.4325464918483);
   const gate2 = makeGate(tmpMap, naver, 34.79557534198884, 126.43289948037096);
@@ -35,6 +36,7 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
     tmpMap,
     icon: {
       content: `
+
       <div style="text-align: center"> 
       <div style=" font-size: 12px;
       font-family: 'NanumSquareNeo';
@@ -75,9 +77,11 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
       anchor: new naver.maps.Point(25, 26),
     },
   });
+
   const fixedMarker = [gate1, gate2, gate3, gate4, seat1500, seat2000, doctor];
   fixedMarker.map((e) => {
     e.setMap(tmpMap);
   });
   setFixedMarker(fixedMarker);
+
 }
