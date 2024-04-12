@@ -1,11 +1,10 @@
 import doctorImg from 'asset/images/doctor.svg';
 import { makeGate } from './makeGate';
-export function makeFixedMarker(tmpMap, naver) {
-  makeGate(tmpMap, naver, 34.79538675340553, 126.4325464918483).setMap(tmpMap);
-  makeGate(tmpMap, naver, 34.79557534198884, 126.43289948037096).setMap(tmpMap);
-  makeGate(tmpMap, naver, 34.79594824251079, 126.43376542518426).setMap(tmpMap);
-  makeGate(tmpMap, naver, 34.79616301982082, 126.43418745091185).setMap(tmpMap);
-
+export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
+  const gate1 = makeGate(tmpMap, naver, 34.79538675340553, 126.4325464918483);
+  const gate2 = makeGate(tmpMap, naver, 34.79557534198884, 126.43289948037096);
+  const gate3 = makeGate(tmpMap, naver, 34.79594824251079, 126.43376542518426);
+  const gate4 = makeGate(tmpMap, naver, 34.79616301982082, 126.43418745091185);
   const marker2 = new naver.maps.Marker({
     position: new naver.maps.LatLng(34.795734198629084, 126.43331949484947),
     tmpMap,
@@ -51,7 +50,9 @@ export function makeFixedMarker(tmpMap, naver) {
       anchor: new naver.maps.Point(25, 26),
     },
   });
-
-  marker2.setMap(tmpMap);
-  doctor.setMap(tmpMap);
+  const fixedMarker = [gate1, gate2, gate3, gate4, marker2, doctor];
+  fixedMarker.map((e) => {
+    e.setMap(tmpMap);
+  });
+  setFixedMarker(fixedMarker);
 }

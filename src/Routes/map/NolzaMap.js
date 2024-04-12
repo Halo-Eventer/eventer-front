@@ -24,6 +24,9 @@ import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 
 function NolzaMap(props) {
+  const [prevZoom, setPrevZoom] = useState();
+  const [fixedMarker, setFixedMarker] = useState();
+  const [zoom, setZoom] = useState();
   const [activeId, setActiveId] = useState('');
   const [activeCategory, setActiveCategory] = useState(1);
   const [prevClustering, setPrevClustering] = useState('');
@@ -53,10 +56,11 @@ function NolzaMap(props) {
     else if (activeCategory == 4) markerImg = toiletMarker;
     else if (activeCategory == 5) markerImg = parkMarker;
   }, [activeCategory, data]);
+
   useEffect(() => {
     let mapOption = {
       center: new naver.maps.LatLng(34.7955637033503, 126.43324179058626),
-      zoom: 17,
+      zoom: 18,
       minZoom: 16,
       tileTransition: true,
       scaleControl: true,
@@ -100,7 +104,7 @@ function NolzaMap(props) {
     setMap(tmpMap);
 
     makePolygon(tmpMap, naver);
-    makeFixedMarker(tmpMap, naver);
+    makeFixedMarker(tmpMap, naver, setFixedMarker);
     //   const rect = new naver.maps.Rectangle({
     //     // 영역 설정
     //     map: tmpMap,
@@ -114,7 +118,24 @@ function NolzaMap(props) {
     //     strokeColor: '#FFAF36',
     //   });
     window.scrollTo(0, -200);
+    naver.maps.Event.addListener(tmpMap, 'zoom_changed', function (zoom) {
+      setZoom(zoom);
+    });
   }, []);
+
+  useEffect(() => {
+    setPrevZoom(zoom);
+    console.log(zoom, prevZoom);
+    if (zoom === 18 && prevZoom == 17)
+      makeFixedMarker(map, naver, setFixedMarker);
+    else if (zoom === 17 && prevZoom == 18)
+      fixedMarker.map((e) => {
+        e.setMap(null);
+      });
+    console.log(zoom);
+    console.log(fixedMarker);
+  }, [zoom]);
+
   useEffect(() => {
     concertHallMarker.map((e, i) => {
       console.log(e);
