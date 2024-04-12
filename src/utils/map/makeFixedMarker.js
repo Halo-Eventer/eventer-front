@@ -1,23 +1,57 @@
-import gate from 'asset/images/gate.svg';
+import doctorImg from 'asset/images/doctor.svg';
+import { makeGate } from './makeGate';
 export function makeFixedMarker(tmpMap, naver) {
-  const marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(34.795426053405535, 126.43244749184832),
+  makeGate(tmpMap, naver, 34.79538675340553, 126.4325464918483).setMap(tmpMap);
+  makeGate(tmpMap, naver, 34.79557534198884, 126.43289948037096).setMap(tmpMap);
+  makeGate(tmpMap, naver, 34.79594824251079, 126.43376542518426).setMap(tmpMap);
+  makeGate(tmpMap, naver, 34.79616301982082, 126.43418745091185).setMap(tmpMap);
+
+  const marker2 = new naver.maps.Marker({
+    position: new naver.maps.LatLng(34.795734198629084, 126.43331949484947),
     tmpMap,
     icon: {
       content: `
-      <div > 
-      <div style="display:flex; justify-content: center;align-items:center">
-       <img style="margin:0;idth:32px;height:32px;" src = ${gate}></img>
-      </div>
-      <div style="display:flex; font-size: 12px;
+      <div style="text-align: center"> 
+      <div style=" font-size: 12px;
       font-family: 'NanumSquareNeo';
       text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-       font-weight: 800; justify-content: center;line-height: 16px;"> 게이트 </div>
+       font-weight: 800;line-height: 16px;"> 
+       데크객석
+       </div>
+       <div style=" font-size: 12px;
+       font-family: 'NanumSquareNeo';
+       text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+        font-weight: 800;line-height: 16px;"> 
+        (선착순 2,000명)
+        </div>
       </div>`,
-      size: new naver.maps.Size(28, 28),
+      size: new naver.maps.Size(50, 52),
       origin: new naver.maps.Point(0, 0),
       anchor: new naver.maps.Point(25, 26),
     },
   });
-  marker.setMap(tmpMap);
+  const doctor = new naver.maps.Marker({
+    position: new naver.maps.LatLng(34.795884198629084, 126.43269949484947),
+    tmpMap,
+    icon: {
+      content: `
+      <div style="text-align: center"> 
+      <div style="display:flex; justify-content: center;align-items:center">
+       <img style="margin:0;idth:32px;height:32px;" src = ${doctorImg}></img>
+      </div>
+      <div style=" font-size: 12px;
+      font-family: 'NanumSquareNeo';
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+       font-weight: 800;line-height: 16px;"> 
+       응급의료센터
+       </div>
+      </div>`,
+      size: new naver.maps.Size(50, 52),
+      origin: new naver.maps.Point(0, 0),
+      anchor: new naver.maps.Point(25, 26),
+    },
+  });
+
+  marker2.setMap(tmpMap);
+  doctor.setMap(tmpMap);
 }
