@@ -38,9 +38,12 @@ function ClickInfo(props) {
       popup={props.popup}
       close={close}
     >
-      <VectorBox onClick={handleFull}>
-        <img src={Up}></img>
-      </VectorBox>
+      {(props.clickInfo.thumbnail || props.clickInfo.content) && (
+        <VectorBox onClick={handleFull}>
+          <img src={Up}></img>
+        </VectorBox>
+      )}
+
       <InfoContainer>
         <InfoBox
           marker={props.marker}

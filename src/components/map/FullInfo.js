@@ -85,7 +85,7 @@ const FullInfoContainer = styled.div`
   background: #fff;
   margin-top: 20px;
   width: 100vw;
-  height: 70vh;
+  /* height: 70vh; */
   z-index: 110;
   animation: slideDown 1s;
   animation: slideUp 0.5s;
@@ -113,28 +113,10 @@ const MenuImg = styled.img`
 
   flex-shrink: 0;
 `;
-const MenuTxt = styled.div`
-  color: #000;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 24px; /* 160% */
-`;
-const DetailTitle = styled.div`
-  color: #000;
 
-  font-size: 18px;
-  font-weight: 600;
-`;
-const DetailSemi = styled.div`
-  margin-top: 4px;
-  color: #333;
-
-  font-size: 15px;
-  font-weight: 500;
-`;
 const DetailBox = styled.div`
   width: 350px;
-  height: 70vh;
+  /* height: 70vh; */
   margin: 20px auto;
   overflow-y: scroll;
   scrollbar-width: none;

@@ -69,7 +69,7 @@ export default class SwipeToSlide extends Component {
               onClick={handleClick}
             >
               <img id="2" src={foodtruckImg}></img>
-              <CategoryText id="2">관광안내소</CategoryText>
+              <CategoryText id="2">종합안내센터</CategoryText>
             </CategoryBox>
           </div>
           <div>

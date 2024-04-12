@@ -1,14 +1,14 @@
-export function makePolygon(tmpMap, naver) {
+export function makePolygon(tmpMap, naver, setPolygon) {
   const polygon1 = new naver.maps.Polygon({
     map: tmpMap,
     paths: [
       [126.43237125036256, 34.795382741543236],
       [126.43248312001636, 34.795220110168334],
-      [126.4343332617882, 34.79610171338156],
+      [126.4343122617882, 34.79609871338156],
       [126.43420919669107, 34.796258895383374],
     ],
     fillColor: '#FED393',
-    fillOpacity: 0.9,
+    fillOpacity: 1,
     strokeWeight: 1,
     strokeColor: '#FFAF36',
   });
@@ -21,8 +21,9 @@ export function makePolygon(tmpMap, naver) {
       [126.4332262345867, 34.79618897049904],
     ],
     fillColor: '#FED393',
-    fillOpacity: 0.9,
+    fillOpacity: 1,
     strokeWeight: 1,
     strokeColor: '#FFAF36',
   });
+  setPolygon([polygon1, polygon2]);
 }

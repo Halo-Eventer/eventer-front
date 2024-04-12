@@ -24,6 +24,9 @@ import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 
 function NolzaMap(props) {
+  const [prevZoom, setPrevZoom] = useState();
+  const [fixedMarker, setFixedMarker] = useState();
+  const [zoom, setZoom] = useState();
   const [activeId, setActiveId] = useState('');
   const [activeCategory, setActiveCategory] = useState(1);
   const [prevClustering, setPrevClustering] = useState('');
@@ -31,6 +34,7 @@ function NolzaMap(props) {
   const [concertHallMarker, setConcertHallMarker] = useState([]);
   const [concertData, setConcertData] = useState([]);
   const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
+  const [polygon, setPolygon] = useState();
 
   let markerImg = '';
 
@@ -53,10 +57,14 @@ function NolzaMap(props) {
     else if (activeCategory == 4) markerImg = toiletMarker;
     else if (activeCategory == 5) markerImg = parkMarker;
   }, [activeCategory, data]);
+
   useEffect(() => {
+    const initZoom = 18;
+    setPrevZoom(initZoom);
+    setZoom(initZoom);
     let mapOption = {
       center: new naver.maps.LatLng(34.7955637033503, 126.43324179058626),
-      zoom: 17,
+      zoom: initZoom,
       minZoom: 16,
       tileTransition: true,
       scaleControl: true,
@@ -76,7 +84,7 @@ function NolzaMap(props) {
 
           if (e.name == '공연장') {
             img = hallMarker;
-          } else {
+          } else if (e.name == '러브게이트') {
             img = loveGate;
           }
 
@@ -99,8 +107,8 @@ function NolzaMap(props) {
       });
     setMap(tmpMap);
 
-    makePolygon(tmpMap, naver);
-    makeFixedMarker(tmpMap, naver);
+    makePolygon(tmpMap, naver, setPolygon);
+    makeFixedMarker(tmpMap, naver, setFixedMarker);
     //   const rect = new naver.maps.Rectangle({
     //     // 영역 설정
     //     map: tmpMap,
@@ -114,7 +122,27 @@ function NolzaMap(props) {
     //     strokeColor: '#FFAF36',
     //   });
     window.scrollTo(0, -200);
+    naver.maps.Event.addListener(tmpMap, 'zoom_changed', function (zoom) {
+      setZoom(zoom);
+    });
   }, []);
+
+  useEffect(() => {
+    console.log(zoom, prevZoom);
+    if (zoom === 18 && prevZoom == 17) {
+      makeFixedMarker(map, naver, setFixedMarker);
+      makePolygon(map, naver, setPolygon);
+    } else if (zoom === 17 && prevZoom == 18) {
+      fixedMarker.map((e) => {
+        e.setMap(null);
+      });
+      polygon.forEach((e) => {
+        e.setMap(null);
+      });
+    }
+    setPrevZoom(zoom);
+  }, [zoom]);
+
   useEffect(() => {
     concertHallMarker.map((e, i) => {
       console.log(e);
