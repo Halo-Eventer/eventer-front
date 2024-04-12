@@ -84,7 +84,7 @@ function NolzaMap(props) {
 
           if (e.name == '공연장') {
             img = hallMarker;
-          } else {
+          } else if (e.name == '러브게이트') {
             img = loveGate;
           }
 
