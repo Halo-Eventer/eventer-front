@@ -34,6 +34,7 @@ function NolzaMap(props) {
   const [concertHallMarker, setConcertHallMarker] = useState([]);
   const [concertData, setConcertData] = useState([]);
   const [concertClick, setConcertClick] = useState(0); // 공연장과 타마커의 id값 같은 경우 clickinfo 두개 생성 방지.
+  const [polygon, setPolygon] = useState();
 
   let markerImg = '';
 
@@ -58,9 +59,12 @@ function NolzaMap(props) {
   }, [activeCategory, data]);
 
   useEffect(() => {
+    const initZoom = 18;
+    setPrevZoom(initZoom);
+    setZoom(initZoom);
     let mapOption = {
       center: new naver.maps.LatLng(34.7955637033503, 126.43324179058626),
-      zoom: 18,
+      zoom: initZoom,
       minZoom: 16,
       tileTransition: true,
       scaleControl: true,
@@ -103,7 +107,7 @@ function NolzaMap(props) {
       });
     setMap(tmpMap);
 
-    makePolygon(tmpMap, naver);
+    makePolygon(tmpMap, naver, setPolygon);
     makeFixedMarker(tmpMap, naver, setFixedMarker);
     //   const rect = new naver.maps.Rectangle({
     //     // 영역 설정
@@ -124,16 +128,19 @@ function NolzaMap(props) {
   }, []);
 
   useEffect(() => {
-    setPrevZoom(zoom);
     console.log(zoom, prevZoom);
-    if (zoom === 18 && prevZoom == 17)
+    if (zoom === 18 && prevZoom == 17) {
       makeFixedMarker(map, naver, setFixedMarker);
-    else if (zoom === 17 && prevZoom == 18)
+      makePolygon(map, naver, setPolygon);
+    } else if (zoom === 17 && prevZoom == 18) {
       fixedMarker.map((e) => {
         e.setMap(null);
       });
-    console.log(zoom);
-    console.log(fixedMarker);
+      polygon.forEach((e) => {
+        e.setMap(null);
+      });
+    }
+    setPrevZoom(zoom);
   }, [zoom]);
 
   useEffect(() => {

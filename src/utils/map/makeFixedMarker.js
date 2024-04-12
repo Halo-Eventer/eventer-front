@@ -5,7 +5,8 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
   const gate2 = makeGate(tmpMap, naver, 34.79557534198884, 126.43289948037096);
   const gate3 = makeGate(tmpMap, naver, 34.79594824251079, 126.43376542518426);
   const gate4 = makeGate(tmpMap, naver, 34.79616301982082, 126.43418745091185);
-  const marker2 = new naver.maps.Marker({
+
+  const seat = new naver.maps.Marker({
     position: new naver.maps.LatLng(34.795734198629084, 126.43331949484947),
     tmpMap,
     icon: {
@@ -50,7 +51,7 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
       anchor: new naver.maps.Point(25, 26),
     },
   });
-  const fixedMarker = [gate1, gate2, gate3, gate4, marker2, doctor];
+  const fixedMarker = [gate1, gate2, gate3, gate4, seat, doctor];
   fixedMarker.map((e) => {
     e.setMap(tmpMap);
   });
