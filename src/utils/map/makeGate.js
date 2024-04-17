@@ -7,7 +7,7 @@ export function makeGate(tmpMap, naver, lat, lng) {
       content: `
           <div > 
           <div style="display:flex; justify-content: center;align-items:center">
-           <img style="margin:0;idth:32px;height:32px;" src = ${gate}></img>
+           <img style="margin:0;width:28px;height:32px;" src = ${gate}></img>
           </div>
           <div style="display:flex; font-size: 12px;
           font-family: 'NanumSquareNeo';
