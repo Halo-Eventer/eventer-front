@@ -13,7 +13,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           <div style="display:flex; justify-content: center;">
           <div style = "
            border-radius:28px;display:flex;justify-content:center;align-items: center;">
-          <img style="width:72px;height:72px;" src = ${img}></img>
+          <img style="width:60px;height:60px;" src = ${img}></img>
           </div>
           </div>
           <div style="display:flex; font-size: 12px;
@@ -26,7 +26,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           <div style="display:flex; justify-content: center;">
           <div style = "
            border-radius:28px;display:flex;justify-content:center;align-items: center;">
-          <img style="width:36px;height:40px;" src = ${img}></img>
+          <img style="width:28px;height:32px;" src = ${img}></img>
           </div>
           </div>
           <div style="display:flex; font-size: 12px;font-family: 'NanumSquareNeo';
@@ -35,7 +35,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           </div>`
           : `<div> 
       <div style="position:absolute;bottom:-70px;right:-80px">
-      <img style="width:100px;height:86px" src = ${img}></img>
+      <img style="width:80px;height:78px" src = ${img}></img>
       </div>
       
       </div>`,
