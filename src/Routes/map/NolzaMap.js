@@ -24,6 +24,16 @@ import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 
 function NolzaMap(props) {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
+    console.log(vh);
+  }
+  useEffect(() => {
+    console.log('tlqkf');
+    setScreenSize();
+  }, []);
+
   const [prevZoom, setPrevZoom] = useState();
   const [fixedMarker, setFixedMarker] = useState();
   const [zoom, setZoom] = useState();
