@@ -27,7 +27,6 @@ function NolzaMap(props) {
   function setScreenSize() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
-    console.log(vh);
   }
   useEffect(() => {
     setScreenSize();
@@ -72,9 +71,10 @@ function NolzaMap(props) {
     setPrevZoom(initZoom);
     setZoom(initZoom);
     let mapOption = {
-      center: new naver.maps.LatLng(34.7955637033503, 126.43324179058626),
+      center: new naver.maps.LatLng(34.796118401891526, 126.43307373812141),
       zoom: initZoom,
-      // minZoom: 16,
+      minZoom: 18,
+      maxZoom: 20,
       tileTransition: true,
       mapTypes: new naver.maps.MapTypeRegistry({
         normal: naver.maps.NaverStyleMapTypeOptions.getNormalMap({
@@ -112,7 +112,7 @@ function NolzaMap(props) {
         setConcertHallMarker(info);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     setMap(tmpMap);
 
@@ -137,7 +137,6 @@ function NolzaMap(props) {
   }, []);
 
   useEffect(() => {
-    console.log(zoom, prevZoom);
     if (zoom === 18 && prevZoom == 17) {
       makeFixedMarker(map, naver, setFixedMarker);
       makePolygon(map, naver, setPolygon);
@@ -154,7 +153,6 @@ function NolzaMap(props) {
 
   useEffect(() => {
     concertHallMarker.map((e, i) => {
-      console.log(e);
       if (i == 1) {
         naver.maps.Event.addListener(e, 'click', () =>
           navigate('/concertinfo')

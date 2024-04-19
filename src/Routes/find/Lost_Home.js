@@ -11,11 +11,10 @@ function Lost_Home() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    console.log('위로');
     window.scrollTo(0, -200);
     lostItemGet().then((res) => {
       setData(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     });
   }, []);
 
@@ -31,7 +30,6 @@ function Lost_Home() {
 
         <Container>
           {data.map((e) => {
-            console.log(e);
             return (
               <div onClick={() => navigate(`${e.id}`, { state: { props: e } })}>
                 <Box image={e.thumbnail}>

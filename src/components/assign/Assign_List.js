@@ -31,7 +31,6 @@ function Assign_List(props) {
   const [showList, setShowList] = useState(false);
   const [upText, setUpText] = useState('');
 
-
   const onClick_dropDown = () => {
     setShowList((prev) => !prev);
   };
@@ -43,7 +42,7 @@ function Assign_List(props) {
 
     if (typeof categoryEntries[index][1] == 'object') {
       const index2 = event.currentTarget.id;
-      console.log('index, index2 :', index, index2);
+      // console.log('index, index2 :', index, index2);
       //            console.log("type : ",categoryEntries[index][1][index2]);
       setType(categoryEntries[index][1][index2].eng);
     } else setType('');
@@ -58,9 +57,6 @@ function Assign_List(props) {
     setMode('a');
   };
 
-
-
-
   useEffect(() => {
     setCategoryEntries(Object.entries(props.categoryList));
   }, []);
@@ -74,15 +70,14 @@ function Assign_List(props) {
       setSelectedDrop(categoryEntries[0][1]);
   }, [categoryEntries]);
 
-
   useEffect(() => {
     if (category === 'notice') {
       setUpText('메인');
     } else setUpText('팝업');
   }, [category]);
 
-  console.log('boardList:', boardList);
-  console.log('category, type : ', category, type);
+  // console.log('boardList:', boardList);
+  // console.log('category, type : ', category, type);
 
   return (
     <Wrapper>
@@ -129,8 +124,7 @@ function Assign_List(props) {
         <h1>{selectedDrop} 추가</h1>
       </AddBar>
 
-      <Assign_ListBoard upText={upText}/>
-
+      <Assign_ListBoard upText={upText} />
     </Wrapper>
   );
 }
@@ -151,7 +145,7 @@ const Wrapper = styled.div`
 const DropDown = styled.div`
   width: 544px;
 
-  margin-bottom:8px;
+  margin-bottom: 8px;
 
   display: flex;
   flex-direction: column;
@@ -233,9 +227,9 @@ const AddBar = styled.div`
   flex-shrink: 0;
 
   border-radius: 4px;
-  background: #DDD;
+  background: #ddd;
 
-  margin-bottom:8px;
+  margin-bottom: 8px;
 
   display: flex;
   justify-content: center;
@@ -279,8 +273,8 @@ const ListBoard = styled.div`
     /* border: 1px solid #ddd;
     border-radius:4px; */
 
-    cursor:pointer;
-    
+    cursor: pointer;
+
     display: flex;
     justify-content: space-between;
     align-items: ${(props) =>

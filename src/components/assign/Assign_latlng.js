@@ -11,7 +11,6 @@ function Assign_latlng() {
   const { naver } = window;
   const mapElement = useRef(1);
   const getLatLng = (e) => {
-    console.log(e.latlng);
     setLatlng({ lat: e.latlng.y, lng: e.latlng.x });
   };
   useEffect(() => {
@@ -25,7 +24,6 @@ function Assign_latlng() {
     const map = new naver.maps.Map(mapElement.current, mapOptions);
 
     naver.maps.Event.addListener(map, 'click', (e) => {
-      console.log('hi');
       getLatLng(e);
       setInfo({
         ...info,
@@ -33,7 +31,6 @@ function Assign_latlng() {
         longitude: e.latlng._lng,
       });
       if (marker) {
-        console.log(marker.position, e.coord);
         marker.setPosition(e.latlng);
       } else {
         marker = new naver.maps.Marker({

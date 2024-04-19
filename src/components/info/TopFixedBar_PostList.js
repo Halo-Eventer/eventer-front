@@ -34,7 +34,7 @@ function TopFixedBar_PostList() {
   };
 
   useEffect(() => {
-    console.log(ref_selectBar?.current?.offsetWidth);
+    // console.log(ref_selectBar?.current?.offsetWidth);
     if (category === 'notice') setPos('25%');
     else if (category === 'event') setPos('75%');
   }, [category]); //useRef 연습
@@ -82,7 +82,7 @@ export const StyledTopFixedBar = styled(TopFixedBar)`
     font-size: 18px;
     font-style: normal;
     font-weight: 900;
-    font-family:'NanumSquareNeo';
+    font-family: 'NanumSquareNeo';
   }
 `;
 
@@ -118,7 +118,7 @@ export const SelectBar = styled.div`
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 150% */
-    font-family:'NanumSquareNeo';
+    font-family: 'NanumSquareNeo';
 
     cursor: pointer;
   }
@@ -135,7 +135,7 @@ export const SelectBar = styled.div`
     font-style: normal;
     font-weight: 800;
     line-height: 24px; /* 150% */
-    font-family:'NanumSquareNeo';
+    font-family: 'NanumSquareNeo';
 
     cursor: pointer;
   }

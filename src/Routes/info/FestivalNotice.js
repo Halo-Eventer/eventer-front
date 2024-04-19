@@ -30,17 +30,17 @@ function FestivalNotice() {
     getAll(festivalId, category, type)
       .then((response) => {
         if (response.data) {
-          console.log('fetch List success', response.data);
+          // console.log('fetch List success', response.data);
           if (category === 'notice') setNoticeList(response.data);
           else if (category === 'event') setEventList(response.data);
         } else {
-          console.log('fetch List no data ;(', response);
+          // console.log('fetch List no data ;(', response);
           if (category === 'notice') setNoticeList([]);
           else if (category === 'event') setEventList([]);
         }
       })
       .catch((error) => {
-        console.log('fetch List error', error);
+        // console.log('fetch List error', error);
       });
   };
   const onClick_bkBtn = () => {

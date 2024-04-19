@@ -7,8 +7,7 @@ function Lost_Detail() {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state.props;
-  console.log(data);
-  console.log(data.image);
+
   return (
     <>
       <Wrapper>

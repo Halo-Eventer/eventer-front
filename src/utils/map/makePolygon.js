@@ -28,6 +28,6 @@ export function makePolygon(tmpMap, naver, setPolygon) {
     strokeColor: '#FFAF36',
   });
   setPolygon([polygon1, polygon2]);
-  makeOverlay(tmpMap, naver);
-  makeOverlay(tmpMap, naver);
+  // makeOverlay(tmpMap, naver);
+  // makeOverlay(tmpMap, naver);
 }

@@ -10,23 +10,21 @@ import { infoState, itemIDState, modeState } from 'recoils/atoms_assign';
 import { Input } from 'Routes/assign/AssignPage_Home';
 import { imageUploadApi } from 'apis/apis_POST';
 
-
-
 function AssignImage() {
-    //*****전역 recoil모음*****
-    const [mode,setMode]=useRecoilState(modeState);
-    const [itemID, setItemID] = useRecoilState(itemIDState);
-    const [info, setInfo] = useRecoilState(infoState);
-    //*****전역 recoil모음*****
+  //*****전역 recoil모음*****
+  const [mode, setMode] = useRecoilState(modeState);
+  const [itemID, setItemID] = useRecoilState(itemIDState);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
 
   const imagesInput = useRef(null);
 
   const handleImg = (e) => {
     imageUploadApi(e.target.files[0])
       .then((res) => {
-        console.log("res.data, info.images:",res.data, info.images);
-        let tmp = [...info.images, res.data]
-        setInfo({...info,images:tmp});
+        // console.log('res.data, info.images:', res.data, info.images);
+        let tmp = [...info.images, res.data];
+        setInfo({ ...info, images: tmp });
       })
       .catch((err) => {
         alert(err);
@@ -38,23 +36,18 @@ function AssignImage() {
       return deleteImg != images;
     });
 
-    setInfo({...info,images:processedImages});
+    setInfo({ ...info, images: processedImages });
   };
 
-
-  console.log("info",info);
-  useEffect(()=>{
-    console.log("mode",mode);
-    }
-    ,[info.images,
-      mode,
-      itemID]);
+  // console.log('info', info);
+  useEffect(() => {
+    // console.log("mode",mode);
+  }, [info.images, mode, itemID]);
 
   return (
     <div>
-      <AssignThumbnail/>
-      <Flex style={{ marginTop: '8px'}}>
-
+      <AssignThumbnail />
+      <Flex style={{ marginTop: '8px' }}>
         <InputImages
           onClick={() => {
             imagesInput.current.click();

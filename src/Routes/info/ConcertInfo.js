@@ -21,11 +21,11 @@ function ConcertInfo() {
         setImgHeight(response.height);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }, []);
 
-  console.log(imgWidth, imgHeight);
+  // console.log(imgWidth, imgHeight);
 
   return (
     <Wrapper>

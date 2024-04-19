@@ -17,11 +17,11 @@ function Notice({ noticeList }) {
     //target : 해당 태그의 가장 하위태그까지의 속성값 조사
     //currentTarget : 이벤트가 발생한 딱 그 태그만 조사
 
-    console.log('noticeId : ', notiId);
+    // console.log('noticeId : ', notiId);
     navigate(`/notice/${notiId}`);
   };
 
-  console.log(noticeList, typeof noticeList === 'object');
+  // console.log(noticeList, typeof noticeList === 'object');
   return (
     <div>
       {noticeList?.map((item, index) => {

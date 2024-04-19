@@ -59,7 +59,7 @@ function AssignBasicInfo_Map() {
   };
 
   useEffect(() => {
-    console.log(info);
+    // console.log(info);
   }, [info]);
 
   return (

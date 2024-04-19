@@ -32,11 +32,14 @@ function Missing_Home() {
     else
       missingPost(info)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           alert('등록이 완료되었습니다.');
           navigate('/');
         })
-        .catch((err) => console.log(err));
+        .catch(
+          (err) => {}
+          // console.log(err)
+        );
   };
   return (
     <Wrapper>

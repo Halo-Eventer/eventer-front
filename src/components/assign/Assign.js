@@ -10,42 +10,37 @@ import AssignBasicInfo_Missing from './basicInfo/AssignBasicInfo_Missing';
 import AssignBasicInfo_Urgent from './basicInfo/AssignBasicInfo_Urgent';
 
 function Assign() {
-
   //*****전역 recoil모음*****
   const [category, setCategory] = useRecoilState(categoryState_assign);
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
+  // console.log("info:", info);
+  // console.log('category', category);
 
-  console.log("info:", info);
-  console.log('category', category);
+  const AssignBasicInfo_Object = {
+    notice: <AssignBasicInfo_Post />,
+    event: <AssignBasicInfo_Post />,
 
-  const AssignBasicInfo_Object={
-    notice : <AssignBasicInfo_Post/>,
-    event : <AssignBasicInfo_Post/>,
+    lostItem: <AssignBasicInfo_Lost />,
 
-    lostItem : <AssignBasicInfo_Lost/>,
-    
-    missingPerson:<AssignBasicInfo_Missing/>,
+    missingPerson: <AssignBasicInfo_Missing />,
 
-    urgent:<AssignBasicInfo_Urgent/>
-  }
+    urgent: <AssignBasicInfo_Urgent />,
+  };
 
   return (
     <AssignContainer>
       <AssignBtn />
       <InfoContainer>
-
-        {AssignBasicInfo_Object[category] || <AssignBasicInfo_Map/>}
+        {AssignBasicInfo_Object[category] || <AssignBasicInfo_Map />}
         {/* 특별한 카테고리가 아니면 기본값으로 지도폼 렌더링 */}
-
       </InfoContainer>
     </AssignContainer>
   );
 }
 
 export default Assign;
-
 
 const AssignContainer = styled.div``;
 

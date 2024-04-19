@@ -5,18 +5,14 @@ import AssignThumbnail from '../AssignThumbnail';
 import { Input, InputContainer, InputDiv } from 'Routes/assign/AssignPage_Home';
 
 function AssignBasicInfo_Lost() {
-
   //*****전역 recoil모음*****
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
 
-
-  console.log("info (AssignBasicInfo_Lost.js):", info);
+  // console.log('info (AssignBasicInfo_Lost.js):', info);
   const [active, setActive] = useState(true);
   const textRef = useRef();
   const boxRef = useRef();
-
-
 
   const handleResizeHeight = (e) => {
     if (e.keyCode == 13 || 8) {
@@ -33,15 +29,12 @@ function AssignBasicInfo_Lost() {
   //   setInfo({ ...rest });
   // };
   const handleInfo = (e) => {
-    console.log(e);
+    // console.log(e);
     const [value, id] = [e.target.value, e.target.id];
     setInfo({ ...info, [id]: value });
   };
 
-
   // useEffect(() => { deleteETC(); }, []);
-
-
 
   return (
     <div>
@@ -49,26 +42,33 @@ function AssignBasicInfo_Lost() {
 
       <InputContainer ref={boxRef}>
         <InputDiv>
-          <Input onChange={handleInfo} id="type"
-            value={info.type} placeholder="물건 카테고리 입력"></Input>
-        </InputDiv>
-
-        <InputDiv>
-          <Input onChange={handleInfo} id="name"
-            value={info.name} placeholder="물건 이름 입력"></Input>
+          <Input
+            onChange={handleInfo}
+            id="type"
+            value={info.type}
+            placeholder="물건 카테고리 입력"
+          ></Input>
         </InputDiv>
 
         <InputDiv>
           <Input
-            onChange={handleInfo} id="findDate"
-            value={info.findDate} placeholder="발견 날짜 입력"
+            onChange={handleInfo}
+            id="name"
+            value={info.name}
+            placeholder="물건 이름 입력"
           ></Input>
         </InputDiv>
 
+        <InputDiv>
+          <Input
+            onChange={handleInfo}
+            id="findDate"
+            value={info.findDate}
+            placeholder="발견 날짜 입력"
+          ></Input>
+        </InputDiv>
       </InputContainer>
     </div>
   );
 }
 export default AssignBasicInfo_Lost;
-
-

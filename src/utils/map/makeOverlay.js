@@ -1,12 +1,13 @@
 import tmpImg from 'asset/images/SampleThumbnail.png';
 function makeOverlay(tmpMap, naver) {
-  var HOME_PATH = window.HOME_PATH || '.';
   var bounds = new naver.maps.LatLngBounds(
-    new naver.maps.LatLng(34.7958637033503, 126.43304179058626),
-    new naver.maps.LatLng(34.7952637033501, 126.43224179058626)
+    new naver.maps.LatLng(34.79262495209305, 126.433928073729), // sw
+    new naver.maps.LatLng(34.79352366548996, 126.43547284990258) // en
   );
-
-  var groundOverlay = new naver.maps.GroundOverlay(HOME_PATH + tmpImg, bounds, {
+  var overlayHTML = `<div style="position:absolute; left:0; top:0; width:100%; height:100%; transform: rotate(45deg);">
+  <img src="${tmpImg}" style="width: 100%; height: 100%; opacity: 1;">
+</div>`;
+  var groundOverlay = new naver.maps.GroundOverlay(overlayHTML, bounds, {
     opacity: 1,
     clickable: false,
   });
