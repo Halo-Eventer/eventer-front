@@ -1,3 +1,5 @@
+import makeOverlay from './makeOverlay';
+
 export function makePolygon(tmpMap, naver, setPolygon) {
   const polygon1 = new naver.maps.Polygon({
     map: tmpMap,
@@ -26,4 +28,6 @@ export function makePolygon(tmpMap, naver, setPolygon) {
     strokeColor: '#FFAF36',
   });
   setPolygon([polygon1, polygon2]);
+  makeOverlay(tmpMap, naver);
+  makeOverlay(tmpMap, naver);
 }
