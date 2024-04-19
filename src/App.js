@@ -44,7 +44,6 @@ function App() {
     else setInAssign(false);
   }, [location]);
 
-  // console.log('location, inAssign', location, inAssign);
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>

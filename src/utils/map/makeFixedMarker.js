@@ -15,13 +15,13 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
     <div style=" font-size: 12px;
     font-family: 'NanumSquareNeo';
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-     font-weight: 800;line-height: 16px;"> 
+     font-weight: 800;line-height: 16px;white-space: nowrap"> 
      광장객석
      </div>
      <div style=" font-size: 12px;
      font-family: 'NanumSquareNeo';
      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-      font-weight: 800;line-height: 16px;"> 
+      font-weight: 800;line-height: 16px;white-space: nowrap"> 
       (1,500석)
       </div>
     </div>`,
@@ -41,13 +41,13 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
       <div style=" font-size: 12px;
       font-family: 'NanumSquareNeo';
       text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-       font-weight: 800;line-height: 16px;"> 
+       font-weight: 800;line-height: 16px;white-space: nowrap"> 
        데크객석
        </div>
        <div style=" font-size: 12px;
        font-family: 'NanumSquareNeo';
        text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-        font-weight: 800;line-height: 16px;"> 
+        font-weight: 800;line-height: 16px;white-space: nowrap"> 
         (선착순 2,000명)
         </div>
       </div>`,
@@ -68,7 +68,7 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
       <div style=" font-size: 12px;
       font-family: 'NanumSquareNeo';
       text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-       font-weight: 800;line-height: 16px;"> 
+       font-weight: 800;line-height: 16px; white-space: nowrap"> 
        응급의료센터
        </div>
       </div>`,
@@ -83,5 +83,4 @@ export function makeFixedMarker(tmpMap, naver, setFixedMarker) {
     e.setMap(tmpMap);
   });
   setFixedMarker(fixedMarker);
-
 }

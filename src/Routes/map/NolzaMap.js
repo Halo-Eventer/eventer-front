@@ -153,7 +153,7 @@ function NolzaMap(props) {
 
   useEffect(() => {
     concertHallMarker.map((e, i) => {
-      if (i == 1) {
+      if (i == 0) {
         naver.maps.Event.addListener(e, 'click', () =>
           navigate('/concertinfo')
         );

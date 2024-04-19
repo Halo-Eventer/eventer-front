@@ -19,7 +19,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           <div style="display:flex; font-size: 12px;
           font-family: 'NanumSquareNeo';
           text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-           font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+           font-weight: 800; justify-content: center;line-height: 16px; white-space: nowrap"> ${text} </div>
           </div>`
             : `
           <div > 
@@ -31,7 +31,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           </div>
           <div style="display:flex; font-size: 12px;font-family: 'NanumSquareNeo';
           text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
-           font-weight: 800; justify-content: center;line-height: 16px;"> ${text} </div>
+           font-weight: 800; justify-content: center;line-height: 16px; white-space: nowrap"> ${text} </div>
           </div>`
           : `<div> 
       <div style="position:absolute;bottom:-70px;right:-80px">
