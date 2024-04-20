@@ -6,8 +6,6 @@ on:
   # main으로 push나 PR을 하는 경우에 깃헙 액션 실행
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 # 워크플로우에서 실행할 작업들
 jobs:
