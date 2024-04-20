@@ -20,7 +20,7 @@ function Missing_Input(props) {
     const id = e.target.id;
     const value = e.target.value;
 
-    console.log(info);
+    // console.log(info);
     setInfo({ ...info, [id]: value });
   };
   const [imagePreview, setImagePreview] = useState();

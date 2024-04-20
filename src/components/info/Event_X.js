@@ -15,7 +15,7 @@ function Event({ eventList }) {
     //target : 해당 태그의 가장 하위태그까지의 속성값 조사
     //currentTarget : 이벤트가 발생한 딱 그 태그만 조사
 
-    console.log('eventId : ', eventId);
+    // console.log('eventId : ', eventId);
     navigate(`/event/${eventId}`);
   };
   return (

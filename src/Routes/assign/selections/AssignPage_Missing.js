@@ -10,26 +10,30 @@ import {
   MiddleBar_Component2,
 } from 'components/assign/Assign_Bar';
 
-import { AssignBox, Assign_Blank} from 'Routes/assign/AssignPage_Home';
+import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
 import Assign_List from 'components/assign/Assign_List';
 
-import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
+import {
+  boardListState,
+  cancleState,
+  categoryState_assign,
+  infoState,
+  itemIDState,
+  modeState,
+  typeState,
+} from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
 import { missingPersonCategory } from 'constants/Const_Assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
 
-
-
 function AssignPage_Missing() {
-
-
   //*****전역 recoil모음*****
-  const [boardList, setBoardList]=useRecoilState(boardListState);
-  const [type, setType]=useRecoilState(typeState);
+  const [boardList, setBoardList] = useRecoilState(boardListState);
+  const [type, setType] = useRecoilState(typeState);
   const [category, setCategory] = useRecoilState(categoryState_assign);
-  const [mode,setMode]=useRecoilState(modeState);
+  const [mode, setMode] = useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [itemID, setItemID] = useRecoilState(itemIDState);
   const [info, setInfo] = useRecoilState(infoState);
@@ -37,34 +41,33 @@ function AssignPage_Missing() {
 
   const festivalId = useParams().id;
 
-  const [categoryList, setCategoryList]= useState(missingPersonCategory);
+  const [categoryList, setCategoryList] = useState(missingPersonCategory);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCategory('missingPerson');
     setBoardList([]);
     setType('');
-  },[])
-  useEffect(()=>
-  {
-    console.log("cateogry:",category);
+  }, []);
+  useEffect(() => {
+    // console.log("cateogry:",category);
     setCancle(true);
-    setInfo(InitInfo(category,type));
-    setMode("");
-    fetchList(festivalId,category,type,setBoardList);
+    setInfo(InitInfo(category, type));
+    setMode('');
+    fetchList(festivalId, category, type, setBoardList);
   }, [category]);
 
   useEffect(() => {
-    console.log('mode:', mode);
+    // console.log('mode:', mode);
     if (mode == 'a') {
-      fetchList(festivalId,category,type,setBoardList);
-      setInfo(InitInfo(category,type));  
-        //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
+      fetchList(festivalId, category, type, setBoardList);
+      setInfo(InitInfo(category, type));
+      //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
-      fetchDetail(festivalId, category,itemID,setInfo);
+      fetchDetail(festivalId, category, itemID, setInfo);
       setCancle(false);
     } else if (mode == 'f') {
-      fetchList(festivalId,category,type,setBoardList);
+      fetchList(festivalId, category, type, setBoardList);
       setCancle(true);
       setMode('');
     }
@@ -75,14 +78,9 @@ function AssignPage_Missing() {
       <UpperBar_Component />
       <MiddleBar_Component2 text="실종자 현황 관리" />
       <AssignBox>
-        
-        <Assign_List categoryList = {categoryList} />
+        <Assign_List categoryList={categoryList} />
 
-        {cancle 
-        ? <Assign_Blank/>
-        : <Assign/>
-        }
-
+        {cancle ? <Assign_Blank /> : <Assign />}
       </AssignBox>
     </Wrapper>
   );

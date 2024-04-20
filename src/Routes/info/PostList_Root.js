@@ -51,8 +51,8 @@ function PostList_Root() {
     });
   }, [noticeListData, eventListData]);
 
-  console.log('Lists', noticeListData?.data, eventListData?.data);
-  console.log('dataList', dataList);
+  // console.log('Lists', noticeListData?.data, eventListData?.data);
+  // console.log('dataList', dataList);
   return (
     <Wrapper>
       <BoardSet_Width>

@@ -14,7 +14,6 @@ import {
   festivalId,
 } from '../Home';
 
-
 import { UpperBar } from '../Home';
 import { getDetail } from 'apis/apis_GET';
 import styled from 'styled-components';
@@ -41,30 +40,28 @@ function Detail_Post() {
   };
 
   const [detailedList, setDetailedList] = useState([]);
-  const [titleText, setTitleText]=useState("");
+  const [titleText, setTitleText] = useState('');
 
   const onClick_bkBtn = () => {
     navigate(-1);
     //그냥 뒤로가는 기능
   };
-  useEffect(() => { 
+  useEffect(() => {
     /* '공지사항 / 이벤트' 전환때문에 얘는 fetchList()가 아닌 
     getDetail을 가지고 직접 페이지 내 변수 조작*/
-    getDetail(festivalId,'notice', postId) //url의 카테고리는 일단 notice
+    getDetail(festivalId, 'notice', postId) //url의 카테고리는 일단 notice
       .then((response) => {
         if (typeof response.data === 'object') {
           setDetailedList(response.data);
-          if(response.data.type==='NOTICE')
-            setTitleText('공지사항')
-          else
-            setTitleText('이벤트')
-          console.log('detail fetch success : ', response.data);
+          if (response.data.type === 'NOTICE') setTitleText('공지사항');
+          else setTitleText('이벤트');
+          // console.log('detail fetch success : ', response.data);
         } else {
-          console.log('detail fetch no data ;(');
+          // console.log('detail fetch no data ;(');
         }
       })
       .catch((error) => {
-        console.log('detail fetch failed ;(', error);
+        // console.log('detail fetch failed ;(', error);
       });
   }, []);
 
@@ -76,9 +73,7 @@ function Detail_Post() {
           <Link to="/" style={{ textDecoration: 'none' }}>
             <HomeBtn />
           </Link>
-          <Title>
-            {titleText}
-          </Title>
+          <Title>{titleText}</Title>
         </UpperBar>
       </TopFixedDiv>
       <Wrapper>
@@ -86,7 +81,7 @@ function Detail_Post() {
           <ImgBlock>
             <StyledSlider {...settings}>
               {detailedList.images?.map((item, key) => (
-                <ImgBoardForPost key={key} src={item}/>
+                <ImgBoardForPost key={key} src={item} />
               ))}
             </StyledSlider>
           </ImgBlock>
@@ -112,7 +107,6 @@ function Detail_Post() {
 }
 
 export default Detail_Post;
-
 
 export const ImgBoardForPost = styled.img`
   object-fit: cover;

@@ -27,32 +27,32 @@ function AssignBtn() {
   let info_forApi;
 
   const assignPost = () => {
-    console.log('info:', info);
+    // console.log('info:', info);
 
     let tmp = window.confirm('추가하시겠습니까?');
-    
-    info_forApi={...info};
+
+    info_forApi = { ...info };
 
     if (tmp)
       assignApi(info_forApi, category, festivalId)
         .then((response) => {
           if (typeof response.data === 'string') {
-            console.log('response.data, type : ', response.data, type);
+            // console.log('response.data, type : ', response.data, type);
             alert('해당 항목이 성공적으로 추가되었습니다');
             setMode('f');
           } else console.log('no response.data ;(');
         })
         .catch((error) => {
-          console.log('postData error : ', error);
+          // console.log('postData error : ', error);
         });
   };
 
   const assignMarker = () => {
-    console.log('info:', info);
+    // console.log('info:', info);
 
     let tmp = window.confirm('추가하시겠습니까?');
 
-    info_forApi={...info};
+    info_forApi = { ...info };
 
     if (tmp)
       assignApi(info_forApi, category, festivalId)
@@ -70,50 +70,50 @@ function AssignBtn() {
             //   });
             alert(`${info.title}이 성공적으로 추가되었습니다.`);
           } else {
-            console.log('res.data(not menu) : ', res.data);
+            // console.log('res.data(not menu) : ', res.data);
             alert('해당 항목이 성공적으로 추가되었습니다.');
             setMode('f');
           }
         })
         .catch((err) => {
-          console.log('등록 실패');
+          // console.log('등록 실패');
           alert(err.data);
         });
   };
 
   const revisePost = (id) => {
-    console.log(info);
+    // console.log(info);
     let tmp = window.confirm('수정하시겠습니까?');
 
-    info_forApi={...info};
+    info_forApi = { ...info };
 
     if (tmp)
       reviseApi(info_forApi, category, id)
         .then((response) => {
           if (typeof response.data === 'object') {
-            console.log('response : ', response);
+            // console.log('response : ', response);
             alert('해당 항목이 성공적으로 수정되었습니다.');
             setMode('f');
           } else console.log('no response.data ;(');
         })
         .catch((error) => {
-          console.log('patchData error : ', error);
+          // console.log('patchData error : ', error);
         });
   };
   const reviseMarker = (id) => {
-    console.log(info);
+    // console.log(info);
     let tmp = window.confirm('수정하시겠습니까?');
     id = Number(id);
     //path의 id 자료형은 Number로 할 것 (자료형 안 맞으면 백에서 undefined로 처리됨.)
     //태그에서 target해서 받아오는 값들은 string
 
-    info_forApi={...info};
+    info_forApi = { ...info };
 
     if (tmp)
       reviseApi(info_forApi, category, id)
         .then((res) => {
           if (res.data.mapId) {
-            console.log(res.data.mapId);
+            // console.log(res.data.mapId);
             reviseMenuApi(info.menus)
               .then((res) => {
                 alert('해당 항목이 성공적으로 수정되었습니다.');
@@ -124,7 +124,7 @@ function AssignBtn() {
               });
           } else {
             alert('수정되었습니다.');
-            console.log('revise succenss', res.data);
+            // console.log('revise succenss', res.data);
             setMode('f');
           }
         })

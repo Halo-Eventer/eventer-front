@@ -47,7 +47,7 @@ function Home() {
   const onClick_detailPost = (event) => {
     event.preventDefault();
     const postId = event.currentTarget.id;
-    console.log('postId : ', event.currentTarget.id);
+    // console.log('postId : ', event.currentTarget.id);
     navigate(`/post/${postId}`);
   };
 
@@ -57,13 +57,13 @@ function Home() {
 
   useEffect(() => {
     getHome()
-    .then((response) => {
-      setHomeList(response.data);
-      console.log('homeList:', response.data);
-    })
-    .catch((error) => {
-      console.log('fetchHome error:', error);
-    });
+      .then((response) => {
+        setHomeList(response.data);
+        // console.log('homeList:', response.data);
+      })
+      .catch((error) => {
+        // console.log('fetchHome error:', error);
+      });
   }, []);
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch//
 
@@ -71,18 +71,19 @@ function Home() {
 
   useEffect(() => {
     // 팝업 띄울 정보 받아오기
-    console.log(homeList);
+    // console.log(homeList);
 
     getBannerRank()
-    .then(response=>setBannerList(response.data.sort((a,b)=>a.rank-b.rank)))
-    .catch(error=>console.log(error));
+      .then((response) =>
+        setBannerList(response.data.sort((a, b) => a.rank - b.rank))
+      )
+      .catch((error) => console.log(error));
 
     const urgent = homeList.urgent || []; // homeList.urgent가 undefined일 경우 빈 배열 사용
     const missingPerson = homeList.missingPerson || []; // homeList.missingPerson가 undefined일 경우 빈 배열 사용
     setUrgentList(urgent);
     setMissingList(missingPerson);
     setPopupList(urgent.concat(missingPerson));
-    
   }, [homeList]);
 
   return (
@@ -177,7 +178,13 @@ function Home() {
           </SurveyBox>
 
           <ETCBox>
-            <ETC onClick = {()=>window.open('https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform')}>
+            <ETC
+              onClick={() =>
+                window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform'
+                )
+              }
+            >
               <Imoji src={disabled} />
               <h1>장애인 지원</h1>
               <h2>휠체어, 배리어프리존</h2>

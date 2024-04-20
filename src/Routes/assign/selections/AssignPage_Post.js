@@ -10,26 +10,30 @@ import {
   MiddleBar_Component2,
 } from 'components/assign/Assign_Bar';
 
-import { AssignBox, Assign_Blank} from 'Routes/assign/AssignPage_Home';
+import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
 import Assign_List from 'components/assign/Assign_List';
 
-import { boardListState, cancleState, categoryState_assign, infoState, itemIDState, modeState, typeState } from 'recoils/atoms_assign';
+import {
+  boardListState,
+  cancleState,
+  categoryState_assign,
+  infoState,
+  itemIDState,
+  modeState,
+  typeState,
+} from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
 import { postCategory } from 'constants/Const_Assign';
 import fetchList from 'utils/fetchList';
 import fetchDetail from 'utils/fetchDetail';
 
-
-
 function AssignPage_Post() {
-
-
   //*****전역 recoil모음*****
-  const [boardList, setBoardList]=useRecoilState(boardListState);
-  const [type, setType]=useRecoilState(typeState);
+  const [boardList, setBoardList] = useRecoilState(boardListState);
+  const [type, setType] = useRecoilState(typeState);
   const [category, setCategory] = useRecoilState(categoryState_assign);
-  const [mode,setMode]=useRecoilState(modeState);
+  const [mode, setMode] = useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [itemID, setItemID] = useRecoilState(itemIDState);
   const [info, setInfo] = useRecoilState(infoState);
@@ -48,7 +52,7 @@ function AssignPage_Post() {
   //         if (category === 'notice')
   //           setInfo({ ...response.data, simpleExplanation: SE });
   //         else setInfo(response.data);
-          
+
   //       } else {
   //         console.log('fetch Detail no data ;(', response);
   //       }
@@ -58,29 +62,28 @@ function AssignPage_Post() {
   //     });
   // };
 
-  useEffect(()=>{
+  useEffect(() => {
     setCategory('notice');
     setType('NOTICE');
     setBoardList([]);
-  },[])
-
-  useEffect(()=>
-  {
-    console.log("cateogry:",category);
-    setCancle(true);
-    setInfo(InitInfo(category,type));
-    setMode("");
-    console.log('first useEffect');
-    fetchList(festivalId, category, type, setBoardList);
-  }, [category,type]);
+  }, []);
 
   useEffect(() => {
-    console.log('mode:', mode);
-    console.log('secound useEFFect');
+    // console.log('cateogry:', category);
+    setCancle(true);
+    setInfo(InitInfo(category, type));
+    setMode('');
+    // console.log('first useEffect');
+    fetchList(festivalId, category, type, setBoardList);
+  }, [category, type]);
+
+  useEffect(() => {
+    // console.log('mode:', mode);
+    // console.log('secound useEFFect');
     if (mode == 'a') {
       fetchList(festivalId, category, type, setBoardList);
-      setInfo(InitInfo(category,type));  
-        //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
+      setInfo(InitInfo(category, type));
+      //객체나 배열의 setState는 무조건 [...] 또는 {...} 활용
       setCancle(false);
     } else if (mode == 'r') {
       fetchDetail(festivalId, category, itemID, setInfo);
@@ -92,21 +95,16 @@ function AssignPage_Post() {
     }
   }, [mode, itemID]);
 
-  console.log("boardList, info:", boardList, info);
+  // console.log("boardList, info:", boardList, info);
 
   return (
     <Wrapper>
       <UpperBar_Component />
       <MiddleBar_Component2 text="공지사항/이벤트" />
       <AssignBox>
-        
-        <Assign_List categoryList = {categoryList} />
+        <Assign_List categoryList={categoryList} />
 
-        {cancle 
-        ? <Assign_Blank/>
-        : <Assign/>
-        }
-
+        {cancle ? <Assign_Blank /> : <Assign />}
       </AssignBox>
     </Wrapper>
   );

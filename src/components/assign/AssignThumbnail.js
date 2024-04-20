@@ -1,19 +1,22 @@
 import { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
-import { categoryState_assign, infoState, itemIDState, modeState } from 'recoils/atoms_assign';
+import {
+  categoryState_assign,
+  infoState,
+  itemIDState,
+  modeState,
+} from 'recoils/atoms_assign';
 import { Input, InputBox } from 'Routes/assign/AssignPage_Home';
 import { imageUploadApi } from 'apis/apis_POST';
 
-
 function AssignThumbnail() {
-    //*****전역 recoil모음*****
-    const [category, setCategory] = useRecoilState(categoryState_assign);
-    const [mode, setMode] = useRecoilState(modeState);
-    const [itemID, setItemID] = useRecoilState(itemIDState);
-    const [info, setInfo] = useRecoilState(infoState);
-    //*****전역 recoil모음*****
-
+  //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
+  const [mode, setMode] = useRecoilState(modeState);
+  const [itemID, setItemID] = useRecoilState(itemIDState);
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
 
   const thumbnailInput = useRef(null);
   const handleImg = (e) => {
@@ -21,7 +24,7 @@ function AssignThumbnail() {
       imageUploadApi(e.target.files[0])
         .then((res) => {
           setInfo({ ...info, thumbnail: res.data });
-          console.log(res.data);
+          // console.log(res.data);
         })
         .catch((err) => {
           alert(err.response.data.error);
@@ -30,8 +33,8 @@ function AssignThumbnail() {
   };
 
   useEffect(() => {
-    console.log('THUMBNAIL RERENDERING : ', mode);
-    console.log('thumbnail changed!');
+    // console.log('THUMBNAIL RERENDERING : ', mode);
+    // console.log('thumbnail changed!');
   }, [mode, itemID]);
 
   return (
@@ -56,9 +59,10 @@ function AssignThumbnail() {
 }
 
 const InputThumbnail = styled.img`
-${props=>props.category=='missingPerson' 
-? 'width: 128px; height: 128px;'
-: 'width: 352px; height: 352px; margin-top: 8px;'}
+  ${(props) =>
+    props.category == 'missingPerson'
+      ? 'width: 128px; height: 128px;'
+      : 'width: 352px; height: 352px; margin-top: 8px;'}
   border-radius: 4px;
   &:hover {
     cursor: pointer;
