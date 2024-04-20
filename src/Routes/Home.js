@@ -180,9 +180,11 @@ function Home() {
           <ETCBox>
             <ETC
               onClick={() =>
-                window.open(
-                  'https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform'
-                )
+                // window.open(
+                //   'https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform'
+                // )
+                alert(`서비스 준비중입니다.
+도움이 필요할 시, 진행요원의 안내 혹은 종합안내센터를 방문해주세요.`)
               }
             >
               <Imoji src={disabled} />
