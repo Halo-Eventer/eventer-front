@@ -1,0 +1,74 @@
+import styled from 'styled-components';
+import { InfoContainer } from '../Assign';
+import { InputContainer } from 'Routes/assign/AssignPage_Home';
+import { Flex } from 'asset/Style';
+
+function InquiryAnswer() {
+  return (
+    <div>
+      <InfoContainer>
+        <Flex>
+          <Btn style={{ margin: 0, background: '#F2F2F2', color: '#111' }}>
+            취소하기
+          </Btn>
+          <Btn>답변하기</Btn>
+        </Flex>
+        <InputContainer>
+          <Box> 문의사항 제목 </Box>
+          <Box> 문의사항 아이디 </Box>
+          <Box> 문의사항 비밀번호 </Box>
+          <AnswerBox readOnly> 문의사항 내용 </AnswerBox>
+          <AnswerBox>답변</AnswerBox>
+        </InputContainer>
+      </InfoContainer>
+    </div>
+  );
+}
+
+export default InquiryAnswer;
+
+const Btn = styled.button`
+  width: 172px;
+  height: 48px;
+  border-radius: 4px;
+  background: #4f33f6;
+
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 32px; /* 213.333% */
+  &:hover {
+    cursor: pointer;
+  }
+  border: 0;
+
+  ${(props) => {
+    return props.cancle
+      ? 'color: #111; background: #F2F2F2;'
+      : 'margin-left: 8px';
+  }}
+`;
+const AnswerBox = styled.textarea`
+  padding: 8px;
+  width: 320px;
+  height: 244px;
+  flex-shrink: 0;
+  color: #999;
+
+  font-size: 15px;
+  background: #fafafa;
+  font-weight: 500;
+  line-height: 24px; /* 160% */
+  resize: none;
+  border: none;
+
+  color: #111;
+`;
+
+const Box = styled.div`
+  width: 320px;
+  padding: 8px;
+  background: #fafafa;
+  flex-shrink: 0;
+`;

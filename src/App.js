@@ -31,6 +31,7 @@ import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
 import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
 import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
 import Detail_Post from 'Routes/info/Detail_Post';
+import AssignPage_Inquiry from 'Routes/assign/selections/AssignPage_Inquiry';
 
 function App() {
   const queryClient = new QueryClient();
@@ -43,7 +44,6 @@ function App() {
     if (location.includes('assign')) setInAssign(true);
     else setInAssign(false);
   }, [location]);
-
 
   return (
     <BrowserRouter>
@@ -79,6 +79,7 @@ function App() {
             <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} /> */}
             {/* 얘네는 구글폼링크로 연결 */}
             <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
+            <Route path="/assign_inquiry" element={<AssignPage_Inquiry />} />
           </Routes>
         </ThemeProvider>
       </QueryClientProvider>
