@@ -7,10 +7,6 @@ import info from 'asset/marker/info.png';
 import activeInfo from 'asset/marker/activeInfo.png';
 import store from 'asset/marker/store.png';
 import activeStore from 'asset/marker/activeStore.png';
-import trash from 'asset/marker/trash.png';
-import activeTrash from 'asset/marker/activeTrash.png';
-import smoke from 'asset/marker/smokeImg.png';
-import activeSmoke from 'asset/marker/activeSmoke.png';
 import park from 'asset/marker/parkImg.png';
 import activePark from 'asset/marker/activePark.png';
 export const changeMarker = (activeCategory, isPrev, text) => {
