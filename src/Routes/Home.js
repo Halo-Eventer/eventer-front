@@ -175,7 +175,7 @@ function Home() {
             'https://forms.gle/ZSgimPKeTuJWtBHd6'
           )}}>
             <h1>축제 만족도 조사</h1>
-            <h2>참여 시 추첨을 통해 목포사랑상품권 증정</h2>
+            <h2>참여 시 추첨을 통해 모바일 커피교환권 증정</h2>
             <Imoji src={survey}></Imoji>
           </SurveyBox>
 
