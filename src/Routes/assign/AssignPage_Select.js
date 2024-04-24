@@ -14,12 +14,17 @@ import { categoryState_assign, typeState } from 'recoils/atoms_assign';
 function AssignPage_Select() {
   // const festivalId = useParams().id;
   const festivalId = 1;
+  const navigate = useNavigate();
   //*****전역 recoil모음*****
   const setCategory = useSetRecoilState(categoryState_assign);
   const setType = useSetRecoilState(typeState);
   //*****전역 recoil모음*****
 
   useEffect(() => {
+    if (localStorage.getItem('token') == '') {
+      alert('어드민 로그인이 필요한 서비스입니다.');
+      navigate('/login');
+    }
     setCategory('');
     setType('');
   }, []);
