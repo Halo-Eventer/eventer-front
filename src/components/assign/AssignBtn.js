@@ -77,7 +77,7 @@ function AssignBtn() {
         })
         .catch((err) => {
           // console.log('등록 실패');
-          alert(err.data);
+          // alert(err.data);
         });
   };
 

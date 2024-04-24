@@ -31,6 +31,7 @@ import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
 import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
 import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
 import Detail_Post from 'Routes/info/Detail_Post';
+import AssignPage_Login from 'Routes/assign/AssignPage_Login';
 
 function App() {
   const queryClient = new QueryClient();
@@ -43,7 +44,6 @@ function App() {
     if (location.includes('assign')) setInAssign(true);
     else setInAssign(false);
   }, [location]);
-
 
   return (
     <BrowserRouter>
@@ -65,6 +65,7 @@ function App() {
             <Route path="/lost" element={<Lost_Home />}></Route>
             <Route path="/lost/:id" element={<Lost_Detail />}></Route>
             {/* 관리자페이지 */}
+            <Route path="/login" element={<AssignPage_Login />} />
             <Route path="/assign" element={<AssignPage_Select />} />
             {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
             {/* 플랫폼화 됐을 때 */}
