@@ -16,7 +16,9 @@ export function UpperBar_Component() {
     navigate('/login');
   };
   const handleAuth = () => {
+
     if (!localStorage.getItem('token')) {
+
       alert('어드민 로그인이 필요한 서비스입니다.');
       navigate('/login');
     } else navigate('/assign');
