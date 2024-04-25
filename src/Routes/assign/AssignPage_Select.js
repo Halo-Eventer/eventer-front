@@ -21,7 +21,7 @@ function AssignPage_Select() {
   //*****전역 recoil모음*****
 
   useEffect(() => {
-    if (localStorage.getItem('token') == '') {
+    if (!localStorage.getItem('token')) {
       alert('어드민 로그인이 필요한 서비스입니다.');
       navigate('/login');
     }
