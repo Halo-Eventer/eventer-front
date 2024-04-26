@@ -22,15 +22,14 @@ import { UpperBar, BkBtn, Title } from '../Home';
 import { getAllConcert } from 'apis/apis_GET';
 import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
+import makeOverlay from '../../utils/map/makeOverlay';
 
 function NolzaMap(props) {
   function setScreenSize() {
-
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
   }
   useEffect(() => {
-
     setScreenSize();
   }, []);
 
@@ -78,11 +77,6 @@ function NolzaMap(props) {
       minZoom: 18,
       maxZoom: 20,
       tileTransition: true,
-      mapTypes: new naver.maps.MapTypeRegistry({
-        normal: naver.maps.NaverStyleMapTypeOptions.getNormalMap({
-          overlayType: 'bg.ol.ts.ctt.lko',
-        }),
-      }),
     };
     const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
 
@@ -118,8 +112,9 @@ function NolzaMap(props) {
       });
     setMap(tmpMap);
 
-    makePolygon(tmpMap, naver, setPolygon);
-    makeFixedMarker(tmpMap, naver, setFixedMarker);
+    // makePolygon(tmpMap, naver, setPolygon);
+    makeOverlay(tmpMap, naver);
+    // makeFixedMarker(tmpMap, naver, setFixedMarker);
     //   const rect = new naver.maps.Rectangle({
     //     // 영역 설정
     //     map: tmpMap,
