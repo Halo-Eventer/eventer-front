@@ -10,11 +10,11 @@ import hallMarker from 'asset/marker/concertHall.png';
 import loveGate from 'asset/marker/loveGate.png';
 
 import getMarker from '../../components/map/getMarker';
-import eventMarker from 'asset/marker/event.png';
-import toiletMarker from 'asset/marker/toilet.png';
-import infoMarker from 'asset/marker/info.png';
-import storeMarker from 'asset/marker/store.png';
-import parkMarker from 'asset/marker/parkImg.png';
+import eventMarker from 'asset/marker/manageMarker.png';
+import toiletMarker from 'asset/marker/toiletMarker.png';
+import infoMarker from 'asset/marker/infoMarker.png';
+import storeMarker from 'asset/marker/storeMarker.png';
+import parkMarker from 'asset/marker/parkingMarker.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
 import { changeMarker } from 'asset/changeMarker';
 
@@ -87,7 +87,7 @@ function NolzaMap(props) {
           let img = '';
           const text = e.name;
 
-          if (e.name == '공연장') {
+          if (e.name == '수상해상공연') {
             img = hallMarker;
           } else if (e.name == '러브게이트') {
             img = loveGate;

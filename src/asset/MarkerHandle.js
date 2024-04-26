@@ -6,7 +6,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
     map,
     icon: {
       content:
-        text != '공연장'
+        text != '수상해상공연'
           ? id == -1
             ? `
           <div > 
@@ -33,12 +33,16 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
           text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
            font-weight: 800; justify-content: center;line-height: 16px; white-space: nowrap"> ${text} </div>
           </div>`
-          : `<div> 
-      <div style="position:absolute;bottom:-70px;right:-80px">
-      <img style="width:80px;height:78px" src = ${img}></img>
+          : `
+          <div>
+     <div style="display:flex; justify-content: center;">
+      <img style="width:40px;height:40px" src = ${img}></img>
       </div>
-      
-      </div>`,
+      <div style="display:flex; font-size: 12px;font-family: 'NanumSquareNeo';
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+       font-weight: 800; justify-content: center;line-height: 16px; white-space: nowrap"> ${text} </div>
+      </div>
+      `,
       size: new naver.maps.Size(size, size),
       origin: new naver.maps.Point(0, 0),
       anchor: new naver.maps.Point(25, 26),
