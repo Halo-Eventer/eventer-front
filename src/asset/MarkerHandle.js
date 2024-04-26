@@ -6,7 +6,7 @@ export const markerHandle = (id, naver, map, lat, lng, img, size, text) => {
     map,
     icon: {
       content:
-        text != '수상해상공연'
+        text != '수상공연무대'
           ? id == -1
             ? `
           <div > 
