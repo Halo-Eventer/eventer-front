@@ -7,7 +7,6 @@ import ClickInfo from '../../components/map/ClickInfo';
 import { markerHandle } from '../../asset/MarkerHandle';
 
 import hallMarker from 'asset/marker/concertHall.png';
-import loveGate from 'asset/marker/loveGate.png';
 
 import getMarker from '../../components/map/getMarker';
 import eventMarker from 'asset/marker/manageMarker.png';
@@ -89,8 +88,6 @@ function NolzaMap(props) {
 
           if (e.name == '수상해상공연') {
             img = hallMarker;
-          } else if (e.name == '러브게이트') {
-            img = loveGate;
           }
 
           return markerHandle(
