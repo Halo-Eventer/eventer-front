@@ -1,17 +1,18 @@
 import { BkBtn, Title, Wrapper } from 'Routes/Home';
 import { BoardSvg, ImgForSvg } from 'components/info/For_Iframe';
 
-import lineUp from 'asset/images/LineUp.svg';
+import lineUp from 'asset/images/LineUp.png';
 import getImageSize from 'utils/getImageSize';
 import { useEffect, useState } from 'react';
 import { TopFixedBar, TopFixedBar_Blank } from 'components/info/TopFixedBar';
 import { Link, useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 function ConcertInfo() {
   const navigate = useNavigate();
 
-  const [imgWidth, setImgWidth] = useState();
-  const [imgHeight, setImgHeight] = useState();
+  const [imgWidth, setImgWidth] = useState(0);
+  const [imgHeight, setImgHeight] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, -200);
@@ -25,7 +26,7 @@ function ConcertInfo() {
       });
   }, []);
 
-  // console.log(imgWidth, imgHeight);
+  console.log("imgWidth,imgHeight", imgWidth, imgHeight);
 
   return (
     <Wrapper>
@@ -34,18 +35,26 @@ function ConcertInfo() {
         <Title>오늘의 공연</Title>
       </TopFixedBar>
       <TopFixedBar_Blank />
-      <BoardSvg>
-        <ImgForSvg
+        {/* <ImgForSvg
           src={lineUp}
           imgWidth={imgWidth}
           imgHeight={imgHeight}
           scrolling="no"
         >
-          해당 브라우저에서 지원하지 않는 이미지입니다.
-        </ImgForSvg>
-      </BoardSvg>
+        </ImgForSvg> */}
+        <ImgBoard 
+        src={lineUp}
+        imgWidth={imgWidth}
+        imgHeight={imgHeight}
+        />
     </Wrapper>
   );
 }
 
 export default ConcertInfo;
+
+const ImgBoard = styled.img`
+width:${props=>props.imgWidth/4}px;
+//png파일 4x로 저장
+height:${props=>props.imgHeight/4}px;
+`;
