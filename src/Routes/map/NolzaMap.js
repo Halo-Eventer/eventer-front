@@ -15,7 +15,7 @@ import infoMarker from 'asset/marker/infoMarker.png';
 import storeMarker from 'asset/marker/storeMarker.png';
 import parkMarker from 'asset/marker/parkingMarker.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
-import { changeMarker } from 'asset/changeMarker';
+// import { changeMarker } from 'asset/changeMarker';
 
 import { UpperBar, BkBtn, Title } from '../Home';
 import { getAllConcert } from 'apis/apis_GET';
@@ -155,15 +155,15 @@ function NolzaMap(props) {
     });
   }, [concertHallMarker]);
   useEffect(() => {
-    if (popup == false) {
-      if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(
-          changeMarker(activeCategory, 1, selectedName.current)
-        );
-        selectedName.current = null;
-        selectedMarker.current = null;
-      }
-    }
+    // if (popup == false) {
+    //   if (!!selectedMarker.current) {
+    //     selectedMarker.current.setIcon(
+    //       changeMarker(activeCategory, 1, selectedName.current)
+    //     );
+    //     selectedName.current = null;
+    //     selectedMarker.current = null;
+    //   }
+    // }
   }, [popup]);
   // useEffect(() => {
   //   // 내 위치 찾기
