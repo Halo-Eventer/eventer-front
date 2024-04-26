@@ -77,11 +77,6 @@ function NolzaMap(props) {
       minZoom: 18,
       maxZoom: 20,
       tileTransition: true,
-      mapTypes: new naver.maps.MapTypeRegistry({
-        normal: naver.maps.NaverStyleMapTypeOptions.getNormalMap({
-          overlayType: 'bg.ol.ts.ctt.lko',
-        }),
-      }),
     };
     const tmpMap = new naver.maps.Map(mapElement.current, mapOption);
 
