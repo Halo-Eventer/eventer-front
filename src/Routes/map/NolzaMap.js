@@ -78,9 +78,7 @@ function NolzaMap(props) {
           let img = '';
           const text = e.name;
 
-          if (e.name == '수상해상공연') {
-            img = hallMarker;
-          }
+          img = hallMarker;
 
           return markerHandle(
             e.id,
