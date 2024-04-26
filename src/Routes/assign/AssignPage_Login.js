@@ -7,7 +7,7 @@ import styled from 'styled-components';
 function AssignPage_Login() {
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
   const navigate = useNavigate();
-  localStorage.getItem('token');
+
   const handleInfo = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
   };
