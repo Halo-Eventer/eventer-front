@@ -292,14 +292,14 @@ function NolzaMap(props) {
   const handleMarkers = (data, marker) => {
     setActiveId(data.id);
 
-    if (!selectedMarker.current || selectedMarker.current !== marker) {
-      if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(
-          changeMarker(activeCategory, 1, selectedName.current)
-        );
-      }
-      marker.setIcon(changeMarker(activeCategory, 0, data.name));
-    }
+    // if (!selectedMarker.current || selectedMarker.current !== marker) {
+    //   if (!!selectedMarker.current) {
+    //     selectedMarker.current.setIcon(
+    //       changeMarker(activeCategory, 1, selectedName.current)
+    //     );
+    //   }
+    //   marker.setIcon(changeMarker(activeCategory, 0, data.name));
+    // }
     selectedMarker.current = marker;
     selectedName.current = data.name;
 

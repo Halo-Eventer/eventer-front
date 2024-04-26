@@ -1,13 +1,12 @@
 import React, { Component, useState } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
-import sojuImg from '../asset/category/sojuCateogory.svg';
-import eventImg from 'asset/category/eventCategory.svg';
-import boothImg from 'asset/category/boothCategory.svg';
-import foodtruckImg from 'asset/category/foodtruckCategory.svg';
-import smokeImg from 'asset/category/smokeCategory.png';
+import sojuImg from '../asset/category/storeCategory.png';
+import eventImg from 'asset/category/manageCategory.png';
+import boothImg from 'asset/category/toiletCategory.png';
+import foodtruckImg from 'asset/category/infoCategory.png';
 import parkImg from 'asset/category/parkingCategory.png';
-import trashImg from 'asset/category/trashCategory.png';
+
 export default class SwipeToSlide extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +57,7 @@ export default class SwipeToSlide extends Component {
               id="1"
               onClick={handleClick}
             >
-              <img id="1" src={eventImg}></img>
+              <CategoryImg id="1" src={eventImg}></CategoryImg>
               <CategoryText id="1">관리자</CategoryText>
             </CategoryBox>
           </div>
@@ -68,7 +67,7 @@ export default class SwipeToSlide extends Component {
               id="2"
               onClick={handleClick}
             >
-              <img id="2" src={foodtruckImg}></img>
+              <CategoryImg id="2" src={foodtruckImg}></CategoryImg>
               <CategoryText id="2">종합안내센터</CategoryText>
             </CategoryBox>
           </div>
@@ -78,7 +77,7 @@ export default class SwipeToSlide extends Component {
               id="3"
               onClick={handleClick}
             >
-              <img id="3" src={sojuImg}></img>
+              <CategoryImg id="3" src={sojuImg}></CategoryImg>
               <CategoryText id="3">편의점</CategoryText>
             </CategoryBox>
           </div>
@@ -88,7 +87,7 @@ export default class SwipeToSlide extends Component {
               id="4"
               onClick={handleClick}
             >
-              <img id="4" src={boothImg}></img>
+              <CategoryImg id="4" src={boothImg}></CategoryImg>
               <CategoryText id="4">화장실</CategoryText>
             </CategoryBox>
           </div>
@@ -99,7 +98,7 @@ export default class SwipeToSlide extends Component {
               id="5"
               onClick={handleClick}
             >
-              <img id="5" src={parkImg}></img>
+              <CategoryImg id="5" src={parkImg}></CategoryImg>
               <CategoryText id="5">주차장</CategoryText>
             </CategoryBox>
           </div>
@@ -148,4 +147,9 @@ const CategoryBox = styled.div`
 
 const CategoryText = styled.div`
   margin-left: 4px;
+`;
+
+const CategoryImg = styled.img`
+  width: 24px;
+  height: 24px;
 `;
