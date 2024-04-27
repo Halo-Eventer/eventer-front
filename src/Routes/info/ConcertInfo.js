@@ -42,11 +42,19 @@ function ConcertInfo() {
           scrolling="no"
         >
         </ImgForSvg> */}
+        {imgHeight > 0
+        ?
         <ImgBoard 
         src={lineUp}
         imgWidth={imgWidth}
         imgHeight={imgHeight}
         />
+        :
+        <TempText>
+          이미지를 로딩 중입니다.
+        </TempText>
+        }
+        
     </Wrapper>
   );
 }
@@ -57,4 +65,9 @@ const ImgBoard = styled.img`
 width:${props=>props.imgWidth/4}px;
 //png파일 4x로 저장
 height:${props=>props.imgHeight/4}px;
+`;
+
+const TempText = styled.div`
+color:white;
+margin-top:10%;
 `;
