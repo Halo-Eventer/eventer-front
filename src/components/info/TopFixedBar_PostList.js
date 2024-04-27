@@ -2,13 +2,12 @@ import styled, { useTheme } from 'styled-components';
 import { TopFixedBar } from './TopFixedBar';
 
 import bkBtn2 from 'asset/images/BackSpace.svg';
-import menuBtn from 'asset/images/Next.svg';
 import { useNavigate } from 'react-router-dom';
-import { Flex } from 'Routes/Home';
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { categoryState } from 'recoils/atoms';
 import { MovingBar } from './MovingBar';
+import { Flex } from 'asset/Style';
 
 function TopFixedBar_PostList() {
   // {category, setCategory}:
@@ -42,10 +41,8 @@ function TopFixedBar_PostList() {
   return (
     <TopFixedBlock>
       <StyledTopFixedBar>
-        <Flex>
-          <BkBtn onClick={() => navigate('/')} src={bkBtn2} />
-          <h1>공지사항 / 이벤트</h1>
-        </Flex>
+        <img onClick={() => navigate('/')} src={bkBtn2} />
+        <h1>공지사항 / 이벤트</h1>
       </StyledTopFixedBar>
       <SelectBar ref={ref_selectBar}>
         <h1 onClick={onClick_notice}>공지사항</h1>
@@ -69,6 +66,7 @@ export const TopFixedBlock = styled(Flex)`
 
 export const StyledTopFixedBar = styled(TopFixedBar)`
   position: relative;
+  height:48px;
   background-color: black;
 
   h1 {
@@ -76,7 +74,6 @@ export const StyledTopFixedBar = styled(TopFixedBar)`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    margin-top: 4px;
 
     color: white;
     font-size: 18px;
@@ -84,17 +81,13 @@ export const StyledTopFixedBar = styled(TopFixedBar)`
     font-weight: 900;
     font-family: 'NanumSquareNeo';
   }
+
+  img{
+    margin-left:16px;
+    cursor:pointer;
+  }
 `;
 
-const MenuBtn = styled.img`
-  margin-right: 16px;
-  cursor: pointer;
-`;
-
-const BkBtn = styled.img`
-  margin-left: 12px;
-  cursor: pointer;
-`;
 
 export const SelectBar = styled.div`
   position: relative;

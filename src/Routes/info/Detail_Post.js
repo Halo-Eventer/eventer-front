@@ -3,10 +3,6 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import {
   Wrapper,
-  TopFixedDiv,
-  Title,
-  BkBtn,
-  HomeBtn,
   ImgBlock,
   StyledSlider,
   MainBoard,
@@ -14,9 +10,9 @@ import {
   festivalId,
 } from '../Home';
 
-import { UpperBar } from '../Home';
 import { getDetail } from 'apis/apis_GET';
 import styled from 'styled-components';
+import TopFixedBar_PostDetail from 'components/info/TopFixedBar_PostDetail';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -67,18 +63,10 @@ function Detail_Post() {
 
   return (
     <div>
-      <TopFixedDiv>
-        <UpperBar>
-          <BkBtn onClick={onClick_bkBtn}></BkBtn>
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <HomeBtn />
-          </Link>
-          <Title>{titleText}</Title>
-        </UpperBar>
-      </TopFixedDiv>
+      <TopFixedBar_PostDetail titleText={titleText}/>
       <Wrapper>
         <MainBoard>
-          <ImgBlock>
+          <ImgBlock style={{width:'100%', marginBottom:'-6px'}}>
             <StyledSlider {...settings}>
               {detailedList.images?.map((item, key) => (
                 <ImgBoardForPost key={key} src={item} />
@@ -87,8 +75,9 @@ function Detail_Post() {
           </ImgBlock>
           <TextBoard>
             <div>
-              <h1>{detailedList.title}</h1>
               <h2>{detailedList.subtitle}</h2>
+              <h1>{detailedList.title}</h1>
+              <HR/>
               {detailedList.content?.split('\n').map((line, key) => {
                 if (line.length === 0) {
                   /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
@@ -116,7 +105,14 @@ export const ImgBoardForPost = styled.img`
   flex-shrink: 0;
   background-color: #000;
 
-  border-radius: 12px;
-
   z-index: 2;
+`;
+
+const HR = styled.p`
+width: 350px;
+height: 1px;
+flex-shrink: 0;
+margin-bottom:16px;
+
+background-color:#AAA;
 `;

@@ -47,118 +47,7 @@ function Lost_Home() {
               </div>
             );
           })}
-           <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
-              <div>
-                <Box image={xButton}>
-                  <Tag>
-                    <Category>타입</Category>
-                    <Name>이름</Name>
-                  </Tag>
-                </Box>
-              </div>
+        
               
         </Container>
 
@@ -191,6 +80,8 @@ const Box = styled.div`
   box-shadow: 0px 2px 8px -4px rgba(0, 0, 0, 0.24);
   color: #fff;
   margin-top: 12px;
+
+  cursor:pointer;
 
   display: flex;
   flex-direction: column;

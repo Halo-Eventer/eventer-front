@@ -585,8 +585,6 @@ export const MainBoard = styled.div`
 export const TextBoard = styled.div`
   width: 390px;
 
-  margin-top: 32px;
-
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -595,10 +593,16 @@ export const TextBoard = styled.div`
     width: 390px;
     flex-shrink: 0;
 
-    background-color: #000;
-    padding: 16px 12px 16px 12px;
+    @media screen and (min-width:450px){
+      background-color: #111;
+    }
+    background-color:#000;
+
+    padding: 16px;
+    padding-bottom:80px;
     box-sizing: border-box;
     z-index: 2;
+
     h1 {
       color: #fff;
 
@@ -608,7 +612,7 @@ export const TextBoard = styled.div`
       margin-bottom: 12px;
     }
     h2 {
-      color: #fff;
+      color: #53CDDD;
 
       font-size: 15px;
       font-style: normal;
@@ -626,10 +630,6 @@ export const TextBoard = styled.div`
 
       margin: 0;
       padding: 0;
-    }
-    hr {
-      margin-top: 12px;
-      margin-bottom: 16px;
     }
   }
 `;
