@@ -271,7 +271,7 @@ export const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   //최소높이를 설정하고, 이를 넘어갈 시 자동으로 늘리게 해주는 개꿀 속성
-
+  overflow-x: hidden;
   background-color: black;
 
   display: flex;
