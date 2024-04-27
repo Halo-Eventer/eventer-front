@@ -7,16 +7,15 @@ import ClickInfo from '../../components/map/ClickInfo';
 import { markerHandle } from '../../asset/MarkerHandle';
 
 import hallMarker from 'asset/marker/concertHall.png';
-import loveGate from 'asset/marker/loveGate.png';
 
 import getMarker from '../../components/map/getMarker';
-import eventMarker from 'asset/marker/event.png';
-import toiletMarker from 'asset/marker/toilet.png';
-import infoMarker from 'asset/marker/info.png';
-import storeMarker from 'asset/marker/store.png';
-import parkMarker from 'asset/marker/parkImg.png';
+import eventMarker from 'asset/marker/manageMarker.png';
+import toiletMarker from 'asset/marker/toiletMarker.png';
+import infoMarker from 'asset/marker/infoMarker.png';
+import storeMarker from 'asset/marker/storeMarker.png';
+import parkMarker from 'asset/marker/parkingMarker.png';
 import { getDetailInfo } from 'components/map/getDetailInfo';
-import { changeMarker } from 'asset/changeMarker';
+// import { changeMarker } from 'asset/changeMarker';
 
 import { UpperBar, BkBtn, Title } from '../Home';
 import { getAllConcert } from 'apis/apis_GET';
@@ -25,19 +24,11 @@ import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 import makeOverlay from '../../utils/map/makeOverlay';
 
 function NolzaMap(props) {
-  function setScreenSize() {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`); //"--vh"라는 속성으로 정의해준다.
-  }
-  useEffect(() => {
-    setScreenSize();
-  }, []);
-
   const [prevZoom, setPrevZoom] = useState();
   const [fixedMarker, setFixedMarker] = useState();
   const [zoom, setZoom] = useState();
   const [activeId, setActiveId] = useState('');
-  const [activeCategory, setActiveCategory] = useState(1);
+  const [activeCategory, setActiveCategory] = useState(4);
   const [prevClustering, setPrevClustering] = useState('');
   const [clickInfo, setClickInfo] = useState('');
   const [concertHallMarker, setConcertHallMarker] = useState([]);
@@ -87,11 +78,7 @@ function NolzaMap(props) {
           let img = '';
           const text = e.name;
 
-          if (e.name == '공연장') {
-            img = hallMarker;
-          } else if (e.name == '러브게이트') {
-            img = loveGate;
-          }
+          img = hallMarker;
 
           return markerHandle(
             e.id,
@@ -158,15 +145,15 @@ function NolzaMap(props) {
     });
   }, [concertHallMarker]);
   useEffect(() => {
-    if (popup == false) {
-      if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(
-          changeMarker(activeCategory, 1, selectedName.current)
-        );
-        selectedName.current = null;
-        selectedMarker.current = null;
-      }
-    }
+    // if (popup == false) {
+    //   if (!!selectedMarker.current) {
+    //     selectedMarker.current.setIcon(
+    //       changeMarker(activeCategory, 1, selectedName.current)
+    //     );
+    //     selectedName.current = null;
+    //     selectedMarker.current = null;
+    //   }
+    // }
   }, [popup]);
   // useEffect(() => {
   //   // 내 위치 찾기
@@ -292,14 +279,14 @@ function NolzaMap(props) {
   const handleMarkers = (data, marker) => {
     setActiveId(data.id);
 
-    if (!selectedMarker.current || selectedMarker.current !== marker) {
-      if (!!selectedMarker.current) {
-        selectedMarker.current.setIcon(
-          changeMarker(activeCategory, 1, selectedName.current)
-        );
-      }
-      marker.setIcon(changeMarker(activeCategory, 0, data.name));
-    }
+    // if (!selectedMarker.current || selectedMarker.current !== marker) {
+    //   if (!!selectedMarker.current) {
+    //     selectedMarker.current.setIcon(
+    //       changeMarker(activeCategory, 1, selectedName.current)
+    //     );
+    //   }
+    //   marker.setIcon(changeMarker(activeCategory, 0, data.name));
+    // }
     selectedMarker.current = marker;
     selectedName.current = data.name;
 
