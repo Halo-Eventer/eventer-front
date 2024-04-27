@@ -21,11 +21,8 @@ function Assign() {
   const AssignBasicInfo_Object = {
     notice: <AssignBasicInfo_Post />,
     event: <AssignBasicInfo_Post />,
-
     lostItem: <AssignBasicInfo_Lost />,
-
     missingPerson: <AssignBasicInfo_Missing />,
-
     urgent: <AssignBasicInfo_Urgent />,
   };
 

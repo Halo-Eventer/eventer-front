@@ -365,6 +365,7 @@ export const TextAreaDiv = styled.div`
 
 export const TextArea = styled.textarea`
   width: 320px;
+  height:80px;
   background: #fafafa;
 
   color: #111;

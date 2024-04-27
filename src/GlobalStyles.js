@@ -20,7 +20,6 @@ export const GlobalStyles = createGlobalStyle`
 
 body{
   background-color:${(props) => (props.inAssign ? '#FFF' : '#000')};
-  
 }
 
 button{
