@@ -28,7 +28,7 @@ function NolzaMap(props) {
   const [fixedMarker, setFixedMarker] = useState();
   const [zoom, setZoom] = useState();
   const [activeId, setActiveId] = useState('');
-  const [activeCategory, setActiveCategory] = useState(1);
+  const [activeCategory, setActiveCategory] = useState(4);
   const [prevClustering, setPrevClustering] = useState('');
   const [clickInfo, setClickInfo] = useState('');
   const [concertHallMarker, setConcertHallMarker] = useState([]);
