@@ -54,13 +54,14 @@ export default class SwipeToSlide extends Component {
           <div>
             <CategoryBox
               active={this.state.active}
-              id="1"
+              id="4"
               onClick={handleClick}
             >
-              <CategoryImg id="1" src={eventImg}></CategoryImg>
-              <CategoryText id="1">관리자</CategoryText>
+              <CategoryImg id="4" src={boothImg}></CategoryImg>
+              <CategoryText id="4">화장실</CategoryText>
             </CategoryBox>
           </div>
+
           <div>
             <CategoryBox
               active={this.state.active}
@@ -84,14 +85,13 @@ export default class SwipeToSlide extends Component {
           <div>
             <CategoryBox
               active={this.state.active}
-              id="4"
+              id="1"
               onClick={handleClick}
             >
-              <CategoryImg id="4" src={boothImg}></CategoryImg>
-              <CategoryText id="4">화장실</CategoryText>
+              <CategoryImg id="1" src={eventImg}></CategoryImg>
+              <CategoryText id="1">관리자</CategoryText>
             </CategoryBox>
           </div>
-
           <div>
             <CategoryBox
               active={this.state.active}
