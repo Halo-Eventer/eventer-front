@@ -15,6 +15,20 @@
       })(window, document, 'script', 'dataLayer', 'GTM-KX8TBDRW');
     </script>
     <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-NQE1YQ670F"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-NQE1YQ670F');
+    </script>
     <script
       type="text/javascript"
       src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=<%= process.env.REACT_APP_MAP_CLIENT_KEY%>"
