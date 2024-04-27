@@ -8,11 +8,13 @@ import {
   MainBoard,
   TextBoard,
   festivalId,
+  Index,
 } from '../Home';
 
 import { getDetail } from 'apis/apis_GET';
 import styled from 'styled-components';
 import TopFixedBar_PostDetail from 'components/info/TopFixedBar_PostDetail';
+import tempImg from 'asset/images/TempImg.png';
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -25,23 +27,25 @@ function Detail_Post() {
   const navigate = useNavigate();
 
   const postId = useParams().id;
+  const [currentNum, setCurrentNum] = useState(1);
 
   var settings = {
-    dots: true, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
+    dots: false, // 슬라이드 바닥에 점을 보이게 할 것인지 설정
     infinite: true, // 무한 반복되게 할 것인지 설정
-    speed: 500, // 슬라이드하는데 걸리는 시간 설정
+    speed: 300, // 슬라이드하는데 걸리는 시간 설정
     slidesToShow: 1, // 한 번에 보여줄 슬라이드 개수
     slidesToScroll: 1, // 슬라이드 넘어갈 때마다 몇 개의 슬라이드를 넘길 것인지 설정
-    autoplay: true, // 자동으로 슬라이드를 넘길 것인지 설정
+    autoplay: false, // 자동으로 슬라이드를 넘길 것인지 설정
+    afterChange: (current) => {
+      //event처럼 이미 current자리는 현재 슬라이드 번호에 대한 인자임
+      setCurrentNum(current + 1);
+    }, //현재 슬라이드 위치에 따른 변화 get가능
   };
 
-  const [detailedList, setDetailedList] = useState([]);
+  const [detailedList, setDetailedList] = useState({images:[tempImg]});
   const [titleText, setTitleText] = useState('');
 
-  const onClick_bkBtn = () => {
-    navigate(-1);
-    //그냥 뒤로가는 기능
-  };
+
   useEffect(() => {
     /* '공지사항 / 이벤트' 전환때문에 얘는 fetchList()가 아닌 
     getDetail을 가지고 직접 페이지 내 변수 조작*/
@@ -67,6 +71,10 @@ function Detail_Post() {
       <Wrapper>
         <MainBoard>
           <ImgBlock style={{width:'100%', marginBottom:'-6px'}}>
+            <Index>
+                {currentNum}/{detailedList?.images.length}
+            </Index>
+
             <StyledSlider {...settings}>
               {detailedList.images?.map((item, key) => (
                 <ImgBoardForPost key={key} src={item} />

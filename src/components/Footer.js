@@ -42,7 +42,6 @@ export const FooterBox = styled.div`
     position:absolute;
 
    color: #999;
-font-family: Pretendard;
 font-size: 20px;
 font-style: normal;
 font-weight: 800;
@@ -53,7 +52,6 @@ line-height: 28px; /* 140% */
     position:absolute;
 
     color: #999;
-font-family: Pretendard;
 font-size: 16px;
 font-style: normal;
 font-weight: 600;
@@ -64,7 +62,6 @@ line-height: 24px; /* 150% */
     position:absolute;
 
     color: #777;
-font-family: Pretendard;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;

@@ -15,6 +15,7 @@ import survey from 'asset/images/Survey.png';
 import disabled from 'asset/images/Disabled.png';
 import lost from 'asset/images/Lost.png';
 import missing from 'asset/images/Missing.png';
+import tempImg from 'asset/images/TempImg.png';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -53,7 +54,11 @@ function Home() {
 
   //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch //랜딩페이지 필요정보 Fetch
   const [homeList, setHomeList] = useState({});
-  const [bannerList, setBannerList] = useState([]);
+  const [bannerList, setBannerList] = useState([
+    {
+      thumbnail:tempImg
+    }
+  ]);
 
   useEffect(() => {
     getHome()
