@@ -9,7 +9,7 @@ function Footer() {
       <h2 style={{top:'54px',left:'16px'}}>페스티맵</h2>
       <h3 style={{top:'90px',left:'16px'}}>주소: 58750 전라남도 목포시 미항로 115</h3>
 
-      <h3 style={{top:'120px',left:'16px'}}>이메일: festimap@gmail.com</h3>
+      <h3 style={{top:'120px',left:'16px'}}>이메일: festimaap@gmail.com</h3>
 
       <h3 style={{top:'188px',left:'16px'}}>ⓒ Copyright festimap. All Rights Reserved.</h3>
     </FooterBox>
