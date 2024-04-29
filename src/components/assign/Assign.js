@@ -41,7 +41,7 @@ export default Assign;
 
 const AssignContainer = styled.div``;
 
-const InfoContainer = styled.div`
+export const InfoContainer = styled.div`
   width: 352px;
   height: 536px;
   padding: 0;

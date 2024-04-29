@@ -91,3 +91,11 @@ export const lostItemGet = () => {
 export const getBannerRank = () => {
   return axios.get('/notice/banner');
 };
+
+export const getInquiryDetail = (id) => {
+  return axios.get(`/admin/inquiry/${id}`);
+};
+
+export const getInquiry = () => {
+  return axios.get('/inquiry');
+};
