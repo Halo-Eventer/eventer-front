@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 import AssignImage from '../AssignImage';
