@@ -106,3 +106,7 @@ export const bannerApi = (id, pick) => {
 export const loginApi = (loginInfo) => {
   return axios.post('/login', loginInfo);
 };
+
+export const postInquiry = (id, answer) => {
+  return axios.post(`/admin/inquiry/${id}/answer`, { answer: answer });
+};

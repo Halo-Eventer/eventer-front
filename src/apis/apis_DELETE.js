@@ -40,3 +40,7 @@ export const deleteDetail = (category, id) => {
   else return axios.delete(`/${category}/${id}`);
 };
 // DELETE DELETE DELETE(끝)
+
+export const deleteInquiry = (id) => {
+  return axios.delete('/admin/inquiry', { params: { inquiryId: id } });
+};

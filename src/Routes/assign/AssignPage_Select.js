@@ -99,6 +99,12 @@ function AssignPage_Select() {
             <h1>긴급공지/팝업</h1>
           </PageBtn>
         </Link>
+
+        <Link to={`/assign_inquiry`}>
+          <PageBtn>
+            <h1>목포 PC 문의사항</h1>
+          </PageBtn>
+        </Link>
       </MainBox>
     </Wrapper>
   );

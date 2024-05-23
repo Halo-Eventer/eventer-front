@@ -33,7 +33,7 @@ jobs:
          echo "REACT_APP_API=${{ secrets.REACT_APP_API }}" >> .env
       
       - name : install npm
-        run : npm install
+        run : npm install --legacy-peer-deps
 
       - name : react build
         run : CI=false
