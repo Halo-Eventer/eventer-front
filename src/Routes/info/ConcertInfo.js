@@ -1,7 +1,7 @@
 import { BkBtn, Title, Wrapper } from 'Routes/Home';
 import { BoardSvg, ImgForSvg } from 'components/info/For_Iframe';
 
-import lineUp from 'asset/images/LineUp.png';
+import lineUp from 'asset/images/LineUp.webp';
 import getImageSize from 'utils/getImageSize';
 import { useEffect, useState } from 'react';
 import { TopFixedBar, TopFixedBar_Blank } from 'components/info/TopFixedBar';
@@ -26,7 +26,7 @@ function ConcertInfo() {
       });
   }, []);
 
-  console.log("imgWidth,imgHeight", imgWidth, imgHeight);
+  console.log('imgWidth,imgHeight', imgWidth, imgHeight);
 
   return (
     <Wrapper>
@@ -35,26 +35,18 @@ function ConcertInfo() {
         <Title>오늘의 공연</Title>
       </TopFixedBar>
       <TopFixedBar_Blank />
-        {/* <ImgForSvg
+      {/* <ImgForSvg
           src={lineUp}
           imgWidth={imgWidth}
           imgHeight={imgHeight}
           scrolling="no"
         >
         </ImgForSvg> */}
-        {imgHeight > 0
-        ?
-        <ImgBoard 
-        src={lineUp}
-        imgWidth={imgWidth}
-        imgHeight={imgHeight}
-        />
-        :
-        <TempText>
-          이미지를 로딩 중입니다.
-        </TempText>
-        }
-        
+      {imgHeight > 0 ? (
+        <ImgBoard src={lineUp} imgWidth={imgWidth} imgHeight={imgHeight} />
+      ) : (
+        <TempText>이미지를 로딩 중입니다.</TempText>
+      )}
     </Wrapper>
   );
 }
@@ -62,12 +54,12 @@ function ConcertInfo() {
 export default ConcertInfo;
 
 const ImgBoard = styled.img`
-width:${props=>props.imgWidth/4}px;
-//png파일 4x로 저장
-height:${props=>props.imgHeight/4}px;
+  width: ${(props) => props.imgWidth / 4}px;
+  //png파일 4x로 저장
+  height: ${(props) => props.imgHeight / 4}px;
 `;
 
 const TempText = styled.div`
-color:white;
-margin-top:10%;
+  color: white;
+  margin-top: 10%;
 `;
