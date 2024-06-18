@@ -31,8 +31,8 @@ function InquiryAnswer(props) {
   };
   return (
     <div>
-      <InfoContainer style={{ height: '1200px' }}>
-        <Flex>
+      <InfoContainer style={{ width: '500px', height: '1200px' }}>
+        <Flex style={{ justifyContent: 'center' }}>
           <Btn
             onClick={() => setCancle(true)}
             style={{ margin: 0, background: '#F2F2F2', color: '#111' }}
@@ -41,7 +41,7 @@ function InquiryAnswer(props) {
           </Btn>
           <Btn onClick={handlePostAnswer}>답변하기</Btn>
         </Flex>
-        <InputContainer>
+        <InputContainer style={{ width: '500px' }}>
           <Box> {info?.title} </Box>
           <Box> {info?.userId ? info.userId : '익명'} </Box>
           <Box> 문의사항 비밀번호 </Box>
@@ -61,7 +61,7 @@ function InquiryAnswer(props) {
 export default InquiryAnswer;
 
 const Btn = styled.button`
-  width: 172px;
+  width: 244px;
   height: 48px;
   border-radius: 4px;
   background: #4f33f6;
@@ -84,7 +84,7 @@ const Btn = styled.button`
 `;
 const AnswerBox = styled.textarea`
   padding: 8px;
-  width: 320px;
+  width: 480px;
   height: 244px;
   flex-shrink: 0;
   color: #999;
@@ -100,7 +100,7 @@ const AnswerBox = styled.textarea`
 `;
 
 const Box = styled.div`
-  width: 320px;
+  width: 480px;
   padding: 8px;
   background: #fafafa;
   flex-shrink: 0;
