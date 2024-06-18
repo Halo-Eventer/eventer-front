@@ -31,7 +31,7 @@ function InquiryAnswer(props) {
   };
   return (
     <div>
-      <InfoContainer>
+      <InfoContainer style={{ height: '1200px' }}>
         <Flex>
           <Btn
             onClick={() => setCancle(true)}
@@ -47,6 +47,7 @@ function InquiryAnswer(props) {
           <Box> 문의사항 비밀번호 </Box>
           <AnswerBox value={info?.content} readOnly></AnswerBox>
           <AnswerBox
+            style={{ height: '720px' }}
             placeholder="답변 작성"
             value={answer ? answer : ''}
             onChange={handleAnswer}
