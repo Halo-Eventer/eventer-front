@@ -22,6 +22,7 @@ import { getAllConcert } from 'apis/apis_GET';
 import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 import makeOverlay from '../../utils/map/makeOverlay';
+import MapMetaTag from 'seo/MapMetaTag';
 
 function NolzaMap(props) {
   const [prevZoom, setPrevZoom] = useState();
@@ -297,44 +298,47 @@ function NolzaMap(props) {
   };
 
   return (
-    <div>
-      <GlobalStyle />
-      <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
-        <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
-        <Title>공연장 지도</Title>
-      </UpperBar>
-      <MapContainer ref={mapElement}>
-        <SwipeToSlide setActiveCategory={setActiveCategory} />
-        {concertClick
-          ? concertData.map((e) => {
-              return (
-                <ClickInfo
-                  data={e}
-                  openId={openId}
-                  mapElement={mapElement}
-                  popup={popup}
-                  clickInfo={clickInfo}
-                  setPopup={setPopup}
-                />
-              );
-            })
-          : data.map((e) => {
-              if (e.id == openId)
+    <>
+      <MapMetaTag />
+      <div>
+        <GlobalStyle />
+        <UpperBar style={{ position: 'absolute', zIndex: '10', width: '100%' }}>
+          <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
+          <Title>공연장 지도</Title>
+        </UpperBar>
+        <MapContainer ref={mapElement}>
+          <SwipeToSlide setActiveCategory={setActiveCategory} />
+          {concertClick
+            ? concertData.map((e) => {
                 return (
                   <ClickInfo
                     data={e}
-                    activeCategory={activeCategory}
                     openId={openId}
                     mapElement={mapElement}
                     popup={popup}
-                    setPopup={setPopup}
                     clickInfo={clickInfo}
-                    // marker={marker}
+                    setPopup={setPopup}
                   />
                 );
-            })}
-      </MapContainer>
-    </div>
+              })
+            : data.map((e) => {
+                if (e.id == openId)
+                  return (
+                    <ClickInfo
+                      data={e}
+                      activeCategory={activeCategory}
+                      openId={openId}
+                      mapElement={mapElement}
+                      popup={popup}
+                      setPopup={setPopup}
+                      clickInfo={clickInfo}
+                      // marker={marker}
+                    />
+                  );
+              })}
+        </MapContainer>
+      </div>
+    </>
   );
 }
 export default NolzaMap;

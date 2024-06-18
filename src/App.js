@@ -34,6 +34,7 @@ import Detail_Post from 'Routes/info/Detail_Post';
 
 import AssignPage_Login from 'Routes/assign/AssignPage_Login';
 import AssignPage_Inquiry from 'Routes/assign/selections/AssignPage_Inquiry';
+import MetaTag from 'seo/MetaTag';
 
 function App() {
   const queryClient = new QueryClient();
@@ -56,45 +57,51 @@ function App() {
     setScreenSize();
   }, []);
   return (
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        {/* <ReactQueryDevtools initialIsOpen = {true}/> */}
-        <GlobalStyles inAssign={inAssign} />
-        <ThemeProvider theme={Theme}>
-          <Routes>
-            <Route path="" element={<Home />} />
-            <Route path="/map" element={<NolzaMap />} />
-            <Route path="/concertInfo" element={<ConcertInfo />} />
-            <Route path="/post" element={<PostList_Root />}>
-              <Route path="notice" element={<NoticeList />} />
-              <Route path="event" element={<EventList />} />
-            </Route>
-            <Route path="/post/:id" element={<Detail_Post />} />
-            {/* Detail을 루트로 처리하는 법 */}
-            <Route path="/missing" element={<Missing_Home />}></Route>
-            <Route path="/lost" element={<Lost_Home />}></Route>
-            <Route path="/lost/:id" element={<Lost_Detail />}></Route>
-            {/* 관리자페이지 */}
-            <Route path="/login" element={<AssignPage_Login />} />
-            <Route path="/assign" element={<AssignPage_Select />} />
-            {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
-            {/* 플랫폼화 됐을 때 */}
-            <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
-            <Route path="/assign_post/:id" element={<AssignPage_Post />} />
-            <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
-            <Route
-              path="/assign_missing/:id"
-              element={<AssignPage_Missing />}
-            />
-            {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
+    <>
+      <MetaTag />
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          {/* <ReactQueryDevtools initialIsOpen = {true}/> */}
+          <GlobalStyles inAssign={inAssign} />
+          <ThemeProvider theme={Theme}>
+            <Routes>
+              <Route path="" element={<Home />} />
+              <Route path="/map" element={<NolzaMap />} />
+              <Route path="/concertInfo" element={<ConcertInfo />} />
+              <Route path="/post" element={<PostList_Root />}>
+                <Route path="notice" element={<NoticeList />} />
+                <Route path="event" element={<EventList />} />
+              </Route>
+              <Route path="/post/:id" element={<Detail_Post />} />
+              {/* Detail을 루트로 처리하는 법 */}
+              <Route path="/missing" element={<Missing_Home />}></Route>
+              <Route path="/lost" element={<Lost_Home />}></Route>
+              <Route path="/lost/:id" element={<Lost_Detail />}></Route>
+              {/* 관리자페이지 */}
+              <Route path="/login" element={<AssignPage_Login />} />
+              <Route path="/assign" element={<AssignPage_Select />} />
+              {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
+              {/* 플랫폼화 됐을 때 */}
+              <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
+              <Route path="/assign_post/:id" element={<AssignPage_Post />} />
+              <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
+              <Route
+                path="/assign_missing/:id"
+                element={<AssignPage_Missing />}
+              />
+              {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
             <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} /> */}
-            {/* 얘네는 구글폼링크로 연결 */}
-            <Route path="/assign_urgent/:id" element={<AssignPage_Urgent />} />
-            <Route path="/assign_inquiry" element={<AssignPage_Inquiry />} />
-          </Routes>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
+              {/* 얘네는 구글폼링크로 연결 */}
+              <Route
+                path="/assign_urgent/:id"
+                element={<AssignPage_Urgent />}
+              />
+              <Route path="/assign_inquiry" element={<AssignPage_Inquiry />} />
+            </Routes>
+          </ThemeProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </>
   );
 }
 
