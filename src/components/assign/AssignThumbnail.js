@@ -7,8 +7,8 @@ import {
   itemIDState,
   modeState,
 } from 'recoils/atoms_assign';
-import { Input, InputBox } from 'Routes/assign/AssignPage_Home';
-import { imageUploadApi } from 'apis/apis_POST';
+import { Input, InputBox } from 'Routes/assign/AssignPageHome';
+import { imageUploadApi } from 'apis/apis_post';
 
 function AssignThumbnail() {
   //*****전역 recoil모음*****

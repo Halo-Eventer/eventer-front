@@ -1,10 +1,10 @@
-import { ApplyBtn } from 'Routes/find/Missing_Home';
+import { ApplyBtn } from 'Routes/find/MissingHome';
 import { Flex } from 'asset/Style';
 import { useState } from 'react';
 
 import styled from 'styled-components';
 
-function Missing_Popup({ popupList, prop, setPopupList, type }) {
+function MissingPopup({ popupList, prop, setPopupList, type }) {
   const [fullImgPopUp, setFullImgPopUp] = useState(false);
 
   const closePopup = () => {
@@ -77,7 +77,7 @@ ${prop.name}(${prop.gender}, ${prop.age}세) 를 찾습니다.
   );
 }
 
-export default Missing_Popup;
+export default MissingPopup;
 
 const Wrapper = styled.div`
   z-index: 1000;

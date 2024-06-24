@@ -1,17 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import Assign from 'components/assign/Assign';
 
-import {
-  UpperBar_Component,
-  MiddleBar_Component2,
-} from 'components/assign/Assign_Bar';
+import { MiddleBarComponent2, UpperBarComponent } from 'components/assign/AssignBar';
 
-import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
-import Assign_List from 'components/assign/Assign_List';
+import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
+import AssignList from 'components/assign/AssignList';
 
 import {
   boardListState,
@@ -24,15 +21,15 @@ import {
 } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { postCategory } from 'constants/Const_Assign';
-import fetchList from 'utils/fetchList';
 import fetchDetail from 'utils/fetchDetail';
+import fetchList from 'utils/fetchList';
+import { lostItemCategory } from 'constants/const_assign';
 
-function AssignPage_Post() {
+function AssignPageLost() {
   //*****전역 recoil모음*****
+  const [category, setCategory] = useRecoilState(categoryState_assign);
   const [boardList, setBoardList] = useRecoilState(boardListState);
   const [type, setType] = useRecoilState(typeState);
-  const [category, setCategory] = useRecoilState(categoryState_assign);
   const [mode, setMode] = useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [itemID, setItemID] = useRecoilState(itemIDState);
@@ -41,45 +38,24 @@ function AssignPage_Post() {
 
   const festivalId = useParams().id;
 
-  const categoryList = postCategory;
-
-  // const fetchDetail = () => {
-  //   getDetail(category, itemID)
-  //     .then((response) => {
-  //       if (typeof response.data === 'object') {
-  //         console.log('fetch Detail success', response.data);
-
-  //         if (category === 'notice')
-  //           setInfo({ ...response.data, simpleExplanation: SE });
-  //         else setInfo(response.data);
-
-  //       } else {
-  //         console.log('fetch Detail no data ;(', response);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log('fetch Detail error', error);
-  //     });
-  // };
+  const categoryList = lostItemCategory;
 
   useEffect(() => {
-    setCategory('notice');
-    setType('NOTICE');
+    setCategory('lostItem');
+    setType('');
     setBoardList([]);
   }, []);
 
   useEffect(() => {
-    // console.log('cateogry:', category);
+    // console.log("cateogry:",category);
     setCancle(true);
     setInfo(InitInfo(category, type));
     setMode('');
-    // console.log('first useEffect');
     fetchList(festivalId, category, type, setBoardList);
-  }, [category, type]);
+  }, [category]);
 
   useEffect(() => {
-    // console.log('mode:', mode);
-    // console.log('secound useEFFect');
+    // console.log('mode (AssignPage_Map):', mode);
     if (mode == 'a') {
       fetchList(festivalId, category, type, setBoardList);
       setInfo(InitInfo(category, type));
@@ -95,21 +71,19 @@ function AssignPage_Post() {
     }
   }, [mode, itemID]);
 
-  // console.log("boardList, info:", boardList, info);
-
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component2 text="공지사항/이벤트" />
+      <UpperBarComponent />
+      <MiddleBarComponent2 text="분실물 리스트" />
       <AssignBox>
-        <Assign_List categoryList={categoryList} />
+        <AssignList categoryList={categoryList} />
 
-        {cancle ? <Assign_Blank /> : <Assign />}
+        {cancle ? <AssignBlank /> : <Assign />}
       </AssignBox>
     </Wrapper>
   );
 }
-export default AssignPage_Post;
+export default AssignPageLost;
 
 export const Wrapper = styled.div`
   width: 100vw;

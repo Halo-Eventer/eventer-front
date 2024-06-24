@@ -4,9 +4,9 @@ import imgUpload from 'asset/missing/imageUpload.svg';
 import { Flex } from 'asset/Style';
 import { useRecoilState } from 'recoil';
 import { missingInfoState } from 'recoils/atoms_missing';
-import { imageUploadApi } from 'apis/apis_POST';
+import { imageUploadApi } from 'apis/apis_post';
 
-function Missing_Input(props) {
+function MissingInput(props) {
   const [active, setActive] = useState(0);
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useRecoilState(missingInfoState);
@@ -112,7 +112,7 @@ function Missing_Input(props) {
   );
 }
 
-export default Missing_Input;
+export default MissingInput;
 
 const Container = styled.div`
   margin-top: 20px;

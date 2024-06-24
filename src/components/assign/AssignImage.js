@@ -7,8 +7,8 @@ import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import { useRecoilState } from 'recoil';
 import { infoState, itemIDState, modeState } from 'recoils/atoms_assign';
-import { Input } from 'Routes/assign/AssignPage_Home';
-import { imageUploadApi } from 'apis/apis_POST';
+import { Input } from 'Routes/assign/AssignPageHome';
+import { imageUploadApi } from 'apis/apis_post';
 
 function AssignImage() {
   //*****전역 recoil모음*****

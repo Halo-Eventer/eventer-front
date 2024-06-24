@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {
   Wrapper,
@@ -11,9 +11,9 @@ import {
   Index,
 } from '../Home';
 
-import { getDetail } from 'apis/apis_GET';
+import { getDetail } from 'apis/apis_get';
 import styled from 'styled-components';
-import TopFixedBar_PostDetail from 'components/info/TopFixedBar_PostDetail';
+import TopFixedBarPostDetail from 'components/info/TopFixedBarPostDetail';
 import tempImg from 'asset/images/TempImg.png';
 
 //import * as axios from 'axios';
@@ -23,8 +23,7 @@ import tempImg from 'asset/images/TempImg.png';
 모든 export를 가져와서 axios라는 객체로 묶어
 사용하겠다는 뜻입니다.*/
 
-function Detail_Post() {
-  const navigate = useNavigate();
+function DetailPost() {
 
   const postId = useParams().id;
   const [currentNum, setCurrentNum] = useState(1);
@@ -67,7 +66,7 @@ function Detail_Post() {
 
   return (
     <div>
-      <TopFixedBar_PostDetail titleText={titleText}/>
+      <TopFixedBarPostDetail titleText={titleText}/>
       <Wrapper>
         <MainBoard>
           <ImgBlock style={{width:'100%', marginBottom:'-6px'}}>
@@ -103,7 +102,7 @@ function Detail_Post() {
   );
 }
 
-export default Detail_Post;
+export default DetailPost;
 
 export const ImgBoardForPost = styled.img`
   object-fit: cover;

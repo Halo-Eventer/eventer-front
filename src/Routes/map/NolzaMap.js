@@ -18,7 +18,7 @@ import { getDetailInfo } from 'components/map/getDetailInfo';
 // import { changeMarker } from 'asset/changeMarker';
 
 import { UpperBar, BkBtn, Title } from '../Home';
-import { getAllConcert } from 'apis/apis_GET';
+import { getAllConcert } from 'apis/apis_get';
 import { makePolygon } from 'utils/map/makePolygon';
 import { makeFixedMarker } from 'utils/map/makeFixedMarker';
 import makeOverlay from '../../utils/map/makeOverlay';

@@ -3,13 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
 import Assign from 'components/assign/Assign';
-import { Wrapper } from 'Routes/assign/AssignPage_Home';
-import Assign_List from 'components/assign/Assign_List';
-import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
+import { Wrapper } from 'Routes/assign/AssignPageHome';
+import AssignList from 'components/assign/AssignList';
+import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
 import {
-  MiddleBar_Component2,
-  UpperBar_Component,
-} from 'components/assign/Assign_Bar';
+  MiddleBarComponent2,
+  UpperBarComponent,
+} from 'components/assign/AssignBar';
 import {
   boardListState,
   cancleState,
@@ -20,11 +20,11 @@ import {
   typeState,
 } from 'recoils/atoms_assign';
 import { InitInfo } from 'utils/InitInfo';
-import { mapCategory } from 'constants/Const_Assign';
+import { mapCategory } from 'constants/const_assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
 
-function AssignPage_Map() {
+function AssignPageMap() {
   //*****전역 recoil모음*****
   const [boardList, setBoardList] = useRecoilState(boardListState);
   const [type, setType] = useRecoilState(typeState);
@@ -76,16 +76,16 @@ function AssignPage_Map() {
 
   return (
     <Wrapper style={{ height: 'auto' }}>
-      <UpperBar_Component />
-      <MiddleBar_Component2 text="축제 지도" />
+      <UpperBarComponent />
+      <MiddleBarComponent2 text="축제 지도" />
 
       <AssignBox>
-        <Assign_List categoryList={categoryList} />
+        <AssignList categoryList={categoryList} />
 
-        {cancle ? <Assign_Blank /> : <Assign />}
+        {cancle ? <AssignBlank/> : <Assign/>}
       </AssignBox>
     </Wrapper>
   );
 }
 
-export default AssignPage_Map;
+export default AssignPageMap;

@@ -28,7 +28,7 @@ axios.interceptors.response.use(
     if (error.response && error.response.status === 401) {
       // 401 Unauthorized 응답을 받으면 로그인 페이지로 리디렉트
       alert('어드민 로그인이 필요한 서비스입니다.');
-      window.location.href = '/login';
+      window.location.href = '/assign_login';
     }
     return Promise.reject(error);
   }

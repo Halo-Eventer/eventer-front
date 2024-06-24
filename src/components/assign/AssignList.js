@@ -8,17 +8,12 @@ import { useRecoilState } from 'recoil';
 import {
   boardListState,
   categoryState_assign,
-  itemIDState,
   modeState,
   typeState,
 } from 'recoils/atoms_assign';
-import { Flex } from 'asset/Style';
-import { popUpApi } from 'apis/apis_PATCH';
-import { bannerApi } from 'apis/apis_POST';
-import { deleteDetail } from 'apis/apis_DELETE';
-import Assign_ListBoard from './Assign_ListBoard';
+import AssignListBoard from './AssignListBoard';
 
-function Assign_List(props) {
+function AssignList(props) {
   //*****전역 recoil모음*****
   const [boardList, setBoardList] = useRecoilState(boardListState);
   const [category, setCategory] = useRecoilState(categoryState_assign);
@@ -124,12 +119,12 @@ function Assign_List(props) {
         <h1>{selectedDrop} 추가</h1>
       </AddBar>
 
-      <Assign_ListBoard upText={upText} />
+      <AssignListBoard upText={upText} />
     </Wrapper>
   );
 }
 
-export default Assign_List;
+export default AssignList;
 
 const Wrapper = styled.div`
   position: relative;
@@ -252,124 +247,5 @@ const AddBar = styled.div`
   img {
     width: 24px;
     height: 24px;
-  }
-`;
-
-const BoardElement = styled.div``;
-const ListBoard = styled.div`
-  min-height: 504px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  ${(props) => props.category === 'notice' && 'gap:12px;'}
-
-  ${BoardElement} {
-    width: 544px;
-    height: 48px;
-    flex-shrink: 0;
-
-    /* border: 1px solid #ddd;
-    border-radius:4px; */
-
-    cursor: pointer;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: ${(props) =>
-      props.category === 'notice' ? 'flex-end' : 'center'};
-
-    padding: 4px;
-
-    h1 {
-      margin: 0;
-      padding: 0;
-
-      color: #111;
-
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 500;
-      line-height: 30px;
-
-      cursor: pointer;
-    }
-
-    p {
-      color: #888;
-      font-size: 12px;
-    }
-  }
-`;
-const BtnDiv = styled(Flex)`
-  gap: 4px;
-  align-items: center;
-
-  ${Flex} {
-    cursor: pointer;
-    gap: 4px;
-  }
-
-  h2 {
-    margin: 0;
-
-    width: 42px;
-
-    color: #f00;
-    text-align: center;
-
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 24px; /* 160% */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-  }
-  h3 {
-    width: 72px;
-    height: 24px;
-
-    border-radius: 4px;
-    background: #e0daff;
-
-    color: #4f33f6;
-    text-align: right;
-
-    /* flag1 */
-
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px; /* 133.333% */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  h4 {
-    width: 72px;
-    height: 24px;
-
-    border-radius: 4px;
-    background: #f2f2f2;
-
-    color: #111;
-    text-align: right;
-
-    /* flag1 */
-
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 16px; /* 133.333% */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 `;

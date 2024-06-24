@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 import AssignThumbnail from '../AssignThumbnail';
-import { Input, InputContainer, InputDiv } from 'Routes/assign/AssignPage_Home';
+import { Input, InputContainer, InputDiv } from 'Routes/assign/AssignPageHome';
 
-function AssignBasicInfo_Lost() {
+function AssignBasicInfoLost() {
   //*****전역 recoil모음*****
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
@@ -71,4 +71,4 @@ function AssignBasicInfo_Lost() {
     </div>
   );
 }
-export default AssignBasicInfo_Lost;
+export default AssignBasicInfoLost;

@@ -1,23 +1,18 @@
-import { getAll, getBannerRank } from 'apis/apis_GET';
-import { bannerRankApi } from 'apis/apis_PATCH';
+import { bannerRankApi } from 'apis/apis_patch';
 import { Flex } from 'asset/Style';
 import { useEffect, useState } from 'react';
 import {
   DragDropContext,
   Draggable,
-  DropResult,
   Droppable,
 } from 'react-beautiful-dnd';
-import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import {
-  boardListState,
   categoryState_assign,
-  modeState,
 } from 'recoils/atoms_assign';
 import styled from 'styled-components';
 
-function Assign_UpList({
+function AssignUpList({
   upText,
   upList,
   setUpList,
@@ -287,7 +282,7 @@ function Assign_UpList({
   );
 }
 
-export default Assign_UpList;
+export default AssignUpList;
 
 const UpElement = styled.div``;
 const UpBoard = styled(Flex)``;
@@ -465,12 +460,3 @@ const RankBtn = styled.button`
   margin-right: 16px;
 `;
 //반드시 대문자로 시작해야함(컴포넌트라서)
-
-const HR = styled.div`
-  width: 540px;
-  height: 1px;
-
-  background-color: #ccc;
-
-  ${(props) => props.up_length == 0 && 'margin-top:-6px;'}
-`;

@@ -1,11 +1,10 @@
 import { BkBtn, Title, Wrapper } from 'Routes/Home';
-import { BoardSvg, ImgForSvg } from 'components/info/For_Iframe';
 
 import lineUp from 'asset/images/LineUp.webp';
 import getImageSize from 'utils/getImageSize';
 import { useEffect, useState } from 'react';
-import { TopFixedBar, TopFixedBar_Blank } from 'components/info/TopFixedBar';
-import { Link, useNavigate } from 'react-router-dom';
+import { TopFixedBar, TopFixedBarBlank } from 'components/info/TopFixedBar';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function ConcertInfo() {
@@ -34,14 +33,8 @@ function ConcertInfo() {
         <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
         <Title>오늘의 공연</Title>
       </TopFixedBar>
-      <TopFixedBar_Blank />
-      {/* <ImgForSvg
-          src={lineUp}
-          imgWidth={imgWidth}
-          imgHeight={imgHeight}
-          scrolling="no"
-        >
-        </ImgForSvg> */}
+      <TopFixedBarBlank />
+      
       {imgHeight > 0 ? (
         <ImgBoard src={lineUp} imgWidth={imgWidth} imgHeight={imgHeight} />
       ) : (

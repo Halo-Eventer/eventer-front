@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Flex } from 'asset/Style';
 import AssignThumbnail from './AssignThumbnail';
 import AssignMenuBox from './AssignMenuBox';
 
@@ -62,46 +61,6 @@ const AddMenuBox = styled.div`
 
   margin-top: 8px;
 
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const MenuBox = styled.div`
-  width: 352px;
-  height: 100px;
-  border-radius: 4px;
-  border: 1px solid #eee;
-  margin-top: 8px;
-`;
-
-const ImagesPreviewBox = styled.div`
-  display: flex;
-
-  overflow-x: scroll;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  width: 252px;
-  height: 96px;
-  border-radius: 4px;
-  background: ${(props) => {
-    if (props.ImagesPreview == []) {
-      return '#ddd';
-    }
-  }};
-`;
-
-const ImagesPreview = styled.img`
-  width: 96px;
-  height: 96px;
-  flex-shrink: 0;
-`;
-
-const DeleteImages = styled.img`
-  width: 24px;
-  height: 24px;
-  flex-shrink: 0;
   &:hover {
     cursor: pointer;
   }

@@ -1,21 +1,24 @@
 import styled from 'styled-components';
 
 import {
-  UpperBar_Component,
-  MiddleBar_Component2,
-} from 'components/assign/Assign_Bar';
+  UpperBarComponent,
+  MiddleBarComponent2,
+} from 'components/assign/AssignBar';
 
-import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
+import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
 
 import { cancleState } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 
 import InquiryAnswer from 'components/assign/Inquiry/InquiryAnswer';
 import { useEffect, useState } from 'react';
-import { getInquiry } from 'apis/apis_GET';
+import { getInquiry } from 'apis/apis_get';
 import secret from 'asset/assign/secret.svg';
-import { deleteInquiry } from 'apis/apis_DELETE';
-function AssignPage_Inquiry() {
+import { deleteInquiry } from 'apis/apis_delete';
+
+
+
+function AssignPageInquiry() {
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [inquiryBoard, setInquiryBoard] = useState([]);
   const [activeId, setActiveId] = useState();
@@ -51,8 +54,8 @@ function AssignPage_Inquiry() {
   };
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component2 text="문의사항 리스트" />
+      <UpperBarComponent />
+      <MiddleBarComponent2 text="문의사항 리스트" />
       <AssignBox>
         <InquiryBoard>
           {inquiryBoard?.map((e) => {
@@ -68,12 +71,12 @@ function AssignPage_Inquiry() {
             );
           })}
         </InquiryBoard>
-        {cancle ? <Assign_Blank /> : <InquiryAnswer id={activeId} />}
+        {cancle ? <AssignBlank /> : <InquiryAnswer id={activeId} />}
       </AssignBox>
     </Wrapper>
   );
 }
-export default AssignPage_Inquiry;
+export default AssignPageInquiry;
 export const InquiryBoard = styled.div`
   position: relative;
   height: 100vh;

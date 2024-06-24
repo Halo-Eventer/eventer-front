@@ -1,29 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
 import { Flex } from 'asset/Style';
 
 import {
-  UpperBar_Component,
-  MiddleBar_Component1,
-} from '../../components/assign/Assign_Bar';
+  UpperBarComponent,
+  MiddleBarComponent1,
+} from '../../components/assign/AssignBar';
 
 import dropDown from 'asset/images/DropDown.svg';
-import next from 'asset/images/Next.svg';
 import { useRecoilState } from 'recoil';
+import { GRID_WIDTH } from 'constants/const_assign';
 
-function AssignPage_Home() {
+function AssignPageHome() {
   const navigate = useNavigate();
 
   const [festival, setFestival] = useState('세종대학교');
   const [rotate, setRotate] = useState('0deg');
   const [festivalId, setFestivalId] = useRecoilState(festivalId);
 
-  const onClick_home = () => {
-    navigate(`/assign_home`);
-  };
 
   const onChange_select = (event) => {
     event.preventDefault();
@@ -46,9 +43,9 @@ function AssignPage_Home() {
 
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component1 />
-      <FestivalSelect_MainBox>
+      <UpperBarComponent />
+      <MiddleBarComponent1 />
+      <FestivalSelectMainBox>
         <h1 color="#4F33F6">대학교 선택</h1>
         <FestivalSelectBox rotate={rotate}>
           <select
@@ -64,11 +61,11 @@ function AssignPage_Home() {
           <img src={dropDown} />
         </FestivalSelectBox>
         <button onClick={onClick_submit}>선택 완료</button>
-      </FestivalSelect_MainBox>
+      </FestivalSelectMainBox>
     </Wrapper>
   );
 }
-export default AssignPage_Home;
+export default AssignPageHome;
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -84,7 +81,6 @@ export const Wrapper = styled.div`
 
 //======================================상단바 : 시작
 
-export const GRID_WIDTH = 1120;
 export const UPPER_SELECTBOX = 145;
 //selectbox 활용방식(너비 100% + padding + z-index + 드롭다운 이미지는 absolute)
 
@@ -229,7 +225,7 @@ export const MiddleBar = styled.div`
 //=================중간바 : 끝
 
 //=================메인박스 (대학교 선택, 대학선택 select, 버튼 등) : 시작
-export const FestivalSelect_MainBox = styled.div`
+export const FestivalSelectMainBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -297,7 +293,7 @@ export const FestivalSelect_MainBox = styled.div`
 `;
 //=================메인박스 (대학교 선택, 대학선택 select, 버튼 등) : 끝
 
-export const Assign_Blank = styled.div`
+export const AssignBlank = styled.div`
   width: 352px;
   height: 560px;
   flex-shrink: 0;

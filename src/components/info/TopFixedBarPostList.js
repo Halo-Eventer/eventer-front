@@ -9,7 +9,7 @@ import { categoryState } from 'recoils/atoms';
 import { MovingBar } from './MovingBar';
 import { Flex } from 'asset/Style';
 
-function TopFixedBar_PostList() {
+function TopFixedBarPostList() {
   // {category, setCategory}:
   // {category:string,
   // setCategory:React.Dispatch<React.SetStateAction<string>>}
@@ -53,7 +53,7 @@ function TopFixedBar_PostList() {
   );
 }
 
-export default TopFixedBar_PostList;
+export default TopFixedBarPostList;
 
 export const TopFixedBlock = styled(Flex)`
   width: 100%;
@@ -134,6 +134,6 @@ export const SelectBar = styled.div`
   }
 `;
 
-export const SelectBar_Blank = styled(SelectBar)`
+export const SelectBarBlank = styled(SelectBar)`
   background-color: transparent;
 `;

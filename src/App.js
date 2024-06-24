@@ -5,35 +5,34 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import Home from './Routes/Home';
 import NolzaMap from './Routes/map/NolzaMap';
 
-import PostList_Root from './Routes/info/PostList_Root';
+import PostList_Root from './Routes/info/PostListRoot';
 import ConcertInfo from './Routes/info/ConcertInfo';
 
-import AssignPage_Home from './Routes/assign/AssignPage_Home';
-import AssignPage_Select from './Routes/assign/AssignPage_Select';
-import AssignPage_Map from './Routes/assign/selections/AssignPage_Map';
-import AssignPage_Post from './Routes/assign/selections/AssignPage_Post';
+import AssignPageSelect from './Routes/assign/AssignPageSelect';
+import AssignPageMap from './Routes/assign/selections/AssignPageMap';
+import AssignPagePost from './Routes/assign/selections/AssignPagePost';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useEffect } from 'react';
-import Missing_Home from 'Routes/find/Missing_Home';
-import Lost_Home from './Routes/find/Lost_Home';
+import MissingHome from 'Routes/find/MissingHome';
+import LostHome from './Routes/find/LostHome';
 
 import { ThemeProvider } from 'styled-components';
 import { Theme } from './Theme';
 import { RecoilRoot, useRecoilState } from 'recoil';
 import NoticeList from 'Routes/info/NoticeList';
 import EventList from 'Routes/info/EventList';
-import Lost_Detail from './Routes/find/Lost_Detail';
-import { Query, QueryClient, QueryClientProvider } from 'react-query';
+import LostDetail from './Routes/find/LostDetail';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { inAssignState } from 'recoils/atoms_assign';
-import AssignPage_Missing from 'Routes/assign/selections/AssignPage_Missing';
-import AssignPage_Lost from 'Routes/assign/selections/AssignPage_Lost';
-import AssignPage_Urgent from 'Routes/assign/selections/AssignPage_Urgent';
-import Detail_Post from 'Routes/info/Detail_Post';
+import AssignPageMissing from 'Routes/assign/selections/AssignPageMissing';
+import AssignPageLost from 'Routes/assign/selections/AssignPageLost';
+import AssignPageUrgent from 'Routes/assign/selections/AssignPageUrgent';
+import DetailPost from 'Routes/info/DetailPost';
 
-import AssignPage_Login from 'Routes/assign/AssignPage_Login';
-import AssignPage_Inquiry from 'Routes/assign/selections/AssignPage_Inquiry';
+import AssignPageLogin from 'Routes/assign/AssignPageLogin';
+import AssignPageInquiry from 'Routes/assign/selections/AssignPageInquiry';
 import MetaTag from 'seo/MetaTag';
 
 function App() {
@@ -56,6 +55,10 @@ function App() {
   useEffect(() => {
     setScreenSize();
   }, []);
+
+
+  console.log("inAssign:",inAssign);
+  
   return (
     <>
       <MetaTag />
@@ -72,31 +75,31 @@ function App() {
                 <Route path="notice" element={<NoticeList />} />
                 <Route path="event" element={<EventList />} />
               </Route>
-              <Route path="/post/:id" element={<Detail_Post />} />
+              <Route path="/post/:id" element={<DetailPost />} />
               {/* Detail을 루트로 처리하는 법 */}
-              <Route path="/missing" element={<Missing_Home />}></Route>
-              <Route path="/lost" element={<Lost_Home />}></Route>
-              <Route path="/lost/:id" element={<Lost_Detail />}></Route>
+              <Route path="/missing" element={<MissingHome />}></Route>
+              <Route path="/lost" element={<LostHome />}></Route>
+              <Route path="/lost/:id" element={<LostDetail />}></Route>
               {/* 관리자페이지 */}
-              <Route path="/login" element={<AssignPage_Login />} />
-              <Route path="/assign" element={<AssignPage_Select />} />
+              <Route path="/assign_login" element={<AssignPageLogin />} />
+              <Route path="/assign" element={<AssignPageSelect />} />
               {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
               {/* 플랫폼화 됐을 때 */}
-              <Route path="/assign_map/:id" element={<AssignPage_Map />} />{' '}
-              <Route path="/assign_post/:id" element={<AssignPage_Post />} />
-              <Route path="/assign_lost/:id" element={<AssignPage_Lost />} />
+              <Route path="/assign_map/:id" element={<AssignPageMap />} />{' '}
+              <Route path="/assign_post/:id" element={<AssignPagePost />} />
+              <Route path="/assign_lost/:id" element={<AssignPageLost />} />
               <Route
                 path="/assign_missing/:id"
-                element={<AssignPage_Missing />}
+                element={<AssignPageMissing />}
               />
               {/* <Route path="/assign_wheelChair/:id" element={<AssignPage_WheelChair />} />
             <Route path="/assign_barrierFree/:id" element={<AssignPage_BarrierFree />} /> */}
               {/* 얘네는 구글폼링크로 연결 */}
               <Route
                 path="/assign_urgent/:id"
-                element={<AssignPage_Urgent />}
+                element={<AssignPageUrgent />}
               />
-              <Route path="/assign_inquiry" element={<AssignPage_Inquiry />} />
+              <Route path="/assign_inquiry" element={<AssignPageInquiry />} />
             </Routes>
           </ThemeProvider>
         </QueryClientProvider>

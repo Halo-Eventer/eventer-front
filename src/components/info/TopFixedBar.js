@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import bkBtn from 'asset/images/BackSpace.svg'
-
 export const TopFixedBar = styled.div`
 position:fixed;
 width:100%;
@@ -21,7 +19,7 @@ justify-content:space-between;
 align-items:center;
 `;
 
-export const TopFixedBar_Blank = styled(TopFixedBar)`
+export const TopFixedBarBlank = styled(TopFixedBar)`
     position:relative;
     z-index:-10;
 `;

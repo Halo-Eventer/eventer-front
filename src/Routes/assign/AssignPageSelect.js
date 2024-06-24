@@ -1,17 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { Wrapper, GRID_WIDTH } from 'Routes/assign/AssignPage_Home';
+import { Wrapper } from 'Routes/assign/AssignPageHome';
 import {
-  UpperBar_Component,
-  MiddleBar_Component1,
-} from 'components/assign/Assign_Bar';
+  UpperBarComponent,
+  MiddleBarComponent1,
+} from 'components/assign/AssignBar';
 import { useSetRecoilState } from 'recoil';
 import { categoryState_assign, typeState } from 'recoils/atoms_assign';
 
-function AssignPage_Select() {
+function AssignPageSelect() {
   // const festivalId = useParams().id;
   const festivalId = 1;
   const navigate = useNavigate();
@@ -25,7 +25,7 @@ function AssignPage_Select() {
     if (!localStorage.getItem('token')) {
 
       alert('어드민 로그인이 필요한 서비스입니다.');
-      navigate('/login');
+      navigate('/assign_login');
     }
     setCategory('');
     setType('');
@@ -55,8 +55,8 @@ function AssignPage_Select() {
 
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component1 />
+      <UpperBarComponent />
+      <MiddleBarComponent1 />
       <MainBox>
         <Link to={`/assign_map/${festivalId}`}>
           <PageBtn>
@@ -110,7 +110,7 @@ function AssignPage_Select() {
   );
 }
 
-export default AssignPage_Select;
+export default AssignPageSelect;
 
 export const MainBox = styled.div`
   margin-top: 64px;

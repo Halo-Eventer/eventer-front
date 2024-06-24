@@ -106,14 +106,6 @@ const FullInfoContainer = styled.div`
 const DetailImg = styled.img`
   width: 350px;
 `;
-const MenuImg = styled.img`
-  width: 170px;
-  height: 170px;
-  border-radius: 12px;
-
-  flex-shrink: 0;
-`;
-
 const DetailBox = styled.div`
   width: 350px;
   /* height: 70vh; */

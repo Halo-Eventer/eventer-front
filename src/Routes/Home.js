@@ -21,8 +21,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Footer from 'components/Footer';
-import Missing_Popup from 'components/popup/Missing_Popup';
-import { getBannerRank, getHome } from 'apis/apis_GET';
+import MissingPopup from 'components/popup/MissingPopup';
+import { getBannerRank, getHome } from 'apis/apis_get';
 
 export const festivalId = 1;
 
@@ -98,7 +98,7 @@ function Home() {
         let type = 0;
         if (urgentList.includes(e)) type = 1;
         return (
-          <Missing_Popup
+          <MissingPopup
             key={i}
             type={type}
             prop={e}
@@ -111,7 +111,7 @@ function Home() {
       <Board>
         <UpperBar>
           <img src={logo}></img>
-          <FlexBox_Row style={{ gap: '12px' }}>
+          <FlexBoxRow style={{ gap: '12px' }}>
             <a href="https://www.instagram.com/mokpowshow/" target="_blank">
               {/* 새 탭 여는 법 */}
               <img src={instagram}></img>
@@ -123,10 +123,10 @@ function Home() {
             >
               <img src={facebook}></img>
             </a>
-          </FlexBox_Row>
+          </FlexBoxRow>
         </UpperBar>
 
-        <FlexBox_Row style={{ width: '100%' }}>
+        <FlexBoxRow style={{ width: '100%' }}>
           {bannerList?.length > 0 && (
             <ImgBlock>
               <Index>
@@ -149,16 +149,16 @@ function Home() {
               </StyledSlider>
             </ImgBlock>
           )}
-        </FlexBox_Row>
+        </FlexBoxRow>
 
         <SecondBlock>
           <BigBox>
             <Link to="/map">
               <h1>
-                <FlexBox_Row>
+                <FlexBoxRow>
                   <Imoji src={marker} />
                   <p>공연장 지도</p>
-                </FlexBox_Row>
+                </FlexBoxRow>
 
                 <button>주변시설 확인</button>
               </h1>
@@ -166,10 +166,10 @@ function Home() {
             <HR />
             <Link to="/concertInfo">
               <h1>
-                <FlexBox_Row>
+                <FlexBoxRow>
                   <Imoji src={festival} />
                   <p>오늘의 공연</p>
-                </FlexBox_Row>
+                </FlexBoxRow>
 
                 <button>공연일정 보기</button>
               </h1>
@@ -232,13 +232,13 @@ export const Flex = styled.div`
   justify-content: center;
   align-items: center;
 `;
-export const FlexBox_Row = styled.div`
+export const FlexBoxRow = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const FlexBox_Column = styled.div`
+export const FlexBoxColumn = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -308,7 +308,7 @@ export const Board = styled.div`
   overflow-x: hidden;
 `;
 
-export const BoardSet_Width = styled(Flex)`
+export const BoardSetWidth = styled(Flex)`
   flex-direction: column;
   justify-content: flex-start;
 

@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import Assign from 'components/assign/Assign';
 
 import {
-  UpperBar_Component,
-  MiddleBar_Component2,
-} from 'components/assign/Assign_Bar';
+  UpperBarComponent,
+  MiddleBarComponent2,
+} from 'components/assign/AssignBar';
 
-import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
-import Assign_List from 'components/assign/Assign_List';
+import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
+import AssignList from 'components/assign/AssignList';
 
 import {
   boardListState,
@@ -24,15 +24,15 @@ import {
 } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
+import { missingPersonCategory } from 'constants/const_assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
-import { lostItemCategory } from 'constants/Const_Assign';
 
-function AssignPage_Lost() {
+function AssignPageMissing() {
   //*****전역 recoil모음*****
-  const [category, setCategory] = useRecoilState(categoryState_assign);
   const [boardList, setBoardList] = useRecoilState(boardListState);
   const [type, setType] = useRecoilState(typeState);
+  const [category, setCategory] = useRecoilState(categoryState_assign);
   const [mode, setMode] = useRecoilState(modeState);
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [itemID, setItemID] = useRecoilState(itemIDState);
@@ -41,14 +41,13 @@ function AssignPage_Lost() {
 
   const festivalId = useParams().id;
 
-  const categoryList = lostItemCategory;
+  const [categoryList, setCategoryList] = useState(missingPersonCategory);
 
   useEffect(() => {
-    setCategory('lostItem');
-    setType('');
+    setCategory('missingPerson');
     setBoardList([]);
+    setType('');
   }, []);
-
   useEffect(() => {
     // console.log("cateogry:",category);
     setCancle(true);
@@ -58,7 +57,7 @@ function AssignPage_Lost() {
   }, [category]);
 
   useEffect(() => {
-    // console.log('mode (AssignPage_Map):', mode);
+    // console.log('mode:', mode);
     if (mode == 'a') {
       fetchList(festivalId, category, type, setBoardList);
       setInfo(InitInfo(category, type));
@@ -76,17 +75,17 @@ function AssignPage_Lost() {
 
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component2 text="분실물 리스트" />
+      <UpperBarComponent />
+      <MiddleBarComponent2 text="실종자 현황 관리" />
       <AssignBox>
-        <Assign_List categoryList={categoryList} />
+        <AssignList categoryList={categoryList} />
 
-        {cancle ? <Assign_Blank /> : <Assign />}
+        {cancle ? <AssignBlank /> : <Assign />}
       </AssignBox>
     </Wrapper>
   );
 }
-export default AssignPage_Lost;
+export default AssignPageMissing;
 
 export const Wrapper = styled.div`
   width: 100vw;

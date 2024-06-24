@@ -1,17 +1,15 @@
 import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from 'Routes/Home';
 import { Flex } from 'asset/Style';
-import Missing_Input, {
-  MissingSemiTitle,
-} from 'components/missing/Missing_Input';
+import MissingInput, { MissingSemiTitle } from 'components/missing/MissingInput';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { onClick_bkBtn } from '../../hooks/hooks';
 import { useRecoilState } from 'recoil';
 import { missingInfoState } from 'recoils/atoms_missing';
-import { missingPost } from 'apis/apis_POST';
+import { missingPost } from 'apis/apis_post';
 
-function Missing_Home() {
+function MissingHome() {
   const navigate = useNavigate();
   const [active, setActive] = useState(false);
   const [info, setInfo] = useRecoilState(missingInfoState);
@@ -51,42 +49,42 @@ function Missing_Home() {
       </TopFixedDiv>
       <MissingInfoContainer>
         <MissingTitle>실종자 정보</MissingTitle>
-        <Missing_Input
+        <MissingInput
           require={true}
           title="실종자 이름"
           placeholder="이름 입력"
           id="name"
         />
-        <Missing_Input
+        <MissingInput
           require={true}
           title="실종자 나이"
           placeholder="나이 입력(숫자만)"
           id="age"
         />
-        <Missing_Input
+        <MissingInput
           setInfo={setInfo}
           require={true}
           title="실종자 성별"
           btn={true}
           id="gender"
         />
-        <Missing_Input setInfo={setInfo} title="실종자 사진" img={true} />
+        <MissingInput setInfo={setInfo} title="실종자 사진" img={true} />
       </MissingInfoContainer>
       <MissingInfoContainer>
         <MissingTitle>실종 상세 정보</MissingTitle>
-        <Missing_Input
+        <MissingInput
           require={true}
           title="실종 위치"
           placeholder="실종 위치 입력"
           id="missingLocation"
         />
-        <Missing_Input
+        <MissingInput
           require={true}
           title="실종 시간"
           placeholder="실종 시간 입력 (ex: 23:00)"
           id="missingTime"
         />
-        <Missing_Input
+        <MissingInput
           setInfo={setInfo}
           title="기타 특이사항"
           placeholder="특징, 인상착의 등 입력"
@@ -95,13 +93,13 @@ function Missing_Home() {
       </MissingInfoContainer>
       <MissingInfoContainer>
         <MissingTitle>보호자 정보</MissingTitle>
-        <Missing_Input
+        <MissingInput
           require={true}
           title="보호자 성함"
           placeholder="성함 입력"
           id="parentName"
         />
-        <Missing_Input
+        <MissingInput
           require={true}
           title="보호자 연락처"
           placeholder="전화번호 입력 (-없이 숫자만)"
@@ -140,7 +138,7 @@ function Missing_Home() {
   );
 }
 
-export default Missing_Home;
+export default MissingHome;
 const AgreeBox = styled.div`
   width: 358px;
   height: 102px;
