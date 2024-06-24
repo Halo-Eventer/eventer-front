@@ -27,7 +27,7 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response && error.response.status === 401) {
       // 401 Unauthorized 응답을 받으면 로그인 페이지로 리디렉트
-      window.location.href = '/login';
+      window.location.href = '/assign_login';
     }
     return Promise.reject(error);
   }

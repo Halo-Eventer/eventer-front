@@ -25,7 +25,7 @@ function AssignPageSelect() {
     if (!localStorage.getItem('token')) {
 
       alert('어드민 로그인이 필요한 서비스입니다.');
-      navigate('/login');
+      navigate('/assign_login');
     }
     setCategory('');
     setType('');

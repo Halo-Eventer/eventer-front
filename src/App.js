@@ -8,7 +8,6 @@ import NolzaMap from './Routes/map/NolzaMap';
 import PostList_Root from './Routes/info/PostListRoot';
 import ConcertInfo from './Routes/info/ConcertInfo';
 
-import AssignPageHome from './Routes/assign/AssignPageHome';
 import AssignPageSelect from './Routes/assign/AssignPageSelect';
 import AssignPageMap from './Routes/assign/selections/AssignPageMap';
 import AssignPagePost from './Routes/assign/selections/AssignPagePost';
@@ -56,6 +55,10 @@ function App() {
   useEffect(() => {
     setScreenSize();
   }, []);
+
+
+  console.log("inAssign:",inAssign);
+  
   return (
     <>
       <MetaTag />
@@ -78,7 +81,7 @@ function App() {
               <Route path="/lost" element={<LostHome />}></Route>
               <Route path="/lost/:id" element={<LostDetail />}></Route>
               {/* 관리자페이지 */}
-              <Route path="/login" element={<AssignPageLogin />} />
+              <Route path="/assign_login" element={<AssignPageLogin />} />
               <Route path="/assign" element={<AssignPageSelect />} />
               {/* <Route path="/assign/:id" element={<AssignPage_Select />} /> */}
               {/* 플랫폼화 됐을 때 */}

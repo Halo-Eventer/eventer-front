@@ -4,23 +4,23 @@ import {
   MiddleBar,
   Logo,
   H1,
-  GRID_WIDTH,
 } from '../../Routes/assign/AssignPageHome';
 import next from 'asset/images/Next.svg';
 import styled from 'styled-components';
+import { GRID_WIDTH } from 'constants/const_assign';
 
 export function UpperBarComponent() {
   const navigate = useNavigate('');
   const handleLogout = () => {
     localStorage.setItem('token', '');
-    navigate('/login');
+    navigate('/assign_login');
   };
   const handleAuth = () => {
 
     if (!localStorage.getItem('token')) {
 
       alert('어드민 로그인이 필요한 서비스입니다.');
-      navigate('/login');
+      navigate('/assign_login');
     } else navigate('/assign');
   };
   return (
@@ -28,13 +28,13 @@ export function UpperBarComponent() {
       <div onClick={handleAuth}>
         <Logo>WABA</Logo>
       </div>
-      <Link to="/login">
+      <Link to="/assign_login">
         {localStorage.getItem('token') ? (
-          <LoginBox onClick={handleLogout} style={{ right: 0 }}>
+          <LoginBox onClick={handleLogout}>
             로그아웃
           </LoginBox>
         ) : (
-          <LoginBox onClick={() => navigate('/login')} style={{ right: 0 }}>
+          <LoginBox onClick={() => navigate('/assign_login')}>
             로그인
           </LoginBox>
         )}
@@ -80,5 +80,6 @@ const LoginBox = styled.div`
   position: absolute;
   top: 50%;
   right: 50%;
-  transform: translate(-${1120 / 2}px, -50%);
+  transform: translate(${GRID_WIDTH / 2}px, -50%);
+   /* transform: translate(-${1120 / 2}px, -50%); */
 `;
