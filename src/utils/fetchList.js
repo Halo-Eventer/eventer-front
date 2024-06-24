@@ -1,4 +1,4 @@
-import { getAll } from "apis/apis_GET";
+import { getAll } from "apis/apis_get";
 
 
 function fetchList(festivalId, category, type, setBoardList){

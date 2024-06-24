@@ -5,11 +5,11 @@ import {
   Logo,
   H1,
   GRID_WIDTH,
-} from '../../Routes/assign/AssignPage_Home';
+} from '../../Routes/assign/AssignPageHome';
 import next from 'asset/images/Next.svg';
 import styled from 'styled-components';
 
-export function UpperBar_Component() {
+export function UpperBarComponent() {
   const navigate = useNavigate('');
   const handleLogout = () => {
     localStorage.setItem('token', '');
@@ -42,7 +42,7 @@ export function UpperBar_Component() {
     </UpperBar>
   );
 }
-export function MiddleBar_Component1() {
+export function MiddleBarComponent1() {
   return (
     <MiddleBar>
       <div>
@@ -55,7 +55,7 @@ export function MiddleBar_Component1() {
     </MiddleBar>
   );
 }
-export function MiddleBar_Component2(props) {
+export function MiddleBarComponent2(props) {
   return (
     <MiddleBar>
       <div>

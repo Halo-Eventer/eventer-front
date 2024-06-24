@@ -1,6 +1,6 @@
-import { deleteDetail } from 'apis/apis_DELETE';
-import { popUpApi } from 'apis/apis_PATCH';
-import { bannerApi } from 'apis/apis_POST';
+import { deleteDetail } from 'apis/apis_delete';
+import { popUpApi } from 'apis/apis_patch';
+import { bannerApi } from 'apis/apis_post';
 import { Flex } from 'asset/Style';
 import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
@@ -12,11 +12,11 @@ import {
   typeState,
 } from 'recoils/atoms_assign';
 import styled from 'styled-components';
-import Assign_UpList from './Assign_UpList';
-import { getAll, getBannerRank } from 'apis/apis_GET';
+import AssignUpList from './AssignUpList';
+import { getAll, getBannerRank } from 'apis/apis_get';
 import { useParams } from 'react-router-dom';
 
-function Assign_ListBoard({ upText }) {
+function AssignListBoard({ upText }) {
   const { id: festivalId } = useParams();
 
   //*****전역 recoil모음*****
@@ -214,7 +214,7 @@ function Assign_ListBoard({ upText }) {
 
   return (
     <div style={{ flexDirection: 'column', alignItems: 'center' }}>
-      <Assign_UpList
+      <AssignUpList
         upText={upText}
         upList={upList}
         setUpList={setUpList}
@@ -285,7 +285,7 @@ function Assign_ListBoard({ upText }) {
   );
 }
 
-export default Assign_ListBoard;
+export default AssignListBoard;
 
 const BoardElement = styled.div``;
 const DownListBoard = styled.div`

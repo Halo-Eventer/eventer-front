@@ -1,4 +1,4 @@
-import { lostItemForm_blank, mapCategoryForm_blank, mapForm_blank, missingForm_blank, missingPersonForm_blank, postForm_blank, urgentForm_blank } from "constants/Const_Assign";
+import { lostItemForm_blank, mapCategoryForm_blank, mapForm_blank, missingForm_blank, missingPersonForm_blank, postForm_blank, urgentForm_blank } from "constants/constAssign";
 
 export const InitInfo = (category, type) => {
     let tmp;

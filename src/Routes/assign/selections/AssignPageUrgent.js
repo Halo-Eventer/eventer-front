@@ -6,12 +6,12 @@ import styled from 'styled-components';
 import Assign from 'components/assign/Assign';
 
 import {
-  UpperBar_Component,
-  MiddleBar_Component2,
-} from 'components/assign/Assign_Bar';
+  UpperBarComponent,
+  MiddleBarComponent2,
+} from 'components/assign/AssignBar';
 
-import { AssignBox, Assign_Blank } from 'Routes/assign/AssignPage_Home';
-import Assign_List from 'components/assign/Assign_List';
+import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
+import AssignList from 'components/assign/AssignList';
 
 import {
   boardListState,
@@ -24,11 +24,11 @@ import {
 } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { urgentCategory } from 'constants/Const_Assign';
+import { urgentCategory } from 'constants/constAssign';
 import fetchList from 'utils/fetchList';
 import fetchDetail from 'utils/fetchDetail';
 
-function AssignPage_Urgent() {
+function AssignPageUrgent() {
   //*****전역 recoil모음*****
   const [boardList, setBoardList] = useRecoilState(boardListState);
   const [type, setType] = useRecoilState(typeState);
@@ -76,17 +76,17 @@ function AssignPage_Urgent() {
 
   return (
     <Wrapper>
-      <UpperBar_Component />
-      <MiddleBar_Component2 text="긴급공지/팝업" />
+      <UpperBarComponent />
+      <MiddleBarComponent2 text="긴급공지/팝업" />
       <AssignBox>
-        <Assign_List categoryList={categoryList} />
+        <AssignList categoryList={categoryList} />
 
-        {cancle ? <Assign_Blank /> : <Assign />}
+        {cancle ? <AssignBlank /> : <Assign />}
       </AssignBox>
     </Wrapper>
   );
 }
-export default AssignPage_Urgent;
+export default AssignPageUrgent;
 
 export const Wrapper = styled.div`
   width: 100vw;

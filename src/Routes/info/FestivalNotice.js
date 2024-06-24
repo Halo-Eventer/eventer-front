@@ -1,14 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { Wrapper, TopFixedDiv, LineDiv, Title, HomeBtn, BkBtn } from '../Home';
+import { Wrapper, TopFixedDiv, Title, BkBtn } from '../Home';
 // import {eventList,noticeList} from '../components/info/DataBase';
 
 import { getAll } from '../../apis/apis';
 
-import Event from '../../components/info/Event';
 import Notice from '../../components/info/Notice';
 import { UpperBar } from '../Home';
 
@@ -48,19 +47,6 @@ function FestivalNotice() {
     //그냥 뒤로가는 기능
   };
 
-  const onClick_notice = () => {
-    setColor1('black');
-    setColor2('gray');
-    setTransForm('-193%');
-    setShoeNotice(true);
-  };
-  const onClick_event = () => {
-    setColor1('gray');
-    setColor2('black');
-    setTransForm('193%');
-    setShoeNotice(false);
-  };
-
   useEffect(() => {
     fetchList('notice');
     fetchList('event');
@@ -89,39 +75,6 @@ const UnderBar = styled.div`
 `;
 const SecondBtn = styled.div`
   color: ${(props) => props.color};
-`;
-const SecondBar = styled.div`
-  position: relative;
-  width: 100%;
-  height: 48px;
-  flex-shrink: 0;
-
-  background: #fff;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ${SecondBtn} {
-    width: 185px;
-    text-align: center;
-
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 800;
-    line-height: 24px; /* 150% */
-    cursor: pointer;
-  }
-
-  ${UnderBar} {
-    position: absolute;
-    bottom: 2px;
-    width: 48px;
-    height: 2px;
-    flex-shrink: 0;
-    background: #46515b;
-    transition: transform 0.2s ease-out;
-  }
 `;
 
 const MainBlock = styled.div`

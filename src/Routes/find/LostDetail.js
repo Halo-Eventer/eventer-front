@@ -3,7 +3,7 @@ import { onClick_bkBtn } from 'hooks/hooks';
 import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from 'Routes/Home';
 import styled from 'styled-components';
 
-function Lost_Detail() {
+function LostDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const data = location.state.props;
@@ -33,7 +33,7 @@ function Lost_Detail() {
     </>
   );
 }
-export default Lost_Detail;
+export default LostDetail;
 const Category = styled.div`
   color: #53cddd;
 

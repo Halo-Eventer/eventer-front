@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components';
 import FullInfo from './FullInfo';
 import Up from '../../asset/up.svg';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import InfoBox from './InfoBox';
 function ClickInfo(props) {
   const [full, setFull] = useState(false);
@@ -120,13 +120,6 @@ const InfoContainer = styled.div`
   margin: 0 auto;
 `;
 
-const ImgContainer = styled.div`
-  overflow: auto;
-`;
-const DetailImg = styled.img`
-  width: 350px;
-  border-radius: 12px;
-`;
 const More = styled.button`
   margin-top: 16px;
   margin-bottom: 12px;

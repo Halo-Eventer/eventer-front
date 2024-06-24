@@ -9,8 +9,8 @@ import {
   modeState,
   typeState,
 } from 'recoils/atoms_assign';
-import { assignApi, assignMenuApi } from 'apis/apis_POST';
-import { reviseApi, reviseMenuApi } from 'apis/apis_PATCH';
+import { assignApi, assignMenuApi } from 'apis/apis_post';
+import { reviseApi, reviseMenuApi } from 'apis/apis_patch';
 
 function AssignBtn() {
   const festivalId = 1;

@@ -1,10 +1,10 @@
-import { loginApi } from 'apis/apis_POST';
-import { UpperBar_Component } from 'components/assign/Assign_Bar';
+import { loginApi } from 'apis/apis_post';
+import { UpperBarComponent } from 'components/assign/AssignBar';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function AssignPage_Login() {
+function AssignPageLogin() {
   const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ function AssignPage_Login() {
   };
   return (
     <LoginContainer>
-      <UpperBar_Component />
+      <UpperBarComponent />
       <LoginBox>
         <h1>관리자 로그인</h1>
         <InputBox
@@ -45,7 +45,7 @@ function AssignPage_Login() {
     </LoginContainer>
   );
 }
-export default AssignPage_Login;
+export default AssignPageLogin;
 
 const LoginContainer = styled.div`
   height: 100vh;

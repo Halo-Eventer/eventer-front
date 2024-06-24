@@ -1,4 +1,4 @@
-import { getDetail } from "apis/apis_GET";
+import { getDetail } from "apis/apis_get";
 import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 import thumbnail_preview2 from 'asset/assign/thumbnail_preview2.png';
 import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.png';

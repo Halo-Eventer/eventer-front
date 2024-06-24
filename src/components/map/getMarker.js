@@ -1,5 +1,4 @@
-import { getAllByPlaceholderText } from '@testing-library/react';
-import { getAllBooth, getAllMapCategory } from 'apis/apis_GET';
+import { getAllMapCategory } from 'apis/apis_get';
 
 export function getMarker(activeCategory, setData) {
   if (activeCategory == 1) {

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Flex } from 'asset/Style';
 import { useEffect, useRef, useState } from 'react';
-import Assign_latlng from '../Assign_latlng';
+import Assign_latlng from '../AssignLatlng';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   categoryState_assign,
@@ -16,9 +16,9 @@ import {
   InputDiv,
   TextArea,
   TextAreaDiv,
-} from 'Routes/assign/AssignPage_Home';
+} from 'Routes/assign/AssignPageHome';
 
-function AssignBasicInfo_Map() {
+function AssignBasicInfoMap() {
   //*****전역 recoil모음*****
   const [category, setCategory] = useRecoilState(categoryState_assign);
   const [type, setType] = useRecoilState(typeState);
@@ -159,7 +159,7 @@ function AssignBasicInfo_Map() {
     </div>
   );
 }
-export default AssignBasicInfo_Map;
+export default AssignBasicInfoMap;
 
 const MapInput = styled(Flex)`
   margin-top: 4px;

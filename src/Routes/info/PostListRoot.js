@@ -1,13 +1,12 @@
 import { Link, Outlet } from 'react-router-dom';
-import { BoardSet_Width, Wrapper, festivalId } from 'Routes/Home';
+import { BoardSetWidth, Wrapper, festivalId } from 'Routes/Home';
 import styled, { useTheme } from 'styled-components';
 import { useEffect, useState } from 'react';
 
-import sampleThumbnail from 'asset/images/Logo.svg';
-import { TopFixedBar_Blank } from 'components/info/TopFixedBar';
-import TopFixedBar_PostList from 'components/info/TopFixedBar_PostList';
+import { TopFixedBarBlank } from 'components/info/TopFixedBar';
+import TopFixedBarPostList from 'components/info/TopFixedBarPostList';
 import { useQuery } from 'react-query';
-import { getAll } from 'apis/apis_GET';
+import { getAll } from 'apis/apis_get';
 
 function PostList_Root() {
   const theme = useTheme();
@@ -55,10 +54,10 @@ function PostList_Root() {
   // console.log('dataList', dataList);
   return (
     <Wrapper>
-      <BoardSet_Width>
-        <TopFixedBar_PostList />
-        <TopFixedBar_Blank />
-        <TopFixedBar_Blank />
+      <BoardSetWidth>
+        <TopFixedBarPostList />
+        <TopFixedBarBlank />
+        <TopFixedBarBlank />
         {/* <TitleBoard>
                     {noticeListData?.data.map((item, index) =>
                         <TitleElement 
@@ -72,7 +71,7 @@ function PostList_Root() {
                 </TitleBoard> */}
         {/* only 공지사항 리스트(였던 것) */}
         <Outlet context={dataList}></Outlet> {/* 게시글 목록 */}
-      </BoardSet_Width>
+      </BoardSetWidth>
     </Wrapper>
   );
 }

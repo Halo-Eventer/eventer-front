@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import { ImageDiv, TextDiv, Section } from 'Routes/info/FestivalNotice_X';
+import { ImageDiv, TextDiv, Section } from 'Routes/info/FestivalNoticeX';
 
 function Notice({ noticeList }) {
   const navigate = useNavigate();

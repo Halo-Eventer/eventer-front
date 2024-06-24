@@ -19,8 +19,8 @@ import {
 
 import { getAll } from 'apis/apis';
 
-import Event from 'components/info/Event_X';
-import Notice from 'components/info/Notice_X';
+import Event from 'components/info/EventX';
+import Notice from 'components/info/NoticeX';
 import { UpperBar } from 'Routes/Home';
 
 function FestivalNotice() {

@@ -11,9 +11,9 @@ import {
   InputDiv,
   TextArea,
   TextAreaDiv,
-} from 'Routes/assign/AssignPage_Home';
+} from 'Routes/assign/AssignPageHome';
 
-function AssignBasicInfo_Missing() {
+function AssignBasicInfoMissing() {
   //*****전역 recoil모음*****
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
@@ -136,7 +136,7 @@ function AssignBasicInfo_Missing() {
     </InputContainer>
   );
 }
-export default AssignBasicInfo_Missing;
+export default AssignBasicInfoMissing;
 
 export const MissingPersonDiv = styled(Flex)`
   margin-left: 4px;

@@ -1,4 +1,4 @@
-import { getDetailMapCategory } from 'apis/apis_GET';
+import { getDetailMapCategory } from 'apis/apis_get';
 
 export function getDetailInfo(id, setClickInfo, activeCategory) {
   getDetailMapCategory(id)

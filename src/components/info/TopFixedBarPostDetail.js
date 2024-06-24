@@ -8,7 +8,7 @@ import {
   Title,
 } from 'Routes/Home';
 
-function TopFixedBar_PostDetail({titleText}) {
+function TopFixedBarPostDetail({titleText}) {
   const theme = useTheme();
 
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function TopFixedBar_PostDetail({titleText}) {
   );
 }
 
-export default TopFixedBar_PostDetail;
+export default TopFixedBarPostDetail;
 
 export const TopFixedBlock = styled(Flex)`
   width: 100%;

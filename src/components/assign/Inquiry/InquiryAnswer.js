@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { InfoContainer } from '../Assign';
-import { InputContainer } from 'Routes/assign/AssignPage_Home';
+import { InputContainer } from 'Routes/assign/AssignPageHome';
 import { Flex } from 'asset/Style';
-import { getInquiryDetail } from 'apis/apis_GET';
+import { getInquiryDetail } from 'apis/apis_get';
 import { useEffect, useState } from 'react';
-import { postInquiry } from 'apis/apis_POST';
+import { postInquiry } from 'apis/apis_post';
 import { useRecoilState } from 'recoil';
 import { cancleState } from 'recoils/atoms_assign';
 

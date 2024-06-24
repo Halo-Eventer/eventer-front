@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
-import { Input } from 'Routes/assign/AssignPage_Home';
-import { imageUploadApi } from 'apis/apis_POST';
+import { Input } from 'Routes/assign/AssignPageHome';
+import { imageUploadApi } from 'apis/apis_post';
 
 function AssignMenuBox(props) {
 

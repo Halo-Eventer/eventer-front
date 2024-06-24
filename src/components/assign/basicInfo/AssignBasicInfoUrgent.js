@@ -7,9 +7,9 @@ import {
   InputDiv,
   TextArea,
   TextAreaDiv,
-} from 'Routes/assign/AssignPage_Home';
+} from 'Routes/assign/AssignPageHome';
 
-function AssignBasicInfo_Urgent() {
+function AssignBasicInfoUrgent() {
   //*****전역 recoil모음*****
   const [info, setInfo] = useRecoilState(infoState);
   //*****전역 recoil모음*****
@@ -68,4 +68,4 @@ function AssignBasicInfo_Urgent() {
     </InputContainer>
   );
 }
-export default AssignBasicInfo_Urgent;
+export default AssignBasicInfoUrgent;

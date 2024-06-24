@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { infoState } from 'recoils/atoms_assign';
 import styled from 'styled-components';
 
-function Assign_latlng() {
+function AssignLatlng() {
   const [info, setInfo] = useRecoilState(infoState);
 
   const [latlng, setLatlng] = useState({});
@@ -44,7 +44,7 @@ function Assign_latlng() {
   return <Map ref={mapElement}></Map>;
 }
 
-export default Assign_latlng;
+export default AssignLatlng;
 
 const Map = styled.div`
   width: 336px;

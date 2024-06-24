@@ -4,10 +4,10 @@ import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from '../Home';
 import styled from 'styled-components';
 import { Flex } from '../../asset/Style';
 import { useEffect, useState } from 'react';
-import { lostItemGet } from 'apis/apis_GET';
+import { lostItemGet } from 'apis/apis_get';
 import xButton from 'asset/images/XButton.svg';
 
-function Lost_Home() {
+function LostHome() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [showPopUp, setShowPopUp] = useState(true);
@@ -66,7 +66,7 @@ function Lost_Home() {
   );
 }
 
-export default Lost_Home;
+export default LostHome;
 
 const Box = styled.div`
   width: 173px;
