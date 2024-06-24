@@ -23,7 +23,7 @@ import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
-import { lostItemCategory } from 'constants/constAssign';
+import { lostItemCategory } from 'constants/const_assign';
 
 function AssignPageLost() {
   //*****전역 recoil모음*****

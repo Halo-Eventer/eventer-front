@@ -20,7 +20,7 @@ import {
   typeState,
 } from 'recoils/atoms_assign';
 import { InitInfo } from 'utils/InitInfo';
-import { mapCategory } from 'constants/constAssign';
+import { mapCategory } from 'constants/const_assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
 

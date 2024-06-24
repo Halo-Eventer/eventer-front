@@ -24,7 +24,7 @@ import {
 } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { missingPersonCategory } from 'constants/constAssign';
+import { missingPersonCategory } from 'constants/const_assign';
 import fetchDetail from 'utils/fetchDetail';
 import fetchList from 'utils/fetchList';
 

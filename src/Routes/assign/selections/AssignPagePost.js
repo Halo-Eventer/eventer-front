@@ -24,7 +24,7 @@ import {
 } from 'recoils/atoms_assign';
 import { useRecoilState } from 'recoil';
 import { InitInfo } from 'utils/InitInfo';
-import { postCategory } from 'constants/constAssign';
+import { postCategory } from 'constants/const_assign';
 import fetchList from 'utils/fetchList';
 import fetchDetail from 'utils/fetchDetail';
 
