@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function AssignPageLogin() {
-  const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
   const navigate = useNavigate();
+
+  const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
 
   const handleInfo = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
@@ -24,6 +25,8 @@ function AssignPageLogin() {
           alert(err);
       });
   };
+
+
   return (
     <LoginContainer>
       <UpperBarComponent />

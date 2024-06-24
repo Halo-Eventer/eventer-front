@@ -12,6 +12,7 @@ import {
 
 import dropDown from 'asset/images/DropDown.svg';
 import { useRecoilState } from 'recoil';
+import { GRID_WIDTH } from 'constants/const_assign';
 
 function AssignPageHome() {
   const navigate = useNavigate();
@@ -80,7 +81,6 @@ export const Wrapper = styled.div`
 
 //======================================상단바 : 시작
 
-export const GRID_WIDTH = 1120;
 export const UPPER_SELECTBOX = 145;
 //selectbox 활용방식(너비 100% + padding + z-index + 드롭다운 이미지는 absolute)
 
