@@ -5,6 +5,7 @@ import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.pn
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 axios.defaults.withCredentials = true;
+
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');

@@ -3,6 +3,7 @@ import thumbnail_preview from 'asset/assign/thumbnail_preview.png';
 
 axios.defaults.baseURL = process.env.REACT_APP_API;
 axios.defaults.withCredentials = true;
+
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token');
