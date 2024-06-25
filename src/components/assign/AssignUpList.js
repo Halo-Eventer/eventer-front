@@ -1,15 +1,9 @@
 import { bannerRankApi } from 'apis/apis_patch';
 import { Flex } from 'asset/Style';
 import { useEffect, useState } from 'react';
-import {
-  DragDropContext,
-  Draggable,
-  Droppable,
-} from 'react-beautiful-dnd';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import { useRecoilState } from 'recoil';
-import {
-  categoryState_assign,
-} from 'recoils/atoms_assign';
+import { categoryState_assign } from 'recoils/atoms_assign';
 import styled from 'styled-components';
 
 function AssignUpList({

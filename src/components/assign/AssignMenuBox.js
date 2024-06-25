@@ -8,22 +8,20 @@ import { Input } from 'Routes/assign/AssignPageHome';
 import { imageUploadApi } from 'apis/apis_post';
 
 function AssignMenuBox(props) {
-
-    //*****전역 recoil모음*****
-    const [info, setInfo] = useRecoilState(infoState);
-    //*****전역 recoil모음*****
-
+  //*****전역 recoil모음*****
+  const [info, setInfo] = useRecoilState(infoState);
+  //*****전역 recoil모음*****
 
   const [menuInfo, setMenuInfo] = useState({});
-  const [menuImg, setMenuImg] = useState("");
+  const [menuImg, setMenuImg] = useState('');
   const handleMenu = (e) => {
     const [id, value] = [e.target.id, e.target.value];
     setMenuInfo({ ...menuInfo, [id]: value });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     setMenuImg(props.fetchedImage);
-  },[]);
+  }, []);
   useEffect(() => {
     const updatedMenus = info.menus.map((menu, i) => {
       if (i === props.i) {
@@ -31,20 +29,20 @@ function AssignMenuBox(props) {
       }
       return menu;
     });
-    setInfo({...info,menus:updatedMenus});
+    setInfo({ ...info, menus: updatedMenus });
   }, [menuInfo]);
 
   const handleImg = (e) => {
-    if(e.target.files[0]!=undefined){
-    imageUploadApi(e.target.files[0])
-      .then((res) => {
-        setMenuInfo({ ...menuInfo, ['image']: res.data });
-        setMenuImg(res.data);
-      })
-      .catch((err) => {
-        alert(err.response.data.error)
-            });
-          }
+    if (e.target.files[0] != undefined) {
+      imageUploadApi(e.target.files[0])
+        .then((res) => {
+          setMenuInfo({ ...menuInfo, ['image']: res.data });
+          setMenuImg(res.data);
+        })
+        .catch((err) => {
+          alert(err.response.data.error);
+        });
+    }
   };
   const handleDeleteMenuBox = () => {
     props.onDelete(); // props.setmenus();

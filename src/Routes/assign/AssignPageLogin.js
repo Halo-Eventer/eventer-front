@@ -21,11 +21,9 @@ function AssignPageLogin() {
       .catch((err) => {
         if (err.response.status === 400)
           alert('잘못된 아이디 혹은 비밀번호 입니다.');
-        else
-          alert(err);
+        else alert(err);
       });
   };
-
 
   return (
     <LoginContainer>

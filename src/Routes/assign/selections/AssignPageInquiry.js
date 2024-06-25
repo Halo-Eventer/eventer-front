@@ -16,8 +16,6 @@ import { getInquiry } from 'apis/apis_get';
 import secret from 'asset/assign/secret.svg';
 import { deleteInquiry } from 'apis/apis_delete';
 
-
-
 function AssignPageInquiry() {
   const [cancle, setCancle] = useRecoilState(cancleState);
   const [inquiryBoard, setInquiryBoard] = useState([]);

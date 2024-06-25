@@ -24,7 +24,6 @@ import tempImg from 'asset/images/TempImg.png';
 사용하겠다는 뜻입니다.*/
 
 function DetailPost() {
-
   const postId = useParams().id;
   const [currentNum, setCurrentNum] = useState(1);
 
@@ -41,9 +40,8 @@ function DetailPost() {
     }, //현재 슬라이드 위치에 따른 변화 get가능
   };
 
-  const [detailedList, setDetailedList] = useState({images:[tempImg]});
+  const [detailedList, setDetailedList] = useState({ images: [tempImg] });
   const [titleText, setTitleText] = useState('');
-
 
   useEffect(() => {
     /* '공지사항 / 이벤트' 전환때문에 얘는 fetchList()가 아닌 
@@ -66,12 +64,12 @@ function DetailPost() {
 
   return (
     <div>
-      <TopFixedBarPostDetail titleText={titleText}/>
+      <TopFixedBarPostDetail titleText={titleText} />
       <Wrapper>
         <MainBoard>
-          <ImgBlock style={{width:'100%', marginBottom:'-6px'}}>
+          <ImgBlock style={{ width: '100%', marginBottom: '-6px' }}>
             <Index>
-                {currentNum}/{detailedList?.images.length}
+              {currentNum}/{detailedList?.images.length}
             </Index>
 
             <StyledSlider {...settings}>
@@ -84,7 +82,7 @@ function DetailPost() {
             <div>
               <h2>{detailedList.subtitle}</h2>
               <h1>{detailedList.title}</h1>
-              <HR/>
+              <HR />
               {detailedList.content?.split('\n').map((line, key) => {
                 if (line.length === 0) {
                   /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
@@ -116,10 +114,10 @@ export const ImgBoardForPost = styled.img`
 `;
 
 const HR = styled.p`
-width: 350px;
-height: 1px;
-flex-shrink: 0;
-margin-bottom:16px;
+  width: 350px;
+  height: 1px;
+  flex-shrink: 0;
+  margin-bottom: 16px;
 
-background-color:#AAA;
+  background-color: #aaa;
 `;

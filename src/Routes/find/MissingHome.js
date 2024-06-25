@@ -1,6 +1,8 @@
 import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from 'Routes/Home';
 import { Flex } from 'asset/Style';
-import MissingInput, { MissingSemiTitle } from 'components/missing/MissingInput';
+import MissingInput, {
+  MissingSemiTitle,
+} from 'components/missing/MissingInput';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
