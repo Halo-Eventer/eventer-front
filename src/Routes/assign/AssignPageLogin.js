@@ -1,13 +1,13 @@
-import { loginApi } from 'apis/apis_post';
-import { UpperBarComponent } from 'components/assign/AssignBar';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import { loginApi } from "apis/apis_post";
+import { UpperBarComponent } from "components/assign/AssignBar";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 function AssignPageLogin() {
   const navigate = useNavigate();
 
-  const [loginInfo, setLoginInfo] = useState({ userId: '', password: '' });
+  const [loginInfo, setLoginInfo] = useState({ userId: "", password: "" });
 
   const handleInfo = (e) => {
     setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
@@ -15,12 +15,12 @@ function AssignPageLogin() {
   const handleLogin = () => {
     loginApi(loginInfo)
       .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        navigate('/assign');
+        localStorage.setItem("token", res.data.token);
+        navigate("/assign");
       })
       .catch((err) => {
         if (err.response.status === 400)
-          alert('잘못된 아이디 혹은 비밀번호 입니다.');
+          alert("잘못된 아이디 혹은 비밀번호 입니다.");
         else alert(err);
       });
   };

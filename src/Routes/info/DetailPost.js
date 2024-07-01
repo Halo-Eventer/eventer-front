@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import {
   Wrapper,
@@ -9,12 +9,12 @@ import {
   TextBoard,
   festivalId,
   Index,
-} from '../Home';
+} from "../Home";
 
-import { getDetail } from 'apis/apis_get';
-import styled from 'styled-components';
-import TopFixedBarPostDetail from 'components/info/TopFixedBarPostDetail';
-import tempImg from 'asset/images/TempImg.png';
+import { getDetail } from "apis/apis_get";
+import styled from "styled-components";
+import TopFixedBarPostDetail from "components/info/TopFixedBarPostDetail";
+import tempImg from "asset/images/TempImg.png";
 
 //import * as axios from 'axios';
 /*import * as axios from 'axios';
@@ -41,17 +41,17 @@ function DetailPost() {
   };
 
   const [detailedList, setDetailedList] = useState({ images: [tempImg] });
-  const [titleText, setTitleText] = useState('');
+  const [titleText, setTitleText] = useState("");
 
   useEffect(() => {
     /* '공지사항 / 이벤트' 전환때문에 얘는 fetchList()가 아닌 
     getDetail을 가지고 직접 페이지 내 변수 조작*/
-    getDetail(festivalId, 'notice', postId) //url의 카테고리는 일단 notice
+    getDetail(festivalId, "notice", postId) //url의 카테고리는 일단 notice
       .then((response) => {
-        if (typeof response.data === 'object') {
+        if (typeof response.data === "object") {
           setDetailedList(response.data);
-          if (response.data.type === 'NOTICE') setTitleText('공지사항');
-          else setTitleText('이벤트');
+          if (response.data.type === "NOTICE") setTitleText("공지사항");
+          else setTitleText("이벤트");
           // console.log('detail fetch success : ', response.data);
         } else {
           // console.log('detail fetch no data ;(');
@@ -67,7 +67,7 @@ function DetailPost() {
       <TopFixedBarPostDetail titleText={titleText} />
       <Wrapper>
         <MainBoard>
-          <ImgBlock style={{ width: '100%', marginBottom: '-6px' }}>
+          <ImgBlock style={{ width: "100%", marginBottom: "-6px" }}>
             <Index>
               {currentNum}/{detailedList?.images.length}
             </Index>
@@ -83,7 +83,7 @@ function DetailPost() {
               <h2>{detailedList.subtitle}</h2>
               <h1>{detailedList.title}</h1>
               <HR />
-              {detailedList.content?.split('\n').map((line, key) => {
+              {detailedList.content?.split("\n").map((line, key) => {
                 if (line.length === 0) {
                   /*애초에 split함수로 개행문자를 기준으로 나눴다는 건 
                                     개행문자는 나눠진 원소에 들어가지 않는다는 뜻,

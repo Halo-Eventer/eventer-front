@@ -1,43 +1,25 @@
-import { Link, Outlet } from 'react-router-dom';
-import { BoardSetWidth, Wrapper, festivalId } from 'Routes/Home';
-import styled, { useTheme } from 'styled-components';
-import { useEffect, useState } from 'react';
+import { Link, Outlet } from "react-router-dom";
+import { BoardSetWidth, Wrapper, festivalId } from "Routes/Home";
+import styled, { useTheme } from "styled-components";
+import { useEffect, useState } from "react";
 
-import { TopFixedBarBlank } from 'components/info/TopFixedBar';
-import TopFixedBarPostList from 'components/info/TopFixedBarPostList';
-import { useQuery } from 'react-query';
-import { getAll } from 'apis/apis_get';
+import { TopFixedBarBlank } from "components/info/TopFixedBar";
+import TopFixedBarPostList from "components/info/TopFixedBarPostList";
+import { useQuery } from "react-query";
+import { getAll } from "apis/apis_get";
 
-function PostList_Root() {
+function PostListRoot() {
   const theme = useTheme();
   const [dataList, setDataList] = useState({});
 
   const { isLoading: noticeListLoading, data: noticeListData } = useQuery(
-    'noticeList',
-    () => getAll(festivalId, 'notice', 'NOTICE')
+    "noticeList",
+    () => getAll(festivalId, "notice", "NOTICE")
   );
   const { isLoading: eventListLoading, data: eventListData } = useQuery(
-    'eventList',
-    () => getAll(festivalId, 'notice', 'EVENT')
+    "eventList",
+    () => getAll(festivalId, "notice", "EVENT")
   );
-
-  // const [noticeList, setNoticeList] = useState([
-  //     {
-  //         id: 1,
-  //         title: '2023 LACAUS 청진낭만 축제 일정 안내',
-  //         index: '축제 일정',
-  //         time: '축제기획단 2024.02.13 16:00',
-  //         thumbnail: sampleThumbnail
-  //     },
-  //     {
-  //         id: 2,
-  //         title: '2023 LACAUS 청진낭만 축제 일정 안내',
-  //         index: '축제 일정',
-  //         time: '축제기획단 2024.02.13 16:00',
-  //         thumbnail: sampleThumbnail
-  //     }
-  // ]);
-  //포스트에서 필요한 api
 
   useEffect(() => {
     window.scrollTo(0, -200);
@@ -45,8 +27,12 @@ function PostList_Root() {
   //스크롤 오류 때문에 일단 이렇게 강제로 올려놈
   useEffect(() => {
     setDataList({
-      noticeList: noticeListData?.data,
-      eventList: eventListData?.data,
+      noticeList: noticeListData?.data.sort((a, b) => {
+        return new Date(b.time) - new Date(a.time);
+      }),
+      eventList: eventListData?.data.sort((a, b) => {
+        return new Date(b.time) - new Date(a.time);
+      }),
     });
   }, [noticeListData, eventListData]);
 
@@ -58,25 +44,13 @@ function PostList_Root() {
         <TopFixedBarPostList />
         <TopFixedBarBlank />
         <TopFixedBarBlank />
-        {/* <TitleBoard>
-                    {noticeListData?.data.map((item, index) =>
-                        <TitleElement 
-                        key={index} 
-                        to = {`${item.id}`}
-                        lineColor={theme.colors.lineColor}>
-                            <button>공지사항</button>
-                            <h1>{item.title}</h1>
-                        </TitleElement>
-                    )}
-                </TitleBoard> */}
-        {/* only 공지사항 리스트(였던 것) */}
         <Outlet context={dataList}></Outlet> {/* 게시글 목록 */}
       </BoardSetWidth>
     </Wrapper>
   );
 }
 
-export default PostList_Root;
+export default PostListRoot;
 
 export const TitleBoard = styled.div`
   width: 100%;

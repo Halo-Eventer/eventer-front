@@ -1,10 +1,10 @@
-import { bannerRankApi } from 'apis/apis_patch';
-import { Flex } from 'asset/Style';
-import { useEffect, useState } from 'react';
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { useRecoilState } from 'recoil';
-import { categoryState_assign } from 'recoils/atoms_assign';
-import styled from 'styled-components';
+import { bannerRankApi } from "apis/apis_patch";
+import { Flex } from "asset/Style";
+import { useEffect, useState } from "react";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
+import { useRecoilState } from "recoil";
+import { categoryState_assign } from "recoils/atoms_assign";
+import styled from "styled-components";
 
 function AssignUpList({
   upText,
@@ -18,8 +18,8 @@ function AssignUpList({
   const [category, setCategory] = useRecoilState(categoryState_assign);
   //*****전역 recoil모음*****
 
-  const mainUpText = '메인';
-  const popUpText = '팝업';
+  const mainUpText = "메인";
+  const popUpText = "팝업";
 
   const [revisable, setRevisable] = useState(false);
 
@@ -56,12 +56,12 @@ function AssignUpList({
 
     // console.log('bannerList:', bannerList);
 
-    let tmp = window.confirm('메인페이지 순서를 수정하시겠습니까?');
+    let tmp = window.confirm("메인페이지 순서를 수정하시겠습니까?");
 
     if (tmp) {
       bannerRankApi(bannerList)
         .then((response) => {
-          alert('수정되었습니다.');
+          alert("수정되었습니다.");
           // console.log(response);
           setRevisable(false);
         })
@@ -71,7 +71,7 @@ function AssignUpList({
 
   return (
     <UpListBoard category={category}>
-      {category === 'notice' && (
+      {category === "notice" && (
         <Tip>
           <h1>
             메인페이지 등록 후 마우스로 드래그하여 해당 항목들의 순서를 정할 수
@@ -88,13 +88,13 @@ function AssignUpList({
           </RankBtn>
         </Tip>
       )}
-      {category === 'missingPerson' ||
-        (category === 'urgent' && (
+      {category === "missingPerson" ||
+        (category === "urgent" && (
           <Tip>
             <h2>팝업창은 가장 최근에 작성한 글이 먼저 표시됩니다.</h2>
           </Tip>
         ))}
-      {category === 'notice' ? (
+      {category === "notice" ? (
         <DragDropContext onDragEnd={onDragEnd}>
           <UpBlock>
             <Droppable droppableId="MAIN">
@@ -120,21 +120,21 @@ function AssignUpList({
                           >
                             <Flex
                               style={{
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
+                                flexDirection: "column",
+                                alignItems: "flex-start",
                               }}
                               {...magic.dragHandleProps}
                             >
                               <h1 data-index={index} {...magic.dragHandleProps}>
-                                {category === 'notice' || category === 'urgent'
+                                {category === "notice" || category === "urgent"
                                   ? item.title
                                   : item.name}
                                 &nbsp;&nbsp;
-                                {category === 'notice'
+                                {category === "notice"
                                   ? item.picked && (
                                       <span
                                         {...magic.dragHandleProps}
-                                        style={{ color: '#4F33F6' }}
+                                        style={{ color: "#4F33F6" }}
                                       >
                                         [{mainUpText}]
                                       </span>
@@ -142,17 +142,17 @@ function AssignUpList({
                                   : item.popup && (
                                       <span
                                         {...magic.dragHandleProps}
-                                        style={{ color: '#4F33F6' }}
+                                        style={{ color: "#4F33F6" }}
                                       >
                                         [{popUpText}]
                                       </span>
                                     )}
                               </h1>
 
-                              {category === 'notice' && (
+                              {category === "notice" && (
                                 <p {...magic.dragHandleProps}>
                                   {item.time.slice(0, 10) +
-                                    ' ' +
+                                    " " +
                                     item.time.slice(11, 19)}
                                 </p>
                               )}
@@ -160,14 +160,14 @@ function AssignUpList({
                             <BtnDiv {...magic.dragHandleProps}>
                               <span
                                 {...magic.dragHandleProps}
-                                style={{ color: '#4F33F6', marginRight: '4px' }}
+                                style={{ color: "#4F33F6", marginRight: "4px" }}
                               >
                                 #{index + 1}
                               </span>
 
-                              {(category == 'notice' ||
-                                category == 'missingPerson' ||
-                                category == 'urgent') && (
+                              {(category == "notice" ||
+                                category == "missingPerson" ||
+                                category == "urgent") && (
                                 <h4
                                   id={item.id}
                                   onClick={onClick_upDown}
@@ -210,42 +210,42 @@ function AssignUpList({
                 <UpElement key={item.id} id={item.id} onClick={onClick_revise}>
                   <Flex
                     style={{
-                      flexDirection: 'column',
-                      alignItems: 'flex-start',
+                      flexDirection: "column",
+                      alignItems: "flex-start",
                     }}
                   >
                     <h1 data-index={index}>
-                      {category === 'notice' || category === 'urgent'
+                      {category === "notice" || category === "urgent"
                         ? item.title
                         : item.name}
                       &nbsp;&nbsp;
-                      {category === 'notice'
+                      {category === "notice"
                         ? item.picked && (
-                            <span style={{ color: '#4F33F6' }}>
+                            <span style={{ color: "#4F33F6" }}>
                               [{mainUpText}]
                             </span>
                           )
                         : item.popup && (
-                            <span style={{ color: '#4F33F6' }}>
+                            <span style={{ color: "#4F33F6" }}>
                               [{popUpText}]
                             </span>
                           )}
                     </h1>
 
-                    {category === 'notice' && (
+                    {category === "notice" && (
                       <p>
-                        {item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}
+                        {item.time.slice(0, 10) + " " + item.time.slice(11, 19)}
                       </p>
                     )}
                   </Flex>
                   <BtnDiv>
-                    <span style={{ color: '#4F33F6', marginRight: '4px' }}>
+                    <span style={{ color: "#4F33F6", marginRight: "4px" }}>
                       #{index + 1}
                     </span>
 
-                    {(category == 'notice' ||
-                      category == 'missingPerson' ||
-                      category == 'urgent') && (
+                    {(category == "notice" ||
+                      category == "missingPerson" ||
+                      category == "urgent") && (
                       <h4
                         id={item.id}
                         onClick={onClick_upDown}
@@ -310,7 +310,7 @@ const UpListBoard = styled.div`
         display: flex;
         justify-content: space-between;
         align-items: ${(props) =>
-          props.category === 'notice' ? 'flex-end' : 'center'};
+          props.category === "notice" ? "flex-end" : "center"};
 
         cursor: pointer;
         h1 {
@@ -445,8 +445,8 @@ const RankBtn = styled.button`
 
   ${(props) =>
     props.revisable
-      ? 'background-color:#4f33f6; cursor:pointer;'
-      : 'background-color:#DDD; cursor:auto;'}
+      ? "background-color:#4f33f6; cursor:pointer;"
+      : "background-color:#DDD; cursor:auto;"}
 
   border-radius:4px;
   color: white;

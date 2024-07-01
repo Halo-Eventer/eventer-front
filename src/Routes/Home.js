@@ -1,28 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import backSpace from 'asset/images/BackSpace.svg';
+import backSpace from "asset/images/BackSpace.svg";
 //import home from '../images/Home.png';
-import logo from 'asset/images/Logo.svg';
-import instagram from 'asset/images/instagram.svg';
-import facebook from 'asset/images/facebook.svg';
+import logo from "asset/images/Logo.svg";
+import instagram from "asset/images/instagram.svg";
+import facebook from "asset/images/facebook.svg";
 
-import marker from 'asset/images/Marker.png';
-import festival from 'asset/images/Festival.png';
-import survey from 'asset/images/Survey.png';
-import disabled from 'asset/images/Disabled.png';
-import lost from 'asset/images/Lost.png';
-import missing from 'asset/images/Missing.png';
-import tempImg from 'asset/images/TempImg.png';
+import marker from "asset/images/Marker.png";
+import festival from "asset/images/Festival.png";
+import survey from "asset/images/Survey.png";
+import disabled from "asset/images/Disabled.png";
+import lost from "asset/images/Lost.png";
+import missing from "asset/images/Missing.png";
+import tempImg from "asset/images/TempImg.png";
+import inquiry from "asset/images/Inquiry.png";
 
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Footer from 'components/Footer';
-import MissingPopup from 'components/popup/MissingPopup';
-import { getBannerRank, getHome } from 'apis/apis_get';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Footer from "components/Footer";
+import MissingPopup from "components/popup/MissingPopup";
+import { getBannerRank, getHome } from "apis/apis_get";
 
 export const festivalId = 1;
 
@@ -93,7 +94,7 @@ function Home() {
 
   return (
     <Wrapper>
-      {popupList.length == 0 ? '' : <Overlay />}
+      {popupList.length == 0 ? "" : <Overlay />}
       {popupList?.map((e, i) => {
         let type = 0;
         if (urgentList.includes(e)) type = 1;
@@ -111,7 +112,7 @@ function Home() {
       <Board>
         <UpperBar>
           <img src={logo}></img>
-          <FlexBoxRow style={{ gap: '12px' }}>
+          <FlexBoxRow style={{ gap: "12px" }}>
             <a href="https://www.instagram.com/mokpowshow/" target="_blank">
               {/* 새 탭 여는 법 */}
               <img src={instagram}></img>
@@ -126,7 +127,7 @@ function Home() {
           </FlexBoxRow>
         </UpperBar>
 
-        <FlexBoxRow style={{ width: '100%' }}>
+        <FlexBoxRow style={{ width: "100%" }}>
           {bannerList?.length > 0 && (
             <ImgBlock>
               <Index>
@@ -178,7 +179,7 @@ function Home() {
 
           <SurveyBox
             onClick={() => {
-              window.open('https://forms.gle/ZSgimPKeTuJWtBHd6');
+              window.open("https://forms.gle/ZSgimPKeTuJWtBHd6");
             }}
           >
             <h1>축제 만족도 조사</h1>
@@ -188,20 +189,20 @@ function Home() {
 
           <ETCBox>
             <ETC
-              onClick={() => window.open('https://mokpowshow.co.kr/inquiry')}
+              onClick={() => window.open("https://mokpowshow.co.kr/inquiry")}
             >
-              <Imoji src={''} />
+              <Imoji src={inquiry} />
               <h1>문의 사항</h1>
               <h2>문의 사항</h2>
             </ETC>
 
-            <ETC onClick={() => navigate('/missing')}>
+            <ETC onClick={() => navigate("/missing")}>
               <Imoji src={missing} />
               <h1>실종자 찾기</h1>
               <h2>실종자 공지 신청하기</h2>
             </ETC>
 
-            <ETC onClick={() => navigate('/lost')}>
+            <ETC onClick={() => navigate("/lost")}>
               <Imoji src={lost} />
               <h1>분실물 찾기</h1>
               <h2>분실물 리스트 확인</h2>
@@ -374,7 +375,7 @@ export const Title = styled.h1`
 
   color: #fff;
   text-align: center;
-  font-family: 'NanumSquareNeo';
+  font-family: "NanumSquareNeo";
   font-size: 17px;
   font-style: normal;
   font-weight: 900;
@@ -507,7 +508,7 @@ export const SecondBlock = styled.div`
     }
 
     p {
-      font-family: 'NanumSquareNeo';
+      font-family: "NanumSquareNeo";
     }
 
     h1 {
@@ -559,7 +560,7 @@ export const SecondBlock = styled.div`
       color: #fff;
 
       /* headline2 */
-      font-family: 'NanumSquareNeo';
+      font-family: "NanumSquareNeo";
       font-size: 16px;
       font-style: normal;
       font-weight: 900;
@@ -677,7 +678,7 @@ export const SurveyBox = styled.button`
     font-style: normal;
     font-weight: 900;
     line-height: 24px; /* 150% */
-    font-family: 'NanumSquareNeo';
+    font-family: "NanumSquareNeo";
   }
   h2 {
     color: #ddd;
@@ -728,7 +729,7 @@ export const ETCBox = styled(Flex)`
       /* headline1 */
       font-size: 18px;
       font-style: normal;
-      font-family: 'NanumSquareNeo';
+      font-family: "NanumSquareNeo";
       font-weight: 900;
       line-height: 26px; /* 144.444% */
     }

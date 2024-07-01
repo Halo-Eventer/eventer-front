@@ -1,15 +1,15 @@
-import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from 'Routes/Home';
-import { Flex } from 'asset/Style';
+import { BkBtn, Title, TopFixedDiv, UpperBar, Wrapper } from "Routes/Home";
+import { Flex } from "asset/Style";
 import MissingInput, {
   MissingSemiTitle,
-} from 'components/missing/MissingInput';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { onClick_bkBtn } from '../../hooks/hooks';
-import { useRecoilState } from 'recoil';
-import { missingInfoState } from 'recoils/atoms_missing';
-import { missingPost } from 'apis/apis_post';
+} from "components/missing/MissingInput";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { onClick_bkBtn } from "../../hooks/hooks";
+import { useRecoilState } from "recoil";
+import { missingInfoState } from "recoils/atoms_missing";
+import { missingPost } from "apis/apis_post";
 
 function MissingHome() {
   const navigate = useNavigate();
@@ -23,18 +23,18 @@ function MissingHome() {
     // Object.entries(info)로 info 객체의 키-값 쌍을 배열로 변환
     // filter() 함수로 'another' 키를 제외
     const hasEmptyValue = Object.entries(info)
-      .filter(([key, value]) => key !== 'content') // 'another' 키 제외
-      .some(([key, value]) => value === '' || value == null);
+      .filter(([key, value]) => key !== "content") // 'another' 키 제외
+      .some(([key, value]) => value === "" || value == null);
     // some() 메서드는 배열 안의 어떤 요소라도 주어진 판별 함수를 적어도 하나라도 통과하는지 테스트
     //즉, 여기서는 하나라도 빈값이 나오면 true를 return할 것이다.
-    if (hasEmptyValue) alert('필수 항목을 작성해주세요.');
-    else if (!active) alert('개인정보 수집, 이용에 동의해주세요.');
+    if (hasEmptyValue) alert("필수 항목을 작성해주세요.");
+    else if (!active) alert("개인정보 수집, 이용에 동의해주세요.");
     else
       missingPost(info)
         .then((res) => {
           // console.log(res);
-          alert('등록이 완료되었습니다.');
-          navigate('/');
+          alert("등록이 완료되었습니다.");
+          navigate("/");
         })
         .catch(
           (err) => {}
@@ -108,7 +108,7 @@ function MissingHome() {
           id="parentNo"
         />
         <div>
-          <MissingSemiTitle style={{ marginTop: '20px' }}>
+          <MissingSemiTitle style={{ marginTop: "20px" }}>
             개인정보 수집•이용 동의서
           </MissingSemiTitle>
           <AgreeBox>
@@ -127,9 +127,9 @@ function MissingHome() {
             수 있으나, 동의를 거부할 경우 “실종자 찾기” 진행이 불가능합니다.
           </AgreeBox>
 
-          <Flex style={{ justifyContent: 'end', marginTop: '8px' }}>
+          <Flex style={{ justifyContent: "end", marginTop: "8px" }}>
             <Checkbox onClick={() => setActive(!active)} active={active}>
-              {active ? <Circle /> : ''}
+              {active ? <Circle /> : ""}
             </Checkbox>
             <Agree>동의합니다.</Agree>
           </Flex>
@@ -163,7 +163,7 @@ const MissingTitle = styled.div`
   color: #fafafa;
 
   /* logo */
-  font-family: 'NanumSquareNeo';
+  font-family: "NanumSquareNeo";
   font-size: 24px;
   font-style: normal;
   font-weight: 900;
@@ -196,7 +196,7 @@ const Checkbox = styled.div`
   &:hover {
     cursor: pointer;
   }
-  ${(props) => (props.active ? ' border: 1px solid #53CDDD;' : '')}
+  ${(props) => (props.active ? " border: 1px solid #53CDDD;" : "")}
 `;
 
 export const ApplyBtn = styled.button`
