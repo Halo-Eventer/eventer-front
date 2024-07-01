@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { Flex } from 'Routes/Home';
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { Flex } from "Routes/Home";
 
-import { categoryState } from 'recoils/atoms';
-import styled, { useTheme } from 'styled-components';
+import { categoryState } from "recoils/atoms";
+import styled, { useTheme } from "styled-components";
+import { useEffect } from "react";
 
 function PostList({ postList }) {
   const theme = useTheme();
@@ -20,13 +21,13 @@ function PostList({ postList }) {
           >
             <Flex
               style={{
-                flexDirection: 'column',
-                alignSelf: 'flex-start',
+                flexDirection: "column",
+                alignSelf: "flex-start",
               }}
             >
               <h3>{item.subtitle}</h3>
               <h1>{item.title}</h1>
-              <h2>{item.time.slice(0, 10) + ' ' + item.time.slice(11, 19)}</h2>
+              <h2>{item.time.slice(0, 10) + " " + item.time.slice(11, 19)}</h2>
             </Flex>
             {item.thumbnail.length > 0 && <img src={item.thumbnail} />}
           </PostElement>
