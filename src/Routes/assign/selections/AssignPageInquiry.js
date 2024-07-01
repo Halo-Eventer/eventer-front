@@ -1,22 +1,20 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import {
   UpperBarComponent,
   MiddleBarComponent2,
-} from 'components/assign/AssignBar';
+} from "components/assign/AssignBar";
 
-import { AssignBox, AssignBlank } from 'Routes/assign/AssignPageHome';
+import { AssignBox, AssignBlank } from "Routes/assign/AssignPageHome";
 
-import { cancleState } from 'recoils/atoms_assign';
-import { useRecoilState } from 'recoil';
+import { cancleState } from "recoils/atoms_assign";
+import { useRecoilState } from "recoil";
 
-import InquiryAnswer from 'components/assign/Inquiry/InquiryAnswer';
-import { useEffect, useState } from 'react';
-import { getInquiry } from 'apis/apis_get';
-import secret from 'asset/assign/secret.svg';
-import { deleteInquiry } from 'apis/apis_delete';
-
-
+import InquiryAnswer from "components/assign/Inquiry/InquiryAnswer";
+import { useEffect, useState } from "react";
+import { getInquiry } from "apis/apis_get";
+import secret from "asset/assign/secret.svg";
+import { deleteInquiry } from "apis/apis_delete";
 
 function AssignPageInquiry() {
   const [cancle, setCancle] = useRecoilState(cancleState);
@@ -48,7 +46,7 @@ function AssignPageInquiry() {
   const handleDelete = (e) => {
     deleteInquiry(e.target.id).then((res) => {
       console.log(res);
-      alert('성공적으로 삭제되었습니다.');
+      alert("성공적으로 삭제되었습니다.");
       setCancle(false);
     });
   };
@@ -62,8 +60,8 @@ function AssignPageInquiry() {
             return (
               <Inquiry id={e.id} onClick={handleInquiry}>
                 {e.title}
-                {e.isSecret ? <Secret src={secret}></Secret> : ''}
-                {e.isAnswered ? <Answer>[답변 완료]</Answer> : ''}
+                {e.isSecret ? <Secret src={secret}></Secret> : ""}
+                {e.isAnswered ? <Answer>[답변 완료]</Answer> : ""}
                 <Delete id={e.id} onClick={handleDelete}>
                   삭제
                 </Delete>

@@ -56,8 +56,8 @@ function Home() {
   const [homeList, setHomeList] = useState({});
   const [bannerList, setBannerList] = useState([
     {
-      thumbnail:tempImg
-    }
+      thumbnail: tempImg,
+    },
   ]);
 
   useEffect(() => {
@@ -176,9 +176,11 @@ function Home() {
             </Link>
           </BigBox>
 
-          <SurveyBox onClick = {()=>{window.open(
-            'https://forms.gle/ZSgimPKeTuJWtBHd6'
-          )}}>
+          <SurveyBox
+            onClick={() => {
+              window.open('https://forms.gle/ZSgimPKeTuJWtBHd6');
+            }}
+          >
             <h1>축제 만족도 조사</h1>
             <h2>참여 시 추첨을 통해 모바일 커피교환권 증정</h2>
             <Imoji src={survey}></Imoji>
@@ -186,17 +188,11 @@ function Home() {
 
           <ETCBox>
             <ETC
-              onClick={() =>
-                // window.open(
-                //   'https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform'
-                // )
-                alert(`서비스 준비중입니다.
-도움이 필요할 시, 진행요원의 안내 혹은 종합안내센터를 방문해주세요.`)
-              }
+              onClick={() => window.open('https://mokpowshow.co.kr/inquiry')}
             >
-              <Imoji src={disabled} />
-              <h1>장애인 지원</h1>
-              <h2>휠체어, 배리어프리존</h2>
+              <Imoji src={''} />
+              <h1>문의 사항</h1>
+              <h2>문의 사항</h2>
             </ETC>
 
             <ETC onClick={() => navigate('/missing')}>
@@ -209,6 +205,19 @@ function Home() {
               <Imoji src={lost} />
               <h1>분실물 찾기</h1>
               <h2>분실물 리스트 확인</h2>
+            </ETC>
+            <ETC
+              onClick={() =>
+                // window.open(
+                //   'https://docs.google.com/forms/d/e/1FAIpQLSd0NY-wmnHhjT1qYGvtaJmU5cOUobJnftcGr0z8cOpkBnG73A/viewform'
+                // )
+                alert(`서비스 준비중입니다.
+도움이 필요할 시, 진행요원의 안내 혹은 종합안내센터를 방문해주세요.`)
+              }
+            >
+              <Imoji src={disabled} />
+              <h1>장애인 지원</h1>
+              <h2>휠체어, 배리어프리존</h2>
             </ETC>
           </ETCBox>
 
@@ -598,13 +607,13 @@ export const TextBoard = styled.div`
     width: 390px;
     flex-shrink: 0;
 
-    @media screen and (min-width:450px){
+    @media screen and (min-width: 450px) {
       background-color: #111;
     }
-    background-color:#000;
+    background-color: #000;
 
     padding: 16px;
-    padding-bottom:80px;
+    padding-bottom: 80px;
     box-sizing: border-box;
     z-index: 2;
 
@@ -617,7 +626,7 @@ export const TextBoard = styled.div`
       margin-bottom: 12px;
     }
     h2 {
-      color: #53CDDD;
+      color: #53cddd;
 
       font-size: 15px;
       font-style: normal;

@@ -14,7 +14,7 @@ function LostHome() {
 
   const onClick_close = () => {
     setShowPopUp(false);
-  }
+  };
 
   useEffect(() => {
     window.scrollTo(0, -200);
@@ -47,20 +47,21 @@ function LostHome() {
               </div>
             );
           })}
-        
-              
         </Container>
 
-        {showPopUp
-        &&
-        <PopUpBar>
-        <h1>분실물 습득·분실 시 종합안내센터로 방문해주세요.
-          <br/>상세 위치는 공연장 지도를 참고해주세요.</h1>
-        <h2><span>문의 전화번호</span> : 061-244-8729</h2>
-        <img onClick={onClick_close} src={xButton}/>
-      </PopUpBar>
-        }
-       
+        {showPopUp && (
+          <PopUpBar>
+            <h1>
+              분실물 습득·분실 시 종합안내센터로 방문해주세요.
+              <br />
+              상세 위치는 공연장 지도를 참고해주세요.
+            </h1>
+            <h2>
+              <span>문의 전화번호</span> : 061-244-8729
+            </h2>
+            <img onClick={onClick_close} src={xButton} />
+          </PopUpBar>
+        )}
       </Wrapper>
     </>
   );
@@ -81,7 +82,7 @@ const Box = styled.div`
   color: #fff;
   margin-top: 12px;
 
-  cursor:pointer;
+  cursor: pointer;
 
   display: flex;
   flex-direction: column;
@@ -141,43 +142,43 @@ export const Name = styled.div`
 `;
 
 export const PopUpBar = styled.div`
-position:fixed;
-bottom:16px;
+  position: fixed;
+  bottom: 16px;
 
-width: 358px;
-height: 88px;
-flex-shrink: 0;
-border-radius: 8px;
-background: #222;
-border : 1px solid #555;
+  width: 358px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #222;
+  border: 1px solid #555;
 
-display :flex;
-flex-direction:column;
-gap:4px;
-padding:12px 16px;
-h1{
-  color: #FFF;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px; /* 142.857% */
-}
-h2{
-  color: #FFF;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  span{
-    font-weight:600;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  h1 {
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
   }
-}
-img{
-  position:absolute;
-  top:12px;
-  right:12px;
-  cursor:pointer;
-}
+  h2 {
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+    span {
+      font-weight: 600;
+    }
+  }
+  img {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+  }
 `;
