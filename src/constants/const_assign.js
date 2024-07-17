@@ -5,142 +5,137 @@ import thumbnail_preview_missing from 'asset/assign/thumbnail_preview_missing.pn
 export const GRID_WIDTH = 1120;
 
 export const mapCategory = {
-  concert: '콘서트',
-  booth: '관광지',
-  mapCategory: [
-    {
-      kor: '관리자',
-      eng: 'MANAGER'
-    }, 
-    {
-      kor: '관광안내소',
-      eng: 'INFO'
-    },
-    {
-      kor: '편의점',
-      eng: 'SHOP'
-    },
-    {
-      kor: '화장실',
-      eng: 'TOILET'
-    },
-    {
-      kor: '흡연장',
-      eng: 'SMOKING'
-    },
-    {
-      kor: '주차장',
-      eng: 'PARKING'
-    }
-  ],
+    concert: '콘서트',
+    booth: '관광지',
+    mapCategory: [
+        {
+            kor: '관리자',
+            eng: 'MANAGER',
+        },
+        {
+            kor: '관광안내소',
+            eng: 'INFO',
+        },
+        {
+            kor: '편의점',
+            eng: 'SHOP',
+        },
+        {
+            kor: '화장실',
+            eng: 'TOILET',
+        },
+        {
+            kor: '흡연장',
+            eng: 'SMOKING',
+        },
+        {
+            kor: '주차장',
+            eng: 'PARKING',
+        },
+    ],
 };
 
 export const postCategory = {
-  notice: [
-    {
-      kor: '공지사항',
-      eng: 'NOTICE'
-    },
+    notice: [
+        {
+            kor: '공지사항',
+            eng: 'NOTICE',
+        },
 
-    {
-      kor: '이벤트',
-      eng: 'EVENT'
-    },
-  ]
+        {
+            kor: '이벤트',
+            eng: 'EVENT',
+        },
+    ],
 };
 
 export const lostItemCategory = {
-  lostItem: '분실물',
+    lostItem: '분실물',
 };
 
 export const missingPersonCategory = {
-  missingPerson: '실종자',
+    missingPerson: '실종자',
 };
 
 export const wheelChairCategory = {
-  wheelChair: '휠체어',
+    wheelChair: '휠체어',
 };
 
 export const barrierFreeCategory = {
-  barrierFree: '배리어프리존',
+    barrierFree: '배리어프리존',
 };
 
 export const urgentCategory = {
-  urgent: '긴급공지/팝업',
+    urgent: '긴급공지/팝업',
 };
 
-export const mapForm_blank = {
+export const mapFormBlank = {
+    tag: '',
+    name: '',
+    summary: '',
+    subtitle: '',
+    content: '',
+    latitude: 0,
+    longitude: 0,
+    location: '',
+    isOperation: true,
+    operationHours: '',
 
-  tag: '',
-  name: '',
-  summary: '',
-  subtitle: '',
-  content: '',
-  latitude: 0,
-  longitude: 0,
-  location: '',
-  isOperation: true,
-  operationHours: '',
-
-  thumbnail: thumbnail_preview,
-  images: [],
-}
-
-export const mapCategoryForm_blank = {
-  id: '',
-  name: '',
-  summary: '',
-  content: '',
-  latitude: 0,
-  longitude: 0,
-  location: '',
-  isOperation: true,
-  operationHours: '',
-  type: '',
-
-  thumbnail: thumbnail_preview,
-  images:[],
-  menus: [],
+    thumbnail: thumbnail_preview,
+    images: [],
 };
 
-export const postForm_blank = {
-  title: '',
-  subtitle: '',
-  content: '',
-  type:'',
-  
-  thumbnail: thumbnail_preview,
-  images: [],
-}
+export const mapCategoryFormBlank = {
+    id: '',
+    name: '',
+    summary: '',
+    content: '',
+    latitude: 0,
+    longitude: 0,
+    location: '',
+    isOperation: true,
+    operationHours: '',
+    type: '',
 
+    thumbnail: thumbnail_preview,
+    images: [],
+    menus: [],
+};
 
-export const lostItemForm_blank = {
-  name: '',
-  type:'',
-  findDate:'',
+export const postFormBlank = {
+    title: '',
+    subtitle: '',
+    content: '',
+    type: '',
 
-  thumbnail: thumbnail_preview2,
-}
+    thumbnail: thumbnail_preview,
+    images: [],
+};
 
+export const lostItemFormBlank = {
+    name: '',
+    type: '',
+    findDate: '',
 
-export const missingPersonForm_blank = {
-  name: "",
-  age: "",
-  gender: "",
-  thumbnail: thumbnail_preview_missing,
+    thumbnail: thumbnail_preview2,
+};
 
-  missingLocation: "",
-  missingTime: "",
+export const missingPersonFormBlank = {
+    name: '',
+    age: '',
+    gender: '',
+    thumbnail: thumbnail_preview_missing,
 
-  content: "",
-  parentName: "",
-  parentNo: "",
-  popup: false
-}
+    missingLocation: '',
+    missingTime: '',
 
+    content: '',
+    parentName: '',
+    parentNo: '',
+    popup: false,
+};
 
-export const urgentForm_blank = {
-  title: '',
-  content: '',
-}
-
+export const urgentFormBlank = {
+    title: '',
+    content: '',
+};

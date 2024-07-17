@@ -1,58 +1,40 @@
 import { BkBtn, Title, Wrapper } from 'Routes/Home';
 
 import lineUp from 'asset/images/LineUp.webp';
-import getImageSize from 'utils/getImageSize';
-import { useEffect, useState } from 'react';
 import { TopFixedBar, TopFixedBarBlank } from 'components/info/TopFixedBar';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function ConcertInfo() {
-  const navigate = useNavigate();
+    const navigate = useNavigate();
 
-  const [imgWidth, setImgWidth] = useState(0);
-  const [imgHeight, setImgHeight] = useState(0);
+    return (
+        <Wrapper>
+            <TopFixedBar>
+                <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
+                <Title>오늘의 공연</Title>
+            </TopFixedBar>
+            <TopFixedBarBlank />
 
-  useEffect(() => {
-    window.scrollTo(0, -200);
-    getImageSize(lineUp)
-      .then((response) => {
-        setImgWidth(response.width);
-        setImgHeight(response.height);
-      })
-      .catch((error) => {
-        // console.log(error);
-      });
-  }, []);
-
-  console.log('imgWidth,imgHeight', imgWidth, imgHeight);
-
-  return (
-    <Wrapper>
-      <TopFixedBar>
-        <BkBtn style={{ left: '20px' }} onClick={() => navigate(-1)} />
-        <Title>오늘의 공연</Title>
-      </TopFixedBar>
-      <TopFixedBarBlank />
-      
-      {imgHeight > 0 ? (
-        <ImgBoard src={lineUp} imgWidth={imgWidth} imgHeight={imgHeight} />
-      ) : (
-        <TempText>이미지를 로딩 중입니다.</TempText>
-      )}
-    </Wrapper>
-  );
+            {lineUp ? (
+                <ImgBoard src={lineUp} />
+            ) : (
+                <TempText>이미지를 로딩 중입니다.</TempText>
+            )}
+        </Wrapper>
+    );
 }
 
 export default ConcertInfo;
 
 const ImgBoard = styled.img`
-  width: ${(props) => props.imgWidth / 4}px;
-  //png파일 4x로 저장
-  height: ${(props) => props.imgHeight / 4}px;
+    width: 100%;
+    @media screen and (min-width: 450px) {
+        width: 390px;
+    }
 `;
 
 const TempText = styled.div`
-  color: white;
-  margin-top: 10%;
+    color: white;
+    margin-top: 10%;
 `;
