@@ -19,7 +19,7 @@ function makeOverlay(tmpMap, naver) {
     clickable: false,
   });
   let groundOverlayTmp = new naver.maps.GroundOverlay(overlayTmp, boundsTmp, {
-    opacity: 0.5,
+    opacity: 1,
     clickable: false,
   });
   // groundOverlay.setMap(tmpMap);
