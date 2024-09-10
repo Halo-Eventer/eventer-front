@@ -64,7 +64,7 @@ function NolzaMap(props) {
     setPrevZoom(initZoom);
     setZoom(initZoom);
     let mapOption = {
-      center: new naver.maps.LatLng(34.80900927876436, 126.36533810318679),
+      center: new naver.maps.LatLng(34.79610042500169, 126.43311436889107),
       zoom: initZoom,
       minZoom: 18,
       maxZoom: 20,
